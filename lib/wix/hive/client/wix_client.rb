@@ -69,29 +69,45 @@ module Wix
 
       end
 
-      TYPES = [
-          CONTACT_FORM = ActivityType.new('contact/contact-form', './schemas/contacts/contactFormSchema.json'),
-          CONTACT_CREATE = ActivityType.new('contacts/create', './schemas/contacts/contactUpdateSchema.json'),
-          CONVERSION_COMPLETE = ActivityType.new('conversion/complete', './schemas/conversion/completeSchema.json'),
-          PURCHASE = ActivityType.new('e_commerce/purchase', './schemas/e_commerce/purchaseSchema.json'),
-          SEND_MESSAGE = ActivityType.new('messaging/send', './schemas/messaging/sendSchema.json'),
-          ALBUM_FAN = ActivityType.new('music/album-fan', './schemas/music/album-fanSchema.json'),
-          ALBUM_SHARE = ActivityType.new('music/album-share', './schemas/music/album-shareSchema.json'),
-          TRACK_LYRICS = ActivityType.new('music/track-lyrics', './schemas/music/album-fanSchema.json'),
-          TRACK_PLAY = ActivityType.new('music/track-play', './schemas/music/playSchema.json'),
-          TRACK_PLAYED = ActivityType.new('music/track-played', './schemas/music/playedSchema.json'),
-          TRACK_SHARE = ActivityType.new('music/track-share',  './schemas/music/track-shareSchema.json'),
-          TRACK_SKIP = ActivityType.new('music/track-skip', './schemas/music/skippedSchema.json')
-      ]
+      class BaseWixAPIObject
+
+        TYPES = [
+            CONTACT_FORM = ActivityType.new('contact/contact-form', './schemas/contacts/contactFormSchema.json'),
+            CONTACT_CREATE = ActivityType.new('contacts/create', './schemas/contacts/contactUpdateSchema.json'),
+            CONVERSION_COMPLETE = ActivityType.new('conversion/complete', './schemas/conversion/completeSchema.json'),
+            PURCHASE = ActivityType.new('e_commerce/purchase', './schemas/e_commerce/purchaseSchema.json'),
+            SEND_MESSAGE = ActivityType.new('messaging/send', './schemas/messaging/sendSchema.json'),
+            ALBUM_FAN = ActivityType.new('music/album-fan', './schemas/music/album-fanSchema.json'),
+            ALBUM_SHARE = ActivityType.new('music/album-share', './schemas/music/album-shareSchema.json'),
+            TRACK_LYRICS = ActivityType.new('music/track-lyrics', './schemas/music/album-fanSchema.json'),
+            TRACK_PLAY = ActivityType.new('music/track-play', './schemas/music/playSchema.json'),
+            TRACK_PLAYED = ActivityType.new('music/track-played', './schemas/music/playedSchema.json'),
+            TRACK_SHARE = ActivityType.new('music/track-share',  './schemas/music/track-shareSchema.json'),
+            TRACK_SKIP = ActivityType.new('music/track-skip', './schemas/music/skippedSchema.json')
+        ]
+      end
+
+      class WixActivityDetails
+
+        attr_accessor :summary, :additional_info_url
+
+        def initialize (summary, additional_info_url)
+          @summary, @additional_info_url = summary, additional_info_url
+        end
+
+      end
 
       class WixActivity
+
+        @@prototype = BaseWixAPIObject.new
+        attr_accessor :created_at, :contact_update, :activity_details, :activity_info, :activity_location_url, :activity_type, :summary
 
         def initialize(activity_type)
           @created_at = Date.new
           @contact_update =  nil # wixparser.toObject(this.TYPES.CONTACT_CREATE.schema)
           with_activity_type(activity_type)
           @activity_location_url = nil
-          @activity_details = nil # {summary : nil, additionalInfoUrl : nil}
+          @activity_details = WixActivityDetails.new(nil,nil)
           @summary = nil
         end
 
@@ -144,9 +160,9 @@ module Wix
         end
       end
 
-      # TODO WixActivity.prototype = BaseWixAPIObject.new
-
       class WixApiCaller
+
+        attr_reader :app_id, :secret_key, :instance_id
 
         def with_app_id (app_id)
           @app_id = app_id
@@ -178,6 +194,8 @@ module Wix
       end
 
       class Activities
+
+        @@prototype = WixAPICaller.new
 
         # Creates a new WixActivity for the given ActivityType
         # @method
@@ -239,9 +257,9 @@ module Wix
 
       end
 
-      # TODO Activities.prototype = WixAPICaller.new
-
       class Contacts
+
+        @@prototype = WixAPICaller.new
 
         def get_contact_by_id (contact_id)
           resource_request(create_request('GET', '/v1/contacts/').with_path_segment(contact_id), nil)
@@ -274,9 +292,9 @@ module Wix
         end
       end
 
-      # TODO Contacts.prototype = WixAPICaller.new
-
       class Insights
+
+        @@prototype = WixAPICaller.new
 
         def get_activities_summary (scope)
           request = create_request('GET', '/v1/insights/activities/summary')
@@ -296,9 +314,9 @@ module Wix
 
       end
 
-      #TODO Insights.prototype = WixAPICaller.new
-
       class Wix
+
+        attr_accessor :Activities, :Contacts, :Insights
 
         def initialize(secret_key, app_id, instance_id)
           @Activities = Activities.new.with_secret_key(secret_key).with_app_id(app_id).with_instance_id(instance_id)
