@@ -1,13 +1,13 @@
 require 'rest_client'
 
 # API operations
-require 'hive/api_operations/create'
+require_relative 'hive/api_operations/create'
 #require 'hive/api_operations/update'
-require 'hive/api_operations/delete'
-require 'hive/api_operations/list'
+require_relative 'hive/api_operations/delete'
+require_relative 'hive/api_operations/list'
 
 # Resources
-require 'hive/util'
+require_relative 'hive/util'
 
 module Wix
   module Hive
@@ -20,11 +20,13 @@ module Wix
       attr_accessor :api_base, :api_family, :api_version
     end
 
-    def self.api_url(url='')
+    module_function
+
+    def api_url(url='')
       @api_base + '/' + @api_family + url
     end
 
-    def self.request(method, url, api_key, params={}, headers={})
+    def request(method, url, api_key, params={}, headers={})
       #TODO
     end
   end
