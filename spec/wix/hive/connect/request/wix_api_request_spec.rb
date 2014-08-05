@@ -21,6 +21,15 @@ describe Wix::Hive::Request::WixAPIRequest do
     end
   end
 
+  context '.perform_with_cursor' do
+    it 'returns a cursored result' do
+      contact = double('Contact')
+      allow(client).to receive(:wix_request).with(wix_request).and_return(instance_double(Faraday::Response, :body => {results: [{mock:'mock'}]}))
+      allow(contact).to receive(:new).with({mock:'mock'})
+      wix_request.perform_with_cursor(contact).is_a? Wix::Hive::Cursor
+    end
+  end
+
   context 'CaseSensitiveString' do
     subject(:header) {Wix::Hive::Request::CaseSensitiveString.new('test')}
 

@@ -1,6 +1,7 @@
 require 'time'
 require 'openssl'
 require 'base64'
+require 'wix/hive/cursor'
 
 module Wix
   module Hive
@@ -23,9 +24,9 @@ module Wix
           @client = client
           @verb = verb
           @path = path
+          @body = body
           @params = append_default_params(params)
           @headers = append_wix_headers(headers)
-          @body = body
         end
 
         def perform
@@ -34,6 +35,10 @@ module Wix
 
         def perform_with_object(klass)
           klass.new(perform)
+        end
+
+        def perform_with_cursor(klass)
+          Wix::Hive::Cursor.new(@client,perform, klass)
         end
 
         private
@@ -54,7 +59,7 @@ module Wix
         end
 
         def calculate_signature
-          out = "#{@verb.upcase}\n#{@path}\n#{wix_headers.update(@params).values.sort.join("\n")}#{@body ? "#{body}\n" : ''}"
+          out = "#{@verb.upcase}\n#{@path}\n#{wix_headers.update(@params).values.sort.join("\n")}#{@body.empty? ? '' : "\n#{@body}"}"
           sign_data(out)
         end
 

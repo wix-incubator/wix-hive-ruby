@@ -1,6 +1,7 @@
 require 'wix/hive/connect/request/wix_api_request'
 require 'wix/hive/rest/api'
 require 'faraday'
+require 'faraday_middleware'
 require 'faraday/request/multipart'
 require 'json'
 require 'timeout'
@@ -24,23 +25,31 @@ module Wix
       end
 
       def wix_request(request)
-        request(request.verb, request.path, request.params, request.headers)
+        request(request.verb, request.path, request.params, request.body, request.headers)
       end
 
-      def request(method, path, params = {}, headers = {})
-        connection.send(method.to_sym, path, params) { |request| request.headers.update(headers) }.env
-      rescue Faraday::Error::TimeoutError, Timeout::Error => error
-        #TODO @Alex: Custom error handling propagate for now
-        raise(error)
-      rescue Faraday::Error::ClientError, JSON::ParserError => error
-        #TODO @Alex: Custom error handling propagate for now
-        raise(error)
+      def request(method, path, params = {}, body = {}, headers = {})
+        begin
+          connection.send(method.to_sym) do |request|
+            request.url path, params
+            request.headers.update(headers)
+            request.body = body if  body.length > 0
+          end
+        rescue Faraday::Error::TimeoutError, Timeout::Error => error
+          #TODO @Alex: Custom error handling propagate for now
+          raise(error)
+        rescue Faraday::Error::ClientError, JSON::ParserError => error
+          #TODO @Alex: Custom error handling propagate for now
+          raise(error)
+        end
       end
 
       def middleware
         @middleware ||= Faraday::RackBuilder.new do |faraday|
           # Checks for files in the payload, otherwise leaves everything untouched
           faraday.request :multipart
+          # Encodes as "application/json" if not already encoded
+          faraday.request :json
           # Encodes as "application/x-www-form-urlencoded" if not already encoded
           faraday.request :url_encoded
           #Handle error responses

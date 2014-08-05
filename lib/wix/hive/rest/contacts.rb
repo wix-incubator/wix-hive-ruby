@@ -8,8 +8,16 @@ module Wix
 
         include Wix::Hive::Util
 
-        def contact(contact_id)
+        def get_contacts
+          perform_with_cursor(:get, '/v1/contacts', Wix::Hive::Contact)
+        end
+
+        def get_contact(contact_id)
           perform_with_object(:get, "/v1/contacts/#{contact_id}", Wix::Hive::Contact)
+        end
+
+        def create_contact(contact)
+          perform(:post, '/v1/contacts', {}, contact.to_json)
         end
 
       end

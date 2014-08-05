@@ -13,7 +13,7 @@ describe Wix::Hive::Client do
       allow(Time).to receive(:now) {time_now}
 
       request = Wix::Hive::Request::WixAPIRequest.new(client, 'get', '/path')
-      allow(client).to receive(:request).with(request.verb, request.path, request.params, request.headers).and_return(instance_double(Faraday::Response, :body => 'mock'))
+      allow(client).to receive(:request).with(request.verb, request.path, request.params, request.body, request.headers).and_return(instance_double(Faraday::Response, :body => 'mock'))
 
       client.wix_request(request)
     end

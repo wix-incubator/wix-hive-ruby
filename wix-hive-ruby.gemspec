@@ -29,4 +29,6 @@ Gem::Specification.new do |spec|
   spec.add_dependency 'faraday', '~> 0.9.0' , '>= 0.9.0'
   spec.add_dependency 'mime-types', '~> 1.25' , '>= 1.25'
   spec.add_dependency 'json', '~> 1.8.1' , '>= 1.8.1'
+  spec.add_dependency 'hashie', '~> 3.2.0' , '>= 3.2.0'
+  spec.add_dependency 'faraday_middleware', '~> 0.9.1' , '>= 0.9.1'
 end
