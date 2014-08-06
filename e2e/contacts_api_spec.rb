@@ -69,4 +69,17 @@ describe 'Contacts API' do
       expect(client.upsert_contact(phone: '123456789', email: 'alext@wix.com')).to include :contactId
     end
   end
+
+  it '.update_contact_name' do
+    contact = Wix::Hive::Contact.new
+    contact.name.first = 'Old_Name'
+
+    create_response = client.create_contact(contact)
+
+    expect(create_response).to include :contactId
+
+    update_response = client.update_contact_name(create_response[:contactId], Wix::Hive::Name.new(first:'New_Name'))
+
+    expect(update_response.name.first).to eq 'New_Name'
+  end
 end

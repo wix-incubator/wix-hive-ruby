@@ -9,7 +9,7 @@ describe Wix::Hive::REST::Contacts do
     contacts.get_contacts
   end
 
-  it '.contact' do
+  it '.get_contact' do
     expect(contacts).to receive(:perform_with_object).with(:get, '/v1/contacts/id', Wix::Hive::Contact).and_return(instance_double(Faraday::Response, :body => 'mock'))
     contacts.get_contact('id')
   end
@@ -53,6 +53,14 @@ describe Wix::Hive::REST::Contacts do
     it 'without email or phone' do
       expect{ contacts.upsert_contact(nothing: nil) }.to raise_error(ArgumentError)
     end
+  end
+
+  it '.update_contact_name' do
+    contact_id = '1234'
+    contact_name = double('ContactName')
+    expect(contact_name).to receive(:to_json).and_return('mock')
+    expect(contacts).to receive(:perform_with_object).with(:put, "/v1/contacts/#{contact_id}/name", Wix::Hive::Contact, {}, 'mock').and_return(instance_double(Faraday::Response, :body => 'mock'))
+    contacts.update_contact_name(contact_id, contact_name)
   end
 
 end

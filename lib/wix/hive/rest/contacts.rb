@@ -31,6 +31,10 @@ module Wix
 
           perform(:put, '/v1/contacts', {}, args.to_json)
         end
+
+        def update_contact_name(id, contact_name)
+          perform_with_object(:put, "/v1/contacts/#{id}/name", Wix::Hive::Contact, {}, contact_name.to_json)
+        end
       end
     end
   end
