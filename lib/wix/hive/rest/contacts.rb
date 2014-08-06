@@ -25,6 +25,12 @@ module Wix
 
           perform_with_object(:put, "/v1/contacts/#{contact.id}", Wix::Hive::Contact, {}, contact.to_json)
         end
+
+        def upsert_contact(args)
+          raise ArgumentError, 'Phone or Email are required!' unless args.key?(:phone) or args.key?(:email)
+
+          perform(:put, '/v1/contacts', {}, args.to_json)
+        end
       end
     end
   end

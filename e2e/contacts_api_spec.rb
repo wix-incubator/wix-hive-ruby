@@ -7,6 +7,7 @@ describe 'Contacts API' do
     contact.name.first = 'E2E'
     contact.name.last = 'Cool'
     contact.add_email('alext@wix.com', 'work')
+    contact.add_phone('123456789', 'work')
     contact.add_address('28208 N Inca St.', 'home', 'LODO', 'Denver', 'CO', 'US', '80202')
     contact.add_date(Time.now.utc.iso8601(3), 'E2E')
     contact.add_url('wix.com', 'site')
@@ -49,5 +50,23 @@ describe 'Contacts API' do
     # expect(updated_contact.addresses).to eq contact.addresses
     # expect(updated_contact.dates).to eq contact.dates
     # expect(updated_contact.urls).to eq contact.urls
+  end
+
+  context '.upsert_contact' do
+    it 'should upsert a contact given a phone' do
+      expect(client.upsert_contact(phone: rand(10 ** 10))).to include :contactId
+    end
+
+    it 'should upsert a contact given a email' do
+      expect(client.upsert_contact(email: rand(36 ** 10).to_s(36))).to include :contactId
+    end
+
+    it 'should upsert a contact given a email and phone' do
+      expect(client.upsert_contact(phone: rand(10 ** 10), email: rand(36 ** 10).to_s(36))).to include :contactId
+    end
+
+    it 'should return a contact given a exiting phone' do
+      expect(client.upsert_contact(phone: '123456789', email: 'alext@wix.com')).to include :contactId
+    end
   end
 end

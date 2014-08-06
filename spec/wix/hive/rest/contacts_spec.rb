@@ -39,4 +39,20 @@ describe Wix::Hive::REST::Contacts do
     end
   end
 
+  context '.upsert_contact' do
+    it 'with phone provided' do
+      expect(contacts).to receive(:perform).with(:put, '/v1/contacts', {}, '{"phone":"123456789"}').and_return(instance_double(Faraday::Response, :body => 'mock'))
+      contacts.upsert_contact({phone: '123456789'})
+    end
+
+    it 'with email provided' do
+      expect(contacts).to receive(:perform).with(:put, '/v1/contacts', {}, '{"email":"alext@wix.com"}').and_return(instance_double(Faraday::Response, :body => 'mock'))
+      contacts.upsert_contact({email: 'alext@wix.com'})
+    end
+
+    it 'without email or phone' do
+      expect{ contacts.upsert_contact(nothing: nil) }.to raise_error(ArgumentError)
+    end
+  end
+
 end
