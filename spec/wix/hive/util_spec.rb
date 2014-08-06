@@ -16,7 +16,7 @@ describe Wix::Hive::Util do
 
   context '.perform_with_object' do
     it 'should create and perform a request on the given class' do
-      expect(Wix::Hive::Request::WixAPIRequest).to receive(:new).with(util, 'get', '/path').and_return(request)
+      expect(Wix::Hive::Request::WixAPIRequest).to receive(:new).with(util, 'get', '/path', {}, {}).and_return(request)
       expect(request).to receive(:perform_with_object).with(Wix::Hive::Contact).and_return(mock_response)
 
       util.perform_with_object('get','/path', Wix::Hive::Contact)

@@ -20,6 +20,11 @@ module Wix
           perform(:post, '/v1/contacts', {}, contact.to_json)
         end
 
+        def update_contact(contact)
+          raise ArgumentError, 'Contact ID not provided!' unless contact.id
+
+          perform_with_object(:put, "/v1/contacts/#{contact.id}", Wix::Hive::Contact, {}, contact.to_json)
+        end
       end
     end
   end
