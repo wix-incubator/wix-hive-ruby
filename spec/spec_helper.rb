@@ -4,15 +4,15 @@ SimpleCov.start do
 
   add_filter '/spec/'
 
-  #TODO @Alex: Add more groups based on the structure.
+  # TODO @Alex: Add more groups based on the structure.
   add_group 'wix', 'lib/wix'
 
-end if ENV["COVERAGE"]
+end if ENV['COVERAGE']
 
 require 'wix-hive-ruby'
 require 'webmock/rspec'
 
-WebMock.disable_net_connect!(:allow => 'coveralls.io')
+WebMock.disable_net_connect!(allow: 'coveralls.io')
 
 RSpec.configure do |config|
   # Disable the use of 'should' as it is deprecated!

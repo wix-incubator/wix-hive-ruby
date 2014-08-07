@@ -13,10 +13,10 @@ module Wix
 
         def parse(body)
           case body
-            when WHITESPACE_REGEX, nil
-              nil
-            else
-              JSON.parse(body, :symbolize_names => true)
+          when WHITESPACE_REGEX, nil
+            nil
+          else
+            JSON.parse(body, symbolize_names: true)
           end
         end
 
@@ -28,4 +28,4 @@ module Wix
   end
 end
 
-Faraday::Response.register_middleware :parse_json => Wix::Hive::Response::ParseJson
+Faraday::Response.register_middleware parse_json: Wix::Hive::Response::ParseJson

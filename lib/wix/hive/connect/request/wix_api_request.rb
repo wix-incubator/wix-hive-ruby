@@ -6,18 +6,17 @@ require 'wix/hive/cursor'
 module Wix
   module Hive
     module Request
-
       class CaseSensitiveString < String
         def downcase
           self
         end
+
         def capitalize
           self
         end
       end
 
       class WixAPIRequest
-
         attr_accessor :verb, :path, :params, :body, :headers
 
         def initialize(client, verb, path, params = {}, body = {}, headers = {})
@@ -38,10 +37,10 @@ module Wix
         end
 
         def perform_with_cursor(klass)
-          Wix::Hive::Cursor.new(@client,perform, klass)
+          Wix::Hive::Cursor.new(@client, perform, klass)
         end
 
-        private
+      private
 
         def append_default_params(params)
           params['version'] ||= @client.api_version
@@ -65,10 +64,9 @@ module Wix
 
         def sign_data(data)
           hmac = OpenSSL::HMAC.digest(OpenSSL::Digest::SHA256.new, @client.secret_key, data)
-          Base64.urlsafe_encode64(hmac).gsub('=','')
+          Base64.urlsafe_encode64(hmac).gsub('=', '')
         end
       end
-
     end
   end
 end

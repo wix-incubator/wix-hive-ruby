@@ -8,7 +8,7 @@ describe Wix::Hive::Response::ParseJson do
     it 'returns a parsed response when response code is 200' do
       expect(response).to receive(:body).and_return('{"mock":1}')
       expect(response).to receive(:status).and_return(200)
-      expect(response).to receive(:body=).with({mock:1})
+      expect(response).to receive(:body=).with(mock: 1)
       parse_json.on_complete(response)
     end
 

@@ -29,19 +29,17 @@ module Wix
       end
 
       def request(method, path, params = {}, body = {}, headers = {})
-        begin
-          connection.send(method.to_sym) do |request|
-            request.url path, params
-            request.headers.update(headers)
-            request.body = body if  body.length > 0
-          end
-        rescue Faraday::Error::TimeoutError, Timeout::Error => error
-          #TODO @Alex: Custom error handling propagate for now
-          raise(error)
-        rescue Faraday::Error::ClientError, JSON::ParserError => error
-          #TODO @Alex: Custom error handling propagate for now
-          raise(error)
+        connection.send(method.to_sym) do |request|
+          request.url path, params
+          request.headers.update(headers)
+          request.body = body if  body.length > 0
         end
+      rescue Faraday::Error::TimeoutError, Timeout::Error => error
+        # TODO: @Alex: Custom error handling propagate for now
+        raise(error)
+      rescue Faraday::Error::ClientError, JSON::ParserError => error
+        # TODO: @Alex: Custom error handling propagate for now
+        raise(error)
       end
 
       def middleware
@@ -52,11 +50,11 @@ module Wix
           faraday.request :json
           # Encodes as "application/x-www-form-urlencoded" if not already encoded
           faraday.request :url_encoded
-          #Handle error responses
+          # Handle error responses
           faraday.response :raise_error
           # Parse JSON response bodies
           faraday.response :parse_json
-          #Log requests to the STDOUT
+          # Log requests to the STDOUT
           faraday.response :logger
           # Set default HTTP adapter
           faraday.adapter Faraday.default_adapter
@@ -65,18 +63,18 @@ module Wix
 
       def connection_options
         @connection_options ||= {
-            :builder => middleware,
-            :headers => {
-                :accept => 'application/json',
-            },
-            :request => {
-                :open_timeout => 10,
-                :timeout => 30,
-            },
+          builder: middleware,
+          headers: {
+            accept: 'application/json',
+          },
+          request: {
+            open_timeout: 10,
+            timeout: 30,
+          },
         }
       end
 
-      private
+    private
 
       def connection
         @connection ||= Faraday.new(API_BASE, connection_options)

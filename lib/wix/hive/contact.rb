@@ -79,7 +79,7 @@ module Wix
       coerce_key :custom, Array[Custom]
       coerce_key :links, Array[Link]
       property :id
-      property :name , default: Wix::Hive::Name.new
+      property :name, default: Wix::Hive::Name.new
       property :picture
       property :company
       property :tags
@@ -88,8 +88,8 @@ module Wix
       property :addresses, default: []
       property :urls, default: []
       property :dates, default: []
-      property :notes #, default: []
-      property :custom #, default: []
+      property :notes # , default: []
+      property :custom # , default: []
       property :createdAt
       property :links
       property :modifiedAt
@@ -132,7 +132,6 @@ module Wix
       # def add_custom(field, value)
       #   custom << Custom.new(field: field, value: value)
       # end
-
     end
   end
 end

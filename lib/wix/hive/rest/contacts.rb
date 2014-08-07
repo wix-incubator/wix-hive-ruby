@@ -5,14 +5,13 @@ module Wix
   module Hive
     module REST
       module Contacts
-
         include Wix::Hive::Util
 
-        def get_contacts
+        def contacts
           perform_with_cursor(:get, '/v1/contacts', Wix::Hive::Contact)
         end
 
-        def get_contact(contact_id)
+        def contact(contact_id)
           perform_with_object(:get, "/v1/contacts/#{contact_id}", Wix::Hive::Contact)
         end
 
@@ -21,19 +20,23 @@ module Wix
         end
 
         def update_contact(contact)
-          raise ArgumentError, 'Contact ID not provided!' unless contact.id
+          fail ArgumentError, 'Contact ID not provided!' unless contact.id
 
           perform_with_object(:put, "/v1/contacts/#{contact.id}", Wix::Hive::Contact, {}, contact.to_json)
         end
 
         def upsert_contact(args)
-          raise ArgumentError, 'Phone or Email are required!' unless args.key?(:phone) or args.key?(:email)
+          fail ArgumentError, 'Phone or Email are required!' unless args.key?(:phone) || args.key?(:email)
 
           perform(:put, '/v1/contacts', {}, args.to_json)
         end
 
         def update_contact_name(id, contact_name)
           perform_with_object(:put, "/v1/contacts/#{id}/name", Wix::Hive::Contact, {}, contact_name.to_json)
+        end
+
+        def update_contact_company(id, contact_company)
+          perform_with_object(:put, "/v1/contacts/#{id}/company", Wix::Hive::Contact, {}, {company: contact_company}.to_json)
         end
       end
     end

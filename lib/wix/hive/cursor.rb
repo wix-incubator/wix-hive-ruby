@@ -9,7 +9,7 @@ module Wix
       def initialize(client, hash, klass)
         @client = client
         super(hash)
-        self.results = results.map {|item| klass.new(item)}
+        self.results = results.collect { |item| klass.new(item) }
       end
 
       property :total
@@ -18,6 +18,5 @@ module Wix
       property :nextCursor
       property :results, default: []
     end
-
   end
 end
