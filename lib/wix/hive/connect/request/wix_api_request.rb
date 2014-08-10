@@ -64,7 +64,7 @@ module Wix
           @options[:headers] = headers
         end
 
-      private
+        private
 
         def append_default_params(params)
           params['version'] ||= @client.api_version
@@ -78,11 +78,15 @@ module Wix
         end
 
         def wix_headers
-          {CaseSensitiveString.new('x-wix-instance-id') => @client.instance_id, CaseSensitiveString.new('x-wix-application-id') => @client.app_id, CaseSensitiveString.new('x-wix-timestamp') =>  Time.now.utc.iso8601(3)}
+          { CaseSensitiveString.new('x-wix-instance-id') => @client.instance_id,
+            CaseSensitiveString.new('x-wix-application-id') => @client.app_id,
+            CaseSensitiveString.new('x-wix-timestamp') =>  Time.now.utc.iso8601(3) }
         end
 
         def calculate_signature
-          out = "#{@verb.upcase}\n#{@path}\n#{wix_headers.update(params).values.sort.join("\n")}#{body.empty? ? '' : "\n#{body}"}"
+          out = "#{@verb.upcase}\n#{@path}\n
+                 #{wix_headers.update(params).values.sort.join("\n")}
+                 #{body.empty? ? '' : "\n#{body}"}"
           sign_data(out)
         end
 

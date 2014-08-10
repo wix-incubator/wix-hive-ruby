@@ -66,16 +66,16 @@ module Wix
         @connection_options ||= {
           builder: middleware,
           headers: {
-            accept: 'application/json',
+            accept: 'application/json'
           },
           request: {
             open_timeout: 10,
-            timeout: 30,
-          },
+            timeout: 30
+          }
         }
       end
 
-    private
+      private
 
       def connection
         @connection ||= Faraday.new(API_BASE, connection_options)

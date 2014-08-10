@@ -16,6 +16,7 @@ end
 RuboCop::RakeTask.new(:rubocop) do |task|
   task.patterns = ['lib/**/*.rb']
   task.fail_on_error = false
+  task.options = ['--auto-correct']
 end
 
 task default: :spec

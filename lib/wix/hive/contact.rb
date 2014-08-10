@@ -105,7 +105,7 @@ module Wix
       end
 
       def add_address(tag, optional_args = {})
-        address_hash = {tag: tag}
+        address_hash = { tag: tag }
         address_hash.update(optional_args)
 
         addresses << Address.new(address_hash)
