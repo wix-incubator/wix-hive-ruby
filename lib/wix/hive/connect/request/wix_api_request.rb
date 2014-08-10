@@ -17,15 +17,15 @@ module Wix
       end
 
       class WixAPIRequest
-        attr_accessor :verb, :path, :params, :body, :headers
+        attr_accessor :verb, :path, :options
 
-        def initialize(client, verb, path, params = {}, body = {}, headers = {})
+        def initialize(client, verb, path, options = {})
           @client = client
           @verb = verb
           @path = path
-          @body = body
-          @params = append_default_params(params)
-          @headers = append_wix_headers(headers)
+          @options = options
+          options[:params] = append_default_params(options.fetch(:params, {}))
+          options[:headers] = append_wix_headers(options.fetch(:headers, {}))
         end
 
         def perform
@@ -38,6 +38,30 @@ module Wix
 
         def perform_with_cursor(klass)
           Wix::Hive::Cursor.new(@client, perform, klass)
+        end
+
+        def body
+          @options.fetch(:body, {})
+        end
+
+        def body=(body)
+          @options[:body] = body
+        end
+
+        def params
+          @options.fetch(:params, {})
+        end
+
+        def params=(params)
+          @options[:params] = params
+        end
+
+        def headers
+          @options.fetch(:headers, {})
+        end
+
+        def headers=(headers)
+          @options[:headers] = headers
         end
 
       private
@@ -58,7 +82,7 @@ module Wix
         end
 
         def calculate_signature
-          out = "#{@verb.upcase}\n#{@path}\n#{wix_headers.update(@params).values.sort.join("\n")}#{@body.empty? ? '' : "\n#{@body}"}"
+          out = "#{@verb.upcase}\n#{@path}\n#{wix_headers.update(params).values.sort.join("\n")}#{body.empty? ? '' : "\n#{body}"}"
           sign_data(out)
         end
 

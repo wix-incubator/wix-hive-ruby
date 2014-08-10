@@ -61,7 +61,7 @@ describe Wix::Hive::Contact do
     end
 
     it 'should add a address to the Contact.addresses array' do
-      @contact.add_address('home', '16th Mall St.')
+      @contact.add_address('home', address: '16th Mall St.')
       expect(@contact.addresses.size).to eq 1
       expect(@contact.addresses.first.tag).to be_truthy
       expect(@contact.addresses.first.address).to be_truthy
@@ -69,7 +69,7 @@ describe Wix::Hive::Contact do
     end
 
     it 'should append a address to the existing Contact.addresses array' do
-      @contact.add_address('work', '20208 Larimer St.')
+      @contact.add_address('work', address: '20208 Larimer St.')
       expect(@contact.addresses.size).to eq 2
     end
   end

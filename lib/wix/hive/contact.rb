@@ -104,14 +104,9 @@ module Wix
         phones << Phone.new(phone: phone, tag: tag)
       end
 
-      def add_address(tag, address = nil, neighborhood = nil, city = nil, region = nil, country = nil, postal_code = nil)
+      def add_address(tag, optional_args = {})
         address_hash = {tag: tag}
-        address_hash[:address] = address
-        address_hash[:neighborhood] = neighborhood
-        address_hash[:city] = city
-        address_hash[:region] = region
-        address_hash[:country] = country
-        address_hash[:postalCode] = postal_code
+        address_hash.update(optional_args)
 
         addresses << Address.new(address_hash)
       end

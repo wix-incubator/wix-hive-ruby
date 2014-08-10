@@ -95,3 +95,8 @@ NonNilCheck:
 
 EachWithObject:
   Enabled: false
+
+FileName:
+  Exclude:
+    - 'lib/wix-hive-ruby.rb'
+

@@ -25,13 +25,14 @@ module Wix
       end
 
       def wix_request(request)
-        request(request.verb, request.path, request.params, request.body, request.headers)
+        request(request.verb, request.path, request.options)
       end
 
-      def request(method, path, params = {}, body = {}, headers = {})
+      def request(method, path, options = {})
         connection.send(method.to_sym) do |request|
-          request.url path, params
-          request.headers.update(headers)
+          request.url path, options.fetch(:params, {})
+          request.headers.update(options.fetch(:headers, {}))
+          body = options.fetch(:body, {})
           request.body = body if  body.length > 0
         end
       rescue Faraday::Error::TimeoutError, Timeout::Error => error

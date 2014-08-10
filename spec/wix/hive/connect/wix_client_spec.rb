@@ -13,7 +13,7 @@ describe Wix::Hive::Client do
       allow(Time).to receive(:now) { time_now }
 
       request = Wix::Hive::Request::WixAPIRequest.new(client, 'get', '/path')
-      allow(client).to receive(:request).with(request.verb, request.path, request.params, request.body, request.headers).and_return(instance_double(Faraday::Response, body: 'mock'))
+      allow(client).to receive(:request).with(request.verb, request.path, request.options).and_return(instance_double(Faraday::Response, body: 'mock'))
 
       client.wix_request(request)
     end
@@ -23,13 +23,13 @@ describe Wix::Hive::Client do
     it 'passes the custom headers to the request' do
       custom_headers = {custom: '1', custom2: '2'}
       stub_get('/v1/actions').with { |request| request.headers.update(custom_headers) }.to_return(body: '', headers: {content_type: 'application/json; charset=utf-8'})
-      client.request('get', '/v1/actions', {}, custom_headers)
+      client.request('get', '/v1/actions', headers: custom_headers)
       expect(a_get('/v1/actions')).to have_been_made
     end
     it 'passes the parameters to the request' do
       params =  {a: 'a', b: 'b'}
       stub_get('/v1/actions').with(query: params).to_return(body: '', headers: {content_type: 'application/json; charset=utf-8'})
-      client.request('get', '/v1/actions', params, {})
+      client.request('get', '/v1/actions', params: params)
       expect(a_get('/v1/actions').with(query: params)).to have_been_made
     end
     it 'catches and reraises Faraday timeout errors' do
