@@ -10,6 +10,11 @@ module Wix
       property :last
       property :suffix
     end
+    class Company < Hashie::Trash
+      include Hashie::Extensions::IgnoreUndeclared
+      property :role
+      property :name
+    end
     class Email < Hashie::Trash
       include Hashie::Extensions::IgnoreUndeclared
       property :id
@@ -70,6 +75,7 @@ module Wix
       include Hashie::Extensions::Coercion
 
       coerce_key :name, Name
+      coerce_key :company, Company
       coerce_key :emails, Array[Email]
       coerce_key :phones, Array[Phone]
       coerce_key :addresses, Array[Address]
@@ -81,7 +87,7 @@ module Wix
       property :id
       property :name, default: Wix::Hive::Name.new
       property :picture
-      property :company
+      property :company, default: Wix::Hive::Company.new
       property :tags
       property :emails, default: []
       property :phones, default: []

@@ -36,7 +36,7 @@ module Wix
         end
 
         def update_contact_company(id, contact_company)
-          perform_with_object(:put, "/v1/contacts/#{id}/company", Wix::Hive::Contact, body: { company: contact_company }.to_json)
+          perform_with_object(:put, "/v1/contacts/#{id}/company", Wix::Hive::Contact, body: contact_company.to_json)
         end
       end
     end

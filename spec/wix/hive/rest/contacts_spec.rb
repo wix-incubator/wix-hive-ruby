@@ -64,8 +64,9 @@ describe Wix::Hive::REST::Contacts do
 
   it '.update_contact_company' do
     contact_id = '1234'
-    company_name = 'New_Company'
-    expect(contacts).to receive(:perform_with_object).with(:put, "/v1/contacts/#{contact_id}/company", Wix::Hive::Contact, body: {company: company_name}.to_json).and_return(instance_double(Faraday::Response, body: 'mock'))
-    contacts.update_contact_company(contact_id, company_name)
+    company = Wix::Hive::Company.new
+    company.name = 'Wix'
+    expect(contacts).to receive(:perform_with_object).with(:put, "/v1/contacts/#{contact_id}/company", Wix::Hive::Contact, body: company.to_json).and_return(instance_double(Faraday::Response, body: 'mock'))
+    contacts.update_contact_company(contact_id, company)
   end
 end

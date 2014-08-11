@@ -6,10 +6,11 @@ describe 'Contacts API' do
     contact = Wix::Hive::Contact.new
     contact.name.first = 'E2E'
     contact.name.last = 'Cool'
-    #contact.company = 'Wix'
+    contact.company.name = 'Wix'
+    contact.company.role = 'CEO'
     contact.add_email('alext@wix.com', 'work')
     contact.add_phone('123456789', 'work')
-    contact.add_address('28208 N Inca St.', 'home', 'LODO', 'Denver', 'CO', 'US', '80202')
+    contact.add_address('home', address: '28208 N Inca St.', neighborhood: 'LODO', city: 'Denver', region: 'CO', country: 'US', postalCode: '80202')
     contact.add_date(Time.now.utc.iso8601(3), 'E2E')
     contact.add_url('wix.com', 'site')
     # contact.add_note('alex', '2014-08-05T13:59:37.873Z')
@@ -18,7 +19,7 @@ describe 'Contacts API' do
   end
 
   it 'should get a contact by id' do
-    expect(client.contact('613fd876-eed4-4326-9dd1-a8d55becafff')).to be_a Wix::Hive::Contact
+    expect(client.contact('033284c1-261e-436e-a1cf-354c6dbc6604')).to be_a Wix::Hive::Contact
   end
 
   it 'should get all contacts' do
@@ -30,7 +31,7 @@ describe 'Contacts API' do
     contact.name.first = 'E2E'
     contact.name.last = 'Cool'
     contact.add_email('alext@wix.com', 'work')
-    contact.add_address('28208 N Inca St.', 'home', 'LODO', 'Denver', 'CO', 'US', '80202')
+    contact.add_address('home', address: '28208 N Inca St.', neighborhood: 'LODO', city: 'Denver', region: 'CO', country: 'US', postalCode: '80202')
     contact.add_date(Time.now.utc.iso8601(3), 'E2E')
     contact.add_url('wix.com', 'site')
 
@@ -40,7 +41,7 @@ describe 'Contacts API' do
 
     contact.id = create_response[:contactId]
     contact.add_email('wow@wix.com', 'wow')
-    contact.add_address('1625 Larimer', 'home2', 'LODO', 'Denver', 'CO', 'US', '80202')
+    contact.add_address('home2', address: '1625 Larimer', neighborhood: 'LODO', city: 'Denver', region: 'CO', country: 'US', postalCode: '80202')
     contact.add_date(Time.now.utc.iso8601(3), 'E2E UPDATE')
     contact.add_url('wix.com', 'site2')
 
@@ -84,18 +85,21 @@ describe 'Contacts API' do
     expect(update_response.name.first).to eq 'New_Name'
   end
 
-  # TODO: Implement me
-  # it '.update_contact_company' do
-  #   contact = Wix::Hive::Contact.new
-  #   contact.name.first = 'Company'
-  #   contact.company = 'Old_Company'
-  #
-  #   create_response = client.create_contact(contact)
-  #
-  #   expect(create_response).to include :contactId
-  #
-  #   update_response = client.update_contact_company(create_response[:contactId], 'New_Company')
-  #
-  #   expect(update_response.company).to eq 'New_Company'
-  # end
+  it '.update_contact_company' do
+    contact = Wix::Hive::Contact.new
+    contact.name.first = 'Company'
+    contact.company.name = 'Old_Company'
+    contact.company.role = 'CEO'
+
+    create_response = client.create_contact(contact)
+
+    expect(create_response).to include :contactId
+
+    company = Wix::Hive::Company.new
+    company.name = 'New_Company'
+
+    update_response = client.update_contact_company(create_response[:contactId], company)
+
+    expect(update_response.company.name).to eq 'New_Company'
+  end
 end
