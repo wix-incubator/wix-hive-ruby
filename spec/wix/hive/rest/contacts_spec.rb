@@ -80,4 +80,14 @@ describe Wix::Hive::REST::Contacts do
     expect(contacts).to receive(:perform_with_object).with(:put, "/v1/contacts/#{contact_id}/picture", Wix::Hive::Contact, body: picture.to_json, params: {modifiedAt: time_now}).and_return(instance_double(Faraday::Response, body: 'mock'))
     contacts.update_contact_picture(contact_id, picture)
   end
+
+  it '.update_contact_address' do
+    contact_id = '1234'
+    address_id = '5678'
+    address = Wix::Hive::Address.new
+    address.address = 'Wix'
+    allow(Time).to receive(:now) { time_now }
+    expect(contacts).to receive(:perform_with_object).with(:put, "/v1/contacts/#{contact_id}/address/#{address_id}", Wix::Hive::Contact, body: address.to_json, params: {modifiedAt: time_now}).and_return(instance_double(Faraday::Response, body: 'mock'))
+    contacts.update_contact_address(contact_id, address_id, address)
+  end
 end

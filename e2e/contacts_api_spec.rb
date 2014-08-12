@@ -88,6 +88,7 @@ describe 'Contacts API' do
   it '.update_contact_company' do
     contact = Wix::Hive::Contact.new
     contact.name.first = 'Company'
+    contact.add_email('alext@wix.com', 'work')
     contact.company.name = 'Old_Company'
     contact.company.role = 'CEO'
 
@@ -106,6 +107,7 @@ describe 'Contacts API' do
   it '.update_contact_picture' do
     contact = Wix::Hive::Contact.new
     contact.name.first = 'Wix Contact'
+    contact.add_email('alext@wix.com', 'work')
     contact.picture = 'http://wix.com/img1.jpg'
 
     create_response = client.create_contact(contact)
@@ -117,5 +119,28 @@ describe 'Contacts API' do
     update_response = client.update_contact_picture(create_response[:contactId], updated_picture)
 
     expect(update_response.picture).to eq updated_picture
+  end
+
+  it '.update_contact_address' do
+    contact = Wix::Hive::Contact.new
+    contact.name.first = 'Wix Contact'
+    contact.add_email('alext@wix.com', 'work')
+    contact.add_address('home', address: '28208 N Inca St.', neighborhood: 'LODO', city: 'Denver', region: 'CO', country: 'US', postalCode: '80202')
+
+    create_response = client.create_contact(contact)
+
+    expect(create_response).to include :contactId
+
+    contact = client.contact(create_response[:contactId])
+
+    updated_address = Wix::Hive::Address.new
+    updated_address.tag = 'work'
+    updated_address.address = '1625 Larimer St.'
+
+    update_response = client.update_contact_address(contact.id, contact.addresses.first.id, updated_address)
+
+    expect(update_response.addresses.first.tag).to eq updated_address.tag
+    #TODO: The api is not returning the address in the json uncomment this when the problem is resolved.
+    #expect(update_response.addresses.first.tag).to eq updated_address.tag
   end
 end

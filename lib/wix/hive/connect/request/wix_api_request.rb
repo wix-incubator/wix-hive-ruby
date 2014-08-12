@@ -89,7 +89,7 @@ module Wix
         end
 
         def sorted_parameter_values
-          params.update(wix_headers).sort_by{ |k, v| k.to_s }.map{|k,v| v}
+          {}.update(params).update(wix_headers).sort_by{ |k, v| k.to_s }.map{|k,v| v}
         end
 
         def sign_data(data)
