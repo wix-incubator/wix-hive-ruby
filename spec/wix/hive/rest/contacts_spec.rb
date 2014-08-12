@@ -2,6 +2,7 @@ require 'spec_helper'
 
 describe Wix::Hive::REST::Contacts do
 
+  time_now = Time.now.to_i
   subject(:contacts) { (Class.new { include Wix::Hive::Util; include Wix::Hive::REST::Contacts }).new }
 
   it '.contacts' do
@@ -57,8 +58,9 @@ describe Wix::Hive::REST::Contacts do
   it '.update_contact_name' do
     contact_id = '1234'
     contact_name = double('ContactName')
+    allow(Time).to receive(:now) { time_now }
     expect(contact_name).to receive(:to_json).and_return('mock')
-    expect(contacts).to receive(:perform_with_object).with(:put, "/v1/contacts/#{contact_id}/name", Wix::Hive::Contact, body: 'mock').and_return(instance_double(Faraday::Response, body: 'mock'))
+    expect(contacts).to receive(:perform_with_object).with(:put, "/v1/contacts/#{contact_id}/name", Wix::Hive::Contact, body: 'mock', params: {modifiedAt: time_now}).and_return(instance_double(Faraday::Response, body: 'mock'))
     contacts.update_contact_name(contact_id, contact_name)
   end
 
@@ -66,7 +68,16 @@ describe Wix::Hive::REST::Contacts do
     contact_id = '1234'
     company = Wix::Hive::Company.new
     company.name = 'Wix'
-    expect(contacts).to receive(:perform_with_object).with(:put, "/v1/contacts/#{contact_id}/company", Wix::Hive::Contact, body: company.to_json).and_return(instance_double(Faraday::Response, body: 'mock'))
+    allow(Time).to receive(:now) { time_now }
+    expect(contacts).to receive(:perform_with_object).with(:put, "/v1/contacts/#{contact_id}/company", Wix::Hive::Contact, body: company.to_json, params: {modifiedAt: time_now}).and_return(instance_double(Faraday::Response, body: 'mock'))
     contacts.update_contact_company(contact_id, company)
+  end
+
+  it '.update_contact_picture' do
+    contact_id = '1234'
+    picture = 'http://example.com/img1.jpg'
+    allow(Time).to receive(:now) { time_now }
+    expect(contacts).to receive(:perform_with_object).with(:put, "/v1/contacts/#{contact_id}/picture", Wix::Hive::Contact, body: picture.to_json, params: {modifiedAt: time_now}).and_return(instance_double(Faraday::Response, body: 'mock'))
+    contacts.update_contact_picture(contact_id, picture)
   end
 end

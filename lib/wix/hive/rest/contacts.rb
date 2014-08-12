@@ -1,5 +1,6 @@
 require 'wix/hive/contact'
 require 'wix/hive/util'
+require 'time'
 
 module Wix
   module Hive
@@ -32,11 +33,15 @@ module Wix
         end
 
         def update_contact_name(id, contact_name)
-          perform_with_object(:put, "/v1/contacts/#{id}/name", Wix::Hive::Contact, body: contact_name.to_json)
+          perform_with_object(:put, "/v1/contacts/#{id}/name", Wix::Hive::Contact, body: contact_name.to_json, params: {modifiedAt: Time.now.to_i})
         end
 
         def update_contact_company(id, contact_company)
-          perform_with_object(:put, "/v1/contacts/#{id}/company", Wix::Hive::Contact, body: contact_company.to_json)
+          perform_with_object(:put, "/v1/contacts/#{id}/company", Wix::Hive::Contact, body: contact_company.to_json, params: {modifiedAt: Time.now.to_i})
+        end
+
+        def update_contact_picture(id, picture)
+          perform_with_object(:put, "/v1/contacts/#{id}/picture", Wix::Hive::Contact, body: picture.to_json, params: {modifiedAt: Time.now.to_i})
         end
       end
     end

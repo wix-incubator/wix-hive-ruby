@@ -102,4 +102,20 @@ describe 'Contacts API' do
 
     expect(update_response.company.name).to eq 'New_Company'
   end
+
+  it '.update_contact_picture' do
+    contact = Wix::Hive::Contact.new
+    contact.name.first = 'Wix Contact'
+    contact.picture = 'http://wix.com/img1.jpg'
+
+    create_response = client.create_contact(contact)
+
+    expect(create_response).to include :contactId
+
+    updated_picture = 'wix.com'
+
+    update_response = client.update_contact_picture(create_response[:contactId], updated_picture)
+
+    expect(update_response.picture).to eq updated_picture
+  end
 end

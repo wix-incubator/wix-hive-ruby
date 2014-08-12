@@ -84,8 +84,12 @@ module Wix
         end
 
         def calculate_signature
-          out = "#{@verb.upcase}\n#{@path}\n#{wix_headers.update(params).values.sort.join("\n")}#{body.empty? ? '' : "\n#{body}"}"
+          out = "#{@verb.upcase}\n#{@path}\n#{sorted_parameter_values.join("\n")}#{body.empty? ? '' : "\n#{body}"}"
           sign_data(out)
+        end
+
+        def sorted_parameter_values
+          params.update(wix_headers).sort_by{ |k, v| k.to_s }.map{|k,v| v}
         end
 
         def sign_data(data)
