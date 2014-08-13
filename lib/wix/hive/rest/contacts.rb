@@ -47,6 +47,10 @@ module Wix
         def update_contact_address(id, address_id, address)
           perform_with_object(:put, "/v1/contacts/#{id}/address/#{address_id}", Wix::Hive::Contact, body: address.to_json, params: { modifiedAt: Time.now.to_i })
         end
+
+        def update_contact_email(id, email_id, email)
+          perform_with_object(:put, "/v1/contacts/#{id}/email/#{email_id}", Wix::Hive::Contact, body: email.to_json, params: { modifiedAt: Time.now.to_i })
+        end
       end
     end
   end

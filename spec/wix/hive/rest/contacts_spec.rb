@@ -90,4 +90,17 @@ describe Wix::Hive::REST::Contacts do
     expect(contacts).to receive(:perform_with_object).with(:put, "/v1/contacts/#{contact_id}/address/#{address_id}", Wix::Hive::Contact, body: address.to_json, params: {modifiedAt: time_now}).and_return(instance_double(Faraday::Response, body: 'mock'))
     contacts.update_contact_address(contact_id, address_id, address)
   end
+
+  it '.update_contact_email' do
+    contact_id = '1234'
+    email_id = '5678'
+    email = Wix::Hive::Email.new
+
+    email.tag = 'work'
+    email.email = 'alex@example.com'
+
+    allow(Time).to receive(:now) { time_now }
+    expect(contacts).to receive(:perform_with_object).with(:put, "/v1/contacts/#{contact_id}/email/#{email_id}", Wix::Hive::Contact, body: email.to_json, params: {modifiedAt: time_now}).and_return(instance_double(Faraday::Response, body: 'mock'))
+    contacts.update_contact_email(contact_id, email_id, email)
+  end
 end

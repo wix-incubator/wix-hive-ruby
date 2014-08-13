@@ -2,7 +2,15 @@ require_relative './e2e_helper'
 require 'time'
 
 describe 'Contacts API' do
-  it 'should create a contact' do
+  let(:base_contact) {
+    contact = Wix::Hive::Contact.new
+    contact.name.first = 'Wix'
+    contact.name.last = 'Cool'
+    contact.add_email('alext@wix.com', 'work')
+    contact
+  }
+
+  it '.create_contact' do
     contact = Wix::Hive::Contact.new
     contact.name.first = 'E2E'
     contact.name.last = 'Cool'
@@ -18,15 +26,15 @@ describe 'Contacts API' do
     expect(client.create_contact(contact)).to include :contactId
   end
 
-  it 'should get a contact by id' do
+  it '.contact' do
     expect(client.contact('7ca192ee-08b9-4946-9a10-1c50a4f49726')).to be_a Wix::Hive::Contact
   end
 
-  it 'should get all contacts' do
+  it '.contacts' do
     expect(client.contacts).to be_a Wix::Hive::Cursor
   end
 
-  it 'should update a contact given a contact object' do
+  it '.update_contact' do
     contact = Wix::Hive::Contact.new
     contact.name.first = 'E2E'
     contact.name.last = 'Cool'
@@ -72,11 +80,20 @@ describe 'Contacts API' do
     end
   end
 
-  it '.update_contact_name' do
-    contact = Wix::Hive::Contact.new
-    contact.name.first = 'Old_Name'
+  it '.contacts_tags' do
+    pendingImpl
+    expect(client.contacts_tags).to_not be_empty
+  end
 
-    create_response = client.create_contact(contact)
+  it '.contacts_subscribers' do
+    pendingImpl
+    expect(client.contacts_subscribers).to be_a Wix::Hive::Cursor
+  end
+
+  it '.update_contact_name' do
+    base_contact.name.first = 'Old_Name'
+
+    create_response = client.create_contact(base_contact)
 
     expect(create_response).to include :contactId
 
@@ -86,13 +103,11 @@ describe 'Contacts API' do
   end
 
   it '.update_contact_company' do
-    contact = Wix::Hive::Contact.new
-    contact.name.first = 'Company'
-    contact.add_email('alext@wix.com', 'work')
-    contact.company.name = 'Old_Company'
-    contact.company.role = 'CEO'
 
-    create_response = client.create_contact(contact)
+    base_contact.company.name = 'Old_Company'
+    base_contact.company.role = 'CEO'
+
+    create_response = client.create_contact(base_contact)
 
     expect(create_response).to include :contactId
 
@@ -105,12 +120,9 @@ describe 'Contacts API' do
   end
 
   it '.update_contact_picture' do
-    contact = Wix::Hive::Contact.new
-    contact.name.first = 'Wix Contact'
-    contact.add_email('alext@wix.com', 'work')
-    contact.picture = 'http://wix.com/img1.jpg'
+    base_contact.picture = 'http://wix.com/img1.jpg'
 
-    create_response = client.create_contact(contact)
+    create_response = client.create_contact(base_contact)
 
     expect(create_response).to include :contactId
 
@@ -122,12 +134,9 @@ describe 'Contacts API' do
   end
 
   it '.update_contact_address' do
-    contact = Wix::Hive::Contact.new
-    contact.name.first = 'Wix Contact'
-    contact.add_email('alext@wix.com', 'work')
-    contact.add_address('home', address: '28208 N Inca St.', neighborhood: 'LODO', city: 'Denver', region: 'CO', country: 'US', postalCode: '80202')
+    base_contact.add_address('home', address: '28208 N Inca St.', neighborhood: 'LODO', city: 'Denver', region: 'CO', country: 'US', postalCode: '80202')
 
-    create_response = client.create_contact(contact)
+    create_response = client.create_contact(base_contact)
 
     expect(create_response).to include :contactId
 
@@ -143,4 +152,42 @@ describe 'Contacts API' do
     #TODO: The api is not returning the address in the json uncomment this when the problem is resolved.
     #expect(update_response.addresses.first.tag).to eq updated_address.tag
   end
+
+  it '.update_contact_email' do
+    pending 'CE-2300'
+    create_response = client.create_contact(base_contact)
+
+    expect(create_response).to include :contactId
+
+    contact = client.contact(create_response[:contactId])
+
+    expect(contact.emails).not_to be_empty
+
+    updated_email = Wix::Hive::Email.new
+    updated_email.tag = 'work'
+    updated_email.email = 'alex@example.com'
+
+    update_response = client.update_contact_email(contact.id, contact.emails.first.id, updated_email)
+
+    expect(update_response.emails.first.tag).to eq updated_email.tag
+    expect(update_response.emails.first.email).to eq updated_email.email
+  end
+
+  it '.update_contact_phone'
+
+  it '.update_contact_note'
+
+  it '.update_contact_custom'
+
+  it '.add_contact_address'
+
+  it '.add_contact_email'
+
+  it '.add_contact_phone'
+
+  it '.add_contact_note'
+
+  it '.add_contact_custom'
+
+  it '.add_contact_tag'
 end
