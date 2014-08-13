@@ -108,9 +108,5 @@ describe Wix::Hive::Contact do
       @contact.add_date('2014-08-06T06:52:54.586Z', 'second')
       expect(@contact.dates.size).to eq 2
     end
-
-    it 'should fail' do
-      expect(false).to be_truthy
-    end
   end
 end
