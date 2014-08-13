@@ -19,7 +19,7 @@ describe 'Contacts API' do
   end
 
   it 'should get a contact by id' do
-    expect(client.contact('033284c1-261e-436e-a1cf-354c6dbc6604')).to be_a Wix::Hive::Contact
+    expect(client.contact('7ca192ee-08b9-4946-9a10-1c50a4f49726')).to be_a Wix::Hive::Contact
   end
 
   it 'should get all contacts' do
