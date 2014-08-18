@@ -26,6 +26,10 @@ module Wix
           perform(:put, '/v1/contacts', body: args.to_json)
         end
 
+        def contacts_tags
+          perform_with_object(:get, '/v1/contacts/tags', Array)
+        end
+
         def update_contact(contact)
           fail ArgumentError, 'Contact ID not provided!' unless contact.id
 

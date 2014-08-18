@@ -22,6 +22,27 @@ describe Wix::Hive::REST::Contacts do
     contacts.create_contact(contact)
   end
 
+  context '.upsert_contact' do
+    it 'with phone provided' do
+      expect(contacts).to receive(:perform).with(:put, '/v1/contacts', body: '{"phone":"123456789"}').and_return(instance_double(Faraday::Response, body: 'mock'))
+      contacts.upsert_contact(phone: '123456789')
+    end
+
+    it 'with email provided' do
+      expect(contacts).to receive(:perform).with(:put, '/v1/contacts', body: '{"email":"alext@wix.com"}').and_return(instance_double(Faraday::Response, body: 'mock'))
+      contacts.upsert_contact(email: 'alext@wix.com')
+    end
+
+    it 'without email or phone' do
+      expect { contacts.upsert_contact(nothing: nil) }.to raise_error(ArgumentError)
+    end
+  end
+
+  it '.contacts_tags' do
+    expect(contacts).to receive(:perform_with_object).with(:get, '/v1/contacts/tags', Array).and_return(instance_double(Faraday::Response, body: 'mock'))
+    contacts.contacts_tags
+  end
+
   context '.update_contact' do
     it 'with id provided' do
       id = '1234'
@@ -38,22 +59,6 @@ describe Wix::Hive::REST::Contacts do
       contact = double('Contact')
       expect(contact).to receive(:id).and_return(nil)
       expect { contacts.update_contact(contact) }.to raise_error(ArgumentError)
-    end
-  end
-
-  context '.upsert_contact' do
-    it 'with phone provided' do
-      expect(contacts).to receive(:perform).with(:put, '/v1/contacts', body: '{"phone":"123456789"}').and_return(instance_double(Faraday::Response, body: 'mock'))
-      contacts.upsert_contact(phone: '123456789')
-    end
-
-    it 'with email provided' do
-      expect(contacts).to receive(:perform).with(:put, '/v1/contacts', body: '{"email":"alext@wix.com"}').and_return(instance_double(Faraday::Response, body: 'mock'))
-      contacts.upsert_contact(email: 'alext@wix.com')
-    end
-
-    it 'without email or phone' do
-      expect { contacts.upsert_contact(nothing: nil) }.to raise_error(ArgumentError)
     end
   end
 

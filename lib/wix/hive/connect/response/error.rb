@@ -2,7 +2,7 @@ module Wix
   module Hive
     module Response
       class Error < StandardError
-        attr_reader :message, :error_code, :wix_error_code
+        attr_reader :error_message, :error_code, :wix_error_code
 
         class << self
           def from_response(response)
@@ -40,13 +40,13 @@ module Wix
 
         def initialize(message = '', error_code = nil, wix_error_code = '')
           super(message)
-          @message = message
+          @error_message = message
           @error_code = error_code
           @wix_error_code = wix_error_code
         end
 
         def to_s
-          "#{super}, errorCode: #{@error_code}, wixErrorCode: #{@wix_error_code}"
+          "#{@error_message}, errorCode: #{@error_code}, wixErrorCode: #{@wix_error_code}"
         end
 
         # Raised when the HIVE returns a 4xx HTTP status code

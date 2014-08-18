@@ -82,7 +82,7 @@ describe 'Contacts API' do
   end
 
   it '.contacts_tags' do
-    pendingImpl
+    pending 'CE-2311'
     expect(client.contacts_tags).to_not be_empty
   end
 

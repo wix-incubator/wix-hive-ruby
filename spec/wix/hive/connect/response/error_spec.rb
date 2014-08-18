@@ -12,13 +12,13 @@ describe Wix::Hive::Response::Error do
     end
     it 'should put the body in the exception message unless its a hash' do
       expect(response).to receive(:body).and_return('Error')
-      expect(described_class.from_response(response).message).to eq 'Error'
+      expect(described_class.from_response(response).error_message).to eq 'Error'
     end
 
     it 'should put the body in the exception message unless its a hash' do
       expect(response).to receive(:body).and_return(body)
       error = described_class.from_response(response)
-      expect(error.message).to eq 'error'
+      expect(error.error_message).to eq 'error'
       expect(error.error_code).to eq 403
       expect(error.wix_error_code).to eq '-20302'
     end
