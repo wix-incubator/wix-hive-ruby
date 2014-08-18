@@ -10,11 +10,13 @@ module Wix
       property :last
       property :suffix
     end
+
     class Company < Hashie::Trash
       include Hashie::Extensions::IgnoreUndeclared
       property :role
       property :name
     end
+
     class Email < Hashie::Trash
       include Hashie::Extensions::IgnoreUndeclared
       property :id
@@ -23,6 +25,7 @@ module Wix
       property :contactSubscriptionStatus
       property :siteOwnerSubscriptionStatus
     end
+
     class Phone < Hashie::Trash
       include Hashie::Extensions::IgnoreUndeclared
       property :id
@@ -30,6 +33,7 @@ module Wix
       property :phone
       property :normalizedPhone
     end
+
     class Address < Hashie::Trash
       include Hashie::Extensions::IgnoreUndeclared
       property :id
@@ -41,35 +45,41 @@ module Wix
       property :country
       property :postalCode
     end
+
     class Url < Hashie::Trash
       include Hashie::Extensions::IgnoreUndeclared
       property :id
       property :tag
       property :url
     end
+
     class Date < Hashie::Trash
       include Hashie::Extensions::IgnoreUndeclared
       property :id
       property :tag
       property :date
     end
+
     class Note < Hashie::Trash
       include Hashie::Extensions::IgnoreUndeclared
       property :id
       property :modifiedAt
       property :content
     end
+
     class Custom < Hashie::Trash
       include Hashie::Extensions::IgnoreUndeclared
       property :id
       property :field
       property :value
     end
+
     class Link < Hashie::Trash
       include Hashie::Extensions::IgnoreUndeclared
       property :href
       property :rel
     end
+
     class Contact < Hashie::Trash
       include Hashie::Extensions::IgnoreUndeclared
       include Hashie::Extensions::Coercion

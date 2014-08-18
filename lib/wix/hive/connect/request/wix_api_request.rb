@@ -6,16 +6,6 @@ require 'wix/hive/cursor'
 module Wix
   module Hive
     module Request
-      class CaseSensitiveString < String
-        def downcase
-          self
-        end
-
-        def capitalize
-          self
-        end
-      end
-
       class WixAPIRequest
         attr_accessor :verb, :path, :options
 
@@ -24,11 +14,10 @@ module Wix
           @verb = verb
           @path = path
           @options = options
-          options[:params] = append_default_params(options.fetch(:params, {}))
-          options[:headers] = append_wix_headers(options.fetch(:headers, {}))
         end
 
         def perform
+          sign_request
           @client.wix_request(self).body
         end
 
@@ -66,6 +55,12 @@ module Wix
 
         private
 
+        def sign_request
+          @timestamp = Time.now.iso8601(3)
+          @options[:params] = append_default_params(options.fetch(:params, {}))
+          @options[:headers] = append_wix_headers(options.fetch(:headers, {}))
+        end
+
         def append_default_params(params)
           params['version'] ||= @client.api_version
           params
@@ -80,7 +75,7 @@ module Wix
         def wix_headers
           { CaseSensitiveString.new('x-wix-instance-id') => @client.instance_id,
             CaseSensitiveString.new('x-wix-application-id') => @client.app_id,
-            CaseSensitiveString.new('x-wix-timestamp') =>  Time.now.utc.iso8601(3) }
+            CaseSensitiveString.new('x-wix-timestamp') =>  @timestamp }
         end
 
         def calculate_signature
@@ -94,7 +89,17 @@ module Wix
 
         def sign_data(data)
           hmac = OpenSSL::HMAC.digest(OpenSSL::Digest::SHA256.new, @client.secret_key, data)
-          Base64.urlsafe_encode64(hmac).gsub('=', '')
+          Base64.urlsafe_encode64(hmac).gsub(/\+/, '-').gsub(/\//, '_').gsub('=', '')
+        end
+      end
+
+      class CaseSensitiveString < String
+        def downcase
+          self
+        end
+
+        def capitalize
+          self
         end
       end
     end
