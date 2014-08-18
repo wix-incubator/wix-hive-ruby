@@ -2,27 +2,26 @@ module Wix
   module Hive
     module Response
       class Error < StandardError
-
         attr_reader :message, :error_code, :wix_error_code
 
         class << self
-
           def from_response(response)
             message, error_code, wix_error_code = parse_body(response.body)
             new(message, error_code, wix_error_code)
           end
 
+          # rubocop:disable Style/MethodLength
           def errors
             @errors ||= {
-                400 => Wix::Hive::Response::Error::BadRequest,
-                403 => Wix::Hive::Response::Error::Forbidden,
-                404 => Wix::Hive::Response::Error::NotFound,
-                408 => Wix::Hive::Response::Error::RequestTimeout,
-                429 => Wix::Hive::Response::Error::TooManyRequests,
-                500 => Wix::Hive::Response::Error::InternalServerError,
-                502 => Wix::Hive::Response::Error::BadGateway,
-                503 => Wix::Hive::Response::Error::ServiceUnavailable,
-                504 => Wix::Hive::Response::Error::GatewayTimeout
+              400 => Wix::Hive::Response::Error::BadRequest,
+              403 => Wix::Hive::Response::Error::Forbidden,
+              404 => Wix::Hive::Response::Error::NotFound,
+              408 => Wix::Hive::Response::Error::RequestTimeout,
+              429 => Wix::Hive::Response::Error::TooManyRequests,
+              500 => Wix::Hive::Response::Error::InternalServerError,
+              502 => Wix::Hive::Response::Error::BadGateway,
+              503 => Wix::Hive::Response::Error::ServiceUnavailable,
+              504 => Wix::Hive::Response::Error::GatewayTimeout
             }
           end
 
@@ -47,7 +46,7 @@ module Wix
         end
 
         def to_s
-          "#{super.to_s}, errorCode: #{@error_code}, wixErrorCode: #{@wix_error_code}"
+          "#{super}, errorCode: #{@error_code}, wixErrorCode: #{@wix_error_code}"
         end
 
         # Raised when the HIVE returns a 4xx HTTP status code

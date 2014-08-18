@@ -26,9 +26,11 @@ describe Wix::Hive::REST::Contacts do
     it 'with id provided' do
       id = '1234'
       contact = double('Contact')
+
+      allow(Time).to receive(:now) { time_now }
       expect(contact).to receive(:id).and_return(id).twice
       expect(contact).to receive(:to_json).and_return('mock')
-      expect(contacts).to receive(:perform_with_object).with(:put, "/v1/contacts/#{id}", Wix::Hive::Contact, body: 'mock').and_return(instance_double(Faraday::Response, body: 'mock'))
+      expect(contacts).to receive(:perform_with_object).with(:put, "/v1/contacts/#{id}", Wix::Hive::Contact, body: 'mock', params: {modifiedAt: time_now}).and_return(instance_double(Faraday::Response, body: 'mock'))
       contacts.update_contact(contact)
     end
 

@@ -37,9 +37,9 @@ module Wix
           request.body = body if  body.length > 0
         end
       rescue Faraday::Error::TimeoutError, Timeout::Error => error
-        raise(Wix::Hive::Response::Error::RequestTimeout.new(error))
+        raise(Wix::Hive::Response::Error::RequestTimeout, error)
       rescue Faraday::Error::ClientError, JSON::ParserError => error
-        raise(Wix::Hive::Response::Error.new(error))
+        raise(Wix::Hive::Response::Error, error)
       end
 
       def middleware
