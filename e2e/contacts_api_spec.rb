@@ -141,7 +141,7 @@ describe 'Contacts API' do
 
     expect(update_response.addresses.first.tag).to eq updated_address.tag
     pending 'CE-2295'
-    expect(update_response.addresses.first.tag).to eq updated_address.tag
+    expect(update_response.addresses.first.address).to eq updated_address.address
   end
 
   it '.update_contact_email' do
@@ -221,8 +221,9 @@ describe 'Contacts API' do
 
     add_response = client.add_contact_address(create_base_contact, new_address)
 
+    expect(add_response.addresses.last.tag).to eq new_address.tag
     pending 'CE-2295'
-    expect(add_response.addresses).to include new_address
+    expect(add_response.addresses.last.address).to eq new_address.address
   end
 
   it '.add_contact_email' do
@@ -233,10 +234,20 @@ describe 'Contacts API' do
 
     add_response = client.add_contact_email(create_base_contact, new_email)
 
-    expect(add_response.emails).to include new_email
+    expect(add_response.emails.last.tag).to eq new_email.tag
+    expect(add_response.emails.last.email).to eq new_email.email
   end
 
-  it '.add_contact_phone'
+  it '.add_contact_phone' do
+    new_phone = Wix::Hive::Phone.new
+    new_phone.tag = 'work_new'
+    new_phone.phone = '18006666'
+
+    add_response = client.add_contact_phone(create_base_contact, new_phone)
+
+    expect(add_response.phones.last.tag).to eq new_phone.tag
+    expect(add_response.phones.last.phone).to eq new_phone.phone
+  end
 
   it '.add_contact_note'
 
