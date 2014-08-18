@@ -21,7 +21,7 @@ module Wix
         end
 
         def unparsable_status_codes
-          [204, 301, 302, 304, 403, 500]
+          [204, 301, 302, 304]
         end
       end
     end

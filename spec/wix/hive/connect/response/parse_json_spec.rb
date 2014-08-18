@@ -2,7 +2,7 @@ require 'spec_helper'
 
 describe Wix::Hive::Response::ParseJson do
   let(:response) { double('Response') }
-  subject(:parse_json) { Wix::Hive::Response::ParseJson.new }
+  subject(:parse_json) { described_class.new }
 
   context '.on_complete' do
     it 'returns a parsed response when response code is 200' do
@@ -13,7 +13,7 @@ describe Wix::Hive::Response::ParseJson do
     end
 
     it 'leaves the body of the response unchanged if the response contains a unparsable response code' do
-      expect(response).to receive(:status).and_return(403)
+      expect(response).to receive(:status).and_return(302)
       parse_json.on_complete(response)
     end
 

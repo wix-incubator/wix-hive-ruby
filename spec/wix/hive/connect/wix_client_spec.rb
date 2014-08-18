@@ -34,19 +34,19 @@ describe Wix::Hive::Client do
     end
     it 'catches and reraises Faraday timeout errors' do
       allow(client).to receive(:connection).and_raise(Faraday::Error::TimeoutError.new('execution expired'))
-      expect { client.send(:request, :get, '/path') }.to raise_error(Faraday::Error::TimeoutError)
+      expect { client.send(:request, :get, '/path') }.to raise_error(Wix::Hive::Response::Error::RequestTimeout)
     end
     it 'catches and reraises Timeout errors' do
       allow(client).to receive(:connection).and_raise(Timeout::Error.new('execution expired'))
-      expect { client.send(:request, :get, '/path') }.to raise_error(Timeout::Error)
+      expect { client.send(:request, :get, '/path') }.to raise_error(Wix::Hive::Response::Error::RequestTimeout)
     end
     it 'catches and reraises Faraday client errors' do
       allow(client).to receive(:connection).and_raise(Faraday::Error::ClientError.new('connection failed'))
-      expect { client.send(:request, :get, '/path') }.to raise_error(Faraday::Error::ClientError)
+      expect { client.send(:request, :get, '/path') }.to raise_error(Wix::Hive::Response::Error)
     end
     it 'catches and reraises JSON::ParserError errors' do
       allow(client).to receive(:connection).and_raise(JSON::ParserError.new('unexpected token'))
-      expect { client.send(:request, :get, '/path') }.to raise_error(JSON::ParserError)
+      expect { client.send(:request, :get, '/path') }.to raise_error(Wix::Hive::Response::Error)
     end
   end
 

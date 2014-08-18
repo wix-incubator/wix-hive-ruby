@@ -27,7 +27,7 @@ describe 'Contacts API' do
   end
 
   it '.contact' do
-    expect(client.contact('7ca192ee-08b9-4946-9a10-1c50a4f49726')).to be_a Wix::Hive::Contact
+    expect(client.contact('8a2a8b48-1ca2-4b86-9614-6640ce9ba0d0')).to be_a Wix::Hive::Contact
   end
 
   it '.contacts' do
@@ -53,13 +53,13 @@ describe 'Contacts API' do
     contact.add_date(Time.now.utc.iso8601(3), 'E2E UPDATE')
     contact.add_url('wix.com', 'site2')
 
+    pending 'CE-2306'
     updated_contact = client.update_contact(contact)
 
-    # Not implemented yet CE-2306
-    # expect(updated_contact.emails).to eq contact.emails
-    # expect(updated_contact.addresses).to eq contact.addresses
-    # expect(updated_contact.dates).to eq contact.dates
-    # expect(updated_contact.urls).to eq contact.urls
+    expect(updated_contact.emails).to eq contact.emails
+    expect(updated_contact.addresses).to eq contact.addresses
+    expect(updated_contact.dates).to eq contact.dates
+    expect(updated_contact.urls).to eq contact.urls
   end
 
   context '.upsert_contact' do

@@ -10,6 +10,13 @@ describe Wix::Hive::Request::WixAPIRequest do
       allow(client).to receive(:wix_request).with(wix_request).and_return(instance_double(Faraday::Response, body: 'mock'))
       wix_request.perform
     end
+
+    it 'appends the signature just before the request is performed' do
+      expect(wix_request.headers).not_to include 'x-wix-signature'
+      allow(client).to receive(:wix_request).with(wix_request).and_return(instance_double(Faraday::Response, body: 'mock'))
+      wix_request.perform
+      expect(wix_request.headers).to include 'x-wix-signature'
+    end
   end
 
   context '.perform_with_object' do
@@ -28,6 +35,21 @@ describe Wix::Hive::Request::WixAPIRequest do
       allow(contact).to receive(:new).with(mock: 'mock')
       wix_request.perform_with_cursor(contact).is_a? Wix::Hive::Cursor
     end
+  end
+
+  it '.body=' do
+    wix_request.body = 'mock'
+    expect(wix_request.body).to eq 'mock'
+  end
+
+  it '.headers=' do
+    wix_request.headers = 'mock'
+    expect(wix_request.headers).to eq 'mock'
+  end
+
+  it '.params=' do
+    wix_request.params = 'mock'
+    expect(wix_request.params).to eq 'mock'
   end
 
   context 'CaseSensitiveString' do

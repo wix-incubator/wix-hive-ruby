@@ -7,6 +7,7 @@ require 'json'
 require 'timeout'
 require 'wix/hive/connect/response/parse_json'
 require 'wix/hive/connect/response/raise_error'
+require 'wix/hive/connect/response/error'
 
 module Wix
   module Hive
@@ -36,11 +37,9 @@ module Wix
           request.body = body if  body.length > 0
         end
       rescue Faraday::Error::TimeoutError, Timeout::Error => error
-        # TODO: @Alex: Custom error handling propagate for now
-        raise(error)
+        raise(Wix::Hive::Response::Error::RequestTimeout.new(error))
       rescue Faraday::Error::ClientError, JSON::ParserError => error
-        # TODO: @Alex: Custom error handling propagate for now
-        raise(error)
+        raise(Wix::Hive::Response::Error.new(error))
       end
 
       def middleware
