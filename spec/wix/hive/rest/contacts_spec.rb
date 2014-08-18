@@ -164,4 +164,13 @@ describe Wix::Hive::REST::Contacts do
     expect(contacts).to receive(:perform_with_object).with(:put, "/v1/contacts/#{contact_id}/custom/#{custom_id}", Wix::Hive::Contact, body: custom.to_json, params: {modifiedAt: time_now}).and_return(instance_double(Faraday::Response, body: 'mock'))
     contacts.update_contact_custom(contact_id, custom_id, custom)
   end
+
+  it '.add_contact_address' do
+    contact_id = '1234'
+    address = Wix::Hive::Address.new
+    address.address = 'Wix'
+    allow(Time).to receive(:now) { time_now }
+    expect(contacts).to receive(:perform_with_object).with(:post, "/v1/contacts/#{contact_id}/address", Wix::Hive::Contact, body: address.to_json, params: {modifiedAt: time_now}).and_return(instance_double(Faraday::Response, body: 'mock'))
+    contacts.add_contact_address(contact_id, address)
+  end
 end

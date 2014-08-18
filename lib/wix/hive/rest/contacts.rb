@@ -37,49 +37,57 @@ module Wix
         def update_contact(contact)
           fail ArgumentError, 'Contact ID not provided!' unless contact.id
 
-          update_contact_req("/v1/contacts/#{contact.id}", contact)
+          edit_contact_field("/v1/contacts/#{contact.id}", contact)
         end
 
         def update_contact_name(id, name)
-          update_contact_req("/v1/contacts/#{id}/name", name)
+          edit_contact_field("/v1/contacts/#{id}/name", name)
         end
 
         def update_contact_company(id, company)
-          update_contact_req("/v1/contacts/#{id}/company", company)
+          edit_contact_field("/v1/contacts/#{id}/company", company)
         end
 
         def update_contact_picture(id, picture)
-          update_contact_req("/v1/contacts/#{id}/picture", picture)
+          edit_contact_field("/v1/contacts/#{id}/picture", picture)
         end
 
         def update_contact_address(id, address_id, address)
-          update_contact_req("/v1/contacts/#{id}/address/#{address_id}", address)
+          edit_contact_field("/v1/contacts/#{id}/address/#{address_id}", address)
         end
 
         def update_contact_email(id, email_id, email)
-          update_contact_req("/v1/contacts/#{id}/email/#{email_id}", email)
+          edit_contact_field("/v1/contacts/#{id}/email/#{email_id}", email)
         end
 
         def update_contact_phone(id, phone_id, phone)
-          update_contact_req("/v1/contacts/#{id}/phone/#{phone_id}", phone)
+          edit_contact_field("/v1/contacts/#{id}/phone/#{phone_id}", phone)
         end
 
         def update_contact_date(id, date_id, date)
-          update_contact_req("/v1/contacts/#{id}/date/#{date_id}", date)
+          edit_contact_field("/v1/contacts/#{id}/date/#{date_id}", date)
         end
 
         def update_contact_note(id, note_id, note)
-          update_contact_req("/v1/contacts/#{id}/note/#{note_id}", note)
+          edit_contact_field("/v1/contacts/#{id}/note/#{note_id}", note)
         end
 
         def update_contact_custom(id, custom_id, custom)
-          update_contact_req("/v1/contacts/#{id}/custom/#{custom_id}", custom)
+          edit_contact_field("/v1/contacts/#{id}/custom/#{custom_id}", custom)
+        end
+
+        def add_contact_address(id, address)
+          add_contact_field("/v1/contacts/#{id}/address", address)
         end
 
         private
 
-        def update_contact_req(url, body)
+        def edit_contact_field(url, body)
           perform_with_object(:put, url, Wix::Hive::Contact, body: body.to_json, params: { modifiedAt: Time.now.to_i })
+        end
+
+        def add_contact_field(url, body)
+          perform_with_object(:post, url, Wix::Hive::Contact, body: body.to_json, params: { modifiedAt: Time.now.to_i })
         end
       end
     end

@@ -140,8 +140,8 @@ describe 'Contacts API' do
     update_response = client.update_contact_address(contact.id, contact.addresses.first.id, updated_address)
 
     expect(update_response.addresses.first.tag).to eq updated_address.tag
-    #TODO: The api is not returning the address in the json uncomment this when the problem is resolved.
-    #expect(update_response.addresses.first.tag).to eq updated_address.tag
+    pending 'CE-2295'
+    expect(update_response.addresses.first.tag).to eq updated_address.tag
   end
 
   it '.update_contact_email' do
@@ -214,7 +214,16 @@ describe 'Contacts API' do
     expect(update_response.custom.first.content).to eq custom.value
   end
 
-  it '.add_contact_address'
+  it '.add_contact_address' do
+    new_address = Wix::Hive::Address.new
+    new_address.tag = 'work'
+    new_address.address = '1625 Larimer St.'
+
+    update_response = client.add_contact_address(create_base_contact, new_address)
+
+    pending 'CE-2295'
+    expect(update_response.addresses).to include new_address
+  end
 
   it '.add_contact_email'
 
