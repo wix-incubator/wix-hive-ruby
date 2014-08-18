@@ -80,6 +80,10 @@ module Wix
           add_contact_field("/v1/contacts/#{id}/address", address)
         end
 
+        def add_contact_email(id, email)
+          add_contact_field("/v1/contacts/#{id}/email", email)
+        end
+
         private
 
         def edit_contact_field(url, body)

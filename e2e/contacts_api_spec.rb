@@ -219,13 +219,22 @@ describe 'Contacts API' do
     new_address.tag = 'work'
     new_address.address = '1625 Larimer St.'
 
-    update_response = client.add_contact_address(create_base_contact, new_address)
+    add_response = client.add_contact_address(create_base_contact, new_address)
 
     pending 'CE-2295'
-    expect(update_response.addresses).to include new_address
+    expect(add_response.addresses).to include new_address
   end
 
-  it '.add_contact_email'
+  it '.add_contact_email' do
+    pending 'CE-2300'
+    new_email = Wix::Hive::Email.new
+    new_email.tag = 'work_new'
+    new_email.email = 'alex_new@example.com'
+
+    add_response = client.add_contact_email(create_base_contact, new_email)
+
+    expect(add_response.emails).to include new_email
+  end
 
   it '.add_contact_phone'
 

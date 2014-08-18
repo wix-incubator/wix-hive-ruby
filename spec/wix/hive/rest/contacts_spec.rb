@@ -169,8 +169,20 @@ describe Wix::Hive::REST::Contacts do
     contact_id = '1234'
     address = Wix::Hive::Address.new
     address.address = 'Wix'
+
     allow(Time).to receive(:now) { time_now }
     expect(contacts).to receive(:perform_with_object).with(:post, "/v1/contacts/#{contact_id}/address", Wix::Hive::Contact, body: address.to_json, params: {modifiedAt: time_now}).and_return(instance_double(Faraday::Response, body: 'mock'))
     contacts.add_contact_address(contact_id, address)
+  end
+
+  it '.add_contact_email' do
+    contact_id = '1234'
+    email = Wix::Hive::Email.new
+    email.tag = 'work'
+    email.email = 'alex@example.com'
+
+    allow(Time).to receive(:now) { time_now }
+    expect(contacts).to receive(:perform_with_object).with(:post, "/v1/contacts/#{contact_id}/email", Wix::Hive::Contact, body: email.to_json, params: {modifiedAt: time_now}).and_return(instance_double(Faraday::Response, body: 'mock'))
+    contacts.add_contact_email(contact_id, email)
   end
 end
