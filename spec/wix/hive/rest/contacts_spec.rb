@@ -43,6 +43,11 @@ describe Wix::Hive::REST::Contacts do
     contacts.contacts_tags
   end
 
+  it '.contacts_subscribers' do
+    expect(contacts).to receive(:perform_with_cursor).with(:get, '/v1/contacts/subscribers', Wix::Hive::ContactSubscriber).and_return(instance_double(Faraday::Response, body: 'mock'))
+    contacts.contacts_subscribers
+  end
+
   context '.update_contact' do
     it 'with id provided' do
       id = '1234'

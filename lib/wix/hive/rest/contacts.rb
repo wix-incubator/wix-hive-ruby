@@ -30,6 +30,10 @@ module Wix
           perform_with_object(:get, '/v1/contacts/tags', Array)
         end
 
+        def contacts_subscribers
+          perform_with_cursor(:get, '/v1/contacts/subscribers', Wix::Hive::ContactSubscriber)
+        end
+
         def update_contact(contact)
           fail ArgumentError, 'Contact ID not provided!' unless contact.id
 

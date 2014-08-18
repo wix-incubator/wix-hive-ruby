@@ -87,7 +87,7 @@ describe 'Contacts API' do
   end
 
   it '.contacts_subscribers' do
-    pendingImpl
+    pending 'CE-2280'
     expect(client.contacts_subscribers).to be_a Wix::Hive::Cursor
   end
 

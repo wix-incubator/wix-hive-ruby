@@ -24,6 +24,7 @@ module Wix
       property :email
       property :contactSubscriptionStatus
       property :siteOwnerSubscriptionStatus
+      property :unsubscribeLink
     end
 
     class Phone < Hashie::Trash
@@ -135,7 +136,7 @@ module Wix
         dates << Date.new(date: date, tag: tag)
       end
 
-      # There is a problem with the API at the moment so we can't post this data to it. CE-2301
+      # There is a problem with the API at the moment so we can't post this data to i. CE-2301
       # def add_note(content, modified_at)
       #   notes << Note.new(content: content, modifiedAt: modified_at)
       # end
@@ -143,6 +144,18 @@ module Wix
       # def add_custom(field, value)
       #   custom << Custom.new(field: field, value: value)
       # end
+    end
+
+    class ContactSubscriber < Hashie::Trash
+      include Hashie::Extensions::IgnoreUndeclared
+      include Hashie::Extensions::Coercion
+
+      coerce_key :name, Name
+      coerce_key :emails, Array[Email]
+
+      property :id
+      property :name, default: Wix::Hive::Name.new
+      property :emails, default: []
     end
   end
 end
