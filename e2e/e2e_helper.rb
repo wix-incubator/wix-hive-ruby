@@ -1,4 +1,5 @@
 require 'wix-hive-ruby'
+require 'time'
 
 RSpec.configure do |config|
   # Disable the use of 'should' as it is deprecated!

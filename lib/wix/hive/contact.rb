@@ -57,8 +57,8 @@ module Wix
       include Hashie::Extensions::IgnoreUndeclared
       property :id
       property :tag
-      property :date
-    end
+      property :date, with: lambda { |v| Time.parse(v) }
+      end
 
     class Note < Hashie::Trash
       include Hashie::Extensions::IgnoreUndeclared

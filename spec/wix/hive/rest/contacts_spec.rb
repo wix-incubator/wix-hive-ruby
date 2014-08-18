@@ -119,6 +119,19 @@ describe Wix::Hive::REST::Contacts do
     contacts.update_contact_phone(contact_id, phone_id, phone)
   end
 
+  it '.update_contact_date' do
+    contact_id = '1234'
+    date_id = '5678'
+
+    date = Wix::Hive::Date.new
+    date.date = Time.now.iso8601(3)
+    date.tag = 'update'
+
+    allow(Time).to receive(:now) { time_now }
+    expect(contacts).to receive(:perform_with_object).with(:put, "/v1/contacts/#{contact_id}/date/#{date_id}", Wix::Hive::Contact, body: date.to_json, params: {modifiedAt: time_now}).and_return(instance_double(Faraday::Response, body: 'mock'))
+    contacts.update_contact_date(contact_id, date_id, date)
+  end
+
   it '.update_contact_note' do
     contact_id = '1234'
     note_id = '5678'

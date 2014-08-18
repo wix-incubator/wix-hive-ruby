@@ -10,6 +10,7 @@ SimpleCov.start do
 end if ENV['COVERAGE']
 
 require 'wix-hive-ruby'
+require 'time'
 require 'webmock/rspec'
 
 WebMock.disable_net_connect!(allow: 'coveralls.io')

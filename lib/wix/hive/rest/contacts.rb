@@ -56,6 +56,10 @@ module Wix
           update_contact_req("/v1/contacts/#{id}/phone/#{phone_id}", phone)
         end
 
+        def update_contact_date(id, date_id, date)
+          update_contact_req("/v1/contacts/#{id}/date/#{date_id}", date)
+        end
+
         def update_contact_note(id, note_id, note)
           update_contact_req("/v1/contacts/#{id}/note/#{note_id}", note)
         end

@@ -1,5 +1,4 @@
 require_relative './e2e_helper'
-require 'time'
 
 describe 'Contacts API' do
   let(:base_contact) {
@@ -20,7 +19,7 @@ describe 'Contacts API' do
     contact.add_email('alext@wix.com', 'work')
     contact.add_phone('123456789', 'work')
     contact.add_address('home', address: '28208 N Inca St.', neighborhood: 'LODO', city: 'Denver', region: 'CO', country: 'US', postalCode: '80202')
-    contact.add_date(Time.now.utc.iso8601(3), 'E2E')
+    contact.add_date(Time.now.iso8601(3), 'E2E')
     contact.add_url('wix.com', 'site')
     # CE-2301
     # contact.add_note('alex', '2014-08-05T13:59:37.873Z')
@@ -42,7 +41,7 @@ describe 'Contacts API' do
     contact.name.last = 'Cool'
     contact.add_email('alext@wix.com', 'work')
     contact.add_address('home', address: '28208 N Inca St.', neighborhood: 'LODO', city: 'Denver', region: 'CO', country: 'US', postalCode: '80202')
-    contact.add_date(Time.now.utc.iso8601(3), 'E2E')
+    contact.add_date(Time.now.iso8601(3), 'E2E')
     contact.add_url('wix.com', 'site')
 
     create_response = client.create_contact(contact)
@@ -52,7 +51,7 @@ describe 'Contacts API' do
     contact.id = create_response[:contactId]
     contact.add_email('wow@wix.com', 'wow')
     contact.add_address('home2', address: '1625 Larimer', neighborhood: 'LODO', city: 'Denver', region: 'CO', country: 'US', postalCode: '80202')
-    contact.add_date(Time.now.utc.iso8601(3), 'E2E UPDATE')
+    contact.add_date(Time.now.iso8601(3), 'E2E UPDATE')
     contact.add_url('wix.com', 'site2')
 
     pending 'CE-2306'
@@ -172,6 +171,22 @@ describe 'Contacts API' do
 
     expect(update_response.phones.first.tag).to eq updated_phone.tag
     expect(update_response.phones.first.phone).to eq updated_phone.phone
+  end
+
+  it '.update_contact_date' do
+    base_contact.add_date(Time.now.iso8601(3), 'E2E')
+
+    contact = client.contact(create_base_contact)
+
+    date = Wix::Hive::Date.new
+    date.date = Time.now.iso8601(3)
+    date.tag = 'update'
+
+    update_response = client.update_contact_date(contact.id, contact.dates.first.id, date)
+
+    expect(update_response.dates.first.tag).to eq date.tag
+    #Ignore timezones and all just compare the int values.
+    expect(update_response.dates.first.date.to_i).to eq date.date.to_i
   end
 
   it '.update_contact_note' do
