@@ -135,7 +135,7 @@ module Wix
         dates << Date.new(date: date, tag: tag)
       end
 
-      # There is a problem with the API at the moment so we can't post this data to it.
+      # There is a problem with the API at the moment so we can't post this data to it. CE-2301
       # def add_note(content, modified_at)
       #   notes << Note.new(content: content, modifiedAt: modified_at)
       # end

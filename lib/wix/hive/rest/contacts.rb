@@ -51,6 +51,18 @@ module Wix
         def update_contact_email(id, email_id, email)
           perform_with_object(:put, "/v1/contacts/#{id}/email/#{email_id}", Wix::Hive::Contact, body: email.to_json, params: { modifiedAt: Time.now.to_i })
         end
+
+        def update_contact_phone(id, phone_id, phone)
+          perform_with_object(:put, "/v1/contacts/#{id}/phone/#{phone_id}", Wix::Hive::Contact, body: phone.to_json, params: { modifiedAt: Time.now.to_i })
+        end
+
+        def update_contact_note(id, note_id, note)
+          perform_with_object(:put, "/v1/contacts/#{id}/note/#{note_id}", Wix::Hive::Contact, body: note.to_json, params: { modifiedAt: Time.now.to_i })
+        end
+
+        def update_contact_custom(id, custom_id, custom)
+          perform_with_object(:put, "/v1/contacts/#{id}/custom/#{custom_id}", Wix::Hive::Contact, body: custom.to_json, params: { modifiedAt: Time.now.to_i })
+        end
       end
     end
   end

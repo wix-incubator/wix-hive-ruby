@@ -103,4 +103,40 @@ describe Wix::Hive::REST::Contacts do
     expect(contacts).to receive(:perform_with_object).with(:put, "/v1/contacts/#{contact_id}/email/#{email_id}", Wix::Hive::Contact, body: email.to_json, params: {modifiedAt: time_now}).and_return(instance_double(Faraday::Response, body: 'mock'))
     contacts.update_contact_email(contact_id, email_id, email)
   end
+
+  it '.update_contact_email' do
+    contact_id = '1234'
+    phone_id = '5678'
+    phone = Wix::Hive::Phone.new
+
+    phone.tag = 'work'
+    phone.phone = '18006666'
+
+    allow(Time).to receive(:now) { time_now }
+    expect(contacts).to receive(:perform_with_object).with(:put, "/v1/contacts/#{contact_id}/phone/#{phone_id}", Wix::Hive::Contact, body: phone.to_json, params: {modifiedAt: time_now}).and_return(instance_double(Faraday::Response, body: 'mock'))
+    contacts.update_contact_phone(contact_id, phone_id, phone)
+  end
+
+  it '.update_contact_note' do
+    contact_id = '1234'
+    note_id = '5678'
+    note = 'My Note'
+
+    allow(Time).to receive(:now) { time_now }
+    expect(contacts).to receive(:perform_with_object).with(:put, "/v1/contacts/#{contact_id}/note/#{note_id}", Wix::Hive::Contact, body: note.to_json, params: {modifiedAt: time_now}).and_return(instance_double(Faraday::Response, body: 'mock'))
+    contacts.update_contact_note(contact_id, note_id, note)
+  end
+
+  it '.update_contact_custom' do
+    contact_id = '1234'
+    custom_id = '5678'
+
+    custom = Wix::Hive::Custom.new
+    custom.field = 'custom_field'
+    custom.value = 'custom_value'
+
+    allow(Time).to receive(:now) { time_now }
+    expect(contacts).to receive(:perform_with_object).with(:put, "/v1/contacts/#{contact_id}/custom/#{custom_id}", Wix::Hive::Contact, body: custom.to_json, params: {modifiedAt: time_now}).and_return(instance_double(Faraday::Response, body: 'mock'))
+    contacts.update_contact_custom(contact_id, custom_id, custom)
+  end
 end

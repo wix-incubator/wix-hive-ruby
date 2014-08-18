@@ -7,6 +7,7 @@ describe 'Contacts API' do
     contact.name.first = 'Wix'
     contact.name.last = 'Cool'
     contact.add_email('alext@wix.com', 'work')
+    contact.add_phone('123456789', 'work')
     contact
   }
 
@@ -21,6 +22,7 @@ describe 'Contacts API' do
     contact.add_address('home', address: '28208 N Inca St.', neighborhood: 'LODO', city: 'Denver', region: 'CO', country: 'US', postalCode: '80202')
     contact.add_date(Time.now.utc.iso8601(3), 'E2E')
     contact.add_url('wix.com', 'site')
+    # CE-2301
     # contact.add_note('alex', '2014-08-05T13:59:37.873Z')
     # contact.add_custom('custom1', 'custom')
     expect(client.create_contact(contact)).to include :contactId
@@ -93,11 +95,9 @@ describe 'Contacts API' do
   it '.update_contact_name' do
     base_contact.name.first = 'Old_Name'
 
-    create_response = client.create_contact(base_contact)
+    contact_id = create_base_contact
 
-    expect(create_response).to include :contactId
-
-    update_response = client.update_contact_name(create_response[:contactId], Wix::Hive::Name.new(first: 'New_Name'))
+    update_response = client.update_contact_name(contact_id, Wix::Hive::Name.new(first: 'New_Name'))
 
     expect(update_response.name.first).to eq 'New_Name'
   end
@@ -107,14 +107,12 @@ describe 'Contacts API' do
     base_contact.company.name = 'Old_Company'
     base_contact.company.role = 'CEO'
 
-    create_response = client.create_contact(base_contact)
-
-    expect(create_response).to include :contactId
+    contact_id  = create_base_contact
 
     company = Wix::Hive::Company.new
     company.name = 'New_Company'
 
-    update_response = client.update_contact_company(create_response[:contactId], company)
+    update_response = client.update_contact_company(contact_id, company)
 
     expect(update_response.company.name).to eq 'New_Company'
   end
@@ -122,13 +120,11 @@ describe 'Contacts API' do
   it '.update_contact_picture' do
     base_contact.picture = 'http://wix.com/img1.jpg'
 
-    create_response = client.create_contact(base_contact)
-
-    expect(create_response).to include :contactId
+    contact_id = create_base_contact
 
     updated_picture = 'wix.com'
 
-    update_response = client.update_contact_picture(create_response[:contactId], updated_picture)
+    update_response = client.update_contact_picture(contact_id, updated_picture)
 
     expect(update_response.picture).to eq updated_picture
   end
@@ -136,11 +132,7 @@ describe 'Contacts API' do
   it '.update_contact_address' do
     base_contact.add_address('home', address: '28208 N Inca St.', neighborhood: 'LODO', city: 'Denver', region: 'CO', country: 'US', postalCode: '80202')
 
-    create_response = client.create_contact(base_contact)
-
-    expect(create_response).to include :contactId
-
-    contact = client.contact(create_response[:contactId])
+    contact = client.contact(create_base_contact)
 
     updated_address = Wix::Hive::Address.new
     updated_address.tag = 'work'
@@ -155,11 +147,7 @@ describe 'Contacts API' do
 
   it '.update_contact_email' do
     pending 'CE-2300'
-    create_response = client.create_contact(base_contact)
-
-    expect(create_response).to include :contactId
-
-    contact = client.contact(create_response[:contactId])
+    contact = client.contact(create_base_contact)
 
     expect(contact.emails).not_to be_empty
 
@@ -173,11 +161,43 @@ describe 'Contacts API' do
     expect(update_response.emails.first.email).to eq updated_email.email
   end
 
-  it '.update_contact_phone'
+  it '.update_contact_phone' do
+    contact = client.contact(create_base_contact)
 
-  it '.update_contact_note'
+    updated_phone = Wix::Hive::Phone.new
+    updated_phone.tag = 'work'
+    updated_phone.phone = '18006666'
 
-  it '.update_contact_custom'
+    update_response = client.update_contact_phone(contact.id, contact.phones.first.id, updated_phone)
+
+    expect(update_response.phones.first.tag).to eq updated_phone.tag
+    expect(update_response.phones.first.phone).to eq updated_phone.phone
+  end
+
+  it '.update_contact_note' do
+    pending 'CE-2301'
+    contact = client.contact(create_base_contact)
+
+    note = 'My note'
+
+    update_response = client.update_contact_phone(contact.id, contact.notes.first.id, note)
+
+    expect(update_response.notes.first.content).to eq note
+  end
+
+  it '.update_contact_custom' do
+    pending 'CE-2301'
+    contact = client.contact(create_base_contact)
+
+    custom = Wix::Hive::Custom.new
+    custom.field = 'custom_update'
+    custom.value = 'custom_value'
+
+    update_response = client.update_contact_phone(contact.id, contact.custom.first.id, custom)
+
+    expect(update_response.custom.first.field).to eq custom.field
+    expect(update_response.custom.first.content).to eq custom.value
+  end
 
   it '.add_contact_address'
 
@@ -190,4 +210,14 @@ describe 'Contacts API' do
   it '.add_contact_custom'
 
   it '.add_contact_tag'
+
+  private
+
+  def create_base_contact
+    create_response = client.create_contact(base_contact)
+
+    expect(create_response).to include :contactId
+
+    create_response[:contactId]
+  end
 end
