@@ -88,6 +88,18 @@ module Wix
           add_contact_field("/v1/contacts/#{id}/phone", phone)
         end
 
+        def add_contact_note(id, note)
+          add_contact_field("/v1/contacts/#{id}/note", note)
+        end
+
+        def add_contact_custom(id, custom)
+          add_contact_field("/v1/contacts/#{id}/custom", custom)
+        end
+
+        def add_contact_tags(id, tags)
+          add_contact_field("/v1/contacts/#{id}/tags", tags)
+        end
+
         private
 
         def edit_contact_field(url, body)

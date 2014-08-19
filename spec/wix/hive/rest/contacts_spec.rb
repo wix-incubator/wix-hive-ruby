@@ -145,7 +145,9 @@ describe Wix::Hive::REST::Contacts do
   it '.update_contact_note' do
     contact_id = '1234'
     note_id = '5678'
-    note = 'My Note'
+    note = Wix::Hive::Note.new
+    note.content = 'Note'
+    note.modifiedAt = Time.now.iso8601(3)
 
     allow(Time).to receive(:now) { time_now }
     expect(contacts).to receive(:perform_with_object).with(:put, "/v1/contacts/#{contact_id}/note/#{note_id}", Wix::Hive::Contact, body: note.to_json, params: {modifiedAt: time_now}).and_return(instance_double(Faraday::Response, body: 'mock'))
@@ -195,5 +197,36 @@ describe Wix::Hive::REST::Contacts do
     allow(Time).to receive(:now) { time_now }
     expect(contacts).to receive(:perform_with_object).with(:post, "/v1/contacts/#{contact_id}/phone", Wix::Hive::Contact, body: phone.to_json, params: {modifiedAt: time_now}).and_return(instance_double(Faraday::Response, body: 'mock'))
     contacts.add_contact_phone(contact_id, phone)
+  end
+
+  it '.add_contact_note' do
+    contact_id = '1234'
+    note = Wix::Hive::Note.new
+    note.content = 'Note'
+    note.modifiedAt = Time.now.iso8601(3)
+
+    allow(Time).to receive(:now) { time_now }
+    expect(contacts).to receive(:perform_with_object).with(:post, "/v1/contacts/#{contact_id}/note", Wix::Hive::Contact, body: note.to_json, params: {modifiedAt: time_now}).and_return(instance_double(Faraday::Response, body: 'mock'))
+    contacts.add_contact_note(contact_id, note)
+  end
+
+  it '.add_contact_custom' do
+    contact_id = '1234'
+    custom = Wix::Hive::Custom.new
+    custom.field = 'custom_update'
+    custom.value = 'custom_value'
+
+    allow(Time).to receive(:now) { time_now }
+    expect(contacts).to receive(:perform_with_object).with(:post, "/v1/contacts/#{contact_id}/custom", Wix::Hive::Contact, body: custom.to_json, params: {modifiedAt: time_now}).and_return(instance_double(Faraday::Response, body: 'mock'))
+    contacts.add_contact_custom(contact_id, custom)
+  end
+
+  it '.add_contact_tags' do
+    contact_id = '1234'
+    tags = ['crazy/tag', 'lalala/tag']
+
+    allow(Time).to receive(:now) { time_now }
+    expect(contacts).to receive(:perform_with_object).with(:post, "/v1/contacts/#{contact_id}/tags", Wix::Hive::Contact, body: tags.to_json, params: {modifiedAt: time_now}).and_return(instance_double(Faraday::Response, body: 'mock'))
+    contacts.add_contact_tags(contact_id, tags)
   end
 end

@@ -191,9 +191,12 @@ describe 'Contacts API' do
 
   it '.update_contact_note' do
     pending 'CE-2301'
+    #base_contact.add_note('content', Time.now.iso8601(3))
     contact = client.contact(create_base_contact)
 
-    note = 'My note'
+    note = Wix::Hive::Note.new
+    note.content = 'Note'
+    note.modifiedAt = Time.now.iso8601(3)
 
     update_response = client.update_contact_phone(contact.id, contact.notes.first.id, note)
 
@@ -249,11 +252,37 @@ describe 'Contacts API' do
     expect(add_response.phones.last.phone).to eq new_phone.phone
   end
 
-  it '.add_contact_note'
+  it '.add_contact_note' do
+    note = Wix::Hive::Note.new
+    note.content = 'Note'
+    note.modifiedAt = Time.now.iso8601(3)
 
-  it '.add_contact_custom'
+    add_response = client.add_contact_note(create_base_contact, note)
 
-  it '.add_contact_tag'
+    expect(add_response.notes.last.content).to eq note.content
+    pending 'CE-2298'
+    expect(add_response.notes.last.modifiedAt).to eq note.modifiedAt
+  end
+
+  it '.add_contact_custom' do
+    custom = Wix::Hive::Custom.new
+    custom.field = 'custom_update'
+    custom.value = 'custom_value'
+
+    add_response = client.add_contact_custom(create_base_contact, custom)
+
+    expect(add_response.custom.last.field).to eq custom.field
+    expect(add_response.custom.last.value).to eq custom.value
+  end
+
+  it '.add_contact_tags' do
+    pending 'CE-2312'
+    tags = ['crazy/tag', 'lalala/tag']
+
+    add_response = client.add_contact_tags(create_base_contact, tags)
+
+    expect(add_response.tags).to include tags
+  end
 
   private
 
