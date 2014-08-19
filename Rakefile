@@ -23,6 +23,10 @@ end
 task default: [:spec, :end2end, :rubocop, :coverage]
 task test: :spec
 task e2e: :end2end
+task :acceptance do
+  ENV['ACCEPTANCE'] = 'true'
+  Rake::Task[:end2end].execute
+end
 task :rubocop
 task :coverage do
   ENV['COVERAGE'] = 'true'

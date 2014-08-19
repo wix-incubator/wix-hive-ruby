@@ -1,11 +1,24 @@
 require 'wix-hive-ruby'
 require 'time'
+require 'vcr'
+
+RECORD_MODE =  ENV['ACCEPTANCE']  ? :all : :none
+
+VCR.configure do |c|
+  c.cassette_library_dir = 'e2e/fixtures/vcr_cassettes'
+  c.hook_into :webmock
+end
 
 RSpec.configure do |config|
   # Disable the use of 'should' as it is deprecated!
   config.expect_with :rspec do |c|
     c.syntax = :expect
+  end
 
+  config.around(:each) do |example|
+    VCR.use_cassette(example.metadata[:full_description], :match_requests_on => [:path], :record => RECORD_MODE) do
+      example.run
+    end
   end
 end
 
