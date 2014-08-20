@@ -19,37 +19,25 @@ describe Wix::Hive::Request::WixAPIRequest do
     end
   end
 
-  context '.perform_with_object' do
-    it 'calls the class new method with the result of perform' do
-      contact = double('Contact')
-      allow(client).to receive(:wix_request).with(wix_request).and_return(instance_double(Faraday::Response, body: 'mock'))
-      allow(contact).to receive(:new).with('mock')
-      wix_request.perform_with_object(contact)
-    end
+  it '.perform_with_object' do
+    contact = double('Contact')
+    allow(client).to receive(:wix_request).with(wix_request).and_return(instance_double(Faraday::Response, body: 'mock'))
+    allow(contact).to receive(:new).with('mock')
+    wix_request.perform_with_object(contact)
   end
 
-  context '.perform_with_cursor' do
-    it 'returns a cursored result' do
-      contact = double('Contact')
-      allow(client).to receive(:wix_request).with(wix_request).and_return(instance_double(Faraday::Response, body: {results: [{mock: 'mock'}]}))
-      allow(contact).to receive(:new).with(mock: 'mock')
-      wix_request.perform_with_cursor(contact).is_a? Wix::Hive::Cursor
-    end
+  it '.perform_with_cursor' do
+    contact = double('Contact')
+    allow(client).to receive(:wix_request).with(wix_request).and_return(instance_double(Faraday::Response, body: {results: [{mock: 'mock'}]}))
+    allow(contact).to receive(:new).with(mock: 'mock')
+    wix_request.perform_with_cursor(contact).is_a? Wix::Hive::Cursor
   end
 
-  it '.body=' do
-    wix_request.body = 'mock'
-    expect(wix_request.body).to eq 'mock'
-  end
+  it '.options' do
+    local = wix_request.options
+    local[:params].merge!({another: 'param'})
 
-  it '.headers=' do
-    wix_request.headers = 'mock'
-    expect(wix_request.headers).to eq 'mock'
-  end
-
-  it '.params=' do
-    wix_request.params = 'mock'
-    expect(wix_request.params).to eq 'mock'
+    expect(wix_request.options).not_to eq local
   end
 
   context 'CaseSensitiveString' do

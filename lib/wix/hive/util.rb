@@ -13,8 +13,8 @@ module Wix
         request.perform_with_object(klass)
       end
 
-      def perform_with_cursor(request_method, path, klass)
-        request = Hive::Request::WixAPIRequest.new(self, request_method, path)
+      def perform_with_cursor(request_method, path, klass, options = {})
+        request = Hive::Request::WixAPIRequest.new(self, request_method, path, options)
         request.perform_with_cursor(klass)
       end
     end

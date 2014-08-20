@@ -131,49 +131,6 @@ http_interactions:
   recorded_at: Tue, 19 Aug 2014 13:25:23 GMT
 - request:
     method: post
-    uri: https://openapi.wix.com/v1/contacts?version=1.0.0
-    body:
-      encoding: UTF-8
-      string: '{"name":{"first":"Wix","last":"Cool"},"company":{},"emails":[{"email":"alext@wix.com","tag":"work"}],"phones":[{"phone":"123456789","tag":"work"}],"addresses":[],"urls":[],"dates":[]}'
-    headers:
-      Accept:
-      - application/json
-      User-Agent:
-      - Faraday v0.9.0
-      X-Wix-Instance-Id:
-      - 138328bd-0cde-04e3-d7be-8f5500e362e7
-      X-Wix-Application-Id:
-      - 13832826-96d2-70f0-7eb7-8e107a37f1d2
-      X-Wix-Timestamp:
-      - '2014-08-19T16:27:29.238+03:00'
-      X-Wix-Signature:
-      - xX7EOC0LdLBB9e62aPt-XrzOyKfvtAyjpSCeGRiPP84
-      Content-Type:
-      - application/json
-      Accept-Encoding:
-      - gzip;q=1.0,deflate;q=0.6,identity;q=0.3
-  response:
-    status:
-      code: 200
-      message: OK
-    headers:
-      X-Seen-By:
-      - sputnik02.tam_dsp
-      Date:
-      - Tue, 19 Aug 2014 13:27:30 GMT
-      Content-Type:
-      - application/json;charset=UTF-8
-      Content-Length:
-      - '52'
-      Server:
-      - Jetty(8.1.3.v20120416)
-    body:
-      encoding: UTF-8
-      string: '{"contactId":"9b3d2b6b-ef97-440b-a19f-d817a9c8589a"}'
-    http_version: 
-  recorded_at: Tue, 19 Aug 2014 13:27:30 GMT
-- request:
-    method: post
     uri: https://openapi.wix.com/v1/contacts/9b3d2b6b-ef97-440b-a19f-d817a9c8589a/email?modifiedAt=1408454850&version=1.0.0
     body:
       encoding: UTF-8
@@ -215,4 +172,176 @@ http_interactions:
       string: '{"errorCode":500,"message":"null","wixErrorCode":-100}'
     http_version: 
   recorded_at: Tue, 19 Aug 2014 13:27:31 GMT
+- request:
+    method: post
+    uri: https://openapi.wix.com/v1/contacts/c6c83d00-27bf-46a5-99fa-0b79cd104b5b/email?modifiedAt=1408512746&version=1.0.0
+    body:
+      encoding: UTF-8
+      string: '{"tag":"work_new","email":"alex_new@example.com"}'
+    headers:
+      Accept:
+      - application/json
+      User-Agent:
+      - Faraday v0.9.0
+      X-Wix-Instance-Id:
+      - 138328bd-0cde-04e3-d7be-8f5500e362e7
+      X-Wix-Application-Id:
+      - 13832826-96d2-70f0-7eb7-8e107a37f1d2
+      X-Wix-Timestamp:
+      - '2014-08-20T08:32:26.191+03:00'
+      X-Wix-Signature:
+      - LAqEaCiukcIZL2msUWftTwh0DtGu6UrsZvtYRsF4YK8
+      Content-Type:
+      - application/json
+      Accept-Encoding:
+      - gzip;q=1.0,deflate;q=0.6,identity;q=0.3
+  response:
+    status:
+      code: 500
+      message: Internal Server Error
+    headers:
+      X-Seen-By:
+      - sputnik02.tam_dsp
+      Date:
+      - Wed, 20 Aug 2014 05:32:26 GMT
+      Content-Type:
+      - application/json;charset=UTF-8
+      Content-Length:
+      - '54'
+      Server:
+      - Jetty(8.1.3.v20120416)
+    body:
+      encoding: UTF-8
+      string: '{"errorCode":500,"message":"null","wixErrorCode":-100}'
+    http_version: 
+  recorded_at: Wed, 20 Aug 2014 05:32:27 GMT
+- request:
+    method: post
+    uri: https://openapi.wix.com/v1/contacts/d6a7f1ba-f937-4544-8b1c-0f4570a8a2c7/email?modifiedAt=1408515570&version=1.0.0
+    body:
+      encoding: UTF-8
+      string: '{"tag":"work_new","email":"alex_new@example.com"}'
+    headers:
+      Accept:
+      - application/json
+      User-Agent:
+      - Faraday v0.9.0
+      X-Wix-Instance-Id:
+      - 138328bd-0cde-04e3-d7be-8f5500e362e7
+      X-Wix-Application-Id:
+      - 13832826-96d2-70f0-7eb7-8e107a37f1d2
+      X-Wix-Timestamp:
+      - '2014-08-20T09:19:30.308+03:00'
+      X-Wix-Signature:
+      - m4zv3MD60mYdhjEY1XfryTPpBlepqIYngppMZDdE4vE
+      Content-Type:
+      - application/json
+      Accept-Encoding:
+      - gzip;q=1.0,deflate;q=0.6,identity;q=0.3
+  response:
+    status:
+      code: 500
+      message: Internal Server Error
+    headers:
+      X-Seen-By:
+      - sputnik02.tam_dsp
+      Date:
+      - Wed, 20 Aug 2014 06:19:31 GMT
+      Content-Type:
+      - application/json;charset=UTF-8
+      Content-Length:
+      - '54'
+      Server:
+      - Jetty(8.1.3.v20120416)
+    body:
+      encoding: UTF-8
+      string: '{"errorCode":500,"message":"null","wixErrorCode":-100}'
+    http_version: 
+  recorded_at: Wed, 20 Aug 2014 06:19:31 GMT
+- request:
+    method: post
+    uri: https://openapi.wix.com/v1/contacts?version=1.0.0
+    body:
+      encoding: UTF-8
+      string: '{"name":{"first":"Wix","last":"Cool"},"company":{},"emails":[{"email":"alext@wix.com","tag":"work"}],"phones":[{"phone":"123456789","tag":"work"}],"addresses":[],"urls":[],"dates":[]}'
+    headers:
+      Accept:
+      - application/json
+      User-Agent:
+      - Faraday v0.9.0
+      X-Wix-Instance-Id:
+      - 138328bd-0cde-04e3-d7be-8f5500e362e7
+      X-Wix-Application-Id:
+      - 13832826-96d2-70f0-7eb7-8e107a37f1d2
+      X-Wix-Timestamp:
+      - '2014-08-20T17:18:36.562+03:00'
+      X-Wix-Signature:
+      - kK6xxbRA6TRMrUaT7Nc-C2moXtMPGhG_1cEhQkJEpMg
+      Content-Type:
+      - application/json
+      Accept-Encoding:
+      - gzip;q=1.0,deflate;q=0.6,identity;q=0.3
+  response:
+    status:
+      code: 200
+      message: OK
+    headers:
+      X-Seen-By:
+      - sputnik02.tam_dsp
+      Date:
+      - Wed, 20 Aug 2014 14:18:37 GMT
+      Content-Type:
+      - application/json;charset=UTF-8
+      Content-Length:
+      - '52'
+      Server:
+      - Jetty(8.1.3.v20120416)
+    body:
+      encoding: UTF-8
+      string: '{"contactId":"32a21caa-b928-44e9-ab41-c3c82b6cc3f3"}'
+    http_version: 
+  recorded_at: Wed, 20 Aug 2014 14:18:37 GMT
+- request:
+    method: post
+    uri: https://openapi.wix.com/v1/contacts/32a21caa-b928-44e9-ab41-c3c82b6cc3f3/email?modifiedAt=1408544317&version=1.0.0
+    body:
+      encoding: UTF-8
+      string: '{"tag":"work_new","email":"alex_new@example.com"}'
+    headers:
+      Accept:
+      - application/json
+      User-Agent:
+      - Faraday v0.9.0
+      X-Wix-Instance-Id:
+      - 138328bd-0cde-04e3-d7be-8f5500e362e7
+      X-Wix-Application-Id:
+      - 13832826-96d2-70f0-7eb7-8e107a37f1d2
+      X-Wix-Timestamp:
+      - '2014-08-20T17:18:37.641+03:00'
+      X-Wix-Signature:
+      - NMxjEU77l1lYMgL2mBiJIsAl9uhzBPWkn1M5c9vJ4Jc
+      Content-Type:
+      - application/json
+      Accept-Encoding:
+      - gzip;q=1.0,deflate;q=0.6,identity;q=0.3
+  response:
+    status:
+      code: 500
+      message: Internal Server Error
+    headers:
+      X-Seen-By:
+      - sputnik03.tam_dsp
+      Date:
+      - Wed, 20 Aug 2014 14:18:38 GMT
+      Content-Type:
+      - application/json;charset=UTF-8
+      Content-Length:
+      - '54'
+      Server:
+      - Jetty(8.1.3.v20120416)
+    body:
+      encoding: UTF-8
+      string: '{"errorCode":500,"message":"null","wixErrorCode":-100}'
+    http_version: 
+  recorded_at: Wed, 20 Aug 2014 14:18:38 GMT
 recorded_with: VCR 2.9.2

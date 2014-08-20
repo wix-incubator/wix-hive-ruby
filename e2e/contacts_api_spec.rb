@@ -31,8 +31,15 @@ describe 'Contacts API' do
     expect(client.contact(create_base_contact)).to be_a Wix::Hive::Contact
   end
 
-  it '.contacts' do
-    expect(client.contacts).to be_a Wix::Hive::Cursor
+  context '.contacts' do
+    subject(:contacts) { client.contacts }
+    it 'should return a cursor' do
+      expect(contacts).to be_a Wix::Hive::Cursor
+    end
+    it 'should be able to fetch the next page' do
+      expect(contacts.next_page.results).not_to eq contacts.results
+      expect(contacts.next_page.nextCursor).not_to eq contacts.nextCursor
+    end
   end
 
   it '.update_contact' do

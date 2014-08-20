@@ -26,7 +26,7 @@ describe Wix::Hive::Util do
 
   context '.perform_with_cursor' do
     it 'should create and perform a request and return a cursor' do
-      expect(Wix::Hive::Request::WixAPIRequest).to receive(:new).with(util, 'get', '/path').and_return(request)
+      expect(Wix::Hive::Request::WixAPIRequest).to receive(:new).with(util, 'get', '/path', {}).and_return(request)
       expect(request).to receive(:perform_with_cursor).with(Wix::Hive::Contact).and_return(mock_response)
 
       util.perform_with_cursor('get', '/path', Wix::Hive::Contact)

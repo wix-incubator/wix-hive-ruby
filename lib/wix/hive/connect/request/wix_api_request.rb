@@ -7,13 +7,19 @@ module Wix
   module Hive
     module Request
       class WixAPIRequest
-        attr_accessor :verb, :path, :options
+        attr_accessor :verb, :path, :body, :params, :headers
 
         def initialize(client, verb, path, options = {})
           @client = client
-          @verb = verb
+          @verb = verb.to_sym
           @path = path
-          @options = options
+          @body = options.fetch(:body, {})
+          @params = options.fetch(:params, {})
+          @headers = options.fetch(:headers, {})
+        end
+
+        def options
+          {body: @body.clone, params: @params.clone, headers: @headers.clone}
         end
 
         def perform
@@ -26,50 +32,31 @@ module Wix
         end
 
         def perform_with_cursor(klass)
-          Wix::Hive::Cursor.new(@client, perform, klass)
+          Wix::Hive::Cursor.new(perform, klass, self)
         end
 
-        def body
-          @options.fetch(:body, {})
-        end
-
-        def body=(body)
-          @options[:body] = body
-        end
-
-        def params
-          @options.fetch(:params, {})
-        end
-
-        def params=(params)
-          @options[:params] = params
-        end
-
-        def headers
-          @options.fetch(:headers, {})
-        end
-
-        def headers=(headers)
-          @options[:headers] = headers
+        def initialize_copy(other)
+          @path = @path.dup
+          @body = @body.dup
+          @params = @params.dup
+          @headers = @headers.dup
         end
 
         private
 
         def sign_request
           @timestamp = Time.now.iso8601(3)
-          @options[:params] = append_default_params(options.fetch(:params, {}))
-          @options[:headers] = append_wix_headers(options.fetch(:headers, {}))
+          append_default_params
+          append_wix_headers
+          @headers[CaseSensitiveString.new('x-wix-signature')] = calculate_signature
         end
 
-        def append_default_params(params)
-          params['version'] ||= @client.api_version
-          params
+        def append_default_params
+          @params['version'] ||= @client.api_version
         end
 
-        def append_wix_headers(headers)
-          headers.update(wix_headers)
-          headers[CaseSensitiveString.new('x-wix-signature')] = calculate_signature
-          headers
+        def append_wix_headers
+          @headers.update(wix_headers)
         end
 
         def wix_headers
@@ -79,7 +66,7 @@ module Wix
         end
 
         def calculate_signature
-          out = "#{@verb.upcase}\n#{@path}\n#{sorted_parameter_values.join("\n")}#{body.empty? ? '' : "\n#{body}"}"
+          out = "#{@verb.upcase}\n#{@path}\n#{sorted_parameter_values.join("\n")}#{@body.empty? ? '' : "\n#{@body}"}"
           sign_data(out)
         end
 
