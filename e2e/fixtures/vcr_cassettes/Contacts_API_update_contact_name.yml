@@ -1,0 +1,221 @@
+---
+http_interactions:
+- request:
+    method: put
+    uri: https://openapi.wix.com/v1/contacts/c9ddec92-d361-41d7-ab04-492612cf4495/name?modifiedAt=1408454186&version=1.0.0
+    body:
+      encoding: UTF-8
+      string: '{"first":"New_Name"}'
+    headers:
+      Accept:
+      - application/json
+      User-Agent:
+      - Faraday v0.9.0
+      X-Wix-Instance-Id:
+      - 138328bd-0cde-04e3-d7be-8f5500e362e7
+      X-Wix-Application-Id:
+      - 13832826-96d2-70f0-7eb7-8e107a37f1d2
+      X-Wix-Timestamp:
+      - '2014-08-19T16:16:26.102+03:00'
+      X-Wix-Signature:
+      - oVDLZkBAV2-8xH_mfaUWpCJ2trMCztOpOCZVRiNCpbc
+      Content-Type:
+      - application/json
+      Accept-Encoding:
+      - gzip;q=1.0,deflate;q=0.6,identity;q=0.3
+  response:
+    status:
+      code: 200
+      message: OK
+    headers:
+      X-Seen-By:
+      - sputnik01.tam_dsp
+      Date:
+      - Tue, 19 Aug 2014 13:16:27 GMT
+      Content-Type:
+      - application/json;charset=UTF-8
+      Content-Length:
+      - '2017'
+      Server:
+      - Jetty(8.1.3.v20120416)
+    body:
+      encoding: UTF-8
+      string: '{"id":"c9ddec92-d361-41d7-ab04-492612cf4495","name":{"first":"New_Name"},"picture":"wix.com","tags":["contacts/create","contacts_server/new","contacts_server/show"],"company":{"name":"New_Company","role":""},"notes":[{"modificationDate":"2014-08-19T07:59:02.667-05:00","content":"Note","id":1},{"modificationDate":"2014-08-19T08:14:43.329-05:00","content":"Note","id":2}],"emails":[{"tag":"work","email":"alext@wix.com","siteOwnerSubscriptionStatus":"notSet","contactSubscriptionStatus":"notSet","emailStatus":"transactional","id":1}],"phones":[{"tag":"work","phone":"18006666","id":1},{"tag":"work_new","phone":"18006666","id":2},{"tag":"work_new","phone":"18006666","id":3}],"addresses":[{"tag":"work","address":"1625
+        Larimer St.","id":1},{"tag":"work","address":"1625 Larimer St.","id":2},{"tag":"work","address":"1625
+        Larimer St.","id":3}],"dates":[{"tag":"update","date":"2014-08-19T08:14:34.861-05:00","id":1}],"urls":[],"custom":[{"field":"custom_update","value":"custom_value","id":1},{"field":"custom_update","value":"custom_value","id":2}],"createdAt":"2014-08-19T07:56:38.875-05:00","links":[{"rel":"unsubscribe","href":"http://www.wix.com/create/my-account/contacts/unsubscribe?siteName=pblog&metaSiteId=d5569db1-7fea-4516-b5b4-691b294d7a04&unsubscribeToken=abcefd4d5885911e7f4ea863ecce180388e169a39e4c714f1a99cb3376c2b706ab5412e712d3ac8284abf7de3d9e876b4d25b2b8b3160fa2f2130de2a4b620339a7d61d9697189635066eee0a13418d4445fe65559299dd1ed48d4aea7087f269f5630423114e0f1a275ca67dce28759a9c7978a11f21054f373ab1f388d728766485cf5b213574feb709711b280bea45d1dead95cfdba954cdfce9f2a92b88150edb7095e41505902d9f1af8879a3cc8fe6f053c055aad20f3f04948beb08edb51ae8c727c67d10eb1e92a91faa1fa4726b79fe8c92490f0d76ec5fd74f9d7783fe01ae4e57a21e7c479338440ccb80859ce0a8f839745d7ab4731fc2a72166decd088212ea6c71a15be4c5be3918d733df0365e6c25efdf459220de3817c72f0bfd9c19fbc1d7efd2c1c572988f9608e2ed797cd61486e6b72ecec10a1e91bf2e8adf344ce4db7ea6aba6fc0944545b3b24c355224290601e7191d2582d25179f9877c4c78d6276c72d25b02fc8732","id":1}]}'
+    http_version: 
+  recorded_at: Tue, 19 Aug 2014 13:16:27 GMT
+- request:
+    method: put
+    uri: https://openapi.wix.com/v1/contacts/0d572003-3579-46b1-b03c-b4bde300bca6/name?modifiedAt=1408454452&version=1.0.0
+    body:
+      encoding: UTF-8
+      string: '{"first":"New_Name"}'
+    headers:
+      Accept:
+      - application/json
+      User-Agent:
+      - Faraday v0.9.0
+      X-Wix-Instance-Id:
+      - 138328bd-0cde-04e3-d7be-8f5500e362e7
+      X-Wix-Application-Id:
+      - 13832826-96d2-70f0-7eb7-8e107a37f1d2
+      X-Wix-Timestamp:
+      - '2014-08-19T16:20:52.381+03:00'
+      X-Wix-Signature:
+      - LoVKbkBBuUoFFpnYlnQOw2jzC0ZHysuQHkjcmpNHd6c
+      Content-Type:
+      - application/json
+      Accept-Encoding:
+      - gzip;q=1.0,deflate;q=0.6,identity;q=0.3
+  response:
+    status:
+      code: 200
+      message: OK
+    headers:
+      X-Seen-By:
+      - sputnik02.tam_dsp
+      Date:
+      - Tue, 19 Aug 2014 13:20:53 GMT
+      Content-Type:
+      - application/json;charset=UTF-8
+      Content-Length:
+      - '1662'
+      Server:
+      - Jetty(8.1.3.v20120416)
+    body:
+      encoding: UTF-8
+      string: '{"id":"0d572003-3579-46b1-b03c-b4bde300bca6","name":{"first":"New_Name"},"picture":"http://wix.com/img1.jpg","tags":["contacts/create","contacts_server/new","contacts_server/show"],"company":{"name":"Company","role":"CEO"},"notes":[],"emails":[{"tag":"work","email":"alext@wix.com","siteOwnerSubscriptionStatus":"notSet","contactSubscriptionStatus":"notSet","emailStatus":"transactional","id":1}],"phones":[{"tag":"work","phone":"123456789","id":1}],"addresses":[{"tag":"home","address":"28208
+        N Inca St.","neighborhood":"LODO","city":"Denver","region":"CO","postalCode":"80202","country":"US","id":1}],"dates":[{"tag":"E2E","date":"2014-08-19T08:20:44.320-05:00","id":1}],"urls":[],"custom":[],"createdAt":"2014-08-19T08:20:45.484-05:00","links":[{"rel":"unsubscribe","href":"http://www.wix.com/create/my-account/contacts/unsubscribe?siteName=pblog&metaSiteId=d5569db1-7fea-4516-b5b4-691b294d7a04&unsubscribeToken=abcefd4d5885911e7f4ea863ecce180388e169a39e4c714f1a99cb3376c2b706ab5412e712d3ac8284abf7de3d9e876b4d25b2b8b3160fa2f2130de2a4b620339a7d61d9697189635066eee0a13418d4445fe65559299dd1ed48d4aea7087f269f5630423114e0f1a275ca67dce28759a9c7978a11f21054f373ab1f388d728766485cf5b213574feb709711b280bea45d1dead95cfdba954cdfce9f2a92b88150edb7095e41505902d9f1af8879a3cc8fe6f053c055aad20f3f04948beb08edb51ae8c727c67d10eb1e92a91faa1fa4726b79fe8c92490f0d76ec5fd74f9d7783fe01ae4e57a21e7c479338440ccb80859ce0a8f839745d7ab4731fc2a72166decd088212ea6c71a15be4c5be3918d7530fe7610c16ca91193825464b77fdc381c94299c8f4b6bde90601d9d1790d23aeabdcf1966036691e919f78168f5d49f2e8adf344ce4db7ea6aba6fc09445458a58aabbb1f74a68b47c04ad596d9b6379f9877c4c78d6276c72d25b02fc8732","id":1}]}'
+    http_version: 
+  recorded_at: Tue, 19 Aug 2014 13:20:53 GMT
+- request:
+    method: put
+    uri: https://openapi.wix.com/v1/contacts/bf0e9e3d-bcbc-41f9-824e-a07597c9d297/name?modifiedAt=1408454698&version=1.0.0
+    body:
+      encoding: UTF-8
+      string: '{"first":"New_Name"}'
+    headers:
+      Accept:
+      - application/json
+      User-Agent:
+      - Faraday v0.9.0
+      X-Wix-Instance-Id:
+      - 138328bd-0cde-04e3-d7be-8f5500e362e7
+      X-Wix-Application-Id:
+      - 13832826-96d2-70f0-7eb7-8e107a37f1d2
+      X-Wix-Timestamp:
+      - '2014-08-19T16:24:58.104+03:00'
+      X-Wix-Signature:
+      - 0Hy_sPIHblo1UvxST12R24JZ9KLoeoiaYQRuF9wD2KM
+      Content-Type:
+      - application/json
+      Accept-Encoding:
+      - gzip;q=1.0,deflate;q=0.6,identity;q=0.3
+  response:
+    status:
+      code: 200
+      message: OK
+    headers:
+      X-Seen-By:
+      - sputnik03.tam_dsp
+      Date:
+      - Tue, 19 Aug 2014 13:24:59 GMT
+      Content-Type:
+      - application/json;charset=UTF-8
+      Content-Length:
+      - '1419'
+      Server:
+      - Jetty(8.1.3.v20120416)
+    body:
+      encoding: UTF-8
+      string: '{"id":"bf0e9e3d-bcbc-41f9-824e-a07597c9d297","name":{"first":"New_Name"},"tags":["contacts/create","contacts_server/new","contacts_server/show"],"company":{"name":"","role":""},"notes":[],"emails":[{"tag":"work","email":"alext@wix.com","siteOwnerSubscriptionStatus":"notSet","contactSubscriptionStatus":"notSet","emailStatus":"transactional","id":1}],"phones":[{"tag":"work","phone":"123456789","id":1}],"addresses":[],"dates":[],"urls":[],"custom":[],"createdAt":"2014-08-19T08:24:58.074-05:00","links":[{"rel":"unsubscribe","href":"http://www.wix.com/create/my-account/contacts/unsubscribe?siteName=pblog&metaSiteId=d5569db1-7fea-4516-b5b4-691b294d7a04&unsubscribeToken=abcefd4d5885911e7f4ea863ecce180388e169a39e4c714f1a99cb3376c2b706ab5412e712d3ac8284abf7de3d9e876b4d25b2b8b3160fa2f2130de2a4b620339a7d61d9697189635066eee0a13418d4445fe65559299dd1ed48d4aea7087f269f5630423114e0f1a275ca67dce28759a9c7978a11f21054f373ab1f388d728766485cf5b213574feb709711b280bea45d1dead95cfdba954cdfce9f2a92b88150edb7095e41505902d9f1af8879a3cc8fe6f053c055aad20f3f04948beb08edb51ae8c727c67d10eb1e92a91faa1fa4726b79fe8c92490f0d76ec5fd74f9d7783fe01ae4e57a21e7c479338440ccb80859ce0a8f839745d7ab4731fc2a72166decd088212ea6c71a15be4c5be3918d778b093e2e976069e4c3ccf6378eb925ae90002c90326bd683f3c34fa0b25a788d0948e150fd51b2d9051bd40d635a4d5f2e8adf344ce4db7ea6aba6fc094454562d6f341e84304865a45d05d8bd20c2679f9877c4c78d6276c72d25b02fc8732","id":1}]}'
+    http_version: 
+  recorded_at: Tue, 19 Aug 2014 13:24:59 GMT
+- request:
+    method: post
+    uri: https://openapi.wix.com/v1/contacts?version=1.0.0
+    body:
+      encoding: UTF-8
+      string: '{"name":{"first":"Old_Name","last":"Cool"},"company":{},"emails":[{"email":"alext@wix.com","tag":"work"}],"phones":[{"phone":"123456789","tag":"work"}],"addresses":[],"urls":[],"dates":[]}'
+    headers:
+      Accept:
+      - application/json
+      User-Agent:
+      - Faraday v0.9.0
+      X-Wix-Instance-Id:
+      - 138328bd-0cde-04e3-d7be-8f5500e362e7
+      X-Wix-Application-Id:
+      - 13832826-96d2-70f0-7eb7-8e107a37f1d2
+      X-Wix-Timestamp:
+      - '2014-08-19T16:27:04.975+03:00'
+      X-Wix-Signature:
+      - MWr9hDyBbwvSOuWBxtfAaaO2fgFLDhk2Yli12O7m4Ik
+      Content-Type:
+      - application/json
+      Accept-Encoding:
+      - gzip;q=1.0,deflate;q=0.6,identity;q=0.3
+  response:
+    status:
+      code: 200
+      message: OK
+    headers:
+      X-Seen-By:
+      - sputnik02.tam_dsp
+      Date:
+      - Tue, 19 Aug 2014 13:27:05 GMT
+      Content-Type:
+      - application/json;charset=UTF-8
+      Content-Length:
+      - '52'
+      Server:
+      - Jetty(8.1.3.v20120416)
+    body:
+      encoding: UTF-8
+      string: '{"contactId":"2105e0bb-711c-4edf-a7d5-c4b47ceb1422"}'
+    http_version: 
+  recorded_at: Tue, 19 Aug 2014 13:27:05 GMT
+- request:
+    method: put
+    uri: https://openapi.wix.com/v1/contacts/2105e0bb-711c-4edf-a7d5-c4b47ceb1422/name?modifiedAt=1408454825&version=1.0.0
+    body:
+      encoding: UTF-8
+      string: '{"first":"New_Name"}'
+    headers:
+      Accept:
+      - application/json
+      User-Agent:
+      - Faraday v0.9.0
+      X-Wix-Instance-Id:
+      - 138328bd-0cde-04e3-d7be-8f5500e362e7
+      X-Wix-Application-Id:
+      - 13832826-96d2-70f0-7eb7-8e107a37f1d2
+      X-Wix-Timestamp:
+      - '2014-08-19T16:27:05.940+03:00'
+      X-Wix-Signature:
+      - GnV5Agh-JrDYdEtoU_LUE6WxVrUV_-fhULx1yWzCHRw
+      Content-Type:
+      - application/json
+      Accept-Encoding:
+      - gzip;q=1.0,deflate;q=0.6,identity;q=0.3
+  response:
+    status:
+      code: 200
+      message: OK
+    headers:
+      X-Seen-By:
+      - sputnik03.tam_dsp
+      Date:
+      - Tue, 19 Aug 2014 13:27:06 GMT
+      Content-Type:
+      - application/json;charset=UTF-8
+      Content-Length:
+      - '1419'
+      Server:
+      - Jetty(8.1.3.v20120416)
+    body:
+      encoding: UTF-8
+      string: '{"id":"2105e0bb-711c-4edf-a7d5-c4b47ceb1422","name":{"first":"New_Name"},"tags":["contacts/create","contacts_server/new","contacts_server/show"],"company":{"name":"","role":""},"notes":[],"emails":[{"tag":"work","email":"alext@wix.com","siteOwnerSubscriptionStatus":"notSet","contactSubscriptionStatus":"notSet","emailStatus":"transactional","id":1}],"phones":[{"tag":"work","phone":"123456789","id":1}],"addresses":[],"dates":[],"urls":[],"custom":[],"createdAt":"2014-08-19T08:27:05.991-05:00","links":[{"rel":"unsubscribe","href":"http://www.wix.com/create/my-account/contacts/unsubscribe?siteName=pblog&metaSiteId=d5569db1-7fea-4516-b5b4-691b294d7a04&unsubscribeToken=abcefd4d5885911e7f4ea863ecce180388e169a39e4c714f1a99cb3376c2b706ab5412e712d3ac8284abf7de3d9e876b4d25b2b8b3160fa2f2130de2a4b620339a7d61d9697189635066eee0a13418d4445fe65559299dd1ed48d4aea7087f269f5630423114e0f1a275ca67dce28759a9c7978a11f21054f373ab1f388d728766485cf5b213574feb709711b280bea45d1dead95cfdba954cdfce9f2a92b88150edb7095e41505902d9f1af8879a3cc8fe6f053c055aad20f3f04948beb08edb51ae8c727c67d10eb1e92a91faa1fa4726b79fe8c92490f0d76ec5fd74f9d7783fe01ae4e57a21e7c479338440ccb80859ce0a8f839745d7ab4731fc2a72166decd088212ea6c71a15be4c5be3918d7356eb594e7caf60d16faaae63c6431a4b4331323192c24b6303f315556edffd5cb138f97bca905d3b567c81f56b3daeaf2e8adf344ce4db7ea6aba6fc09445451dd9897b00b6386d38a1136986d5c36979f9877c4c78d6276c72d25b02fc8732","id":1}]}'
+    http_version: 
+  recorded_at: Tue, 19 Aug 2014 13:27:06 GMT
+recorded_with: VCR 2.9.2
