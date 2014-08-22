@@ -1,5 +1,6 @@
 require 'hashie'
 require 'wix/hive/contact'
+require 'wix/hive/activity'
 require 'wix/hive/errors'
 
 module Wix
