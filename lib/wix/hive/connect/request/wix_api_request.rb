@@ -19,7 +19,7 @@ module Wix
         end
 
         def options
-          {body: @body.clone, params: @params.clone, headers: @headers.clone}
+          { body: @body.clone, params: @params.clone, headers: @headers.clone }
         end
 
         def perform
@@ -35,7 +35,7 @@ module Wix
           Wix::Hive::Cursor.new(perform, klass, self)
         end
 
-        def initialize_copy(other)
+        def initialize_copy(_other)
           @path = @path.dup
           @body = @body.dup
           @params = @params.dup

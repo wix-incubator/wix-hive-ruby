@@ -9,7 +9,7 @@ module Wix
         include Wix::Hive::Util
 
         def contacts(query_options = {})
-          perform_with_cursor(:get, '/v1/contacts', Wix::Hive::Contact, {params: query_options})
+          perform_with_cursor(:get, '/v1/contacts', Wix::Hive::Contact, params: query_options)
         end
 
         def contact(contact_id)
