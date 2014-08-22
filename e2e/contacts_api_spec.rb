@@ -40,6 +40,9 @@ describe 'Contacts API' do
       expect(contacts.next_page.results).not_to eq contacts.results
       expect(contacts.next_page.nextCursor).not_to eq contacts.nextCursor
     end
+    it 'should be able to fetch the previous page' do
+      expect(contacts.next_page.previous_page.results.collect { |r| r.id }).to eq contacts.results.collect { |r| r.id }
+    end
   end
 
   it '.update_contact' do

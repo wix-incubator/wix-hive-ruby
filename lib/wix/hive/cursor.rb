@@ -1,5 +1,6 @@
 require 'hashie'
 require 'wix/hive/contact'
+require 'wix/hive/errors'
 
 module Wix
   module Hive
@@ -19,8 +20,28 @@ module Wix
       property :nextCursor
       property :results, default: []
 
+      def next?
+        !nextCursor.nil? and nextCursor != '0'
+      end
+
+      def previous?
+        !previousCursor.nil? and previousCursor != '0'
+      end
+
       def next_page
-        @next_request.params.merge!(:cursor => nextCursor)
+        raise Wix::Hive::CursorOperationError, 'Next page not available!' if nextCursor.nil?
+        cursored_request(nextCursor)
+      end
+
+      def previous_page
+        raise Wix::Hive::CursorOperationError, 'Previous page not available!' if previousCursor.nil?
+        cursored_request(previousCursor)
+      end
+
+      private
+
+      def cursored_request(cursor)
+        @next_request.params.merge!(:cursor => cursor)
         @next_request.perform_with_cursor(@klass)
       end
     end
