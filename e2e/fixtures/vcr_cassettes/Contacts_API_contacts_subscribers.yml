@@ -16,9 +16,9 @@ http_interactions:
       X-Wix-Application-Id:
       - 13832826-96d2-70f0-7eb7-8e107a37f1d2
       X-Wix-Timestamp:
-      - '2014-08-22T10:40:11.346+03:00'
+      - '2014-08-22T11:19:59.630+03:00'
       X-Wix-Signature:
-      - bDD53nkfyBt1iMRKNfkRL0PtqYgS4pbRVjl1TxqLeXY
+      - DVzfUYLpaEjPdGDd7JFnr9C_As6gnYikUTzVb3al8jg
       Accept-Encoding:
       - gzip;q=1.0,deflate;q=0.6,identity;q=0.3
   response:
@@ -29,7 +29,7 @@ http_interactions:
       X-Seen-By:
       - sputnik01.tam_dsp
       Date:
-      - Fri, 22 Aug 2014 07:40:12 GMT
+      - Fri, 22 Aug 2014 08:20:00 GMT
       Content-Type:
       - application/json;charset=UTF-8
       Content-Length:
@@ -41,5 +41,5 @@ http_interactions:
       string: '{"errorCode":400,"message":"Required path variable [contact-id] at
         position [2] has illegal value [subscribers]","wixErrorCode":-23001}'
     http_version: 
-  recorded_at: Fri, 22 Aug 2014 07:40:12 GMT
+  recorded_at: Fri, 22 Aug 2014 08:20:00 GMT
 recorded_with: VCR 2.9.2

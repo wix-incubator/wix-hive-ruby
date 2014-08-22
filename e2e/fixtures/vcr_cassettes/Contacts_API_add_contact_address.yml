@@ -443,49 +443,6 @@ http_interactions:
   recorded_at: Fri, 22 Aug 2014 07:26:36 GMT
 - request:
     method: post
-    uri: https://openapi.wix.com/v1/contacts?version=1.0.0
-    body:
-      encoding: UTF-8
-      string: '{"name":{"first":"Wix","last":"Cool"},"company":{},"emails":[{"email":"alext@wix.com","tag":"work"}],"phones":[{"phone":"123456789","tag":"work"}],"addresses":[],"urls":[],"dates":[]}'
-    headers:
-      Accept:
-      - application/json
-      User-Agent:
-      - Faraday v0.9.0
-      X-Wix-Instance-Id:
-      - 138328bd-0cde-04e3-d7be-8f5500e362e7
-      X-Wix-Application-Id:
-      - 13832826-96d2-70f0-7eb7-8e107a37f1d2
-      X-Wix-Timestamp:
-      - '2014-08-22T10:40:37.982+03:00'
-      X-Wix-Signature:
-      - fDni_ffI-3E6yzPe0dq86-Xh52RgbM4as9CHPxpC1lY
-      Content-Type:
-      - application/json
-      Accept-Encoding:
-      - gzip;q=1.0,deflate;q=0.6,identity;q=0.3
-  response:
-    status:
-      code: 200
-      message: OK
-    headers:
-      X-Seen-By:
-      - sputnik02.tam_dsp
-      Date:
-      - Fri, 22 Aug 2014 07:40:38 GMT
-      Content-Type:
-      - application/json;charset=UTF-8
-      Content-Length:
-      - '52'
-      Server:
-      - Jetty(8.1.3.v20120416)
-    body:
-      encoding: UTF-8
-      string: '{"contactId":"667a25d4-cbe7-49c8-a846-3fe6acd4d8ea"}'
-    http_version: 
-  recorded_at: Fri, 22 Aug 2014 07:40:38 GMT
-- request:
-    method: post
     uri: https://openapi.wix.com/v1/contacts/667a25d4-cbe7-49c8-a846-3fe6acd4d8ea/address?modifiedAt=1408693238&version=1.0.0
     body:
       encoding: UTF-8
@@ -528,4 +485,135 @@ http_interactions:
         Larimer St.","id":1}],"dates":[],"urls":[],"custom":[],"createdAt":"2014-08-22T02:40:38.871-05:00","links":[{"rel":"unsubscribe","href":"http://www.wix.com/create/my-account/contacts/unsubscribe?siteName=pblog&metaSiteId=d5569db1-7fea-4516-b5b4-691b294d7a04&unsubscribeToken=abcefd4d5885911e7f4ea863ecce180388e169a39e4c714f1a99cb3376c2b706ab5412e712d3ac8284abf7de3d9e876b4d25b2b8b3160fa2f2130de2a4b620339a7d61d9697189635066eee0a13418d4445fe65559299dd1ed48d4aea7087f269f5630423114e0f1a275ca67dce28759a9c7978a11f21054f373ab1f388d728766485cf5b213574feb709711b280bea45d1dead95cfdba954cdfce9f2a92b88150edb7095e41505902d9f1af8879a3cc8fe6f053c055aad20f3f04948beb08edb51ae8c727c67d10eb1e92a91faa1fa4726b79fe8c92490f0d76ec5fd74f9d7783fe01ae4e57a21e7c479338440ccb80859ce0a8f839745d7ab4731fc2a72166decd088212ea6c71a15be4c5be3918d731f43937b3e6ccaf79c5d46631e8295d19009df2b2a974e06cc53e25d76b3b3843ecb0bb93f16fbc5b99daeb32e8316df2e8adf344ce4db7ea6aba6fc0944545335a0c35438cd73ff334b5e0dcd2ea2b79f9877c4c78d6276c72d25b02fc8732","id":1}]}'
     http_version: 
   recorded_at: Fri, 22 Aug 2014 07:40:40 GMT
+- request:
+    method: post
+    uri: https://openapi.wix.com/v1/contacts/dc1e9d59-75da-4992-97f0-2b1a58c74dce/address?modifiedAt=1408695530&version=1.0.0
+    body:
+      encoding: UTF-8
+      string: '{"tag":"work","address":"1625 Larimer St."}'
+    headers:
+      Accept:
+      - application/json
+      User-Agent:
+      - Faraday v0.9.0
+      X-Wix-Instance-Id:
+      - 138328bd-0cde-04e3-d7be-8f5500e362e7
+      X-Wix-Application-Id:
+      - 13832826-96d2-70f0-7eb7-8e107a37f1d2
+      X-Wix-Timestamp:
+      - '2014-08-22T11:18:50.896+03:00'
+      X-Wix-Signature:
+      - tfeB7q6wUSIJ_kZUV1jp5vHOlwy_rjwvvmDCK3gJidE
+      Content-Type:
+      - application/json
+      Accept-Encoding:
+      - gzip;q=1.0,deflate;q=0.6,identity;q=0.3
+  response:
+    status:
+      code: 200
+      message: OK
+    headers:
+      X-Seen-By:
+      - sputnik02.tam_dsp
+      Date:
+      - Fri, 22 Aug 2014 08:18:51 GMT
+      Content-Type:
+      - application/json;charset=UTF-8
+      Content-Length:
+      - '1514'
+      Server:
+      - Jetty(8.1.3.v20120416)
+    body:
+      encoding: UTF-8
+      string: '{"id":"dc1e9d59-75da-4992-97f0-2b1a58c74dce","name":{"prefix":"","first":"Wix","middle":"","last":"Cool","suffix":""},"tags":["contacts/create","contacts_server/new","contacts_server/show"],"company":{"name":"","role":""},"notes":[],"emails":[{"tag":"work","email":"alext@wix.com","siteOwnerSubscriptionStatus":"notSet","contactSubscriptionStatus":"notSet","emailStatus":"transactional","id":1}],"phones":[{"tag":"work","phone":"123456789","id":1}],"addresses":[{"tag":"work","address":"1625
+        Larimer St.","id":1}],"dates":[],"urls":[],"custom":[],"createdAt":"2014-08-22T03:18:50.851-05:00","links":[{"rel":"unsubscribe","href":"http://www.wix.com/create/my-account/contacts/unsubscribe?siteName=pblog&metaSiteId=d5569db1-7fea-4516-b5b4-691b294d7a04&unsubscribeToken=abcefd4d5885911e7f4ea863ecce180388e169a39e4c714f1a99cb3376c2b706ab5412e712d3ac8284abf7de3d9e876b4d25b2b8b3160fa2f2130de2a4b620339a7d61d9697189635066eee0a13418d4445fe65559299dd1ed48d4aea7087f269f5630423114e0f1a275ca67dce28759a9c7978a11f21054f373ab1f388d728766485cf5b213574feb709711b280bea45d1dead95cfdba954cdfce9f2a92b88150edb7095e41505902d9f1af8879a3cc8fe6f053c055aad20f3f04948beb08edb51ae8c727c67d10eb1e92a91faa1fa4726b79fe8c92490f0d76ec5fd74f9d7783fe01ae4e57a21e7c479338440ccb80859ce0a8f839745d7ab4731fc2a72166decd088212ea6c71a15be4c5be3918d74d0df6c121eff79be2a70e730ffb8db810d62e3cdd2aa8af0b9aa170e5b129149f4643e6b88367662c3b822d5e7cb62ef2e8adf344ce4db7ea6aba6fc09445454d2c029fdb17ed0fb8ca8c2db9549f7a79f9877c4c78d6276c72d25b02fc8732","id":1}]}'
+    http_version: 
+  recorded_at: Fri, 22 Aug 2014 08:18:51 GMT
+- request:
+    method: post
+    uri: https://openapi.wix.com/v1/contacts?version=1.0.0
+    body:
+      encoding: UTF-8
+      string: '{"name":{"first":"Wix","last":"Cool"},"company":{},"emails":[{"email":"alext@wix.com","tag":"work"}],"phones":[{"phone":"123456789","tag":"work"}],"addresses":[],"urls":[],"dates":[]}'
+    headers:
+      Accept:
+      - application/json
+      User-Agent:
+      - Faraday v0.9.0
+      X-Wix-Instance-Id:
+      - 138328bd-0cde-04e3-d7be-8f5500e362e7
+      X-Wix-Application-Id:
+      - 13832826-96d2-70f0-7eb7-8e107a37f1d2
+      X-Wix-Timestamp:
+      - '2014-08-22T11:20:21.811+03:00'
+      X-Wix-Signature:
+      - 3q88VzcCbyoAxznHiJQkD6C2NdATjdA8Tfk5ZmTEoMk
+      Content-Type:
+      - application/json
+      Accept-Encoding:
+      - gzip;q=1.0,deflate;q=0.6,identity;q=0.3
+  response:
+    status:
+      code: 200
+      message: OK
+    headers:
+      X-Seen-By:
+      - sputnik02.tam_dsp
+      Date:
+      - Fri, 22 Aug 2014 08:20:22 GMT
+      Content-Type:
+      - application/json;charset=UTF-8
+      Content-Length:
+      - '52'
+      Server:
+      - Jetty(8.1.3.v20120416)
+    body:
+      encoding: UTF-8
+      string: '{"contactId":"983f44bf-3344-419e-a34c-3c6dae775cf9"}'
+    http_version: 
+  recorded_at: Fri, 22 Aug 2014 08:20:22 GMT
+- request:
+    method: post
+    uri: https://openapi.wix.com/v1/contacts/983f44bf-3344-419e-a34c-3c6dae775cf9/address?modifiedAt=1408695622&version=1.0.0
+    body:
+      encoding: UTF-8
+      string: '{"tag":"work","address":"1625 Larimer St."}'
+    headers:
+      Accept:
+      - application/json
+      User-Agent:
+      - Faraday v0.9.0
+      X-Wix-Instance-Id:
+      - 138328bd-0cde-04e3-d7be-8f5500e362e7
+      X-Wix-Application-Id:
+      - 13832826-96d2-70f0-7eb7-8e107a37f1d2
+      X-Wix-Timestamp:
+      - '2014-08-22T11:20:22.748+03:00'
+      X-Wix-Signature:
+      - HjDeQJ_ZbAvE2pg4pB7kUScoqrTTs2PymAZTCPCEBzQ
+      Content-Type:
+      - application/json
+      Accept-Encoding:
+      - gzip;q=1.0,deflate;q=0.6,identity;q=0.3
+  response:
+    status:
+      code: 200
+      message: OK
+    headers:
+      X-Seen-By:
+      - sputnik03.tam_dsp
+      Date:
+      - Fri, 22 Aug 2014 08:20:23 GMT
+      Content-Type:
+      - application/json;charset=UTF-8
+      Content-Length:
+      - '1514'
+      Server:
+      - Jetty(8.1.3.v20120416)
+    body:
+      encoding: UTF-8
+      string: '{"id":"983f44bf-3344-419e-a34c-3c6dae775cf9","name":{"prefix":"","first":"Wix","middle":"","last":"Cool","suffix":""},"tags":["contacts/create","contacts_server/new","contacts_server/show"],"company":{"name":"","role":""},"notes":[],"emails":[{"tag":"work","email":"alext@wix.com","siteOwnerSubscriptionStatus":"notSet","contactSubscriptionStatus":"notSet","emailStatus":"transactional","id":1}],"phones":[{"tag":"work","phone":"123456789","id":1}],"addresses":[{"tag":"work","address":"1625
+        Larimer St.","id":1}],"dates":[],"urls":[],"custom":[],"createdAt":"2014-08-22T03:20:22.715-05:00","links":[{"rel":"unsubscribe","href":"http://www.wix.com/create/my-account/contacts/unsubscribe?siteName=pblog&metaSiteId=d5569db1-7fea-4516-b5b4-691b294d7a04&unsubscribeToken=abcefd4d5885911e7f4ea863ecce180388e169a39e4c714f1a99cb3376c2b706ab5412e712d3ac8284abf7de3d9e876b4d25b2b8b3160fa2f2130de2a4b620339a7d61d9697189635066eee0a13418d4445fe65559299dd1ed48d4aea7087f269f5630423114e0f1a275ca67dce28759a9c7978a11f21054f373ab1f388d728766485cf5b213574feb709711b280bea45d1dead95cfdba954cdfce9f2a92b88150edb7095e41505902d9f1af8879a3cc8fe6f053c055aad20f3f04948beb08edb51ae8c727c67d10eb1e92a91faa1fa4726b79fe8c92490f0d76ec5fd74f9d7783fe01ae4e57a21e7c479338440ccb80859ce0a8f839745d7ab4731fc2a72166decd088212ea6c71a15be4c5be3918d7f42446110e82d7434ae44f7c2f80b9fa7459c1f82280f4471b9dacd230fec46306e99804ae05194bf610c953c1ea5178f2e8adf344ce4db7ea6aba6fc0944545169e061ccb3acfb04153ba385377bb3579f9877c4c78d6276c72d25b02fc8732","id":1}]}'
+    http_version: 
+  recorded_at: Fri, 22 Aug 2014 08:20:23 GMT
 recorded_with: VCR 2.9.2

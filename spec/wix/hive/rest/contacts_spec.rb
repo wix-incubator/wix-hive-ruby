@@ -6,8 +6,8 @@ describe Wix::Hive::REST::Contacts do
   subject(:contacts) { (Class.new { include Wix::Hive::Util; include Wix::Hive::REST::Contacts }).new }
 
   it '.contacts' do
-    expect(contacts).to receive(:perform_with_cursor).with(:get, '/v1/contacts', Wix::Hive::Contact).and_return(instance_double(Faraday::Response, body: 'mock'))
-    contacts.contacts
+    expect(contacts).to receive(:perform_with_cursor).with(:get, '/v1/contacts', Wix::Hive::Contact, {params: {pageSize: 50}}).and_return(instance_double(Faraday::Response, body: 'mock'))
+    contacts.contacts(pageSize: 50)
   end
 
   it '.contact' do

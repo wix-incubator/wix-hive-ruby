@@ -33,15 +33,45 @@ describe 'Contacts API' do
 
   context '.contacts' do
     subject(:contacts) { client.contacts }
+
     it 'should return a cursor' do
       expect(contacts).to be_a Wix::Hive::Cursor
     end
+
     it 'should be able to fetch the next page' do
-      expect(contacts.next_page.results).not_to eq contacts.results
-      expect(contacts.next_page.nextCursor).not_to eq contacts.nextCursor
+      cursored_result = contacts.next_page
+      expect(cursored_result.results.size).to eq 25
+      expect(cursored_result.results).not_to eq contacts.results
+      expect(cursored_result.nextCursor).not_to eq contacts.nextCursor
     end
+
     it 'should be able to fetch the previous page' do
       expect(contacts.next_page.previous_page.results.collect { |r| r.id }).to eq contacts.results.collect { |r| r.id }
+    end
+
+    it 'should be able to fetch the next 50 results given a pageSize' do
+      pending 'CE-2333'
+      expect(client.contacts( pageSize: 50 ).results.size).to eq 50
+    end
+
+    it 'should be able to query by tag' do
+      expect(client.contacts( tag: 'contacts_server/new' ).results.size).to be > 0
+    end
+
+    it 'should be able to query by email' do
+      expect(client.contacts( email: 'alext@wix.com' ).results.size).to be > 0
+    end
+
+    it 'should be able to query by phone' do
+      expect(client.contacts( phone: '123456789' ).results.size).to be > 0
+    end
+
+    it 'should be able to query by firstName' do
+      expect(client.contacts( firstName: 'E2E' ).results.size).to be > 0
+    end
+
+    it 'should be able to query by lastName' do
+      expect(client.contacts( lastName:'Cool' ).results.size).to be > 0
     end
   end
 
