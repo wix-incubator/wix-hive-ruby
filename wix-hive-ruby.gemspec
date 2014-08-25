@@ -25,8 +25,8 @@ Gem::Specification.new do |spec|
   spec.add_development_dependency 'terminal-notifier-guard', '~> 1.5'
   spec.add_development_dependency 'simplecov', '~> 0.9'
   spec.add_development_dependency 'webmock', '~> 1.18'
-  spec.add_development_dependency 'rubocop', '~> 0.24.1'
-  spec.add_development_dependency 'vcr', '~> 2.9.2'
+  spec.add_development_dependency 'rubocop', '~> 0.24'
+  spec.add_development_dependency 'vcr', '~> 2.9'
 
   spec.add_dependency 'faraday', '~> 0.9.0', '>= 0.9.0'
   spec.add_dependency 'mime-types', '~> 1.25', '>= 1.25'
