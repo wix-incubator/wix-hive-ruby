@@ -249,6 +249,9 @@ Style/IndentHash:
     - special_inside_parentheses
     - consistent
 
+Style/Lambda:
+  Enabled: false
+
 Style/LambdaCall:
   EnforcedStyle: call
   SupportedStyles:
