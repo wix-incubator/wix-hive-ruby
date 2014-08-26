@@ -229,4 +229,24 @@ describe Wix::Hive::REST::Contacts do
     expect(contacts).to receive(:perform_with_object).with(:post, "/v1/contacts/#{contact_id}/tags", Wix::Hive::Contact, body: tags.to_json, params: {modifiedAt: time_now}).and_return(instance_double(Faraday::Response, body: 'mock'))
     contacts.add_contact_tags(contact_id, tags)
   end
+
+  it '.add_contact_activity' do
+    contact_id = '1234'
+
+    activity = Wix::Hive::Activity.new
+    activity.activityType = Wix::Hive::Activities::ALBUM_FAN.type
+    activity.activityLocationUrl = 'http://www.wix.com'
+    activity.activityDetails.summary = 'test'
+    activity.activityDetails.additionalInfoUrl = 'http://www.wix.com'
+
+    activity_info = Wix::Hive::Activities::ALBUM_FAN.klass.new
+    activity_info.album.name = 'Wix'
+    activity_info.album.id = '1234'
+
+    activity.activityInfo = activity_info
+
+    expect(contacts).to receive(:perform_with_object).with(:post, "/v1/contacts/#{contact_id}/activities", Wix::Hive::ActivityResult, body: activity.to_json).and_return(instance_double(Faraday::Response, body: 'mock'))
+
+    contacts.add_contact_activity(contact_id, activity)
+  end
 end

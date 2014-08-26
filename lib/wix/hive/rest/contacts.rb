@@ -1,6 +1,7 @@
 require 'wix/hive/contact'
 require 'wix/hive/util'
 require 'time'
+require 'wix/hive/activities/factory'
 
 module Wix
   module Hive
@@ -98,6 +99,10 @@ module Wix
 
         def add_contact_tags(id, tags)
           add_contact_field("/v1/contacts/#{id}/tags", tags)
+        end
+
+        def add_contact_activity(id, activity)
+          perform_with_object(:post, "/v1/contacts/#{id}/activities", Wix::Hive::ActivityResult, body: activity.to_json)
         end
 
         private

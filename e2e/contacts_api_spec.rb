@@ -322,6 +322,27 @@ describe 'Contacts API' do
     expect(add_response.tags).to include tags
   end
 
+  it '.add_contact_activity' do
+    contact_id = create_base_contact
+
+    activity = Wix::Hive::Activity.new
+    activity.activityType = Wix::Hive::Activities::ALBUM_FAN.type
+    activity.activityLocationUrl = 'http://www.wix.com'
+    activity.activityDetails.summary = 'test'
+    activity.activityDetails.additionalInfoUrl = 'http://www.wix.com'
+
+    activity_info = Wix::Hive::Activities::ALBUM_FAN.klass.new
+    activity_info.album.name = 'Wix'
+    activity_info.album.id = '1234'
+
+    activity.activityInfo = activity_info
+
+    update_response = client.add_contact_activity(contact_id, activity)
+
+    expect(update_response.activityId).to be_truthy
+    expect(update_response.contactId).to eq contact_id
+  end
+
   private
 
   def create_base_contact

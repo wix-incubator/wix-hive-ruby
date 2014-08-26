@@ -2,7 +2,7 @@ require 'wix-hive-ruby'
 require 'time'
 require 'vcr'
 
-RECORD_MODE =  ENV['ACCEPTANCE']  ? :all : :none
+RECORD_MODE =  ENV['ACCEPTANCE']  ? :all : :new_episodes
 
 VCR.configure do |c|
   c.cassette_library_dir = 'e2e/fixtures/vcr_cassettes'
