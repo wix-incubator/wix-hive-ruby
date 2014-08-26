@@ -325,17 +325,12 @@ describe 'Contacts API' do
   it '.add_contact_activity' do
     contact_id = create_base_contact
 
-    activity = Wix::Hive::Activity.new
-    activity.activityType = Wix::Hive::Activities::ALBUM_FAN.type
+    activity = Wix::Hive::Activity.new_activity(Wix::Hive::Activities::ALBUM_FAN)
     activity.activityLocationUrl = 'http://www.wix.com'
     activity.activityDetails.summary = 'test'
     activity.activityDetails.additionalInfoUrl = 'http://www.wix.com'
-
-    activity_info = Wix::Hive::Activities::ALBUM_FAN.klass.new
-    activity_info.album.name = 'Wix'
-    activity_info.album.id = '1234'
-
-    activity.activityInfo = activity_info
+    activity.activityInfo.album.name = 'Wix'
+    activity.activityInfo.album.id = '1234'
 
     update_response = client.add_contact_activity(contact_id, activity)
 

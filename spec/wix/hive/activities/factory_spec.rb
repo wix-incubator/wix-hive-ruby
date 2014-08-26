@@ -52,7 +52,7 @@ describe Wix::Hive::Activities do
     end
 
     it 'Invalid type' do
-      expect{ Wix::Hive::Activities.class_for_type('invalid') }.to raise_error(ArgumentError)
+      expect(Wix::Hive::Activities.class_for_type('invalid')).to be_nil
     end
   end
 end

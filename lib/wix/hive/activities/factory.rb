@@ -55,11 +55,7 @@ module Wix
       def class_for_type(type)
         result = TYPES.find { |i| i.type == type }
 
-        if result.nil?
-          fail ArgumentError, "No class found for type: #{type} !"
-        end
-
-        result.klass
+        result.klass unless result.nil?
       end
     end
   end
