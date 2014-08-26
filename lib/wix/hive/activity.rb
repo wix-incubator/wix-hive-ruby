@@ -54,9 +54,10 @@ module Wix
       private
 
       def transform_activity_info
-        type = Activities.class_for_type(self.activityType)
+        type = Activities.class_for_type(activityType)
 
-        self.activityInfo = type.new(self.activityInfo) if type
+        # rubocop:disable Style/VariableName
+        self.activityInfo = type.new(activityInfo) if type
       end
     end
   end
