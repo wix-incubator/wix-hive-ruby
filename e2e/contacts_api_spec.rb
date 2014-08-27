@@ -24,7 +24,7 @@ describe 'Contacts API' do
     # CE-2301
     # contact.add_note('alex', '2014-08-05T13:59:37.873Z')
     # contact.add_custom('custom1', 'custom')
-    expect(client.create_contact(contact)).to include :contactId
+    expect(client.new_contact(contact)).to include :contactId
   end
 
   it '.contact' do
@@ -84,7 +84,7 @@ describe 'Contacts API' do
     contact.add_date(Time.now.iso8601(3), 'E2E')
     contact.add_url('wix.com', 'site')
 
-    create_response = client.create_contact(contact)
+    create_response = client.new_contact(contact)
 
     expect(create_response).to include :contactId
 
@@ -338,10 +338,29 @@ describe 'Contacts API' do
     expect(update_response.contactId).to eq contact_id
   end
 
+  it '.contact_activities' do
+    contact_id = create_base_contact
+
+    activity = Wix::Hive::Activity.new_activity(Wix::Hive::Activities::ALBUM_FAN)
+    activity.activityLocationUrl = 'http://www.wix.com'
+    activity.activityDetails.summary = 'test'
+    activity.activityDetails.additionalInfoUrl = 'http://www.wix.com'
+    activity.activityInfo.album.name = 'Wix'
+    activity.activityInfo.album.id = '1234'
+
+    update_response = client.add_contact_activity(contact_id, activity)
+
+    expect(update_response.activityId).to be_truthy
+
+    cursored_result = client.contact_activities(contact_id)
+    expect(cursored_result).to be_a Wix::Hive::Cursor
+    expect(cursored_result.results.first).to be_a Wix::Hive::Activity
+  end
+
   private
 
   def create_base_contact
-    create_response = client.create_contact(base_contact)
+    create_response = client.new_contact(base_contact)
 
     expect(create_response).to include :contactId
 

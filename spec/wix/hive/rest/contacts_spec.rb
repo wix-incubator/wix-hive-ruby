@@ -19,7 +19,7 @@ describe Wix::Hive::REST::Contacts do
     contact = double('Contact')
     expect(contact).to receive(:to_json).and_return('mock')
     expect(contacts).to receive(:perform).with(:post, '/v1/contacts', body: 'mock').and_return(instance_double(Faraday::Response, body: 'mock'))
-    contacts.create_contact(contact)
+    contacts.new_contact(contact)
   end
 
   context '.upsert_contact' do
@@ -228,20 +228,5 @@ describe Wix::Hive::REST::Contacts do
     allow(Time).to receive(:now) { time_now }
     expect(contacts).to receive(:perform_with_object).with(:post, "/v1/contacts/#{contact_id}/tags", Wix::Hive::Contact, body: tags.to_json, params: {modifiedAt: time_now}).and_return(instance_double(Faraday::Response, body: 'mock'))
     contacts.add_contact_tags(contact_id, tags)
-  end
-
-  it '.add_contact_activity' do
-    contact_id = '1234'
-
-    activity = Wix::Hive::Activity.new_activity(Wix::Hive::Activities::ALBUM_FAN)
-    activity.activityLocationUrl = 'http://www.wix.com'
-    activity.activityDetails.summary = 'test'
-    activity.activityDetails.additionalInfoUrl = 'http://www.wix.com'
-    activity.activityInfo.album.name = 'Wix'
-    activity.activityInfo.album.id = '1234'
-
-    expect(contacts).to receive(:perform_with_object).with(:post, "/v1/contacts/#{contact_id}/activities", Wix::Hive::ActivityResult, body: activity.to_json).and_return(instance_double(Faraday::Response, body: 'mock'))
-
-    contacts.add_contact_activity(contact_id, activity)
   end
 end

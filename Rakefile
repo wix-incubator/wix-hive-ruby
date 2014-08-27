@@ -10,7 +10,6 @@ end
 
 RSpec::Core::RakeTask.new(:end2end) do |task|
   task.pattern = ['./e2e{,/*/**}/*_spec.rb']
-  task.fail_on_error = false
   task.rspec_opts = %w[-I e2e --color --format documentation]
 end
 

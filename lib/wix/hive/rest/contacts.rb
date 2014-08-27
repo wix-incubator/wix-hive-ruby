@@ -17,7 +17,7 @@ module Wix
           perform_with_object(:get, "/v1/contacts/#{contact_id}", Wix::Hive::Contact)
         end
 
-        def create_contact(contact)
+        def new_contact(contact)
           perform(:post, '/v1/contacts', body: contact.to_json)
         end
 
@@ -99,10 +99,6 @@ module Wix
 
         def add_contact_tags(id, tags)
           add_contact_field("/v1/contacts/#{id}/tags", tags)
-        end
-
-        def add_contact_activity(id, activity)
-          perform_with_object(:post, "/v1/contacts/#{id}/activities", Wix::Hive::ActivityResult, body: activity.to_json)
         end
 
         private
