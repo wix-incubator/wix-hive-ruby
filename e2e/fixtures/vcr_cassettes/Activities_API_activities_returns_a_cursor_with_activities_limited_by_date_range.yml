@@ -2,7 +2,7 @@
 http_interactions:
 - request:
     method: get
-    uri: https://openapi.wix.com/v1/activities?from=2014-08-27T09:10:43.269%2B03:00&until=2014-08-27T09:10:43.269%2B03:00&version=1.0.0
+    uri: https://openapi.wix.com/v1/activities?from=2014-08-27T11:00:38.656%2B03:00&until=2014-08-27T11:00:38.657%2B03:00&version=1.0.0
     body:
       encoding: US-ASCII
       string: ''
@@ -16,9 +16,9 @@ http_interactions:
       X-Wix-Application-Id:
       - 13832826-96d2-70f0-7eb7-8e107a37f1d2
       X-Wix-Timestamp:
-      - '2014-08-27T09:10:43.269+03:00'
+      - '2014-08-27T11:00:38.657+03:00'
       X-Wix-Signature:
-      - "-SJC4r-iVO6q7Y0kZGRtY9VEE348jztGp976CVm-sGg"
+      - sfEQqzkl6DBRYQ0WN2emVi18OxS1AUsXk78tyLKy8nE
       Accept-Encoding:
       - gzip;q=1.0,deflate;q=0.6,identity;q=0.3
   response:
@@ -29,7 +29,7 @@ http_interactions:
       X-Seen-By:
       - sputnik1.aus_dsp
       Date:
-      - Wed, 27 Aug 2014 06:10:42 GMT
+      - Wed, 27 Aug 2014 08:00:39 GMT
       Content-Type:
       - application/json;charset=UTF-8
       Content-Length:
@@ -40,10 +40,10 @@ http_interactions:
       encoding: UTF-8
       string: '{"results":[],"pageSize":0}'
     http_version: 
-  recorded_at: Wed, 27 Aug 2014 06:10:44 GMT
+  recorded_at: Wed, 27 Aug 2014 08:00:39 GMT
 - request:
     method: get
-    uri: https://openapi.wix.com/v1/activities?from=2014-08-26T09:10:44.250%2B03:00&until=2014-08-27T09:10:44.250%2B03:00&version=1.0.0
+    uri: https://openapi.wix.com/v1/activities?from=2014-08-26T11:00:39.644%2B03:00&until=2014-08-27T11:00:39.644%2B03:00&version=1.0.0
     body:
       encoding: US-ASCII
       string: ''
@@ -57,9 +57,9 @@ http_interactions:
       X-Wix-Application-Id:
       - 13832826-96d2-70f0-7eb7-8e107a37f1d2
       X-Wix-Timestamp:
-      - '2014-08-27T09:10:44.251+03:00'
+      - '2014-08-27T11:00:39.644+03:00'
       X-Wix-Signature:
-      - NMiNoDBHaN4uLBoPxSxYnPdfUQjjKc_WJJNxI6sp5YI
+      - MyJD5YYJSN6ZFaAVboJEFAZvFGk5aDJFG2i_HtJ89wU
       Accept-Encoding:
       - gzip;q=1.0,deflate;q=0.6,identity;q=0.3
   response:
@@ -68,18 +68,18 @@ http_interactions:
       message: OK
     headers:
       X-Seen-By:
-      - sputnik4.aus_dsp
+      - sputnik2.aus_dsp
       Date:
-      - Wed, 27 Aug 2014 06:10:43 GMT
+      - Wed, 27 Aug 2014 08:00:40 GMT
       Content-Type:
       - application/json;charset=UTF-8
       Content-Length:
-      - '2112'
+      - '6803'
       Server:
       - Jetty(8.1.3.v20120416)
     body:
       encoding: UTF-8
-      string: '{"results":[{"id":"5206b900-8f6c-4bcf-bfe6-90349ead68ad","createdAt":"2014-08-26T08:13:31.894-05:00","activityType":"music/album-fan","activityLocationUrl":"http://www.wix.com/","activityDetails":{"additionalInfoUrl":"http://www.wix.com/","summary":"test"},"activityInfo":{"album":{"name":"Wix","id":"1234"}}},{"id":"64272644-ba2f-4ce1-80dc-8af0a9917add","createdAt":"2014-08-26T05:42:57.272-05:00","activityType":"music/album-fan","activityLocationUrl":"http://www.wix.com/","activityDetails":{"additionalInfoUrl":"http://www.wix.com/","summary":"test"},"activityInfo":{"album":{"name":"Wix","id":"1234"}}},{"id":"8f60c760-b28b-4217-9f51-767c177a1e92","createdAt":"2014-08-26T05:42:21.260-05:00","activityType":"music/album-fan","activityLocationUrl":"http://www.wix.com/","activityDetails":{"additionalInfoUrl":"http://www.wix.com/","summary":"test"},"activityInfo":{"album":{"name":"Wix","id":"1234"}}},{"id":"a167a9e2-c29e-49db-918a-d58a6ff4b8ca","createdAt":"2014-08-26T04:55:59.610-05:00","activityType":"music/album-fan","activityLocationUrl":"http://www.wix.com/","activityDetails":{"additionalInfoUrl":"http://www.wix.com/","summary":"test"},"activityInfo":{"album":{"name":"Wix","id":"1234"}}},{"id":"178cf0ed-e00b-4c36-9c69-297edee0cb9d","createdAt":"2014-08-26T02:04:56.310-05:00","activityType":"music/album-fan","activityLocationUrl":"http://www.wix.com/","activityDetails":{"additionalInfoUrl":"http://www.wix.com/","summary":"test"},"activityInfo":{"album":{"name":"Wix","id":"1234"}}},{"id":"86ce71ee-eb9f-416b-bcd6-30b36df1e76d","createdAt":"2014-08-26T01:50:12.103-05:00","activityType":"music/album-fan","activityLocationUrl":"http://www.wix.com/","activityDetails":{"additionalInfoUrl":"http://www.wix.com/","summary":"test"},"activityInfo":{"album":{"name":"Wix","id":"1234"}}},{"id":"c4f96785-a19c-4dd5-a8a8-64d8e6b6fee3","createdAt":"2014-08-26T01:37:10.521-05:00","activityType":"music/album-fan","activityLocationUrl":"http://www.wix.com/","activityDetails":{"additionalInfoUrl":"http://www.wix.com/","summary":"test"},"activityInfo":{"album":{"name":"Wix","id":"1234"}}}],"pageSize":7}'
+      string: '{"results":[{"id":"594197ed-8bf7-4fff-a521-fa049c772308","createdAt":"2014-08-27T03:00:31.119-05:00","activityType":"music/album-fan","activityLocationUrl":"http://www.wix.com/","activityDetails":{"additionalInfoUrl":"http://www.wix.com/","summary":"test"},"activityInfo":{"album":{"name":"Wix","id":"1234"}}},{"id":"ae22d71a-530a-48a9-955c-875721c3bea4","createdAt":"2014-08-27T03:00:31.119-05:00","activityType":"music/album-fan","activityLocationUrl":"http://www.wix.com/","activityDetails":{"additionalInfoUrl":"http://www.wix.com/","summary":"test"},"activityInfo":{"album":{"name":"Wix","id":"1234"}}},{"id":"0471c010-5d25-4728-b30f-f9d3ed886f44","createdAt":"2014-08-27T02:59:41.776-05:00","activityType":"music/album-fan","activityLocationUrl":"http://www.wix.com/","activityDetails":{"additionalInfoUrl":"http://www.wix.com/","summary":"test"},"activityInfo":{"album":{"name":"Wix","id":"1234"}}},{"id":"862bcf44-665e-434d-aaee-8ae2e9758680","createdAt":"2014-08-27T02:59:41.776-05:00","activityType":"music/album-fan","activityLocationUrl":"http://www.wix.com/","activityDetails":{"additionalInfoUrl":"http://www.wix.com/","summary":"test"},"activityInfo":{"album":{"name":"Wix","id":"1234"}}},{"id":"89721beb-7706-4da4-b471-0339c327210a","createdAt":"2014-08-27T02:59:41.776-05:00","activityType":"music/album-fan","activityLocationUrl":"http://www.wix.com/","activityDetails":{"additionalInfoUrl":"http://www.wix.com/","summary":"test"},"activityInfo":{"album":{"name":"Wix","id":"1234"}}},{"id":"a573d5af-2033-4374-93a4-e10958c0c58d","createdAt":"2014-08-27T02:59:41.776-05:00","activityType":"music/album-fan","activityLocationUrl":"http://www.wix.com/","activityDetails":{"additionalInfoUrl":"http://www.wix.com/","summary":"test"},"activityInfo":{"album":{"name":"Wix","id":"1234"}}},{"id":"2c8e92a1-a3b8-4463-a1e8-ef7e24411e35","createdAt":"2014-08-27T02:57:18.274-05:00","activityType":"music/album-fan","activityLocationUrl":"http://www.wix.com/","activityDetails":{"additionalInfoUrl":"http://www.wix.com/","summary":"test"},"activityInfo":{"album":{"name":"Wix","id":"1234"}}},{"id":"6e939b56-f534-405f-8871-5ff787517a1c","createdAt":"2014-08-27T02:57:18.274-05:00","activityType":"music/album-fan","activityLocationUrl":"http://www.wix.com/","activityDetails":{"additionalInfoUrl":"http://www.wix.com/","summary":"test"},"activityInfo":{"album":{"name":"Wix","id":"1234"}}},{"id":"75eb873e-2904-4e7e-b393-9a89681b5abc","createdAt":"2014-08-27T02:57:18.274-05:00","activityType":"music/album-fan","activityLocationUrl":"http://www.wix.com/","activityDetails":{"additionalInfoUrl":"http://www.wix.com/","summary":"test"},"activityInfo":{"album":{"name":"Wix","id":"1234"}}},{"id":"7f544750-2dd9-40e8-8e25-9faa58ee31d8","createdAt":"2014-08-27T02:57:18.274-05:00","activityType":"music/album-fan","activityLocationUrl":"http://www.wix.com/","activityDetails":{"additionalInfoUrl":"http://www.wix.com/","summary":"test"},"activityInfo":{"album":{"name":"Wix","id":"1234"}}},{"id":"30bcc70a-8e81-47bb-933e-625f7a430b73","createdAt":"2014-08-27T02:56:35.170-05:00","activityType":"music/album-fan","activityLocationUrl":"http://www.wix.com/","activityDetails":{"additionalInfoUrl":"http://www.wix.com/","summary":"test"},"activityInfo":{"album":{"name":"Wix","id":"1234"}}},{"id":"bc548a1d-08b3-4044-ae2f-ef53abcefdff","createdAt":"2014-08-27T02:56:35.170-05:00","activityType":"music/album-fan","activityLocationUrl":"http://www.wix.com/","activityDetails":{"additionalInfoUrl":"http://www.wix.com/","summary":"test"},"activityInfo":{"album":{"name":"Wix","id":"1234"}}},{"id":"cb378751-b115-4f41-a027-8fcc77fc9b6f","createdAt":"2014-08-27T02:56:35.170-05:00","activityType":"music/album-fan","activityLocationUrl":"http://www.wix.com/","activityDetails":{"additionalInfoUrl":"http://www.wix.com/","summary":"test"},"activityInfo":{"album":{"name":"Wix","id":"1234"}}},{"id":"f832a6a1-f673-4bf8-9ccc-d48de79c9ecf","createdAt":"2014-08-27T02:56:35.170-05:00","activityType":"music/album-fan","activityLocationUrl":"http://www.wix.com/","activityDetails":{"additionalInfoUrl":"http://www.wix.com/","summary":"test"},"activityInfo":{"album":{"name":"Wix","id":"1234"}}},{"id":"6e32acee-b072-4601-840c-b555430acc47","createdAt":"2014-08-27T02:55:15.565-05:00","activityType":"music/album-fan","activityLocationUrl":"http://www.wix.com/","activityDetails":{"additionalInfoUrl":"http://www.wix.com/","summary":"test"},"activityInfo":{"album":{"name":"Wix","id":"1234"}}},{"id":"8539db2e-e1d6-4cb5-81a2-bce4edcb9eb2","createdAt":"2014-08-27T02:55:15.565-05:00","activityType":"music/album-fan","activityLocationUrl":"http://www.wix.com/","activityDetails":{"additionalInfoUrl":"http://www.wix.com/","summary":"test"},"activityInfo":{"album":{"name":"Wix","id":"1234"}}},{"id":"a60cdee2-1450-42d1-b5b2-895028a89909","createdAt":"2014-08-27T02:55:15.565-05:00","activityType":"music/album-fan","activityLocationUrl":"http://www.wix.com/","activityDetails":{"additionalInfoUrl":"http://www.wix.com/","summary":"test"},"activityInfo":{"album":{"name":"Wix","id":"1234"}}},{"id":"e25313fe-a03b-4baa-8ecb-4fff4fc74e6c","createdAt":"2014-08-27T02:55:15.565-05:00","activityType":"music/album-fan","activityLocationUrl":"http://www.wix.com/","activityDetails":{"additionalInfoUrl":"http://www.wix.com/","summary":"test"},"activityInfo":{"album":{"name":"Wix","id":"1234"}}},{"id":"749b35b4-d269-4876-8452-448dcb6054e8","createdAt":"2014-08-27T02:46:48.107-05:00","activityType":"music/album-fan","activityLocationUrl":"http://www.wix.com/","activityDetails":{"additionalInfoUrl":"http://www.wix.com/","summary":"test"},"activityInfo":{"album":{"name":"Wix","id":"1234"}}},{"id":"8eb18ed1-a965-48f9-8e28-7af76b2d60ff","createdAt":"2014-08-27T02:40:11.158-05:00","activityType":"music/album-fan","activityLocationUrl":"http://www.wix.com/","activityDetails":{"additionalInfoUrl":"http://www.wix.com/","summary":"test"},"activityInfo":{"album":{"name":"Wix","id":"1234"}}}],"nextCursor":"5bdc58bc13356f15258d1112f9c5799e3bb868e70dbfef78fa291df13a354b2b52f7a511a4713004c2f3305865353341a9131bee4b33e9c47c644e6912b626e6300ed4f238ebaefbec6a5cf90667c09aab3412cb7f0c6409bf340df6a9307985ecb92bc648555a039ba871f0425e490f006a4be61a7a0a0fb055d85144a1afca0afed3a625d767fe51151dac752d2cf6e436903b303b9812abee581f4148bbc84dea159b22c9b253d9c1c430ae55ded599b4357189a621db997b290595a7aa1012ad28e5b8ce60466f38a82d41f69ed6d32ce88fed9a3b775a7ea087540af38f21cd8f4ae1895ee5b238e7d29ae1aa4acb84c81d3d24da40bd691c26e016f2fbf56bce1ca2d619fd5017fe2bda3551e03db5814c81c28aaddd7a7fbc08e5b288324f44e7b654886833e24d5c0e478fdb78daea77a45ba23d5d27ba7bd76e42e7d5a213519f2ff76c50a0a83bfd34e9ec57b238f2ed6e8b9f1fa1f273b072f4054220fced1e0c4acaf02d63fe7400c43d69d8f74922a5fb9470b177b4d3d2f3bef942bde8eb4b8ef3808f0586a99c1e1e","pageSize":20}'
     http_version: 
-  recorded_at: Wed, 27 Aug 2014 06:10:45 GMT
+  recorded_at: Wed, 27 Aug 2014 08:00:40 GMT
 recorded_with: VCR 2.9.2
