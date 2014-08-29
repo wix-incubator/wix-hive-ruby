@@ -4,7 +4,7 @@ describe Wix::Hive::Activity do
 
   context '.new_activity' do
     it 'should create a new activity given a valid type' do
-      expect(described_class.new_activity(Wix::Hive::Activities::ALBUM_FAN)).to be_a described_class
+      expect(described_class.new_activity(Wix::Hive::Activities::MUSIC_ALBUM_FAN)).to be_a described_class
     end
 
     it 'should fail when invalid type is given' do
@@ -16,7 +16,7 @@ describe Wix::Hive::Activity do
     it 'with a handled activity type' do
       activity = described_class.new({ activityType: 'music/album-fan', activityInfo: { album: { name: 'lala', id: '1' } } })
 
-      expect(activity.activityInfo).to be_a Wix::Hive::Activities::ALBUM_FAN.klass
+      expect(activity.activityInfo).to be_a Wix::Hive::Activities::MUSIC_ALBUM_FAN.klass
     end
     it 'with a unknown activity type' do
       activityInfo = { invalid: 'invalid' }

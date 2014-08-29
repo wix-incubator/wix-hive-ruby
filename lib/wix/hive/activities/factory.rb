@@ -1,18 +1,22 @@
 # THIS IS A GENERATED FILE, DO NOT EDIT THIS
-# Generated on 2014-08-26T08:07:15.582Z
+# Generated on 2014-08-29T12:10:00.590Z
 
-require 'wix/hive/activities/contact_form_activity'
-require 'wix/hive/activities/contact_create_activity'
-require 'wix/hive/activities/conversion_complete_activity'
-require 'wix/hive/activities/purchase_activity'
-require 'wix/hive/activities/send_activity'
-require 'wix/hive/activities/album_fan_activity'
-require 'wix/hive/activities/album_share_activity'
-require 'wix/hive/activities/album_lyrics_activity'
-require 'wix/hive/activities/track_play_activity'
-require 'wix/hive/activities/track_played_activity'
-require 'wix/hive/activities/track_skipped_activity'
-require 'wix/hive/activities/track_share_activity'
+require 'wix/hive/activities/contact/contact_form_activity'
+require 'wix/hive/activities/contact/contact_create_activity'
+require 'wix/hive/activities/conversion/conversion_complete_activity'
+require 'wix/hive/activities/e_commerce/purchase_activity'
+require 'wix/hive/activities/messaging/send_activity'
+require 'wix/hive/activities/music/album_fan_activity'
+require 'wix/hive/activities/music/album_share_activity'
+require 'wix/hive/activities/music/album_lyrics_activity'
+require 'wix/hive/activities/music/track_play_activity'
+require 'wix/hive/activities/music/track_played_activity'
+require 'wix/hive/activities/music/track_skipped_activity'
+require 'wix/hive/activities/music/track_share_activity'
+require 'wix/hive/activities/hotels/hotels_confirmation_activity'
+require 'wix/hive/activities/hotels/hotels_purchase_activity'
+require 'wix/hive/activities/hotels/hotels_purchase_failed_activity'
+require 'wix/hive/activities/scheduler/scheduler_appointment_activity'
 
 # rubocop:disable all
 module Wix
@@ -23,32 +27,42 @@ module Wix
       end
 
       
-      CONTACT_FORM = ActivityType.new(ContactFormActivity, 'contact/contact-form')
+      CONTACT_CONTACT_FORM = ActivityType.new(Contact::FormActivity, 'contact/contact-form')
       
-      CREATE = ActivityType.new(ContactCreateActivity, 'contacts/create')
+      CONTACTS_CREATE = ActivityType.new(Contact::CreateActivity, 'contacts/create')
       
-      COMPLETE = ActivityType.new(ConversionCompleteActivity, 'conversion/complete')
+      CONVERSION_COMPLETE = ActivityType.new(Conversion::CompleteActivity, 'conversion/complete')
       
-      PURCHASE = ActivityType.new(PurchaseActivity, 'e_commerce/purchase')
+      E_COMMERCE_PURCHASE = ActivityType.new(ECommerce::Activity, 'e_commerce/purchase')
       
-      SEND = ActivityType.new(SendActivity, 'messaging/send')
+      MESSAGING_SEND = ActivityType.new(Messaging::Activity, 'messaging/send')
       
-      ALBUM_FAN = ActivityType.new(AlbumFanActivity, 'music/album-fan')
+      MUSIC_ALBUM_FAN = ActivityType.new(Music::FanActivity, 'music/album-fan')
       
-      ALBUM_SHARE = ActivityType.new(AlbumShareActivity, 'music/album-share')
+      MUSIC_ALBUM_SHARE = ActivityType.new(Music::ShareActivity, 'music/album-share')
       
-      TRACK_LYRICS = ActivityType.new(AlbumLyricsActivity, 'music/track-lyrics')
+      MUSIC_TRACK_LYRICS = ActivityType.new(Music::LyricsActivity, 'music/track-lyrics')
       
-      TRACK_PLAY = ActivityType.new(TrackPlayActivity, 'music/track-play')
+      MUSIC_TRACK_PLAY = ActivityType.new(Music::TrackPlayActivity, 'music/track-play')
       
-      TRACK_PLAYED = ActivityType.new(TrackPlayedActivity, 'music/track-played')
+      MUSIC_TRACK_PLAYED = ActivityType.new(Music::TrackPlayedActivity, 'music/track-played')
       
-      TRACK_SKIP = ActivityType.new(TrackSkippedActivity, 'music/track-skip')
+      MUSIC_TRACK_SKIP = ActivityType.new(Music::TrackSkippedActivity, 'music/track-skip')
       
-      TRACK_SHARE = ActivityType.new(TrackShareActivity, 'music/track-share')
+      MUSIC_TRACK_SHARE = ActivityType.new(Music::TrackShareActivity, 'music/track-share')
+      
+      HOTELS_CONFIRMATION = ActivityType.new(Hotels::ConfirmationActivity, 'hotels/confirmation')
+      
+      HOTELS_CANCEL = ActivityType.new(Hotels::ConfirmationActivity, 'hotels/cancel')
+      
+      HOTELS_PURCHASE = ActivityType.new(Hotels::PurchaseActivity, 'hotels/purchase')
+      
+      HOTELS_PURCHASE_FAILED = ActivityType.new(Hotels::PurchaseFailedActivity, 'hotels/purchase-failed')
+      
+      SCHEDULER_APPOINTMENT = ActivityType.new(Scheduler::AppointmentActivity, 'scheduler/appointment')
       
 
-      TYPES = [CONTACT_FORM, CREATE, COMPLETE, PURCHASE, SEND, ALBUM_FAN, ALBUM_SHARE, TRACK_LYRICS, TRACK_PLAY, TRACK_PLAYED, TRACK_SKIP, TRACK_SHARE]
+      TYPES = [CONTACT_CONTACT_FORM, CONTACTS_CREATE, CONVERSION_COMPLETE, E_COMMERCE_PURCHASE, MESSAGING_SEND, MUSIC_ALBUM_FAN, MUSIC_ALBUM_SHARE, MUSIC_TRACK_LYRICS, MUSIC_TRACK_PLAY, MUSIC_TRACK_PLAYED, MUSIC_TRACK_SKIP, MUSIC_TRACK_SHARE, HOTELS_CONFIRMATION, HOTELS_CANCEL, HOTELS_PURCHASE, HOTELS_PURCHASE_FAILED, SCHEDULER_APPOINTMENT]
 
       module_function
 

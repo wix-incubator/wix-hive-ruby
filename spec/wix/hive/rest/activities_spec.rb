@@ -7,7 +7,7 @@ describe Wix::Hive::REST::Activities do
   it '.new_activity' do
     session_token = '1234'
 
-    activity = Wix::Hive::Activity.new_activity(Wix::Hive::Activities::ALBUM_FAN)
+    activity = Wix::Hive::Activity.new_activity(Wix::Hive::Activities::MUSIC_ALBUM_FAN)
     activity.activityLocationUrl = 'http://www.wix.com'
     activity.activityDetails.summary = 'test'
     activity.activityDetails.additionalInfoUrl = 'http://www.wix.com'
@@ -39,7 +39,7 @@ describe Wix::Hive::REST::Activities do
   it '.add_contact_activity' do
     contact_id = '1234'
 
-    activity = Wix::Hive::Activity.new_activity(Wix::Hive::Activities::ALBUM_FAN)
+    activity = Wix::Hive::Activity.new_activity(Wix::Hive::Activities::MUSIC_ALBUM_FAN)
     activity.activityLocationUrl = 'http://www.wix.com'
     activity.activityDetails.summary = 'test'
     activity.activityDetails.additionalInfoUrl = 'http://www.wix.com'

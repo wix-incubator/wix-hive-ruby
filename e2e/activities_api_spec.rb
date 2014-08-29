@@ -5,13 +5,12 @@ describe 'Activities API' do
   session_id = '02594992c9c57f61148351a766cf2ab79f7a7007ce309a16fc2b6475b0895b5b09250b55ec2c4cdba152aef47daded4d1e60994d53964e647acf431e4f798bcd0b93ce826ad6aa27a9c95ffedb05f421b7b1419780cf6036d4fd8efd847f9877'
 
   let(:base_activity) {
-    activity = Wix::Hive::Activity.new_activity(Wix::Hive::Activities::ALBUM_FAN)
+    activity = Wix::Hive::Activity.new_activity(Wix::Hive::Activities::MUSIC_ALBUM_FAN)
     activity.activityLocationUrl = 'http://www.wix.com'
     activity.activityDetails.summary = 'test'
     activity.activityDetails.additionalInfoUrl = 'http://www.wix.com'
     activity.activityInfo.album.name = 'Wix'
     activity.activityInfo.album.id = '1234'
-    activity
   }
 
   context '.activities' do
@@ -22,9 +21,9 @@ describe 'Activities API' do
     end
 
     it 'returns a cursor with activities filtered by activityTypes' do
-      cursored_result = client.activities(activityTypes: Wix::Hive::Activities::ALBUM_FAN.type)
+      cursored_result = client.activities(activityTypes: Wix::Hive::Activities::MUSIC_ALBUM_FAN.type)
       expect(cursored_result).to be_a Wix::Hive::Cursor
-      expect(cursored_result.results.map{ |v| v.activityType } ).to all(eq Wix::Hive::Activities::ALBUM_FAN.type)
+      expect(cursored_result.results.map{ |v| v.activityType } ).to all(eq Wix::Hive::Activities::MUSIC_ALBUM_FAN.type)
     end
 
     it 'returns a cursor with activities filtered by scope' do

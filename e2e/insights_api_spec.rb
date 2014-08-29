@@ -16,7 +16,7 @@ describe 'Insights API' do
 
     expect(create_contact).to include :contactId
 
-    activity = Wix::Hive::Activity.new_activity(Wix::Hive::Activities::ALBUM_FAN)
+    activity = Wix::Hive::Activity.new_activity(Wix::Hive::Activities::MUSIC_ALBUM_FAN)
     activity.activityLocationUrl = 'http://www.wix.com'
     activity.activityDetails.summary = 'test'
     activity.activityDetails.additionalInfoUrl = 'http://www.wix.com'
