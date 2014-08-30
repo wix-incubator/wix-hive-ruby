@@ -11,7 +11,23 @@ describe 'Activities API' do
     activity.activityDetails.additionalInfoUrl = 'http://www.wix.com'
     activity.activityInfo.album.name = 'Wix'
     activity.activityInfo.album.id = '1234'
+
+    activity
   }
+
+  it '.new_activity' do
+    new_activity_result = client.new_activity(session_id, base_activity)
+
+    expect(new_activity_result.activityId).to be_truthy
+  end
+
+  it '.activity' do
+    new_activity_result = client.new_activity(session_id, base_activity)
+
+    expect(new_activity_result.activityId).to be_truthy
+
+    expect(client.activity(new_activity_result.activityId)).to be_a Wix::Hive::Activity
+  end
 
   context '.activities' do
     it 'returns a cursor with activity results' do
@@ -41,19 +57,5 @@ describe 'Activities API' do
       expect(now_result.results.size).to eq 0
       expect(day_ago_result.results.size).to be >= 1
     end
-  end
-
-  it '.new_activity' do
-    new_activity_result = client.new_activity(session_id, base_activity)
-
-    expect(new_activity_result.activityId).to be_truthy
-  end
-
-  it '.activity' do
-    new_activity_result = client.new_activity(session_id, base_activity)
-
-    expect(new_activity_result.activityId).to be_truthy
-
-    expect(client.activity(new_activity_result.activityId)).to be_a Wix::Hive::Activity
   end
 end
