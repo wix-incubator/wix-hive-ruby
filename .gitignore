@@ -14,3 +14,5 @@ pkg
 *.gem
 .bundle
 Gemfile.lock
+e2e/fixtures
+e2e/e2e
