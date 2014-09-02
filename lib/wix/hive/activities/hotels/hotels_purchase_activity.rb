@@ -1,14 +1,12 @@
 # THIS IS A GENERATED FILE, DO NOT EDIT THIS
-# Generated on 2014-08-29T12:10:00.573Z
+# Generated on 2014-09-02T07:46:23.618Z
 
 require 'hashie'
 
-# rubocop:disable all
 module Wix
   module Hive
     module Activities
       module Hotels
-
         class Payment < Hashie::Trash
           include Hashie::Extensions::IgnoreUndeclared
 
@@ -16,7 +14,6 @@ module Wix
           property :total
           property :currency
           property :source
-
         end
 
         class PurchaseActivity < Hashie::Trash
@@ -37,9 +34,7 @@ module Wix
           property :payment, default: Payment.new
           property :customer, default: Customer.new
           property :rooms, default: []
-
         end
-
       end
     end
   end

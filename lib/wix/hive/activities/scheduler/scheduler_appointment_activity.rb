@@ -1,14 +1,12 @@
 # THIS IS A GENERATED FILE, DO NOT EDIT THIS
-# Generated on 2014-08-29T12:10:00.589Z
+# Generated on 2014-09-02T07:46:23.639Z
 
 require 'hashie'
 
-# rubocop:disable all
 module Wix
   module Hive
     module Activities
       module Scheduler
-
         class Location < Hashie::Trash
           include Hashie::Extensions::IgnoreUndeclared
 
@@ -18,7 +16,6 @@ module Wix
           property :postalCode
           property :country
           property :url
-
         end
 
         class Time < Hashie::Trash
@@ -27,7 +24,6 @@ module Wix
           property :start
           property :end
           property :timezone
-
         end
 
         class Name < Hashie::Trash
@@ -38,7 +34,6 @@ module Wix
           property :middle
           property :last
           property :suffix
-
         end
 
         class Attendee < Hashie::Trash
@@ -53,7 +48,6 @@ module Wix
           property :email
           property :notes
           property :self
-
         end
 
         class AppointmentActivity < Hashie::Trash
@@ -69,9 +63,7 @@ module Wix
           property :location, default: Location.new
           property :time, default: Time.new
           property :attendees, default: []
-
         end
-
       end
     end
   end

@@ -5,7 +5,7 @@ http_interactions:
     uri: https://openapi.wix.com/v1/contacts?version=1.0.0
     body:
       encoding: UTF-8
-      string: '{"phone":6035392014}'
+      string: '{"phone":2450655811}'
     headers:
       Accept:
       - application/json
@@ -16,9 +16,9 @@ http_interactions:
       X-Wix-Application-Id:
       - 13832826-96d2-70f0-7eb7-8e107a37f1d2
       X-Wix-Timestamp:
-      - '2014-08-27T11:01:38.588+03:00'
+      - '2014-09-02T11:15:08.847+03:00'
       X-Wix-Signature:
-      - spEkgKIjW-lT5Ty-8woAkKJzWttPPlczMWVxq_W-0K8
+      - UfFGL1SbzTyT09hnaanRVLO9vZl-kuBa9sO1YKxhi1E
       Content-Type:
       - application/json
       Accept-Encoding:
@@ -29,9 +29,9 @@ http_interactions:
       message: OK
     headers:
       X-Seen-By:
-      - sputnik4.aus_dsp
+      - sputnik3.aus_dsp
       Date:
-      - Wed, 27 Aug 2014 08:01:39 GMT
+      - Tue, 02 Sep 2014 08:15:09 GMT
       Content-Type:
       - application/json;charset=UTF-8
       Content-Length:
@@ -40,7 +40,7 @@ http_interactions:
       - Jetty(8.1.3.v20120416)
     body:
       encoding: UTF-8
-      string: '{"contactId":"feaa6823-94c2-4280-9d6d-f413e1c17498"}'
+      string: '{"contactId":"3e51ef45-23de-4d46-b9ff-115d0fb46306"}'
     http_version: 
-  recorded_at: Wed, 27 Aug 2014 08:01:39 GMT
+  recorded_at: Tue, 02 Sep 2014 08:15:09 GMT
 recorded_with: VCR 2.9.2

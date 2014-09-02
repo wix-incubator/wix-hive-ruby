@@ -83,49 +83,6 @@ http_interactions:
     http_version: 
   recorded_at: Wed, 27 Aug 2014 07:56:38 GMT
 - request:
-    method: post
-    uri: https://openapi.wix.com/v1/activities?userSessionToken=02594992c9c57f61148351a766cf2ab79f7a7007ce309a16fc2b6475b0895b5b09250b55ec2c4cdba152aef47daded4d1e60994d53964e647acf431e4f798bcd0b93ce826ad6aa27a9c95ffedb05f421b7b1419780cf6036d4fd8efd847f9877&version=1.0.0
-    body:
-      encoding: UTF-8
-      string: '{"createdAt":"2014-08-27T11:00:31.119+03:00","activityDetails":{"summary":"test","additionalInfoUrl":"http://www.wix.com"},"activityType":"music/album-fan","activityInfo":{"album":{"name":"Wix","id":"1234"}},"activityLocationUrl":"http://www.wix.com"}'
-    headers:
-      Accept:
-      - application/json
-      User-Agent:
-      - Faraday v0.9.0
-      X-Wix-Instance-Id:
-      - 138328bd-0cde-04e3-d7be-8f5500e362e7
-      X-Wix-Application-Id:
-      - 13832826-96d2-70f0-7eb7-8e107a37f1d2
-      X-Wix-Timestamp:
-      - '2014-08-27T11:00:32.211+03:00'
-      X-Wix-Signature:
-      - Y7IVpCObdTu9PND-j-MweBjIpXRGV9Z0--CclSoZFzc
-      Content-Type:
-      - application/json
-      Accept-Encoding:
-      - gzip;q=1.0,deflate;q=0.6,identity;q=0.3
-  response:
-    status:
-      code: 200
-      message: OK
-    headers:
-      X-Seen-By:
-      - sputnik3.aus_dsp
-      Date:
-      - Wed, 27 Aug 2014 08:00:33 GMT
-      Content-Type:
-      - application/json;charset=UTF-8
-      Content-Length:
-      - '104'
-      Server:
-      - Jetty(8.1.3.v20120416)
-    body:
-      encoding: UTF-8
-      string: '{"activityId":"594197ed-8bf7-4fff-a521-fa049c772308","contactId":"13358cb2-5d98-4b45-1884-fd2e608e2dc0"}'
-    http_version: 
-  recorded_at: Wed, 27 Aug 2014 08:00:33 GMT
-- request:
     method: get
     uri: https://openapi.wix.com/v1/activities/594197ed-8bf7-4fff-a521-fa049c772308?version=1.0.0
     body:
@@ -166,4 +123,170 @@ http_interactions:
       string: '{"id":"594197ed-8bf7-4fff-a521-fa049c772308","createdAt":"2014-08-27T03:00:31.119-05:00","activityType":"music/album-fan","activityLocationUrl":"http://www.wix.com/","activityDetails":{"additionalInfoUrl":"http://www.wix.com/","summary":"test"},"activityInfo":{"album":{"name":"Wix","id":"1234"}}}'
     http_version: 
   recorded_at: Wed, 27 Aug 2014 08:00:34 GMT
+- request:
+    method: get
+    uri: https://openapi.wix.com/v1/activities/98a0903c-b528-42d4-8c0c-f27819855b43?version=1.0.0
+    body:
+      encoding: US-ASCII
+      string: ''
+    headers:
+      Accept:
+      - application/json
+      User-Agent:
+      - Faraday v0.9.0
+      X-Wix-Instance-Id:
+      - 138328bd-0cde-04e3-d7be-8f5500e362e7
+      X-Wix-Application-Id:
+      - 13832826-96d2-70f0-7eb7-8e107a37f1d2
+      X-Wix-Timestamp:
+      - '2014-09-02T10:03:29.754+03:00'
+      X-Wix-Signature:
+      - Ekb9dvJ7FSFrxZeAPSdr13jj1SU7G8me7T7QZYnIw3Y
+      Accept-Encoding:
+      - gzip;q=1.0,deflate;q=0.6,identity;q=0.3
+  response:
+    status:
+      code: 200
+      message: OK
+    headers:
+      X-Seen-By:
+      - sputnik1.aus_dsp
+      Date:
+      - Tue, 02 Sep 2014 07:03:30 GMT
+      Content-Type:
+      - application/json;charset=UTF-8
+      Content-Length:
+      - '297'
+      Server:
+      - Jetty(8.1.3.v20120416)
+    body:
+      encoding: UTF-8
+      string: '{"id":"98a0903c-b528-42d4-8c0c-f27819855b43","createdAt":"2014-09-02T02:03:27.875-05:00","activityType":"music/album-fan","activityLocationUrl":"http://www.wix.com/","activityDetails":{"additionalInfoUrl":"http://www.wix.com/","summary":"test"},"activityInfo":{"album":{"name":"Wix","id":"1234"}}}'
+    http_version: 
+  recorded_at: Tue, 02 Sep 2014 07:03:30 GMT
+- request:
+    method: get
+    uri: https://openapi.wix.com/v1/activities/325ad5d4-d3ed-4917-aa50-723aa1ce1cca?version=1.0.0
+    body:
+      encoding: US-ASCII
+      string: ''
+    headers:
+      Accept:
+      - application/json
+      User-Agent:
+      - Faraday v0.9.0
+      X-Wix-Instance-Id:
+      - 138328bd-0cde-04e3-d7be-8f5500e362e7
+      X-Wix-Application-Id:
+      - 13832826-96d2-70f0-7eb7-8e107a37f1d2
+      X-Wix-Timestamp:
+      - '2014-09-02T10:49:44.154+03:00'
+      X-Wix-Signature:
+      - PZoHkvj0S-XY7pptydULq8wJt6nrFEmJRI04qD7HG3A
+      Accept-Encoding:
+      - gzip;q=1.0,deflate;q=0.6,identity;q=0.3
+  response:
+    status:
+      code: 200
+      message: OK
+    headers:
+      X-Seen-By:
+      - sputnik3.aus_dsp
+      Date:
+      - Tue, 02 Sep 2014 07:49:44 GMT
+      Content-Type:
+      - application/json;charset=UTF-8
+      Content-Length:
+      - '297'
+      Server:
+      - Jetty(8.1.3.v20120416)
+    body:
+      encoding: UTF-8
+      string: '{"id":"325ad5d4-d3ed-4917-aa50-723aa1ce1cca","createdAt":"2014-09-02T02:49:41.627-05:00","activityType":"music/album-fan","activityLocationUrl":"http://www.wix.com/","activityDetails":{"additionalInfoUrl":"http://www.wix.com/","summary":"test"},"activityInfo":{"album":{"name":"Wix","id":"1234"}}}'
+    http_version: 
+  recorded_at: Tue, 02 Sep 2014 07:49:45 GMT
+- request:
+    method: post
+    uri: https://openapi.wix.com/v1/activities?userSessionToken=02594992c9c57f61148351a766cf2ab79f7a7007ce309a16fc2b6475b0895b5b09250b55ec2c4cdba152aef47daded4d1e60994d53964e647acf431e4f798bcd0b93ce826ad6aa27a9c95ffedb05f421b7b1419780cf6036d4fd8efd847f9877&version=1.0.0
+    body:
+      encoding: UTF-8
+      string: '{"createdAt":"2014-09-02T11:13:51.647+03:00","activityDetails":{"summary":"test","additionalInfoUrl":"http://www.wix.com"},"activityType":"music/album-fan","activityInfo":{"album":{"name":"Wix","id":"1234"}},"activityLocationUrl":"http://www.wix.com"}'
+    headers:
+      Accept:
+      - application/json
+      User-Agent:
+      - Faraday v0.9.0
+      X-Wix-Instance-Id:
+      - 138328bd-0cde-04e3-d7be-8f5500e362e7
+      X-Wix-Application-Id:
+      - 13832826-96d2-70f0-7eb7-8e107a37f1d2
+      X-Wix-Timestamp:
+      - '2014-09-02T11:13:52.660+03:00'
+      X-Wix-Signature:
+      - 0YCpSxwGknt1TtMtV8qGXM33t5Tt6vW0gjNOII3O-sY
+      Content-Type:
+      - application/json
+      Accept-Encoding:
+      - gzip;q=1.0,deflate;q=0.6,identity;q=0.3
+  response:
+    status:
+      code: 200
+      message: OK
+    headers:
+      X-Seen-By:
+      - sputnik3.aus_dsp
+      Date:
+      - Tue, 02 Sep 2014 08:13:53 GMT
+      Content-Type:
+      - application/json;charset=UTF-8
+      Content-Length:
+      - '104'
+      Server:
+      - Jetty(8.1.3.v20120416)
+    body:
+      encoding: UTF-8
+      string: '{"activityId":"aed83e0c-b930-4489-a6fd-ccc2ef97f2a6","contactId":"13358cb2-5d98-4b45-1884-fd2e608e2dc0"}'
+    http_version: 
+  recorded_at: Tue, 02 Sep 2014 08:13:53 GMT
+- request:
+    method: get
+    uri: https://openapi.wix.com/v1/activities/aed83e0c-b930-4489-a6fd-ccc2ef97f2a6?version=1.0.0
+    body:
+      encoding: US-ASCII
+      string: ''
+    headers:
+      Accept:
+      - application/json
+      User-Agent:
+      - Faraday v0.9.0
+      X-Wix-Instance-Id:
+      - 138328bd-0cde-04e3-d7be-8f5500e362e7
+      X-Wix-Application-Id:
+      - 13832826-96d2-70f0-7eb7-8e107a37f1d2
+      X-Wix-Timestamp:
+      - '2014-09-02T11:13:53.469+03:00'
+      X-Wix-Signature:
+      - 9qhVzLKMR0aG6POU6tu3ZGyk_O_do0DDXT5GL8XSBis
+      Accept-Encoding:
+      - gzip;q=1.0,deflate;q=0.6,identity;q=0.3
+  response:
+    status:
+      code: 200
+      message: OK
+    headers:
+      X-Seen-By:
+      - sputnik4.aus_dsp
+      Date:
+      - Tue, 02 Sep 2014 08:13:54 GMT
+      Content-Type:
+      - application/json;charset=UTF-8
+      Content-Length:
+      - '297'
+      Server:
+      - Jetty(8.1.3.v20120416)
+    body:
+      encoding: UTF-8
+      string: '{"id":"aed83e0c-b930-4489-a6fd-ccc2ef97f2a6","createdAt":"2014-09-02T03:13:51.647-05:00","activityType":"music/album-fan","activityLocationUrl":"http://www.wix.com/","activityDetails":{"additionalInfoUrl":"http://www.wix.com/","summary":"test"},"activityInfo":{"album":{"name":"Wix","id":"1234"}}}'
+    http_version: 
+  recorded_at: Tue, 02 Sep 2014 08:13:54 GMT
 recorded_with: VCR 2.9.2

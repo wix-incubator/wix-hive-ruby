@@ -16,9 +16,9 @@ http_interactions:
       X-Wix-Application-Id:
       - 13832826-96d2-70f0-7eb7-8e107a37f1d2
       X-Wix-Timestamp:
-      - '2014-08-27T11:00:45.505+03:00'
+      - '2014-09-02T11:14:17.556+03:00'
       X-Wix-Signature:
-      - HU1LdKjCm_ArhS8_qlR0cnjbfj48iDxx2bJnNJm_e1g
+      - cWziuC_7_8LDwLqOWw2X6jOKFOJOwGZtkA48M-Isvl0
       Accept-Encoding:
       - gzip;q=1.0,deflate;q=0.6,identity;q=0.3
   response:
@@ -29,7 +29,7 @@ http_interactions:
       X-Seen-By:
       - sputnik4.aus_dsp
       Date:
-      - Wed, 27 Aug 2014 08:00:46 GMT
+      - Tue, 02 Sep 2014 08:14:18 GMT
       Content-Type:
       - application/json;charset=UTF-8
       Content-Length:
@@ -41,5 +41,5 @@ http_interactions:
       string: '{"errorCode":400,"message":"Required path variable [contact-id] at
         position [2] has illegal value [tags]","wixErrorCode":-23001}'
     http_version: 
-  recorded_at: Wed, 27 Aug 2014 08:00:46 GMT
+  recorded_at: Tue, 02 Sep 2014 08:14:18 GMT
 recorded_with: VCR 2.9.2

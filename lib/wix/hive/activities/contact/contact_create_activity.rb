@@ -1,14 +1,12 @@
 # THIS IS A GENERATED FILE, DO NOT EDIT THIS
-# Generated on 2014-08-29T12:10:00.477Z
+# Generated on 2014-09-02T07:46:23.509Z
 
 require 'hashie'
 
-# rubocop:disable all
 module Wix
   module Hive
     module Activities
       module Contact
-
         class Name < Hashie::Trash
           include Hashie::Extensions::IgnoreUndeclared
 
@@ -17,7 +15,6 @@ module Wix
           property :middle
           property :last
           property :suffix
-
         end
 
         class Company < Hashie::Trash
@@ -25,7 +22,6 @@ module Wix
 
           property :name
           property :role
-
         end
 
         class Email < Hashie::Trash
@@ -33,7 +29,6 @@ module Wix
 
           property :tag
           property :email
-
         end
 
         class Phone < Hashie::Trash
@@ -41,7 +36,6 @@ module Wix
 
           property :tag
           property :phone
-
         end
 
         class Address < Hashie::Trash
@@ -54,7 +48,6 @@ module Wix
           property :region
           property :postalCode
           property :country
-
         end
 
         class Date < Hashie::Trash
@@ -62,7 +55,6 @@ module Wix
 
           property :tag
           property :date
-
         end
 
         class Url < Hashie::Trash
@@ -70,7 +62,6 @@ module Wix
 
           property :tag
           property :url
-
         end
 
         class CreateActivity < Hashie::Trash
@@ -93,9 +84,7 @@ module Wix
           property :addresses, default: []
           property :dates, default: []
           property :urls, default: []
-
         end
-
       end
     end
   end

@@ -1,14 +1,12 @@
 # THIS IS A GENERATED FILE, DO NOT EDIT THIS
-# Generated on 2014-08-29T12:10:00.536Z
+# Generated on 2014-09-02T07:46:23.575Z
 
 require 'hashie'
 
-# rubocop:disable all
 module Wix
   module Hive
     module Activities
       module Music
-
         class LyricsActivity < Hashie::Trash
           include Hashie::Extensions::IgnoreUndeclared
           include Hashie::Extensions::Coercion
@@ -16,9 +14,7 @@ module Wix
           coerce_key :album, Album
 
           property :album, default: Album.new
-
         end
-
       end
     end
   end

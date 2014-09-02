@@ -1,21 +1,18 @@
 # THIS IS A GENERATED FILE, DO NOT EDIT THIS
-# Generated on 2014-08-29T12:10:00.565Z
+# Generated on 2014-09-02T07:46:23.607Z
 
 require 'hashie'
 
-# rubocop:disable all
 module Wix
   module Hive
     module Activities
       module Hotels
-
         class Guest < Hashie::Trash
           include Hashie::Extensions::IgnoreUndeclared
 
           property :total
           property :adults
           property :children
-
         end
 
         class Stay < Hashie::Trash
@@ -23,30 +20,27 @@ module Wix
 
           property :checkin
           property :checkout
-
         end
 
-        class Taxe < Hashie::Trash
+        class Tax < Hashie::Trash
           include Hashie::Extensions::IgnoreUndeclared
 
           property :name
           property :total
           property :currency
-
         end
 
         class Rate < Hashie::Trash
           include Hashie::Extensions::IgnoreUndeclared
           include Hashie::Extensions::Coercion
 
-          coerce_key :taxes, Array[Taxe]
+          coerce_key :taxes, Array[Tax]
 
           property :date
           property :subtotal
           property :taxes, default: []
           property :total
           property :currency
-
         end
 
         class Invoice < Hashie::Trash
@@ -55,7 +49,6 @@ module Wix
           property :subtotal
           property :total
           property :currency
-
         end
 
         class Name < Hashie::Trash
@@ -66,7 +59,6 @@ module Wix
           property :middle
           property :last
           property :suffix
-
         end
 
         class Customer < Hashie::Trash
@@ -80,7 +72,6 @@ module Wix
           property :name, default: Name.new
           property :phone
           property :email
-
         end
 
         class Bed < Hashie::Trash
@@ -88,7 +79,6 @@ module Wix
 
           property :kind
           property :sleeps
-
         end
 
         class Room < Hashie::Trash
@@ -100,7 +90,6 @@ module Wix
           property :id
           property :beds, default: []
           property :maxOccupancy
-
         end
 
         class ConfirmationActivity < Hashie::Trash
@@ -122,9 +111,7 @@ module Wix
           property :invoice, default: Invoice.new
           property :customer, default: Customer.new
           property :rooms, default: []
-
         end
-
       end
     end
   end

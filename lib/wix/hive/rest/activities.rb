@@ -7,6 +7,8 @@ module Wix
         include Wix::Hive::Util
 
         def add_contact_activity(id, activity)
+          read_only?(activity.activityType)
+
           perform_with_object(:post,
                               "/v1/contacts/#{id}/activities",
                               Wix::Hive::ActivityResult,
@@ -14,6 +16,8 @@ module Wix
         end
 
         def new_activity(session_token, activity)
+          read_only?(activity.activityType)
+
           perform_with_object(:post,
                               '/v1/activities',
                               Wix::Hive::ActivityResult,
@@ -35,6 +39,13 @@ module Wix
         end
 
         private
+
+        READ_ONLY_ACTIVITIES = [Wix::Hive::Activities::CONTACT_CONTACT_FORM.type]
+
+        def read_only?(activity_type)
+          fail ArgumentError,
+               "Activity is read only! Please provide an activity other than: #{READ_ONLY_ACTIVITIES}" if READ_ONLY_ACTIVITIES.find { |type| type == activity_type }
+        end
 
         def transform_activities_query(query)
           activity_types = query[:activityTypes]

@@ -1,6 +1,7 @@
 require 'hashie'
 require 'time'
 require 'wix/hive/activities/factory'
+require 'wix/hive/extensions/hashie_compact_json'
 
 module Wix
   module Hive
@@ -21,19 +22,31 @@ module Wix
     class Activity < Hashie::Trash
       include Hashie::Extensions::IgnoreUndeclared
       include Hashie::Extensions::Coercion
+      include Hashie::Extensions::CompactJSON
 
       coerce_key :activityDetails, ActivityDetails
 
       property :id
       property :createdAt, default: Time.now.iso8601(3)
-      property :activityType
+
+      property :activityType, required: true
+      alias_method :type=, :activityType=
+      alias_method :type, :activityType
+
       property :activityLocationUrl
+      alias_method :locationUrl=, :activityLocationUrl=
+      alias_method :locationUrl, :activityLocationUrl
+
       property :activityDetails, default: ActivityDetails.new
-      property :activityInfo
+      alias_method :details=, :activityDetails=
+      alias_method :details, :activityDetails
+
+      property :activityInfo, required: true
+      alias_method :info=, :activityInfo=
+      alias_method :info, :activityInfo
 
       def initialize(hash = {})
         super(hash)
-
         transform_activity_info unless hash.empty?
       end
 
@@ -43,11 +56,8 @@ module Wix
             fail ArgumentError, "Invalid activity type. Valid ones are: #{Activities::TYPES}"
           end
 
-          activity = Wix::Hive::Activity.new
-          activity.activityType = activity_type.type
-          activity.activityInfo = activity_type.klass.new
-
-          activity
+          Wix::Hive::Activity.new(activityType: activity_type.type,
+                                  activityInfo: activity_type.klass.new)
         end
       end
 

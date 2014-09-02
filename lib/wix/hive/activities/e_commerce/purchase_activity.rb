@@ -1,19 +1,16 @@
 # THIS IS A GENERATED FILE, DO NOT EDIT THIS
-# Generated on 2014-08-29T12:10:00.504Z
+# Generated on 2014-09-02T07:46:23.543Z
 
 require 'hashie'
 
-# rubocop:disable all
 module Wix
   module Hive
     module Activities
       module ECommerce
-
         class Media < Hashie::Trash
           include Hashie::Extensions::IgnoreUndeclared
 
           property :thumbnail
-
         end
 
         class Variant < Hashie::Trash
@@ -21,7 +18,6 @@ module Wix
 
           property :title
           property :value
-
         end
 
         class Item < Hashie::Trash
@@ -43,7 +39,6 @@ module Wix
           property :formattedWeight
           property :media, default: Media.new
           property :variants, default: []
-
         end
 
         class Coupon < Hashie::Trash
@@ -52,7 +47,6 @@ module Wix
           property :total
           property :formattedTotal
           property :title
-
         end
 
         class Tax < Hashie::Trash
@@ -60,7 +54,6 @@ module Wix
 
           property :total
           property :formattedTotal
-
         end
 
         class Shipping < Hashie::Trash
@@ -68,7 +61,6 @@ module Wix
 
           property :total
           property :formattedTotal
-
         end
 
         class Payment < Hashie::Trash
@@ -87,7 +79,6 @@ module Wix
           property :coupon, default: Coupon.new
           property :tax, default: Tax.new
           property :shipping, default: Shipping.new
-
         end
 
         class ShippingAddres < Hashie::Trash
@@ -106,7 +97,6 @@ module Wix
           property :address2
           property :zip
           property :company
-
         end
 
         class BillingAddres < Hashie::Trash
@@ -125,10 +115,9 @@ module Wix
           property :address2
           property :zip
           property :company
-
         end
 
-        class Activity < Hashie::Trash
+        class PurchaseActivity < Hashie::Trash
           include Hashie::Extensions::IgnoreUndeclared
           include Hashie::Extensions::Coercion
 
@@ -147,9 +136,7 @@ module Wix
           property :paymentGateway
           property :note
           property :buyerAcceptsMarketing
-
         end
-
       end
     end
   end

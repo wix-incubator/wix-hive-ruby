@@ -1207,50 +1207,6 @@ http_interactions:
     http_version: 
   recorded_at: Wed, 27 Aug 2014 07:56:59 GMT
 - request:
-    method: post
-    uri: https://openapi.wix.com/v1/contacts?version=1.0.0
-    body:
-      encoding: UTF-8
-      string: '{"name":{"first":"Wix","last":"Cool"},"company":{},"emails":[{"email":"alext@wix.com","tag":"work"}],"phones":[{"phone":"123456789","tag":"work"}],"addresses":[{"tag":"home","address":"28208
-        N Inca St.","neighborhood":"LODO","city":"Denver","region":"CO","country":"US","postalCode":"80202"}],"urls":[],"dates":[]}'
-    headers:
-      Accept:
-      - application/json
-      User-Agent:
-      - Faraday v0.9.0
-      X-Wix-Instance-Id:
-      - 138328bd-0cde-04e3-d7be-8f5500e362e7
-      X-Wix-Application-Id:
-      - 13832826-96d2-70f0-7eb7-8e107a37f1d2
-      X-Wix-Timestamp:
-      - '2014-08-27T11:00:53.115+03:00'
-      X-Wix-Signature:
-      - 3gFoiY-07sGFiCGVpF6w4zc4Qyx2eVcTIrBEccbSE8s
-      Content-Type:
-      - application/json
-      Accept-Encoding:
-      - gzip;q=1.0,deflate;q=0.6,identity;q=0.3
-  response:
-    status:
-      code: 200
-      message: OK
-    headers:
-      X-Seen-By:
-      - sputnik1.aus_dsp
-      Date:
-      - Wed, 27 Aug 2014 08:00:53 GMT
-      Content-Type:
-      - application/json;charset=UTF-8
-      Content-Length:
-      - '52'
-      Server:
-      - Jetty(8.1.3.v20120416)
-    body:
-      encoding: UTF-8
-      string: '{"contactId":"360d1e09-fbe2-49ed-8b43-62c444c90328"}'
-    http_version: 
-  recorded_at: Wed, 27 Aug 2014 08:00:54 GMT
-- request:
     method: get
     uri: https://openapi.wix.com/v1/contacts/360d1e09-fbe2-49ed-8b43-62c444c90328?version=1.0.0
     body:
@@ -1336,4 +1292,306 @@ http_interactions:
         Larimer St.","id":1}],"dates":[],"urls":[],"custom":[],"createdAt":"2014-08-27T03:00:53.977-05:00","links":[{"rel":"unsubscribe","href":"http://www.wix.com/create/my-account/contacts/unsubscribe?siteName=pblog&metaSiteId=d5569db1-7fea-4516-b5b4-691b294d7a04&unsubscribeToken=abcefd4d5885911e7f4ea863ecce180388e169a39e4c714f1a99cb3376c2b706ab5412e712d3ac8284abf7de3d9e876b4d25b2b8b3160fa2f2130de2a4b620339a7d61d9697189635066eee0a13418d4445fe65559299dd1ed48d4aea7087f269f5630423114e0f1a275ca67dce28759a9c7978a11f21054f373ab1f388d728766485cf5b213574feb709711b280bea45d1dead95cfdba954cdfce9f2a92b88150edb7095e41505902d9f1af8879a3cc8fe6f053c055aad20f3f04948beb08edb51ae8c727c67d10eb1e92a91faa1fa4726b79fe8c92490f0d76ec5fd74f9d7783fe01ae4e57a21e7c479338440ccb80859ce0a8f839745d7ab4731fc2a72166decd088212ea6c71a15be4c5be3918d7d96e7c4fe35810f6a664ab5987de5a4764fd82ad4a11f332df61e770724aa50d98485cfd1fdbae8b887682add7ac87c9f2e8adf344ce4db7ea6aba6fc0944545d551291b813e1c61e83307ca41a7d62979f9877c4c78d6276c72d25b02fc8732","id":1}]}'
     http_version: 
   recorded_at: Wed, 27 Aug 2014 08:00:55 GMT
+- request:
+    method: get
+    uri: https://openapi.wix.com/v1/contacts/64d15b4c-daca-405e-aac9-9c96c5226fba?version=1.0.0
+    body:
+      encoding: US-ASCII
+      string: ''
+    headers:
+      Accept:
+      - application/json
+      User-Agent:
+      - Faraday v0.9.0
+      X-Wix-Instance-Id:
+      - 138328bd-0cde-04e3-d7be-8f5500e362e7
+      X-Wix-Application-Id:
+      - 13832826-96d2-70f0-7eb7-8e107a37f1d2
+      X-Wix-Timestamp:
+      - '2014-09-02T10:04:06.132+03:00'
+      X-Wix-Signature:
+      - AyIWlcRm3e4nDNQpW3AeOE7T3I5JRtPvmmk2THA4Yqc
+      Accept-Encoding:
+      - gzip;q=1.0,deflate;q=0.6,identity;q=0.3
+  response:
+    status:
+      code: 200
+      message: OK
+    headers:
+      X-Seen-By:
+      - sputnik1.aus_dsp
+      Date:
+      - Tue, 02 Sep 2014 07:04:06 GMT
+      Content-Type:
+      - application/json;charset=UTF-8
+      Content-Length:
+      - '1570'
+      Server:
+      - Jetty(8.1.3.v20120416)
+    body:
+      encoding: UTF-8
+      string: '{"id":"64d15b4c-daca-405e-aac9-9c96c5226fba","name":{"prefix":"","first":"Wix","middle":"","last":"Cool","suffix":""},"tags":["contacts/create","contacts_server/new","contacts_server/show"],"notes":[],"emails":[{"tag":"work","email":"alext@wix.com","siteOwnerSubscriptionStatus":"notSet","contactSubscriptionStatus":"notSet","emailStatus":"transactional","id":1}],"phones":[{"tag":"work","phone":"123456789","id":1}],"addresses":[{"tag":"home","address":"28208
+        N Inca St.","neighborhood":"LODO","city":"Denver","region":"CO","postalCode":"80202","country":"US","id":1}],"dates":[],"urls":[],"custom":[],"createdAt":"2014-09-02T02:04:06.132-05:00","links":[{"rel":"unsubscribe","href":"http://www.wix.com/create/my-account/contacts/unsubscribe?siteName=pblog&metaSiteId=d5569db1-7fea-4516-b5b4-691b294d7a04&unsubscribeToken=abcefd4d5885911e7f4ea863ecce180388e169a39e4c714f1a99cb3376c2b706ab5412e712d3ac8284abf7de3d9e876b4d25b2b8b3160fa2f2130de2a4b620339a7d61d9697189635066eee0a13418d4445fe65559299dd1ed48d4aea7087f269f5630423114e0f1a275ca67dce28759a9c7978a11f21054f373ab1f388d728766485cf5b213574feb709711b280bea45d1dead95cfdba954cdfce9f2a92b88150edb7095e41505902d9f1af8879a3cc8fe6f053c055aad20f3f04948beb08edb51ae8c727c67d10eb1e92a91faa1fa4726b79fe8c92490f0d76ec5fd74f9d7783fe01ae4e57a21e7c479338440ccb80859ce0a8f839745d7ab4731fc2a72166decd088212ea6c71a15be4c5be3918d7683608389396ed2f97f0cf4dbc7b04d0ca43ab9297572c044b13dade9010f605777498a32f14fad6fdad6a4dbd1d19496527c5ecef57a8b5a3f555b84a6a70c8781f523d4088c4c67c1e3a9f2034575f79f9877c4c78d6276c72d25b02fc8732","id":1}]}'
+    http_version: 
+  recorded_at: Tue, 02 Sep 2014 07:04:07 GMT
+- request:
+    method: put
+    uri: https://openapi.wix.com/v1/contacts/64d15b4c-daca-405e-aac9-9c96c5226fba/address/1?modifiedAt=1409641447&version=1.0.0
+    body:
+      encoding: UTF-8
+      string: '{"tag":"work","address":"1625 Larimer St."}'
+    headers:
+      Accept:
+      - application/json
+      User-Agent:
+      - Faraday v0.9.0
+      X-Wix-Instance-Id:
+      - 138328bd-0cde-04e3-d7be-8f5500e362e7
+      X-Wix-Application-Id:
+      - 13832826-96d2-70f0-7eb7-8e107a37f1d2
+      X-Wix-Timestamp:
+      - '2014-09-02T10:04:07.016+03:00'
+      X-Wix-Signature:
+      - Cai8YGlFY6sd2Lcvz-4D22DJaRbsnP39P_2GXdIVv78
+      Content-Type:
+      - application/json
+      Accept-Encoding:
+      - gzip;q=1.0,deflate;q=0.6,identity;q=0.3
+  response:
+    status:
+      code: 200
+      message: OK
+    headers:
+      X-Seen-By:
+      - sputnik3.aus_dsp
+      Date:
+      - Tue, 02 Sep 2014 07:04:07 GMT
+      Content-Type:
+      - application/json;charset=UTF-8
+      Content-Length:
+      - '1482'
+      Server:
+      - Jetty(8.1.3.v20120416)
+    body:
+      encoding: UTF-8
+      string: '{"id":"64d15b4c-daca-405e-aac9-9c96c5226fba","name":{"prefix":"","first":"Wix","middle":"","last":"Cool","suffix":""},"tags":["contacts/create","contacts_server/new","contacts_server/show"],"notes":[],"emails":[{"tag":"work","email":"alext@wix.com","siteOwnerSubscriptionStatus":"notSet","contactSubscriptionStatus":"notSet","emailStatus":"transactional","id":1}],"phones":[{"tag":"work","phone":"123456789","id":1}],"addresses":[{"tag":"work","address":"1625
+        Larimer St.","id":1}],"dates":[],"urls":[],"custom":[],"createdAt":"2014-09-02T02:04:06.132-05:00","links":[{"rel":"unsubscribe","href":"http://www.wix.com/create/my-account/contacts/unsubscribe?siteName=pblog&metaSiteId=d5569db1-7fea-4516-b5b4-691b294d7a04&unsubscribeToken=abcefd4d5885911e7f4ea863ecce180388e169a39e4c714f1a99cb3376c2b706ab5412e712d3ac8284abf7de3d9e876b4d25b2b8b3160fa2f2130de2a4b620339a7d61d9697189635066eee0a13418d4445fe65559299dd1ed48d4aea7087f269f5630423114e0f1a275ca67dce28759a9c7978a11f21054f373ab1f388d728766485cf5b213574feb709711b280bea45d1dead95cfdba954cdfce9f2a92b88150edb7095e41505902d9f1af8879a3cc8fe6f053c055aad20f3f04948beb08edb51ae8c727c67d10eb1e92a91faa1fa4726b79fe8c92490f0d76ec5fd74f9d7783fe01ae4e57a21e7c479338440ccb80859ce0a8f839745d7ab4731fc2a72166decd088212ea6c71a15be4c5be3918d7683608389396ed2f97f0cf4dbc7b04d0ca43ab9297572c044b13dade9010f605777498a32f14fad6fdad6a4dbd1d19496527c5ecef57a8b5a3f555b84a6a70c8a7155a51b2155b529ab3f94e3936034e79f9877c4c78d6276c72d25b02fc8732","id":1}]}'
+    http_version: 
+  recorded_at: Tue, 02 Sep 2014 07:04:07 GMT
+- request:
+    method: get
+    uri: https://openapi.wix.com/v1/contacts/e04db584-edd4-49d4-8cea-ab54a649d801?version=1.0.0
+    body:
+      encoding: US-ASCII
+      string: ''
+    headers:
+      Accept:
+      - application/json
+      User-Agent:
+      - Faraday v0.9.0
+      X-Wix-Instance-Id:
+      - 138328bd-0cde-04e3-d7be-8f5500e362e7
+      X-Wix-Application-Id:
+      - 13832826-96d2-70f0-7eb7-8e107a37f1d2
+      X-Wix-Timestamp:
+      - '2014-09-02T10:50:18.311+03:00'
+      X-Wix-Signature:
+      - iD19_wddJYCdI65TFjEmypsYi0cY5yqPpvmG9oyeXEA
+      Accept-Encoding:
+      - gzip;q=1.0,deflate;q=0.6,identity;q=0.3
+  response:
+    status:
+      code: 200
+      message: OK
+    headers:
+      X-Seen-By:
+      - sputnik3.aus_dsp
+      Date:
+      - Tue, 02 Sep 2014 07:50:19 GMT
+      Content-Type:
+      - application/json;charset=UTF-8
+      Content-Length:
+      - '1602'
+      Server:
+      - Jetty(8.1.3.v20120416)
+    body:
+      encoding: UTF-8
+      string: '{"id":"e04db584-edd4-49d4-8cea-ab54a649d801","name":{"prefix":"","first":"Wix","middle":"","last":"Cool","suffix":""},"tags":["contacts/create","contacts_server/new","contacts_server/show"],"company":{"name":"","role":""},"notes":[],"emails":[{"tag":"work","email":"alext@wix.com","siteOwnerSubscriptionStatus":"notSet","contactSubscriptionStatus":"notSet","emailStatus":"transactional","id":1}],"phones":[{"tag":"work","phone":"123456789","id":1}],"addresses":[{"tag":"home","address":"28208
+        N Inca St.","neighborhood":"LODO","city":"Denver","region":"CO","postalCode":"80202","country":"US","id":1}],"dates":[],"urls":[],"custom":[],"createdAt":"2014-09-02T02:50:18.194-05:00","links":[{"rel":"unsubscribe","href":"http://www.wix.com/create/my-account/contacts/unsubscribe?siteName=pblog&metaSiteId=d5569db1-7fea-4516-b5b4-691b294d7a04&unsubscribeToken=abcefd4d5885911e7f4ea863ecce180388e169a39e4c714f1a99cb3376c2b706ab5412e712d3ac8284abf7de3d9e876b4d25b2b8b3160fa2f2130de2a4b620339a7d61d9697189635066eee0a13418d4445fe65559299dd1ed48d4aea7087f269f5630423114e0f1a275ca67dce28759a9c7978a11f21054f373ab1f388d728766485cf5b213574feb709711b280bea45d1dead95cfdba954cdfce9f2a92b88150edb7095e41505902d9f1af8879a3cc8fe6f053c055aad20f3f04948beb08edb51ae8c727c67d10eb1e92a91faa1fa4726b79fe8c92490f0d76ec5fd74f9d7783fe01ae4e57a21e7c479338440ccb80859ce0a8f839745d7ab4731fc2a72166decd088212ea6c71a15be4c5be3918d777ac2076546699c705772c6c0b7f33dbe655683afe0ae82eb4bc6075e373d2e4b916bb56373d3a36ae430db168b63b956527c5ecef57a8b5a3f555b84a6a70c857dc659682b8687bd90ed968a1784b9179f9877c4c78d6276c72d25b02fc8732","id":1}]}'
+    http_version: 
+  recorded_at: Tue, 02 Sep 2014 07:50:19 GMT
+- request:
+    method: put
+    uri: https://openapi.wix.com/v1/contacts/e04db584-edd4-49d4-8cea-ab54a649d801/address/1?modifiedAt=1409644219&version=1.0.0
+    body:
+      encoding: UTF-8
+      string: '{"tag":"work","address":"1625 Larimer St."}'
+    headers:
+      Accept:
+      - application/json
+      User-Agent:
+      - Faraday v0.9.0
+      X-Wix-Instance-Id:
+      - 138328bd-0cde-04e3-d7be-8f5500e362e7
+      X-Wix-Application-Id:
+      - 13832826-96d2-70f0-7eb7-8e107a37f1d2
+      X-Wix-Timestamp:
+      - '2014-09-02T10:50:19.208+03:00'
+      X-Wix-Signature:
+      - 1BvWT2tvBlsfjkNQUi-CSYCgW1L7kUDtVVPZspzArK0
+      Content-Type:
+      - application/json
+      Accept-Encoding:
+      - gzip;q=1.0,deflate;q=0.6,identity;q=0.3
+  response:
+    status:
+      code: 200
+      message: OK
+    headers:
+      X-Seen-By:
+      - sputnik1.aus_dsp
+      Date:
+      - Tue, 02 Sep 2014 07:50:19 GMT
+      Content-Type:
+      - application/json;charset=UTF-8
+      Content-Length:
+      - '1514'
+      Server:
+      - Jetty(8.1.3.v20120416)
+    body:
+      encoding: UTF-8
+      string: '{"id":"e04db584-edd4-49d4-8cea-ab54a649d801","name":{"prefix":"","first":"Wix","middle":"","last":"Cool","suffix":""},"tags":["contacts/create","contacts_server/new","contacts_server/show"],"company":{"name":"","role":""},"notes":[],"emails":[{"tag":"work","email":"alext@wix.com","siteOwnerSubscriptionStatus":"notSet","contactSubscriptionStatus":"notSet","emailStatus":"transactional","id":1}],"phones":[{"tag":"work","phone":"123456789","id":1}],"addresses":[{"tag":"work","address":"1625
+        Larimer St.","id":1}],"dates":[],"urls":[],"custom":[],"createdAt":"2014-09-02T02:50:18.194-05:00","links":[{"rel":"unsubscribe","href":"http://www.wix.com/create/my-account/contacts/unsubscribe?siteName=pblog&metaSiteId=d5569db1-7fea-4516-b5b4-691b294d7a04&unsubscribeToken=abcefd4d5885911e7f4ea863ecce180388e169a39e4c714f1a99cb3376c2b706ab5412e712d3ac8284abf7de3d9e876b4d25b2b8b3160fa2f2130de2a4b620339a7d61d9697189635066eee0a13418d4445fe65559299dd1ed48d4aea7087f269f5630423114e0f1a275ca67dce28759a9c7978a11f21054f373ab1f388d728766485cf5b213574feb709711b280bea45d1dead95cfdba954cdfce9f2a92b88150edb7095e41505902d9f1af8879a3cc8fe6f053c055aad20f3f04948beb08edb51ae8c727c67d10eb1e92a91faa1fa4726b79fe8c92490f0d76ec5fd74f9d7783fe01ae4e57a21e7c479338440ccb80859ce0a8f839745d7ab4731fc2a72166decd088212ea6c71a15be4c5be3918d777ac2076546699c705772c6c0b7f33dbe655683afe0ae82eb4bc6075e373d2e4b916bb56373d3a36ae430db168b63b956527c5ecef57a8b5a3f555b84a6a70c8e56c5a0ff028d49a9c54ab99429c603379f9877c4c78d6276c72d25b02fc8732","id":1}]}'
+    http_version: 
+  recorded_at: Tue, 02 Sep 2014 07:50:20 GMT
+- request:
+    method: post
+    uri: https://openapi.wix.com/v1/contacts?version=1.0.0
+    body:
+      encoding: UTF-8
+      string: '{"name":{"first":"Wix","last":"Cool"},"company":{},"emails":[{"email":"alext@wix.com","tag":"work"}],"phones":[{"phone":"123456789","tag":"work"}],"addresses":[{"tag":"home","address":"28208
+        N Inca St.","neighborhood":"LODO","city":"Denver","region":"CO","country":"US","postalCode":"80202"}],"urls":[],"dates":[]}'
+    headers:
+      Accept:
+      - application/json
+      User-Agent:
+      - Faraday v0.9.0
+      X-Wix-Instance-Id:
+      - 138328bd-0cde-04e3-d7be-8f5500e362e7
+      X-Wix-Application-Id:
+      - 13832826-96d2-70f0-7eb7-8e107a37f1d2
+      X-Wix-Timestamp:
+      - '2014-09-02T11:14:25.714+03:00'
+      X-Wix-Signature:
+      - ueDDeJNEooDwbygGgjwG0P5GM5mg9uYpC0Fr2DJ4tYk
+      Content-Type:
+      - application/json
+      Accept-Encoding:
+      - gzip;q=1.0,deflate;q=0.6,identity;q=0.3
+  response:
+    status:
+      code: 200
+      message: OK
+    headers:
+      X-Seen-By:
+      - sputnik2.aus_dsp
+      Date:
+      - Tue, 02 Sep 2014 08:14:26 GMT
+      Content-Type:
+      - application/json;charset=UTF-8
+      Content-Length:
+      - '52'
+      Server:
+      - Jetty(8.1.3.v20120416)
+    body:
+      encoding: UTF-8
+      string: '{"contactId":"a3a16cc0-c01f-4480-8ab2-2e132c93ceb3"}'
+    http_version: 
+  recorded_at: Tue, 02 Sep 2014 08:14:26 GMT
+- request:
+    method: get
+    uri: https://openapi.wix.com/v1/contacts/a3a16cc0-c01f-4480-8ab2-2e132c93ceb3?version=1.0.0
+    body:
+      encoding: US-ASCII
+      string: ''
+    headers:
+      Accept:
+      - application/json
+      User-Agent:
+      - Faraday v0.9.0
+      X-Wix-Instance-Id:
+      - 138328bd-0cde-04e3-d7be-8f5500e362e7
+      X-Wix-Application-Id:
+      - 13832826-96d2-70f0-7eb7-8e107a37f1d2
+      X-Wix-Timestamp:
+      - '2014-09-02T11:14:26.607+03:00'
+      X-Wix-Signature:
+      - evJX34BCTFuhdChT8Oe2CGGrh_cn_Rg4l4GRBjb6YW0
+      Accept-Encoding:
+      - gzip;q=1.0,deflate;q=0.6,identity;q=0.3
+  response:
+    status:
+      code: 200
+      message: OK
+    headers:
+      X-Seen-By:
+      - sputnik3.aus_dsp
+      Date:
+      - Tue, 02 Sep 2014 08:14:27 GMT
+      Content-Type:
+      - application/json;charset=UTF-8
+      Content-Length:
+      - '1602'
+      Server:
+      - Jetty(8.1.3.v20120416)
+    body:
+      encoding: UTF-8
+      string: '{"id":"a3a16cc0-c01f-4480-8ab2-2e132c93ceb3","name":{"prefix":"","first":"Wix","middle":"","last":"Cool","suffix":""},"tags":["contacts/create","contacts_server/new","contacts_server/show"],"company":{"name":"","role":""},"notes":[],"emails":[{"tag":"work","email":"alext@wix.com","siteOwnerSubscriptionStatus":"notSet","contactSubscriptionStatus":"notSet","emailStatus":"transactional","id":1}],"phones":[{"tag":"work","phone":"123456789","id":1}],"addresses":[{"tag":"home","address":"28208
+        N Inca St.","neighborhood":"LODO","city":"Denver","region":"CO","postalCode":"80202","country":"US","id":1}],"dates":[],"urls":[],"custom":[],"createdAt":"2014-09-02T03:14:26.518-05:00","links":[{"rel":"unsubscribe","href":"http://www.wix.com/create/my-account/contacts/unsubscribe?siteName=pblog&metaSiteId=d5569db1-7fea-4516-b5b4-691b294d7a04&unsubscribeToken=abcefd4d5885911e7f4ea863ecce180388e169a39e4c714f1a99cb3376c2b706ab5412e712d3ac8284abf7de3d9e876b4d25b2b8b3160fa2f2130de2a4b620339a7d61d9697189635066eee0a13418d4445fe65559299dd1ed48d4aea7087f269f5630423114e0f1a275ca67dce28759a9c7978a11f21054f373ab1f388d728766485cf5b213574feb709711b280bea45d1dead95cfdba954cdfce9f2a92b88150edb7095e41505902d9f1af8879a3cc8fe6f053c055aad20f3f04948beb08edb51ae8c727c67d10eb1e92a91faa1fa4726b79fe8c92490f0d76ec5fd74f9d7783fe01ae4e57a21e7c479338440ccb80859ce0a8f839745d7ab4731fc2a72166decd088212ea6c71a15be4c5be3918d76eb50ef68870a8cae66575b9048570776c3ad1b8ec8f42ad9b6e12f1396c5ae736cce565a24e2660ec34bc1c1a7671776527c5ecef57a8b5a3f555b84a6a70c8f2cce3a4ee27ccd53c68fb41c91e472e79f9877c4c78d6276c72d25b02fc8732","id":1}]}'
+    http_version: 
+  recorded_at: Tue, 02 Sep 2014 08:14:27 GMT
+- request:
+    method: put
+    uri: https://openapi.wix.com/v1/contacts/a3a16cc0-c01f-4480-8ab2-2e132c93ceb3/address/1?modifiedAt=1409645667&version=1.0.0
+    body:
+      encoding: UTF-8
+      string: '{"tag":"work","address":"1625 Larimer St."}'
+    headers:
+      Accept:
+      - application/json
+      User-Agent:
+      - Faraday v0.9.0
+      X-Wix-Instance-Id:
+      - 138328bd-0cde-04e3-d7be-8f5500e362e7
+      X-Wix-Application-Id:
+      - 13832826-96d2-70f0-7eb7-8e107a37f1d2
+      X-Wix-Timestamp:
+      - '2014-09-02T11:14:27.471+03:00'
+      X-Wix-Signature:
+      - sqWVK3aORTnXuVkM5q6YcaMZJAS0mcmqvT9KsZmJqCQ
+      Content-Type:
+      - application/json
+      Accept-Encoding:
+      - gzip;q=1.0,deflate;q=0.6,identity;q=0.3
+  response:
+    status:
+      code: 200
+      message: OK
+    headers:
+      X-Seen-By:
+      - sputnik3.aus_dsp
+      Date:
+      - Tue, 02 Sep 2014 08:14:28 GMT
+      Content-Type:
+      - application/json;charset=UTF-8
+      Content-Length:
+      - '1514'
+      Server:
+      - Jetty(8.1.3.v20120416)
+    body:
+      encoding: UTF-8
+      string: '{"id":"a3a16cc0-c01f-4480-8ab2-2e132c93ceb3","name":{"prefix":"","first":"Wix","middle":"","last":"Cool","suffix":""},"tags":["contacts/create","contacts_server/new","contacts_server/show"],"company":{"name":"","role":""},"notes":[],"emails":[{"tag":"work","email":"alext@wix.com","siteOwnerSubscriptionStatus":"notSet","contactSubscriptionStatus":"notSet","emailStatus":"transactional","id":1}],"phones":[{"tag":"work","phone":"123456789","id":1}],"addresses":[{"tag":"work","address":"1625
+        Larimer St.","id":1}],"dates":[],"urls":[],"custom":[],"createdAt":"2014-09-02T03:14:26.518-05:00","links":[{"rel":"unsubscribe","href":"http://www.wix.com/create/my-account/contacts/unsubscribe?siteName=pblog&metaSiteId=d5569db1-7fea-4516-b5b4-691b294d7a04&unsubscribeToken=abcefd4d5885911e7f4ea863ecce180388e169a39e4c714f1a99cb3376c2b706ab5412e712d3ac8284abf7de3d9e876b4d25b2b8b3160fa2f2130de2a4b620339a7d61d9697189635066eee0a13418d4445fe65559299dd1ed48d4aea7087f269f5630423114e0f1a275ca67dce28759a9c7978a11f21054f373ab1f388d728766485cf5b213574feb709711b280bea45d1dead95cfdba954cdfce9f2a92b88150edb7095e41505902d9f1af8879a3cc8fe6f053c055aad20f3f04948beb08edb51ae8c727c67d10eb1e92a91faa1fa4726b79fe8c92490f0d76ec5fd74f9d7783fe01ae4e57a21e7c479338440ccb80859ce0a8f839745d7ab4731fc2a72166decd088212ea6c71a15be4c5be3918d76eb50ef68870a8cae66575b9048570776c3ad1b8ec8f42ad9b6e12f1396c5ae736cce565a24e2660ec34bc1c1a7671776527c5ecef57a8b5a3f555b84a6a70c83d20d6da41895156bea8237651cff89579f9877c4c78d6276c72d25b02fc8732","id":1}]}'
+    http_version: 
+  recorded_at: Tue, 02 Sep 2014 08:14:28 GMT
 recorded_with: VCR 2.9.2

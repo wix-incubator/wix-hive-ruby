@@ -184,7 +184,6 @@ describe 'Contacts API' do
   end
 
   it '.update_contact_email' do
-    pending 'CE-2300'
     contact = client.contact(create_base_contact)
 
     expect(contact.emails).not_to be_empty
@@ -268,7 +267,6 @@ describe 'Contacts API' do
   end
 
   it '.add_contact_email' do
-    pending 'CE-2300'
     new_email = Wix::Hive::Email.new
     new_email.tag = 'work_new'
     new_email.email = 'alex_new@example.com'

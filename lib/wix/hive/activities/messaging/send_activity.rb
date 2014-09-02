@@ -1,14 +1,12 @@
 # THIS IS A GENERATED FILE, DO NOT EDIT THIS
-# Generated on 2014-08-29T12:10:00.521Z
+# Generated on 2014-09-02T07:46:23.562Z
 
 require 'hashie'
 
-# rubocop:disable all
 module Wix
   module Hive
     module Activities
       module Messaging
-
         class Name < Hashie::Trash
           include Hashie::Extensions::IgnoreUndeclared
 
@@ -17,7 +15,6 @@ module Wix
           property :middle
           property :last
           property :suffix
-
         end
 
         class Destination < Hashie::Trash
@@ -28,7 +25,6 @@ module Wix
 
           property :destination
           property :name, default: Name.new
-
         end
 
         class Recipient < Hashie::Trash
@@ -40,7 +36,6 @@ module Wix
           property :method
           property :destination, default: Destination.new
           property :contactId
-
         end
 
         class Metadata < Hashie::Trash
@@ -48,7 +43,6 @@ module Wix
 
           property :property
           property :value
-
         end
 
         class ConversionTarget < Hashie::Trash
@@ -59,10 +53,9 @@ module Wix
 
           property :conversionType
           property :metadata, default: []
-
         end
 
-        class Activity < Hashie::Trash
+        class SendActivity < Hashie::Trash
           include Hashie::Extensions::IgnoreUndeclared
           include Hashie::Extensions::Coercion
 
@@ -72,9 +65,7 @@ module Wix
           property :recipient, default: Recipient.new
           property :messageId
           property :conversionTarget, default: ConversionTarget.new
-
         end
-
       end
     end
   end
