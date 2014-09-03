@@ -7,13 +7,11 @@ module Wix
   module Hive
     module Activities
       module Music
-
         class Track < Hashie::Trash
           include Hashie::Extensions::IgnoreUndeclared
 
           property :name, required: true
           property :id
-
         end
 
         class Artist < Hashie::Trash
@@ -21,20 +19,18 @@ module Wix
 
           property :name, required: true
           property :id
-
         end
 
         class LyricsActivity < Hashie::Trash
           include Hashie::Extensions::IgnoreUndeclared
           include Hashie::Extensions::Coercion
 
-        class Album < Hashie::Trash
-          include Hashie::Extensions::IgnoreUndeclared
+          class Album < Hashie::Trash
+            include Hashie::Extensions::IgnoreUndeclared
 
-          property :name
-          property :id
-
-        end
+            property :name
+            property :id
+          end
 
           coerce_key :track, Track
           coerce_key :album, Album
@@ -43,9 +39,7 @@ module Wix
           property :track
           property :album
           property :artist
-
         end
-
       end
     end
   end

@@ -7,7 +7,6 @@ module Wix
   module Hive
     module Activities
       module Messaging
-
         class Name < Hashie::Trash
           include Hashie::Extensions::IgnoreUndeclared
 
@@ -16,7 +15,6 @@ module Wix
           property :middle
           property :last
           property :suffix
-
         end
 
         class Destination < Hashie::Trash
@@ -27,7 +25,6 @@ module Wix
 
           property :target, required: true
           property :name
-
         end
 
         class Recipient < Hashie::Trash
@@ -39,7 +36,6 @@ module Wix
           property :method, required: true
           property :destination, required: true
           property :contactId
-
         end
 
         class Metadata < Hashie::Trash
@@ -47,7 +43,6 @@ module Wix
 
           property :property, required: true
           property :value, required: true
-
         end
 
         class ConversionTarget < Hashie::Trash
@@ -58,7 +53,6 @@ module Wix
 
           property :conversionType, required: true
           property :metadata, default: []
-
         end
 
         class SendActivity < Hashie::Trash
@@ -71,9 +65,7 @@ module Wix
           property :recipient, required: true
           property :messageId
           property :conversionTarget
-
         end
-
       end
     end
   end

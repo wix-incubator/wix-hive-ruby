@@ -7,13 +7,11 @@ module Wix
   module Hive
     module Activities
       module Contact
-
         class Field < Hashie::Trash
           include Hashie::Extensions::IgnoreUndeclared
 
           property :name, required: true
           property :value, required: true
-
         end
 
         class FormActivity < Hashie::Trash
@@ -23,9 +21,7 @@ module Wix
           coerce_key :fields, Array[Field]
 
           property :fields, default: [], required: true
-
         end
-
       end
     end
   end

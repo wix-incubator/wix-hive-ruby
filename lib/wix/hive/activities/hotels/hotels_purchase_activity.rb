@@ -7,7 +7,6 @@ module Wix
   module Hive
     module Activities
       module Hotels
-
         class Payment < Hashie::Trash
           include Hashie::Extensions::IgnoreUndeclared
 
@@ -15,7 +14,6 @@ module Wix
           property :total, required: true
           property :currency, required: true
           property :source, required: true
-
         end
 
         class PurchaseActivity < Hashie::Trash
@@ -36,9 +34,7 @@ module Wix
           property :payment, required: true
           property :customer
           property :rooms, default: []
-
         end
-
       end
     end
   end

@@ -7,7 +7,6 @@ module Wix
   module Hive
     module Activities
       module Scheduler
-
         class Location < Hashie::Trash
           include Hashie::Extensions::IgnoreUndeclared
 
@@ -17,7 +16,6 @@ module Wix
           property :postalCode
           property :country
           property :url
-
         end
 
         class Time < Hashie::Trash
@@ -26,7 +24,6 @@ module Wix
           property :start, required: true
           property :end, required: true
           property :timezone, required: true
-
         end
 
         class Name < Hashie::Trash
@@ -37,7 +34,6 @@ module Wix
           property :middle
           property :last
           property :suffix
-
         end
 
         class Attendee < Hashie::Trash
@@ -52,7 +48,6 @@ module Wix
           property :email
           property :notes
           property :self
-
         end
 
         class AppointmentActivity < Hashie::Trash
@@ -68,9 +63,7 @@ module Wix
           property :location
           property :time
           property :attendees, default: []
-
         end
-
       end
     end
   end

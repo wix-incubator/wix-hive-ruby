@@ -7,7 +7,6 @@ module Wix
   module Hive
     module Activities
       module Hotels
-
         class Refund < Hashie::Trash
           include Hashie::Extensions::IgnoreUndeclared
 
@@ -16,7 +15,6 @@ module Wix
           property :currency, required: true
           property :notes
           property :destination, required: true
-
         end
 
         class CancelActivity < Hashie::Trash
@@ -40,9 +38,7 @@ module Wix
           property :invoice, required: true
           property :customer
           property :rooms, default: []
-
         end
-
       end
     end
   end

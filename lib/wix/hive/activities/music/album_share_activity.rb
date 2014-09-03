@@ -7,7 +7,6 @@ module Wix
   module Hive
     module Activities
       module Music
-
         class ShareActivity < Hashie::Trash
           include Hashie::Extensions::IgnoreUndeclared
           include Hashie::Extensions::Coercion
@@ -16,9 +15,7 @@ module Wix
 
           property :album
           property :sharedTo, required: true
-
         end
-
       end
     end
   end

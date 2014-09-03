@@ -7,13 +7,11 @@ module Wix
   module Hive
     module Activities
       module Music
-
         class Album < Hashie::Trash
           include Hashie::Extensions::IgnoreUndeclared
 
           property :name, required: true
           property :id, required: true
-
         end
 
         class FanActivity < Hashie::Trash
@@ -23,9 +21,7 @@ module Wix
           coerce_key :album, Album
 
           property :album
-
         end
-
       end
     end
   end

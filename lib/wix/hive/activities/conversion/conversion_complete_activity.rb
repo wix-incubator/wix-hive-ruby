@@ -7,13 +7,11 @@ module Wix
   module Hive
     module Activities
       module Conversion
-
         class Metadata < Hashie::Trash
           include Hashie::Extensions::IgnoreUndeclared
 
           property :property, required: true
           property :value, required: true
-
         end
 
         class CompleteActivity < Hashie::Trash
@@ -25,9 +23,7 @@ module Wix
           property :conversionType, required: true
           property :messageId
           property :metadata, default: []
-
         end
-
       end
     end
   end

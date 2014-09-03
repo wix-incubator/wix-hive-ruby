@@ -7,12 +7,10 @@ module Wix
   module Hive
     module Activities
       module ECommerce
-
         class Media < Hashie::Trash
           include Hashie::Extensions::IgnoreUndeclared
 
           property :thumbnail
-
         end
 
         class Variant < Hashie::Trash
@@ -20,7 +18,6 @@ module Wix
 
           property :title, required: true
           property :value
-
         end
 
         class Item < Hashie::Trash
@@ -42,7 +39,6 @@ module Wix
           property :formattedWeight
           property :media
           property :variants, default: [], required: true
-
         end
 
         class Coupon < Hashie::Trash
@@ -51,7 +47,6 @@ module Wix
           property :total, required: true
           property :formattedTotal
           property :title, required: true
-
         end
 
         class Tax < Hashie::Trash
@@ -59,7 +54,6 @@ module Wix
 
           property :total, required: true
           property :formattedTotal
-
         end
 
         class Shipping < Hashie::Trash
@@ -67,7 +61,6 @@ module Wix
 
           property :total, required: true
           property :formattedTotal
-
         end
 
         class Payment < Hashie::Trash
@@ -86,7 +79,6 @@ module Wix
           property :coupon
           property :tax
           property :shipping
-
         end
 
         class ShippingAddres < Hashie::Trash
@@ -105,7 +97,6 @@ module Wix
           property :address2
           property :zip
           property :company
-
         end
 
         class BillingAddres < Hashie::Trash
@@ -124,7 +115,6 @@ module Wix
           property :address2
           property :zip
           property :company
-
         end
 
         class PurchaseActivity < Hashie::Trash
@@ -146,9 +136,7 @@ module Wix
           property :paymentGateway
           property :note
           property :buyerAcceptsMarketing
-
         end
-
       end
     end
   end

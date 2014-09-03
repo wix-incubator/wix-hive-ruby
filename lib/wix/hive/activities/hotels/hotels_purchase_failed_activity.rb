@@ -7,32 +7,29 @@ module Wix
   module Hive
     module Activities
       module Hotels
-
         class Error < Hashie::Trash
           include Hashie::Extensions::IgnoreUndeclared
 
           property :errorCode
           property :reason
-
         end
 
         class PurchaseFailedActivity < Hashie::Trash
           include Hashie::Extensions::IgnoreUndeclared
           include Hashie::Extensions::Coercion
 
-        class Payment < Hashie::Trash
-          include Hashie::Extensions::IgnoreUndeclared
-          include Hashie::Extensions::Coercion
+          class Payment < Hashie::Trash
+            include Hashie::Extensions::IgnoreUndeclared
+            include Hashie::Extensions::Coercion
 
-          coerce_key :error, Error
+            coerce_key :error, Error
 
-          property :subtotal, required: true
-          property :total, required: true
-          property :currency, required: true
-          property :source, required: true
-          property :error
-
-        end
+            property :subtotal, required: true
+            property :total, required: true
+            property :currency, required: true
+            property :source, required: true
+            property :error
+          end
 
           coerce_key :guests, Guest
           coerce_key :stay, Stay
@@ -48,9 +45,7 @@ module Wix
           property :payment, required: true
           property :customer
           property :rooms, default: []
-
         end
-
       end
     end
   end
