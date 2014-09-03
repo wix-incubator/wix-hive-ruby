@@ -1,5 +1,5 @@
 # THIS IS A GENERATED FILE, DO NOT EDIT THIS
-# Generated on 2014-09-03T09:53:09.174Z
+# Generated on 2014-09-03T12:42:13.812Z
 
 require 'hashie'
 
@@ -7,17 +7,20 @@ module Wix
   module Hive
     module Activities
       module ECommerce
+
         class Media < Hashie::Trash
           include Hashie::Extensions::IgnoreUndeclared
 
           property :thumbnail
+
         end
 
         class Variant < Hashie::Trash
           include Hashie::Extensions::IgnoreUndeclared
 
-          property :title
+          property :title, required: true
           property :value
+
         end
 
         class Item < Hashie::Trash
@@ -27,40 +30,44 @@ module Wix
           coerce_key :media, Media
           coerce_key :variants, Array[Variant]
 
-          property :id
+          property :id, required: true
           property :sku
-          property :title
-          property :quantity
+          property :title, required: true
+          property :quantity, required: true
           property :price
           property :formattedPrice
-          property :currency
+          property :currency, required: true
           property :productLink
           property :weight
           property :formattedWeight
           property :media
-          property :variants, default: []
+          property :variants, default: [], required: true
+
         end
 
         class Coupon < Hashie::Trash
           include Hashie::Extensions::IgnoreUndeclared
 
-          property :total
+          property :total, required: true
           property :formattedTotal
-          property :title
+          property :title, required: true
+
         end
 
         class Tax < Hashie::Trash
           include Hashie::Extensions::IgnoreUndeclared
 
-          property :total
+          property :total, required: true
           property :formattedTotal
+
         end
 
         class Shipping < Hashie::Trash
           include Hashie::Extensions::IgnoreUndeclared
 
-          property :total
+          property :total, required: true
           property :formattedTotal
+
         end
 
         class Payment < Hashie::Trash
@@ -71,14 +78,15 @@ module Wix
           coerce_key :tax, Tax
           coerce_key :shipping, Shipping
 
-          property :total
-          property :subtotal
+          property :total, required: true
+          property :subtotal, required: true
           property :formattedTotal
           property :formattedSubtotal
-          property :currency
+          property :currency, required: true
           property :coupon
           property :tax
           property :shipping
+
         end
 
         class ShippingAddres < Hashie::Trash
@@ -97,6 +105,7 @@ module Wix
           property :address2
           property :zip
           property :company
+
         end
 
         class BillingAddres < Hashie::Trash
@@ -115,6 +124,7 @@ module Wix
           property :address2
           property :zip
           property :company
+
         end
 
         class PurchaseActivity < Hashie::Trash
@@ -126,17 +136,19 @@ module Wix
           coerce_key :shippingAddress, ShippingAddres
           coerce_key :billingAddress, BillingAddres
 
-          property :cartId
-          property :storeId
+          property :cartId, required: true
+          property :storeId, required: true
           property :orderId
-          property :items, default: []
-          property :payment
+          property :items, default: [], required: true
+          property :payment, required: true
           property :shippingAddress
           property :billingAddress
           property :paymentGateway
           property :note
           property :buyerAcceptsMarketing
+
         end
+
       end
     end
   end

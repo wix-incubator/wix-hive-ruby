@@ -1,5 +1,5 @@
 # THIS IS A GENERATED FILE, DO NOT EDIT THIS
-# Generated on 2014-09-03T09:53:09.231Z
+# Generated on 2014-09-03T12:42:13.874Z
 
 require 'hashie'
 
@@ -7,12 +7,14 @@ module Wix
   module Hive
     module Activities
       module Hotels
+
         class Guest < Hashie::Trash
           include Hashie::Extensions::IgnoreUndeclared
 
           property :total, required: true
           property :adults, required: true
           property :children, required: true
+
         end
 
         class Stay < Hashie::Trash
@@ -20,6 +22,7 @@ module Wix
 
           property :checkin, required: true
           property :checkout, required: true
+
         end
 
         class Tax < Hashie::Trash
@@ -28,6 +31,7 @@ module Wix
           property :name, required: true
           property :total, required: true
           property :currency, required: true
+
         end
 
         class Rate < Hashie::Trash
@@ -41,6 +45,7 @@ module Wix
           property :taxes, default: []
           property :total, required: true
           property :currency, required: true
+
         end
 
         class Invoice < Hashie::Trash
@@ -48,7 +53,7 @@ module Wix
 
           property :subtotal, required: true
           property :total, required: true
-          property :currency, required: true
+
         end
 
         class Name < Hashie::Trash
@@ -59,6 +64,7 @@ module Wix
           property :middle
           property :last
           property :suffix
+
         end
 
         class Customer < Hashie::Trash
@@ -72,6 +78,7 @@ module Wix
           property :name
           property :phone
           property :email
+
         end
 
         class Bed < Hashie::Trash
@@ -79,6 +86,7 @@ module Wix
 
           property :kind, required: true
           property :sleeps
+
         end
 
         class Room < Hashie::Trash
@@ -90,6 +98,7 @@ module Wix
           property :id
           property :beds, default: []
           property :maxOccupancy, required: true
+
         end
 
         class ConfirmationActivity < Hashie::Trash
@@ -111,7 +120,9 @@ module Wix
           property :invoice, required: true
           property :customer
           property :rooms, default: []
+
         end
+
       end
     end
   end

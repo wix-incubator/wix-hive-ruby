@@ -88,13 +88,11 @@ describe 'Activities API' do
     end
 
     it 'E_COMMERCE_PURCHASE' do
-      purchase = FACTORY::E_COMMERCE_PURCHASE.klass.new
-
-      purchase.cartId = '11111'
-      purchase.storeId = '11111'
-
       coupon = {total: '1', title: 'Dis'}
-      purchase.payment = {total: '1', subtotal: '1', currency: 'EUR', coupon: coupon}
+      payment = {total: '1', subtotal: '1', currency: 'EUR', coupon: coupon}
+
+      purchase = FACTORY::E_COMMERCE_PURCHASE.klass.new(cartId: '11111',
+                                                        storeId: '11111', payment: payment)
 
       activity = Wix::Hive::Activity.new(
           type: FACTORY::E_COMMERCE_PURCHASE.type,
@@ -124,23 +122,23 @@ describe 'Activities API' do
     end
 
     it 'MUSIC_ALBUM_FAN' do
-      pendingImpl
-      activity = Wix::Hive::Activity.new_activity(FACTORY::MUSIC_ALBUM_FAN)
-      activity.locationUrl = 'http://www.wix.com'
-      activity.details.summary = 'test'
-      activity.details.additionalInfoUrl = 'http://www.wix.com'
+      activity = Wix::Hive::Activity.new(
+          type: FACTORY::MUSIC_ALBUM_FAN.type,
+          locationUrl: 'http://www.wix.com',
+          details: {summary: 'test', additionalInfoUrl: 'http://www.wix.com'},
+          info: { album: { name: 'Wix', id: '1234' } })
 
       new_activity_result = client.new_activity(session_id, activity)
 
       expect(new_activity_result.activityId).to be_truthy
     end
 
-    it 'MUSIC_ALBUM_FAN' do
-      pendingImpl
-      activity = Wix::Hive::Activity.new_activity(FACTORY::MUSIC_ALBUM_SHARE)
-      activity.locationUrl = 'http://www.wix.com'
-      activity.details.summary = 'test'
-      activity.details.additionalInfoUrl = 'http://www.wix.com'
+    it 'MUSIC_ALBUM_SHARE' do
+      activity = Wix::Hive::Activity.new(
+          type: FACTORY::MUSIC_ALBUM_SHARE.type,
+          locationUrl: 'http://www.wix.com',
+          details: {summary: 'test', additionalInfoUrl: 'http://www.wix.com'},
+          info: { album: { name: 'Wix', id: '1234' }, sharedTo: 'FACEBOOK' })
 
       new_activity_result = client.new_activity(session_id, activity)
 
@@ -148,11 +146,11 @@ describe 'Activities API' do
     end
 
     it 'MUSIC_TRACK_LYRICS' do
-      pendingImpl
-      activity = Wix::Hive::Activity.new_activity(FACTORY::MUSIC_TRACK_LYRICS)
-      activity.locationUrl = 'http://www.wix.com'
-      activity.details.summary = 'test'
-      activity.details.additionalInfoUrl = 'http://www.wix.com'
+      activity = Wix::Hive::Activity.new(
+          type: FACTORY::MUSIC_TRACK_LYRICS.type,
+          locationUrl: 'http://www.wix.com',
+          details: {summary: 'test', additionalInfoUrl: 'http://www.wix.com'},
+          info: { album: { name: 'Wix', id: '1234' }, track: { name: 'Wix', id: '1234' } })
 
       new_activity_result = client.new_activity(session_id, activity)
 
@@ -160,11 +158,11 @@ describe 'Activities API' do
     end
 
     it 'MUSIC_TRACK_PLAY' do
-      pendingImpl
-      activity = Wix::Hive::Activity.new_activity(FACTORY::MUSIC_TRACK_PLAY)
-      activity.locationUrl = 'http://www.wix.com'
-      activity.details.summary = 'test'
-      activity.details.additionalInfoUrl = 'http://www.wix.com'
+      activity = Wix::Hive::Activity.new(
+          type: FACTORY::MUSIC_TRACK_PLAY.type,
+          locationUrl: 'http://www.wix.com',
+          details: {summary: 'test', additionalInfoUrl: 'http://www.wix.com'},
+          info: { album: { name: 'Wix', id: '1234' }, track: { name: 'Wix', id: '1234' } })
 
       new_activity_result = client.new_activity(session_id, activity)
 
@@ -172,11 +170,11 @@ describe 'Activities API' do
     end
 
     it 'MUSIC_TRACK_PLAYED' do
-      pendingImpl
-      activity = Wix::Hive::Activity.new_activity(FACTORY::MUSIC_TRACK_PLAYED)
-      activity.locationUrl = 'http://www.wix.com'
-      activity.details.summary = 'test'
-      activity.details.additionalInfoUrl = 'http://www.wix.com'
+      activity = Wix::Hive::Activity.new(
+          type: FACTORY::MUSIC_TRACK_PLAYED.type,
+          locationUrl: 'http://www.wix.com',
+          details: {summary: 'test', additionalInfoUrl: 'http://www.wix.com'},
+          info: { album: { name: 'Wix', id: '1234' }, track: { name: 'Wix', id: '1234' } })
 
       new_activity_result = client.new_activity(session_id, activity)
 
@@ -184,11 +182,11 @@ describe 'Activities API' do
     end
 
     it 'MUSIC_TRACK_SKIP' do
-      pendingImpl
-      activity = Wix::Hive::Activity.new_activity(FACTORY::MUSIC_TRACK_SKIP)
-      activity.locationUrl = 'http://www.wix.com'
-      activity.details.summary = 'test'
-      activity.details.additionalInfoUrl = 'http://www.wix.com'
+      activity = Wix::Hive::Activity.new(
+          type: FACTORY::MUSIC_TRACK_SKIP.type,
+          locationUrl: 'http://www.wix.com',
+          details: {summary: 'test', additionalInfoUrl: 'http://www.wix.com'},
+          info: { album: { name: 'Wix', id: '1234' }, track: { name: 'Wix', id: '1234' } })
 
       new_activity_result = client.new_activity(session_id, activity)
 
@@ -196,11 +194,11 @@ describe 'Activities API' do
     end
 
     it 'MUSIC_TRACK_SHARE' do
-      pendingImpl
-      activity = Wix::Hive::Activity.new_activity(FACTORY::MUSIC_TRACK_SHARE)
-      activity.locationUrl = 'http://www.wix.com'
-      activity.details.summary = 'test'
-      activity.details.additionalInfoUrl = 'http://www.wix.com'
+      activity = Wix::Hive::Activity.new(
+          type: FACTORY::MUSIC_TRACK_SHARE.type,
+          locationUrl: 'http://www.wix.com',
+          details: {summary: 'test', additionalInfoUrl: 'http://www.wix.com'},
+          info: { album: { name: 'Wix', id: '1234' }, track: { name: 'Wix', id: '1234' }, sharedTo: 'FACEBOOK' })
 
       new_activity_result = client.new_activity(session_id, activity)
 
@@ -208,11 +206,18 @@ describe 'Activities API' do
     end
 
     it 'HOTELS_CONFIRMATION' do
-      pendingImpl
-      activity = Wix::Hive::Activity.new_activity(FACTORY::HOTELS_CONFIRMATION)
-      activity.locationUrl = 'http://www.wix.com'
-      activity.details.summary = 'test'
-      activity.details.additionalInfoUrl = 'http://www.wix.com'
+      guest = { total: 1, adults: 1, children: 0 }
+
+      day_ago = (Time.now - (60 * 60 * 24)).iso8601(3)
+      stay = { checkin: day_ago, checkout: Time.now.iso8601(3) }
+
+      invoice = {total: '1', subtotal: '1'}
+
+      activity = Wix::Hive::Activity.new(
+          type: FACTORY::HOTELS_CONFIRMATION.type,
+          locationUrl: 'http://www.wix.com',
+          details: {summary: 'test', additionalInfoUrl: 'http://www.wix.com'},
+          info: { source: 'GUEST', guests: guest, stay: stay, invoice: invoice })
 
       new_activity_result = client.new_activity(session_id, activity)
 
@@ -220,11 +225,21 @@ describe 'Activities API' do
     end
 
     it 'HOTELS_CANCEL' do
-      pendingImpl
-      activity = Wix::Hive::Activity.new_activity(FACTORY::HOTELS_CANCEL)
-      activity.locationUrl = 'http://www.wix.com'
-      activity.details.summary = 'test'
-      activity.details.additionalInfoUrl = 'http://www.wix.com'
+      refund = {kind: 'FULL', total: 1, currency: 'EUR', destination: 'NYC'}
+
+      guest = { total: 1, adults: 1, children: 0 }
+
+      day_ago = (Time.now - (60 * 60 * 24)).iso8601(3)
+      stay = { checkin: day_ago, checkout: Time.now.iso8601(3) }
+
+      invoice = {total: '1', subtotal: '1'}
+
+      activity = Wix::Hive::Activity.new(
+          type: FACTORY::HOTELS_CANCEL.type,
+          locationUrl: 'http://www.wix.com',
+          details: {summary: 'test', additionalInfoUrl: 'http://www.wix.com'},
+          info: { cancelDate: day_ago, refund: refund, guests: guest,
+                  stay: stay, invoice: invoice })
 
       new_activity_result = client.new_activity(session_id, activity)
 
@@ -232,11 +247,21 @@ describe 'Activities API' do
     end
 
     it 'HOTELS_PURCHASE' do
-      pendingImpl
-      activity = Wix::Hive::Activity.new_activity(FACTORY::HOTELS_PURCHASE)
-      activity.locationUrl = 'http://www.wix.com'
-      activity.details.summary = 'test'
-      activity.details.additionalInfoUrl = 'http://www.wix.com'
+      guest = { total: 1, adults: 1, children: 0 }
+
+      day_ago = (Time.now - (60 * 60 * 24)).iso8601(3)
+      stay = { checkin: day_ago, checkout: Time.now.iso8601(3) }
+
+      invoice = {total: '1', subtotal: '1'}
+
+      payment = {total: '1', subtotal: '1', currency: 'EUR', source: 'Cash'}
+
+      activity = Wix::Hive::Activity.new(
+          type: FACTORY::HOTELS_PURCHASE.type,
+          locationUrl: 'http://www.wix.com',
+          details: {summary: 'test', additionalInfoUrl: 'http://www.wix.com'},
+          info: { source: 'GUEST', guests: guest, stay: stay, invoice: invoice, payment: payment })
+
 
       new_activity_result = client.new_activity(session_id, activity)
 
@@ -244,11 +269,20 @@ describe 'Activities API' do
     end
 
     it 'HOTELS_PURCHASE_FAILED' do
-      pendingImpl
-      activity = Wix::Hive::Activity.new_activity(FACTORY::HOTELS_PURCHASE_FAILED)
-      activity.locationUrl = 'http://www.wix.com'
-      activity.details.summary = 'test'
-      activity.details.additionalInfoUrl = 'http://www.wix.com'
+      guest = { total: 1, adults: 1, children: 0 }
+
+      day_ago = (Time.now - (60 * 60 * 24)).iso8601(3)
+      stay = { checkin: day_ago, checkout: Time.now.iso8601(3) }
+
+      invoice = {total: '1', subtotal: '1'}
+
+      payment = {total: '1', subtotal: '1', currency: 'EUR', source: 'Cash', error: {errorCode: '-2801'}}
+
+      activity = Wix::Hive::Activity.new(
+          type: FACTORY::HOTELS_PURCHASE_FAILED.type,
+          locationUrl: 'http://www.wix.com',
+          details: {summary: 'test', additionalInfoUrl: 'http://www.wix.com'},
+          info: { source: 'GUEST', guests: guest, stay: stay, invoice: invoice, payment: payment })
 
       new_activity_result = client.new_activity(session_id, activity)
 
@@ -256,11 +290,11 @@ describe 'Activities API' do
     end
 
     it 'SCHEDULER_APPOINTMENT' do
-      pendingImpl
-      activity = Wix::Hive::Activity.new_activity(FACTORY::SCHEDULER_APPOINTMENT)
-      activity.locationUrl = 'http://www.wix.com'
-      activity.details.summary = 'test'
-      activity.details.additionalInfoUrl = 'http://www.wix.com'
+      activity = Wix::Hive::Activity.new(
+          type: FACTORY::SCHEDULER_APPOINTMENT.type,
+          locationUrl: 'http://www.wix.com',
+          details: {summary: 'test', additionalInfoUrl: 'http://www.wix.com'},
+          info: { title: 'test', description: 'test' })
 
       new_activity_result = client.new_activity(session_id, activity)
 
