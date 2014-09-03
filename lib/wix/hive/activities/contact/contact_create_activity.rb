@@ -1,5 +1,5 @@
 # THIS IS A GENERATED FILE, DO NOT EDIT THIS
-# Generated on 2014-09-02T07:46:23.509Z
+# Generated on 2014-09-03T09:53:09.134Z
 
 require 'hashie'
 
@@ -76,9 +76,9 @@ module Wix
           coerce_key :dates, Array[Date]
           coerce_key :urls, Array[Url]
 
-          property :name, default: Name.new
+          property :name
           property :picture
-          property :company, default: Company.new
+          property :company
           property :emails, default: []
           property :phones, default: []
           property :addresses, default: []

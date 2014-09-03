@@ -6,14 +6,11 @@ describe 'Activities API' do
   session_id = '02594992c9c57f61148351a766cf2ab79f7a7007ce309a16fc2b6475b0895b5b09250b55ec2c4cdba152aef47daded4d1e60994d53964e647acf431e4f798bcd0b93ce826ad6aa27a9c95ffedb05f421b7b1419780cf6036d4fd8efd847f9877'
 
   let(:base_activity) {
-    activity = Wix::Hive::Activity.new_activity(FACTORY::MUSIC_ALBUM_FAN)
-    activity.locationUrl = 'http://www.wix.com'
-    activity.details.summary = 'test'
-    activity.details.additionalInfoUrl = 'http://www.wix.com'
-    activity.info.album.name = 'Wix'
-    activity.info.album.id = '1234'
-
-    activity
+    Wix::Hive::Activity.new(
+        type: FACTORY::MUSIC_ALBUM_FAN.type,
+        locationUrl: 'http://www.wix.com',
+        details: { summary: 'test', additionalInfoUrl: 'http://www.wix.com' },
+        info: { album: { name: 'Wix', id: '1234' } })
   }
 
   it '.new_activity' do
@@ -62,14 +59,16 @@ describe 'Activities API' do
 
   context 'create activities' do
     it 'CONTACTS_CREATE' do
-      activity = Wix::Hive::Activity.new_activity(FACTORY::CONTACTS_CREATE)
-      activity.locationUrl = 'http://www.wix.com'
-      activity.details.summary = 'test'
-      activity.details.additionalInfoUrl = 'http://www.wix.com'
-      activity.info.name.first = 'E2E Activity'
-      activity.info.name.last = 'Activity'
-      #TODO @Alex bellow should be a factory method!
-      activity.info.emails << Wix::Hive::Activities::Contact::Email.new(email: 'activity@example.com', tag: 'work')
+
+      contacts_create = FACTORY::CONTACTS_CREATE.klass.new
+      contacts_create.name = {first: 'E2E Activity', last: 'Activity'}
+      contacts_create.emails << {email: 'activity@example.com', tag: 'work'}
+
+      activity = Wix::Hive::Activity.new(
+          type: FACTORY::CONTACTS_CREATE.type,
+          locationUrl: 'http://www.wix.com',
+          details: {summary: 'test', additionalInfoUrl: 'http://www.wix.com'},
+          info: contacts_create)
 
       new_activity_result = client.new_activity(session_id, activity)
 
@@ -77,12 +76,11 @@ describe 'Activities API' do
     end
 
     it 'CONVERSION_COMPLETE' do
-      activity = Wix::Hive::Activity.new_activity(FACTORY::CONVERSION_COMPLETE)
-      activity.locationUrl = 'http://www.wix.com'
-      activity.details.summary = 'test'
-      activity.details.additionalInfoUrl = 'http://www.wix.com'
-      #TODO @Alex below is a enum type...
-      activity.info.conversionType = 'PAGEVIEW'
+      activity = Wix::Hive::Activity.new(
+          type: FACTORY::CONVERSION_COMPLETE.type,
+          locationUrl: 'http://www.wix.com',
+          details: {summary: 'test', additionalInfoUrl: 'http://www.wix.com'},
+          info: {conversionType: 'PAGEVIEW'})
 
       new_activity_result = client.new_activity(session_id, activity)
 
@@ -90,20 +88,19 @@ describe 'Activities API' do
     end
 
     it 'E_COMMERCE_PURCHASE' do
-      activity = Wix::Hive::Activity.new_activity(FACTORY::E_COMMERCE_PURCHASE)
-      activity.locationUrl = 'http://www.wix.com'
-      activity.details.summary = 'test'
-      activity.details.additionalInfoUrl = 'http://www.wix.com'
+      purchase = FACTORY::E_COMMERCE_PURCHASE.klass.new
 
-      info = activity.info
+      purchase.cartId = '11111'
+      purchase.storeId = '11111'
 
-      info.cartId = '11111'
-      info.storeId = '11111'
-      info.payment.total = '1'
-      info.payment.subtotal = '1'
-      info.payment.currency = 'EUR'
-      info.payment.coupon.total = '1'
-      info.payment.coupon.title = 'Dis'
+      coupon = {total: '1', title: 'Dis'}
+      purchase.payment = {total: '1', subtotal: '1', currency: 'EUR', coupon: coupon}
+
+      activity = Wix::Hive::Activity.new(
+          type: FACTORY::E_COMMERCE_PURCHASE.type,
+          locationUrl: 'http://www.wix.com',
+          details: {summary: 'test', additionalInfoUrl: 'http://www.wix.com'},
+          info: purchase)
 
       new_activity_result = client.new_activity(session_id, activity)
 
@@ -111,11 +108,15 @@ describe 'Activities API' do
     end
 
     it 'MESSAGING_SEND' do
-      pendingImpl
-      activity = Wix::Hive::Activity.new_activity(FACTORY::MESSAGING_SEND)
-      activity.locationUrl = 'http://www.wix.com'
-      activity.details.summary = 'test'
-      activity.details.additionalInfoUrl = 'http://www.wix.com'
+      recipient = {method: 'EMAIL', destination: {name: {first: 'Alex'}, target: 'localhost'}}
+
+      send = FACTORY::MESSAGING_SEND.klass.new(recipient: recipient)
+
+      activity = Wix::Hive::Activity.new(
+          type: FACTORY::MESSAGING_SEND.type,
+          locationUrl: 'http://www.wix.com',
+          details: {summary: 'test', additionalInfoUrl: 'http://www.wix.com'},
+          info: send)
 
       new_activity_result = client.new_activity(session_id, activity)
 

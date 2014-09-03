@@ -1,5 +1,5 @@
 # THIS IS A GENERATED FILE, DO NOT EDIT THIS
-# Generated on 2014-09-02T07:46:23.618Z
+# Generated on 2014-09-03T09:53:09.243Z
 
 require 'hashie'
 
@@ -10,10 +10,10 @@ module Wix
         class Payment < Hashie::Trash
           include Hashie::Extensions::IgnoreUndeclared
 
-          property :subtotal
-          property :total
-          property :currency
-          property :source
+          property :subtotal, required: true
+          property :total, required: true
+          property :currency, required: true
+          property :source, required: true
         end
 
         class PurchaseActivity < Hashie::Trash
@@ -28,11 +28,11 @@ module Wix
           coerce_key :rooms, Array[Room]
 
           property :reservationId
-          property :guests, default: Guest.new
-          property :stay, default: Stay.new
+          property :guests, required: true
+          property :stay, required: true
           property :rates, default: []
-          property :payment, default: Payment.new
-          property :customer, default: Customer.new
+          property :payment, required: true
+          property :customer
           property :rooms, default: []
         end
       end

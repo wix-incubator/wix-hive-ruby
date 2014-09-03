@@ -51,9 +51,9 @@ describe Wix::Hive::Activities do
       expect(Wix::Hive::Activities::MUSIC_TRACK_SHARE.klass).to eq Wix::Hive::Activities.class_for_type(Wix::Hive::Activities::MUSIC_TRACK_SHARE.type)
     end
 
-    it '#HOTELS_CONFIRMATION' do
-      expect(Wix::Hive::Activities::HOTELS_CONFIRMATION.klass).to eq Wix::Hive::Activities.class_for_type(Wix::Hive::Activities::HOTELS_CONFIRMATION.type)
-    end
+    # it '#HOTELS_CONFIRMATION' do
+    #   expect(Wix::Hive::Activities::HOTELS_CONFIRMATION.klass).to eq Wix::Hive::Activities.class_for_type(Wix::Hive::Activities::HOTELS_CONFIRMATION.type)
+    # end
 
     it '#HOTELS_CANCEL' do
       expect(Wix::Hive::Activities::HOTELS_CANCEL.klass).to eq Wix::Hive::Activities.class_for_type(Wix::Hive::Activities::HOTELS_CANCEL.type)

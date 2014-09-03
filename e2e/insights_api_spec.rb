@@ -16,12 +16,11 @@ describe 'Insights API' do
 
     expect(create_contact).to include :contactId
 
-    activity = Wix::Hive::Activity.new_activity(Wix::Hive::Activities::MUSIC_ALBUM_FAN)
-    activity.activityLocationUrl = 'http://www.wix.com'
-    activity.activityDetails.summary = 'test'
-    activity.activityDetails.additionalInfoUrl = 'http://www.wix.com'
-    activity.activityInfo.album.name = 'Wix'
-    activity.activityInfo.album.id = '1234'
+    activity = Wix::Hive::Activity.new(
+        type: FACTORY::MUSIC_ALBUM_FAN.type,
+        locationUrl: 'http://www.wix.com',
+        details: { summary: 'test', additionalInfoUrl: 'http://www.wix.com' },
+        info: { album: { name: 'Wix', id: '1234' } })
 
     client.add_contact_activity(create_contact[:contactId], activity)
 

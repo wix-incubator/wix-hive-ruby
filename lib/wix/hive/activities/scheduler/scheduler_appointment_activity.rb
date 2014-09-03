@@ -1,5 +1,5 @@
 # THIS IS A GENERATED FILE, DO NOT EDIT THIS
-# Generated on 2014-09-02T07:46:23.639Z
+# Generated on 2014-09-03T09:53:09.259Z
 
 require 'hashie'
 
@@ -21,9 +21,9 @@ module Wix
         class Time < Hashie::Trash
           include Hashie::Extensions::IgnoreUndeclared
 
-          property :start
-          property :end
-          property :timezone
+          property :start, required: true
+          property :end, required: true
+          property :timezone, required: true
         end
 
         class Name < Hashie::Trash
@@ -43,7 +43,7 @@ module Wix
           coerce_key :name, Name
 
           property :contactId
-          property :name, default: Name.new
+          property :name
           property :phone
           property :email
           property :notes
@@ -58,10 +58,10 @@ module Wix
           coerce_key :time, Time
           coerce_key :attendees, Array[Attendee]
 
-          property :title
-          property :description
-          property :location, default: Location.new
-          property :time, default: Time.new
+          property :title, required: true
+          property :description, required: true
+          property :location
+          property :time
           property :attendees, default: []
         end
       end

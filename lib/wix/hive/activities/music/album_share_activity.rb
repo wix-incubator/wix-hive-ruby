@@ -1,5 +1,5 @@
 # THIS IS A GENERATED FILE, DO NOT EDIT THIS
-# Generated on 2014-09-02T07:46:23.573Z
+# Generated on 2014-09-03T09:53:09.203Z
 
 require 'hashie'
 
@@ -13,7 +13,7 @@ module Wix
 
           coerce_key :album, Album
 
-          property :album, default: Album.new
+          property :album
           property :sharedTo
         end
       end

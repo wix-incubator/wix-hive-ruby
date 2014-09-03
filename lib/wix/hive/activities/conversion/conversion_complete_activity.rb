@@ -1,5 +1,5 @@
 # THIS IS A GENERATED FILE, DO NOT EDIT THIS
-# Generated on 2014-09-02T07:46:23.513Z
+# Generated on 2014-09-03T09:53:09.143Z
 
 require 'hashie'
 
@@ -10,8 +10,8 @@ module Wix
         class Metadata < Hashie::Trash
           include Hashie::Extensions::IgnoreUndeclared
 
-          property :property
-          property :value
+          property :property, required: true
+          property :value, required: true
         end
 
         class CompleteActivity < Hashie::Trash
@@ -20,7 +20,7 @@ module Wix
 
           coerce_key :metadata, Array[Metadata]
 
-          property :conversionType
+          property :conversionType, required: true
           property :messageId
           property :metadata, default: []
         end

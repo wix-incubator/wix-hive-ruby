@@ -1,5 +1,5 @@
 # THIS IS A GENERATED FILE, DO NOT EDIT THIS
-# Generated on 2014-09-02T07:46:23.543Z
+# Generated on 2014-09-03T09:53:09.174Z
 
 require 'hashie'
 
@@ -37,7 +37,7 @@ module Wix
           property :productLink
           property :weight
           property :formattedWeight
-          property :media, default: Media.new
+          property :media
           property :variants, default: []
         end
 
@@ -76,9 +76,9 @@ module Wix
           property :formattedTotal
           property :formattedSubtotal
           property :currency
-          property :coupon, default: Coupon.new
-          property :tax, default: Tax.new
-          property :shipping, default: Shipping.new
+          property :coupon
+          property :tax
+          property :shipping
         end
 
         class ShippingAddres < Hashie::Trash
@@ -130,9 +130,9 @@ module Wix
           property :storeId
           property :orderId
           property :items, default: []
-          property :payment, default: Payment.new
-          property :shippingAddress, default: ShippingAddres.new
-          property :billingAddress, default: BillingAddres.new
+          property :payment
+          property :shippingAddress
+          property :billingAddress
           property :paymentGateway
           property :note
           property :buyerAcceptsMarketing

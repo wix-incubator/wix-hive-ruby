@@ -1,5 +1,5 @@
 # THIS IS A GENERATED FILE, DO NOT EDIT THIS
-# Generated on 2014-09-02T07:46:23.641Z
+# Generated on 2014-09-03T09:53:09.261Z
 
 require 'wix/hive/activities/contact/contact_form_activity'
 require 'wix/hive/activities/contact/contact_create_activity'

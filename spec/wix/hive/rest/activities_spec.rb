@@ -2,18 +2,18 @@ require 'spec_helper'
 
 describe Wix::Hive::REST::Activities do
 
+  FACTORY = Wix::Hive::Activities
   subject(:activities) { (Class.new { include Wix::Hive::Util; include Wix::Hive::REST::Activities }).new }
 
   context '.new_activity' do
     it 'with a valid activity' do
       session_token = '1234'
 
-      activity = Wix::Hive::Activity.new_activity(Wix::Hive::Activities::MUSIC_ALBUM_FAN)
-      activity.activityLocationUrl = 'http://www.wix.com'
-      activity.activityDetails.summary = 'test'
-      activity.activityDetails.additionalInfoUrl = 'http://www.wix.com'
-      activity.activityInfo.album.name = 'Wix'
-      activity.activityInfo.album.id = '1234'
+      activity = Wix::Hive::Activity.new(
+          type: FACTORY::MUSIC_ALBUM_FAN.type,
+          locationUrl: 'http://www.wix.com',
+          details: { summary: 'test', additionalInfoUrl: 'http://www.wix.com' },
+          info: { album: { name: 'Wix', id: '1234' } })
 
       expect(activities).to receive(:perform_with_object).with(:post, '/v1/activities', Wix::Hive::ActivityResult, body: activity.to_json, params: { userSessionToken: session_token }).and_return(instance_double(Faraday::Response, body: 'mock'))
 
@@ -23,7 +23,11 @@ describe Wix::Hive::REST::Activities do
     it 'with a read only activity' do
       session_token = '1234'
 
-      activity = Wix::Hive::Activity.new_activity(Wix::Hive::Activities::CONTACT_CONTACT_FORM)
+      activity = Wix::Hive::Activity.new(
+          type: FACTORY::CONTACT_CONTACT_FORM.type,
+          locationUrl: 'http://www.wix.com',
+          details: { summary: 'test', additionalInfoUrl: 'http://www.wix.com' },
+          info: FACTORY::CONTACT_CONTACT_FORM.klass.new)
 
       expect { activities.new_activity(session_token, activity) }.to raise_error ArgumentError
     end
@@ -50,12 +54,11 @@ describe Wix::Hive::REST::Activities do
     it 'with valid activity' do
       contact_id = '1234'
 
-      activity = Wix::Hive::Activity.new_activity(Wix::Hive::Activities::MUSIC_ALBUM_FAN)
-      activity.activityLocationUrl = 'http://www.wix.com'
-      activity.activityDetails.summary = 'test'
-      activity.activityDetails.additionalInfoUrl = 'http://www.wix.com'
-      activity.activityInfo.album.name = 'Wix'
-      activity.activityInfo.album.id = '1234'
+      activity = Wix::Hive::Activity.new(
+          type: FACTORY::MUSIC_ALBUM_FAN.type,
+          locationUrl: 'http://www.wix.com',
+          details: { summary: 'test', additionalInfoUrl: 'http://www.wix.com' },
+          info: { album: { name: 'Wix', id: '1234' } })
 
       expect(activities).to receive(:perform_with_object).with(:post, "/v1/contacts/#{contact_id}/activities", Wix::Hive::ActivityResult, body: activity.to_json).and_return(instance_double(Faraday::Response, body: 'mock'))
 
@@ -65,7 +68,11 @@ describe Wix::Hive::REST::Activities do
     it 'with a read only activity' do
       contact_id = '1234'
 
-      activity = Wix::Hive::Activity.new_activity(Wix::Hive::Activities::CONTACT_CONTACT_FORM)
+      activity = Wix::Hive::Activity.new(
+          type: FACTORY::CONTACT_CONTACT_FORM.type,
+          locationUrl: 'http://www.wix.com',
+          details: { summary: 'test', additionalInfoUrl: 'http://www.wix.com' },
+          info: FACTORY::CONTACT_CONTACT_FORM.klass.new)
 
       expect { activities.add_contact_activity(contact_id, activity) }.to raise_error ArgumentError
     end

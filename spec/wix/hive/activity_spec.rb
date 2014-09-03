@@ -2,16 +2,6 @@ require 'spec_helper'
 
 describe Wix::Hive::Activity do
 
-  context '.new_activity' do
-    it 'should create a new activity given a valid type' do
-      expect(described_class.new_activity(Wix::Hive::Activities::MUSIC_ALBUM_FAN)).to be_a Wix::Hive::Activity
-    end
-
-    it 'should fail when invalid type is given' do
-      expect{ described_class.new_activity('invalid') }.to raise_error ArgumentError
-    end
-  end
-
   context 'transforms the activityInfo field' do
     it 'with a handled activity type' do
       activity = described_class.new({ activityType: 'music/album-fan', activityInfo: { album: { name: 'lala', id: '1' } } })
@@ -24,13 +14,5 @@ describe Wix::Hive::Activity do
 
       expect(activity.activityInfo).to eq activityInfo
     end
-  end
-
-  it 'generates a compact json' do
-    activity = described_class.new_activity(Wix::Hive::Activities::E_COMMERCE_PURCHASE)
-
-    activity.activityDetails = {}
-
-    expect(activity.to_json.include?('activityDetails')).to be_falsey
   end
 end

@@ -1,5 +1,5 @@
 # THIS IS A GENERATED FILE, DO NOT EDIT THIS
-# Generated on 2014-09-02T07:46:23.607Z
+# Generated on 2014-09-03T09:53:09.231Z
 
 require 'hashie'
 
@@ -10,24 +10,24 @@ module Wix
         class Guest < Hashie::Trash
           include Hashie::Extensions::IgnoreUndeclared
 
-          property :total
-          property :adults
-          property :children
+          property :total, required: true
+          property :adults, required: true
+          property :children, required: true
         end
 
         class Stay < Hashie::Trash
           include Hashie::Extensions::IgnoreUndeclared
 
-          property :checkin
-          property :checkout
+          property :checkin, required: true
+          property :checkout, required: true
         end
 
         class Tax < Hashie::Trash
           include Hashie::Extensions::IgnoreUndeclared
 
-          property :name
-          property :total
-          property :currency
+          property :name, required: true
+          property :total, required: true
+          property :currency, required: true
         end
 
         class Rate < Hashie::Trash
@@ -36,19 +36,19 @@ module Wix
 
           coerce_key :taxes, Array[Tax]
 
-          property :date
-          property :subtotal
+          property :date, required: true
+          property :subtotal, required: true
           property :taxes, default: []
-          property :total
-          property :currency
+          property :total, required: true
+          property :currency, required: true
         end
 
         class Invoice < Hashie::Trash
           include Hashie::Extensions::IgnoreUndeclared
 
-          property :subtotal
-          property :total
-          property :currency
+          property :subtotal, required: true
+          property :total, required: true
+          property :currency, required: true
         end
 
         class Name < Hashie::Trash
@@ -69,7 +69,7 @@ module Wix
 
           property :contactId
           property :isGuest
-          property :name, default: Name.new
+          property :name
           property :phone
           property :email
         end
@@ -77,7 +77,7 @@ module Wix
         class Bed < Hashie::Trash
           include Hashie::Extensions::IgnoreUndeclared
 
-          property :kind
+          property :kind, required: true
           property :sleeps
         end
 
@@ -89,7 +89,7 @@ module Wix
 
           property :id
           property :beds, default: []
-          property :maxOccupancy
+          property :maxOccupancy, required: true
         end
 
         class ConfirmationActivity < Hashie::Trash
@@ -103,13 +103,13 @@ module Wix
           coerce_key :customer, Customer
           coerce_key :rooms, Array[Room]
 
-          property :source
+          property :source, required: true
           property :reservationId
-          property :guests, default: Guest.new
-          property :stay, default: Stay.new
+          property :guests, required: true
+          property :stay, required: true
           property :rates, default: []
-          property :invoice, default: Invoice.new
-          property :customer, default: Customer.new
+          property :invoice, required: true
+          property :customer
           property :rooms, default: []
         end
       end

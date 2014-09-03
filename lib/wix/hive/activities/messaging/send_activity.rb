@@ -1,5 +1,5 @@
 # THIS IS A GENERATED FILE, DO NOT EDIT THIS
-# Generated on 2014-09-02T07:46:23.562Z
+# Generated on 2014-09-03T09:53:09.192Z
 
 require 'hashie'
 
@@ -23,8 +23,8 @@ module Wix
 
           coerce_key :name, Name
 
-          property :destination
-          property :name, default: Name.new
+          property :target, required: true
+          property :name
         end
 
         class Recipient < Hashie::Trash
@@ -33,16 +33,16 @@ module Wix
 
           coerce_key :destination, Destination
 
-          property :method
-          property :destination, default: Destination.new
+          property :method, required: true
+          property :destination, required: true
           property :contactId
         end
 
         class Metadata < Hashie::Trash
           include Hashie::Extensions::IgnoreUndeclared
 
-          property :property
-          property :value
+          property :property, required: true
+          property :value, required: true
         end
 
         class ConversionTarget < Hashie::Trash
@@ -51,7 +51,7 @@ module Wix
 
           coerce_key :metadata, Array[Metadata]
 
-          property :conversionType
+          property :conversionType, required: true
           property :metadata, default: []
         end
 
@@ -62,9 +62,9 @@ module Wix
           coerce_key :recipient, Recipient
           coerce_key :conversionTarget, ConversionTarget
 
-          property :recipient, default: Recipient.new
+          property :recipient, required: true
           property :messageId
-          property :conversionTarget, default: ConversionTarget.new
+          property :conversionTarget
         end
       end
     end

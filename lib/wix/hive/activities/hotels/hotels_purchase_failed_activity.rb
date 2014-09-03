@@ -1,5 +1,5 @@
 # THIS IS A GENERATED FILE, DO NOT EDIT THIS
-# Generated on 2014-09-02T07:46:23.632Z
+# Generated on 2014-09-03T09:53:09.255Z
 
 require 'hashie'
 
@@ -24,11 +24,11 @@ module Wix
 
             coerce_key :error, Error
 
-            property :subtotal
-            property :total
-            property :currency
-            property :source
-            property :error, default: Error.new
+            property :subtotal, required: true
+            property :total, required: true
+            property :currency, required: true
+            property :source, required: true
+            property :error
           end
 
           coerce_key :guests, Guest
@@ -39,11 +39,11 @@ module Wix
           coerce_key :rooms, Array[Room]
 
           property :reservationId
-          property :guests, default: Guest.new
-          property :stay, default: Stay.new
+          property :guests, required: true
+          property :stay, required: true
           property :rates, default: []
-          property :payment, default: Payment.new
-          property :customer, default: Customer.new
+          property :payment, required: true
+          property :customer
           property :rooms, default: []
         end
       end
