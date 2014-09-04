@@ -2,11 +2,11 @@ require_relative './e2e_helper'
 
 describe 'Activities API' do
 
-  FACTORY = Wix::Hive::Activities
+  FACTORY = Hive::Activities
   session_id = '02594992c9c57f61148351a766cf2ab79f7a7007ce309a16fc2b6475b0895b5b09250b55ec2c4cdba152aef47daded4d1e60994d53964e647acf431e4f798bcd0b93ce826ad6aa27a9c95ffedb05f421b7b1419780cf6036d4fd8efd847f9877'
 
   let(:base_activity) {
-    Wix::Hive::Activity.new(
+    Hive::Activity.new(
         type: FACTORY::MUSIC_ALBUM_FAN.type,
         locationUrl: 'http://www.wix.com',
         details: { summary: 'test', additionalInfoUrl: 'http://www.wix.com' },
@@ -24,27 +24,27 @@ describe 'Activities API' do
 
     expect(new_activity_result.activityId).to be_truthy
 
-    expect(client.activity(new_activity_result.activityId)).to be_a Wix::Hive::Activity
+    expect(client.activity(new_activity_result.activityId)).to be_a Hive::Activity
   end
 
   context '.activities' do
     it 'returns a cursor with activity results' do
       cursored_result = client.activities
-      expect(cursored_result).to be_a Wix::Hive::Cursor
-      expect(cursored_result.results.first).to be_a Wix::Hive::Activity
+      expect(cursored_result).to be_a Hive::Cursor
+      expect(cursored_result.results.first).to be_a Hive::Activity
     end
 
     it 'returns a cursor with activities filtered by activityTypes' do
-      cursored_result = client.activities(activityTypes: Wix::Hive::Activities::MUSIC_ALBUM_FAN.type)
-      expect(cursored_result).to be_a Wix::Hive::Cursor
-      expect(cursored_result.results.map{ |v| v.activityType } ).to all(eq Wix::Hive::Activities::MUSIC_ALBUM_FAN.type)
+      cursored_result = client.activities(activityTypes: Hive::Activities::MUSIC_ALBUM_FAN.type)
+      expect(cursored_result).to be_a Hive::Cursor
+      expect(cursored_result.results.map{ |v| v.activityType } ).to all(eq Hive::Activities::MUSIC_ALBUM_FAN.type)
     end
 
     it 'returns a cursor with activities filtered by scope' do
       app_result = client.activities(scope: :app)
       site_result = client.activities(scope: :site)
-      expect(app_result).to be_a Wix::Hive::Cursor
-      expect(site_result).to be_a Wix::Hive::Cursor
+      expect(app_result).to be_a Hive::Cursor
+      expect(site_result).to be_a Hive::Cursor
     end
 
     it 'returns a cursor with activities limited by date range' do
@@ -64,7 +64,7 @@ describe 'Activities API' do
       contacts_create.name = {first: 'E2E Activity', last: 'Activity'}
       contacts_create.emails << {email: 'activity@example.com', tag: 'work'}
 
-      activity = Wix::Hive::Activity.new(
+      activity = Hive::Activity.new(
           type: FACTORY::CONTACTS_CREATE.type,
           locationUrl: 'http://www.wix.com',
           details: {summary: 'test', additionalInfoUrl: 'http://www.wix.com'},
@@ -76,7 +76,7 @@ describe 'Activities API' do
     end
 
     it 'CONVERSION_COMPLETE' do
-      activity = Wix::Hive::Activity.new(
+      activity = Hive::Activity.new(
           type: FACTORY::CONVERSION_COMPLETE.type,
           locationUrl: 'http://www.wix.com',
           details: {summary: 'test', additionalInfoUrl: 'http://www.wix.com'},
@@ -94,7 +94,7 @@ describe 'Activities API' do
       purchase = FACTORY::E_COMMERCE_PURCHASE.klass.new(cartId: '11111',
                                                         storeId: '11111', payment: payment)
 
-      activity = Wix::Hive::Activity.new(
+      activity = Hive::Activity.new(
           type: FACTORY::E_COMMERCE_PURCHASE.type,
           locationUrl: 'http://www.wix.com',
           details: {summary: 'test', additionalInfoUrl: 'http://www.wix.com'},
@@ -110,7 +110,7 @@ describe 'Activities API' do
 
       send = FACTORY::MESSAGING_SEND.klass.new(recipient: recipient)
 
-      activity = Wix::Hive::Activity.new(
+      activity = Hive::Activity.new(
           type: FACTORY::MESSAGING_SEND.type,
           locationUrl: 'http://www.wix.com',
           details: {summary: 'test', additionalInfoUrl: 'http://www.wix.com'},
@@ -122,7 +122,7 @@ describe 'Activities API' do
     end
 
     it 'MUSIC_ALBUM_FAN' do
-      activity = Wix::Hive::Activity.new(
+      activity = Hive::Activity.new(
           type: FACTORY::MUSIC_ALBUM_FAN.type,
           locationUrl: 'http://www.wix.com',
           details: {summary: 'test', additionalInfoUrl: 'http://www.wix.com'},
@@ -134,7 +134,7 @@ describe 'Activities API' do
     end
 
     it 'MUSIC_ALBUM_SHARE' do
-      activity = Wix::Hive::Activity.new(
+      activity = Hive::Activity.new(
           type: FACTORY::MUSIC_ALBUM_SHARE.type,
           locationUrl: 'http://www.wix.com',
           details: {summary: 'test', additionalInfoUrl: 'http://www.wix.com'},
@@ -146,7 +146,7 @@ describe 'Activities API' do
     end
 
     it 'MUSIC_TRACK_LYRICS' do
-      activity = Wix::Hive::Activity.new(
+      activity = Hive::Activity.new(
           type: FACTORY::MUSIC_TRACK_LYRICS.type,
           locationUrl: 'http://www.wix.com',
           details: {summary: 'test', additionalInfoUrl: 'http://www.wix.com'},
@@ -158,7 +158,7 @@ describe 'Activities API' do
     end
 
     it 'MUSIC_TRACK_PLAY' do
-      activity = Wix::Hive::Activity.new(
+      activity = Hive::Activity.new(
           type: FACTORY::MUSIC_TRACK_PLAY.type,
           locationUrl: 'http://www.wix.com',
           details: {summary: 'test', additionalInfoUrl: 'http://www.wix.com'},
@@ -170,7 +170,7 @@ describe 'Activities API' do
     end
 
     it 'MUSIC_TRACK_PLAYED' do
-      activity = Wix::Hive::Activity.new(
+      activity = Hive::Activity.new(
           type: FACTORY::MUSIC_TRACK_PLAYED.type,
           locationUrl: 'http://www.wix.com',
           details: {summary: 'test', additionalInfoUrl: 'http://www.wix.com'},
@@ -182,7 +182,7 @@ describe 'Activities API' do
     end
 
     it 'MUSIC_TRACK_SKIP' do
-      activity = Wix::Hive::Activity.new(
+      activity = Hive::Activity.new(
           type: FACTORY::MUSIC_TRACK_SKIP.type,
           locationUrl: 'http://www.wix.com',
           details: {summary: 'test', additionalInfoUrl: 'http://www.wix.com'},
@@ -194,7 +194,7 @@ describe 'Activities API' do
     end
 
     it 'MUSIC_TRACK_SHARE' do
-      activity = Wix::Hive::Activity.new(
+      activity = Hive::Activity.new(
           type: FACTORY::MUSIC_TRACK_SHARE.type,
           locationUrl: 'http://www.wix.com',
           details: {summary: 'test', additionalInfoUrl: 'http://www.wix.com'},
@@ -213,7 +213,7 @@ describe 'Activities API' do
 
       invoice = {total: '1', subtotal: '1'}
 
-      activity = Wix::Hive::Activity.new(
+      activity = Hive::Activity.new(
           type: FACTORY::HOTELS_CONFIRMATION.type,
           locationUrl: 'http://www.wix.com',
           details: {summary: 'test', additionalInfoUrl: 'http://www.wix.com'},
@@ -234,7 +234,7 @@ describe 'Activities API' do
 
       invoice = {total: '1', subtotal: '1'}
 
-      activity = Wix::Hive::Activity.new(
+      activity = Hive::Activity.new(
           type: FACTORY::HOTELS_CANCEL.type,
           locationUrl: 'http://www.wix.com',
           details: {summary: 'test', additionalInfoUrl: 'http://www.wix.com'},
@@ -256,7 +256,7 @@ describe 'Activities API' do
 
       payment = {total: '1', subtotal: '1', currency: 'EUR', source: 'Cash'}
 
-      activity = Wix::Hive::Activity.new(
+      activity = Hive::Activity.new(
           type: FACTORY::HOTELS_PURCHASE.type,
           locationUrl: 'http://www.wix.com',
           details: {summary: 'test', additionalInfoUrl: 'http://www.wix.com'},
@@ -278,7 +278,7 @@ describe 'Activities API' do
 
       payment = {total: '1', subtotal: '1', currency: 'EUR', source: 'Cash', error: {errorCode: '-2801'}}
 
-      activity = Wix::Hive::Activity.new(
+      activity = Hive::Activity.new(
           type: FACTORY::HOTELS_PURCHASE_FAILED.type,
           locationUrl: 'http://www.wix.com',
           details: {summary: 'test', additionalInfoUrl: 'http://www.wix.com'},
@@ -290,7 +290,7 @@ describe 'Activities API' do
     end
 
     it 'SCHEDULER_APPOINTMENT' do
-      activity = Wix::Hive::Activity.new(
+      activity = Hive::Activity.new(
           type: FACTORY::SCHEDULER_APPOINTMENT.type,
           locationUrl: 'http://www.wix.com',
           details: {summary: 'test', additionalInfoUrl: 'http://www.wix.com'},

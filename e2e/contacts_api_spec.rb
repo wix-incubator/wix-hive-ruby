@@ -2,7 +2,7 @@ require_relative './e2e_helper'
 
 describe 'Contacts API' do
   let(:base_contact) {
-    contact = Wix::Hive::Contact.new
+    contact = Hive::Contact.new
     contact.name.first = 'Wix'
     contact.name.last = 'Cool'
     contact.add_email('alext@wix.com', 'work')
@@ -11,7 +11,7 @@ describe 'Contacts API' do
   }
 
   it '.create_contact' do
-    contact = Wix::Hive::Contact.new
+    contact = Hive::Contact.new
     contact.name.first = 'E2E'
     contact.name.last = 'Cool'
     contact.company.name = 'Wix'
@@ -28,14 +28,14 @@ describe 'Contacts API' do
   end
 
   it '.contact' do
-    expect(client.contact(create_base_contact)).to be_a Wix::Hive::Contact
+    expect(client.contact(create_base_contact)).to be_a Hive::Contact
   end
 
   context '.contacts' do
     subject(:contacts) { client.contacts }
 
     it 'should return a cursor' do
-      expect(contacts).to be_a Wix::Hive::Cursor
+      expect(contacts).to be_a Hive::Cursor
     end
 
     it 'should be able to fetch the next page' do
@@ -76,7 +76,7 @@ describe 'Contacts API' do
   end
 
   it '.update_contact' do
-    contact = Wix::Hive::Contact.new
+    contact = Hive::Contact.new
     contact.name.first = 'E2E'
     contact.name.last = 'Cool'
     contact.add_email('alext@wix.com', 'work')
@@ -128,7 +128,7 @@ describe 'Contacts API' do
 
   it '.contacts_subscribers' do
     pending 'CE-2280'
-    expect(client.contacts_subscribers).to be_a Wix::Hive::Cursor
+    expect(client.contacts_subscribers).to be_a Hive::Cursor
   end
 
   it '.update_contact_name' do
@@ -136,7 +136,7 @@ describe 'Contacts API' do
 
     contact_id = create_base_contact
 
-    update_response = client.update_contact_name(contact_id, Wix::Hive::Name.new(first: 'New_Name'))
+    update_response = client.update_contact_name(contact_id, Hive::Name.new(first: 'New_Name'))
 
     expect(update_response.name.first).to eq 'New_Name'
   end
@@ -148,7 +148,7 @@ describe 'Contacts API' do
 
     contact_id  = create_base_contact
 
-    company = Wix::Hive::Company.new
+    company = Hive::Company.new
     company.name = 'New_Company'
 
     update_response = client.update_contact_company(contact_id, company)
@@ -173,7 +173,7 @@ describe 'Contacts API' do
 
     contact = client.contact(create_base_contact)
 
-    updated_address = Wix::Hive::Address.new
+    updated_address = Hive::Address.new
     updated_address.tag = 'work'
     updated_address.address = '1625 Larimer St.'
 
@@ -188,7 +188,7 @@ describe 'Contacts API' do
 
     expect(contact.emails).not_to be_empty
 
-    updated_email = Wix::Hive::Email.new
+    updated_email = Hive::Email.new
     updated_email.tag = 'work'
     updated_email.email = 'alex@example.com'
 
@@ -201,7 +201,7 @@ describe 'Contacts API' do
   it '.update_contact_phone' do
     contact = client.contact(create_base_contact)
 
-    updated_phone = Wix::Hive::Phone.new
+    updated_phone = Hive::Phone.new
     updated_phone.tag = 'work'
     updated_phone.phone = '18006666'
 
@@ -216,7 +216,7 @@ describe 'Contacts API' do
 
     contact = client.contact(create_base_contact)
 
-    date = Wix::Hive::Date.new
+    date = Hive::Date.new
     date.date = Time.now.iso8601(3)
     date.tag = 'update'
 
@@ -232,7 +232,7 @@ describe 'Contacts API' do
     #base_contact.add_note('content', Time.now.iso8601(3))
     contact = client.contact(create_base_contact)
 
-    note = Wix::Hive::Note.new
+    note = Hive::Note.new
     note.content = 'Note'
     note.modifiedAt = Time.now.iso8601(3)
 
@@ -245,7 +245,7 @@ describe 'Contacts API' do
     pending 'CE-2301'
     contact = client.contact(create_base_contact)
 
-    custom = Wix::Hive::Custom.new
+    custom = Hive::Custom.new
     custom.field = 'custom_update'
     custom.value = 'custom_value'
 
@@ -256,7 +256,7 @@ describe 'Contacts API' do
   end
 
   it '.add_contact_address' do
-    new_address = Wix::Hive::Address.new
+    new_address = Hive::Address.new
     new_address.tag = 'work'
     new_address.address = '1625 Larimer St.'
 
@@ -267,7 +267,7 @@ describe 'Contacts API' do
   end
 
   it '.add_contact_email' do
-    new_email = Wix::Hive::Email.new
+    new_email = Hive::Email.new
     new_email.tag = 'work_new'
     new_email.email = 'alex_new@example.com'
 
@@ -278,7 +278,7 @@ describe 'Contacts API' do
   end
 
   it '.add_contact_phone' do
-    new_phone = Wix::Hive::Phone.new
+    new_phone = Hive::Phone.new
     new_phone.tag = 'work_new'
     new_phone.phone = '18006666'
 
@@ -289,7 +289,7 @@ describe 'Contacts API' do
   end
 
   it '.add_contact_note' do
-    note = Wix::Hive::Note.new
+    note = Hive::Note.new
     note.content = 'Note'
     note.modifiedAt = Time.now.iso8601(3)
 
@@ -301,7 +301,7 @@ describe 'Contacts API' do
   end
 
   it '.add_contact_custom' do
-    custom = Wix::Hive::Custom.new
+    custom = Hive::Custom.new
     custom.field = 'custom_update'
     custom.value = 'custom_value'
 
@@ -323,7 +323,7 @@ describe 'Contacts API' do
   it '.add_contact_activity' do
     contact_id = create_base_contact
 
-    activity = Wix::Hive::Activity.new(
+    activity = Hive::Activity.new(
         type: FACTORY::MUSIC_ALBUM_FAN.type,
         locationUrl: 'http://www.wix.com',
         details: { summary: 'test', additionalInfoUrl: 'http://www.wix.com' },
@@ -338,7 +338,7 @@ describe 'Contacts API' do
   it '.contact_activities' do
     contact_id = create_base_contact
 
-    activity = Wix::Hive::Activity.new(
+    activity = Hive::Activity.new(
         type: FACTORY::MUSIC_ALBUM_FAN.type,
         locationUrl: 'http://www.wix.com',
         details: { summary: 'test', additionalInfoUrl: 'http://www.wix.com' },
@@ -349,8 +349,8 @@ describe 'Contacts API' do
     expect(update_response.activityId).to be_truthy
 
     cursored_result = client.contact_activities(contact_id)
-    expect(cursored_result).to be_a Wix::Hive::Cursor
-    expect(cursored_result.results.first).to be_a Wix::Hive::Activity
+    expect(cursored_result).to be_a Hive::Cursor
+    expect(cursored_result.results.first).to be_a Hive::Activity
   end
 
   private

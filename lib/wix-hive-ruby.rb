@@ -1,5 +1,5 @@
 # Client
-require 'wix/hive/connect/wix_client'
+require 'hive/connect/wix_client'
 
 # Extensions
-require 'wix/hive/extensions/hashie_hash'
+require 'hive/extensions/hashie_hash'
