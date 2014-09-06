@@ -1,5 +1,5 @@
 # THIS IS A GENERATED FILE, DO NOT EDIT THIS
-# Generated on 2014-09-04T06:21:23.229Z
+# Generated on 2014-09-04T11:56:21.986Z
 
 require 'hashie'
 
@@ -40,6 +40,10 @@ module Hive
         property :taxes, default: []
         property :total, required: true
         property :currency, required: true
+
+        def add_tax(args)
+          taxes << Tax.new(args)
+        end
       end
 
       class Invoice < Hashie::Trash
@@ -88,6 +92,10 @@ module Hive
         property :id
         property :beds, default: []
         property :maxOccupancy, required: true
+
+        def add_bed(args)
+          beds << Bed.new(args)
+        end
       end
 
       class ConfirmationActivity < Hashie::Trash
@@ -109,6 +117,14 @@ module Hive
         property :invoice, required: true
         property :customer
         property :rooms, default: []
+
+        def add_rate(args)
+          rates << Rate.new(args)
+        end
+
+        def add_room(args)
+          rooms << Room.new(args)
+        end
       end
     end
   end

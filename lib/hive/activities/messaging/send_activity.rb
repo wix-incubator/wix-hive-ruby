@@ -1,5 +1,5 @@
 # THIS IS A GENERATED FILE, DO NOT EDIT THIS
-# Generated on 2014-09-04T06:21:23.190Z
+# Generated on 2014-09-04T11:56:21.948Z
 
 require 'hashie'
 
@@ -52,6 +52,10 @@ module Hive
 
         property :conversionType, required: true
         property :metadata, default: []
+
+        def add_metadata(args)
+          metadata << Metadata.new(args)
+        end
       end
 
       class SendActivity < Hashie::Trash

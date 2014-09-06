@@ -1,5 +1,5 @@
 # THIS IS A GENERATED FILE, DO NOT EDIT THIS
-# Generated on 2014-09-04T06:21:23.110Z
+# Generated on 2014-09-04T11:56:21.863Z
 
 require 'hashie'
 
@@ -20,6 +20,10 @@ module Hive
         coerce_key :fields, Array[Field]
 
         property :fields, default: [], required: true
+
+        def add_field(args)
+          fields << Field.new(args)
+        end
       end
     end
   end

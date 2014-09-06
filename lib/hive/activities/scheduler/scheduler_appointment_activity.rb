@@ -1,5 +1,5 @@
 # THIS IS A GENERATED FILE, DO NOT EDIT THIS
-# Generated on 2014-09-04T06:21:23.266Z
+# Generated on 2014-09-04T11:56:22.029Z
 
 require 'hashie'
 
@@ -62,6 +62,10 @@ module Hive
         property :location
         property :time
         property :attendees, default: []
+
+        def add_attendee(args)
+          attendees << Attendee.new(args)
+        end
       end
     end
   end

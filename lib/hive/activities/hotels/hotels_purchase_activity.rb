@@ -1,5 +1,5 @@
 # THIS IS A GENERATED FILE, DO NOT EDIT THIS
-# Generated on 2014-09-04T06:21:23.251Z
+# Generated on 2014-09-04T11:56:22.010Z
 
 require 'hashie'
 
@@ -33,6 +33,14 @@ module Hive
         property :payment, required: true
         property :customer
         property :rooms, default: []
+
+        def add_rate(args)
+          rates << Rate.new(args)
+        end
+
+        def add_room(args)
+          rooms << Room.new(args)
+        end
       end
     end
   end

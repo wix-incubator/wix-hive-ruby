@@ -1,5 +1,5 @@
 # THIS IS A GENERATED FILE, DO NOT EDIT THIS
-# Generated on 2014-09-04T06:21:23.174Z
+# Generated on 2014-09-04T11:56:21.925Z
 
 require 'hashie'
 
@@ -38,6 +38,10 @@ module Hive
         property :formattedWeight
         property :media
         property :variants, default: [], required: true
+
+        def add_variant(args)
+          variants << Variant.new(args)
+        end
       end
 
       class Coupon < Hashie::Trash
@@ -135,6 +139,10 @@ module Hive
         property :paymentGateway
         property :note
         property :buyerAcceptsMarketing
+
+        def add_item(args)
+          items << Item.new(args)
+        end
       end
     end
   end

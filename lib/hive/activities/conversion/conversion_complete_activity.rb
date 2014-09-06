@@ -1,5 +1,5 @@
 # THIS IS A GENERATED FILE, DO NOT EDIT THIS
-# Generated on 2014-09-04T06:21:23.146Z
+# Generated on 2014-09-04T11:56:21.898Z
 
 require 'hashie'
 
@@ -22,6 +22,10 @@ module Hive
         property :conversionType, required: true
         property :messageId
         property :metadata, default: []
+
+        def add_metadata(args)
+          metadata << Metadata.new(args)
+        end
       end
     end
   end

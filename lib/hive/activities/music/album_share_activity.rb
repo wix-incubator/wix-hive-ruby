@@ -1,5 +1,5 @@
 # THIS IS A GENERATED FILE, DO NOT EDIT THIS
-# Generated on 2014-09-04T06:21:23.200Z
+# Generated on 2014-09-04T11:56:21.957Z
 
 require 'hashie'
 

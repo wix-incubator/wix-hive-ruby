@@ -1,5 +1,5 @@
 # THIS IS A GENERATED FILE, DO NOT EDIT THIS
-# Generated on 2014-09-04T06:21:23.137Z
+# Generated on 2014-09-04T11:56:21.890Z
 
 require 'hashie'
 
@@ -83,6 +83,26 @@ module Hive
         property :addresses, default: [], required: true
         property :dates, default: [], required: true
         property :urls, default: [], required: true
+
+        def add_email(args)
+          emails << Email.new(args)
+        end
+
+        def add_phone(args)
+          phones << Phone.new(args)
+        end
+
+        def add_address(args)
+          addresses << Address.new(args)
+        end
+
+        def add_date(args)
+          dates << Date.new(args)
+        end
+
+        def add_url(args)
+          urls << Url.new(args)
+        end
       end
     end
   end
