@@ -10,7 +10,7 @@ describe 'Contacts API' do
     contact
   }
 
-  it '.create_contact' do
+  it '.new_contact' do
     contact = Hive::Contact.new
     contact.name.first = 'E2E'
     contact.name.last = 'Cool'

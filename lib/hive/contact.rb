@@ -22,6 +22,8 @@ module Hive
     property :tag
     property :email
     property :emailStatus
+    property :contactSubscriptionStatus
+    property :siteOwnerSubscriptionStatus
     property :unsubscribeLink
   end
 
