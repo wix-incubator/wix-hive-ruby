@@ -5,8 +5,8 @@ describe 'Contacts API' do
     contact = Hive::Contact.new
     contact.name.first = 'Wix'
     contact.name.last = 'Cool'
-    contact.add_email('alext@wix.com', 'work')
-    contact.add_phone('123456789', 'work')
+    contact.add_email(email: 'alext@wix.com', tag: 'work')
+    contact.add_phone(phone: '123456789', tag: 'work')
     contact
   }
 
@@ -16,14 +16,14 @@ describe 'Contacts API' do
     contact.name.last = 'Cool'
     contact.company.name = 'Wix'
     contact.company.role = 'CEO'
-    contact.add_email('alext@wix.com', 'work')
-    contact.add_phone('123456789', 'work')
-    contact.add_address('home', address: '28208 N Inca St.', neighborhood: 'LODO', city: 'Denver', region: 'CO', country: 'US', postalCode: '80202')
-    contact.add_date(Time.now.iso8601(3), 'E2E')
-    contact.add_url('wix.com', 'site')
+    contact.add_email(email: 'alext@wix.com', tag: 'work')
+    contact.add_phone(phone: '123456789', tag: 'work')
+    contact.add_address(tag: 'home', address: '28208 N Inca St.', neighborhood: 'LODO', city: 'Denver', region: 'CO', country: 'US', postalCode: '80202')
+    contact.add_date(date: Time.now.iso8601(3), tag: 'E2E')
+    contact.add_url(url: 'wix.com', tag: 'site')
     # CE-2301
-    # contact.add_note('alex', '2014-08-05T13:59:37.873Z')
-    # contact.add_custom('custom1', 'custom')
+    # contact.add_note(content: 'alex', modifiedAt: '2014-08-05T13:59:37.873Z')
+    # contact.add_custom(field: 'custom1', value: 'custom')
     expect(client.new_contact(contact)).to include :contactId
   end
 
@@ -79,20 +79,20 @@ describe 'Contacts API' do
     contact = Hive::Contact.new
     contact.name.first = 'E2E'
     contact.name.last = 'Cool'
-    contact.add_email('alext@wix.com', 'work')
-    contact.add_address('home', address: '28208 N Inca St.', neighborhood: 'LODO', city: 'Denver', region: 'CO', country: 'US', postalCode: '80202')
-    contact.add_date(Time.now.iso8601(3), 'E2E')
-    contact.add_url('wix.com', 'site')
+    contact.add_email(email: 'alext@wix.com', tag: 'work')
+    contact.add_address(tag: 'home', address: '28208 N Inca St.', neighborhood: 'LODO', city: 'Denver', region: 'CO', country: 'US', postalCode: '80202')
+    contact.add_date(date: Time.now.iso8601(3), tag: 'E2E')
+    contact.add_url(url: 'wix.com', tag: 'site')
 
     create_response = client.new_contact(contact)
 
     expect(create_response).to include :contactId
 
     contact.id = create_response[:contactId]
-    contact.add_email('wow@wix.com', 'wow')
-    contact.add_address('home2', address: '1625 Larimer', neighborhood: 'LODO', city: 'Denver', region: 'CO', country: 'US', postalCode: '80202')
-    contact.add_date(Time.now.iso8601(3), 'E2E UPDATE')
-    contact.add_url('wix.com', 'site2')
+    contact.add_email(email: 'wow@wix.com', tag: 'wow')
+    contact.add_address(tag: 'home2', address: '1625 Larimer', neighborhood: 'LODO', city: 'Denver', region: 'CO', country: 'US', postalCode: '80202')
+    contact.add_date(date: Time.now.iso8601(3), tag: 'E2E UPDATE')
+    contact.add_url(url: 'wix.com', tag: 'site2')
 
     pending 'CE-2306'
     updated_contact = client.update_contact(contact)
@@ -169,7 +169,7 @@ describe 'Contacts API' do
   end
 
   it '.update_contact_address' do
-    base_contact.add_address('home', address: '28208 N Inca St.', neighborhood: 'LODO', city: 'Denver', region: 'CO', country: 'US', postalCode: '80202')
+    base_contact.add_address(tag: 'home', address: '28208 N Inca St.', neighborhood: 'LODO', city: 'Denver', region: 'CO', country: 'US', postalCode: '80202')
 
     contact = client.contact(create_base_contact)
 
@@ -213,7 +213,7 @@ describe 'Contacts API' do
   end
 
   it '.update_contact_date' do
-    base_contact.add_date(Time.now.iso8601(3), 'E2E')
+    base_contact.add_date(date: Time.now.iso8601(3), tag: 'E2E')
 
     contact = client.contact(create_base_contact)
 
@@ -230,7 +230,7 @@ describe 'Contacts API' do
 
   it '.update_contact_note' do
     pending 'CE-2301'
-    #base_contact.add_note('content', Time.now.iso8601(3))
+    #base_contact.add_note(content: 'content', modifiedAt: Time.now.iso8601(3))
     contact = client.contact(create_base_contact)
 
     note = Hive::Note.new

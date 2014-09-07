@@ -9,8 +9,8 @@ describe 'Insights API' do
     contact = Hive::Contact.new
     contact.name.first = 'Wix'
     contact.name.last = 'Cool'
-    contact.add_email('alext@wix.com', 'work')
-    contact.add_phone('123456789', 'work')
+    contact.add_email(email: 'alext@wix.com', tag: 'work')
+    contact.add_phone(phone: '123456789', tag: 'work')
 
     create_contact = client.new_contact(contact)
 

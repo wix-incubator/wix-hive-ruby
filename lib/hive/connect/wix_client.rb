@@ -15,7 +15,7 @@ module Hive
   class Client
     include Hive::REST::API
 
-    attr_accessor :secret_key, :app_id, :instance_id, :api_base, :api_family, :api_version, :logger
+    attr_accessor :secret_key, :app_id, :instance_id, :api_family, :api_version, :logger
     attr_writer :user_agent
     API_BASE = 'https://openapi.wix.com'
 

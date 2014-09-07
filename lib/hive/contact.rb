@@ -111,36 +111,33 @@ module Hive
 
     remove_method :emails=, :phones=, :addresses=, :urls=, :dates=, :notes=, :custom=, :links=, :tags=
 
-    def add_email(email, tag)
-      emails << Email.new(email: email, tag: tag)
+    def add_email(args)
+      emails << Email.new(args)
     end
 
-    def add_phone(phone, tag)
-      phones << Phone.new(phone: phone, tag: tag)
+    def add_phone(args)
+      phones << Phone.new(args)
     end
 
-    def add_address(tag, optional_args = {})
-      address_hash = { tag: tag }
-      address_hash.update(optional_args)
-
-      addresses << Address.new(address_hash)
+    def add_address(args)
+      addresses << Address.new(args)
     end
 
-    def add_url(url, tag)
-      urls << Url.new(url: url, tag: tag)
+    def add_url(args)
+      urls << Url.new(args)
     end
 
-    def add_date(date, tag)
-      dates << Date.new(date: date, tag: tag)
+    def add_date(args)
+      dates << Date.new(args)
     end
 
     # There is a problem with the API at the moment so we can't post this data to i. CE-2301
-    # def add_note(content, modified_at)
-    #   notes << Note.new(content: content, modifiedAt: modified_at)
+    # def add_note(args)
+    #   notes << Note.new(args)
     # end
     #
-    # def add_custom(field, value)
-    #   custom << Custom.new(field: field, value: value)
+    # def add_custom(args)
+    #   custom << Custom.new(args)
     # end
   end
 
