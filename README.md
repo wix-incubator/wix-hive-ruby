@@ -9,6 +9,46 @@ A Ruby interface to the Wix Hive API.
    * **[Configuration](#configuration)**
      * **[Basic configuration](#the-basic-configuration-is)**
      * **[Advanced configuration](#advanced-configuration-options-include)**
+4. **[Hive DTOs](#hive-dtos)**
+   * **[Constructing request data](#constructing-request-data)**
+   * **[Accessing response data](#accessing-response-data)** 
+5. **[Hive Cursored Data](#hive-cursored-data)**
+6. **[Hive Errors](#hive-errors)**
+   * **[Response Errors](#response-errors)**
+   * **[Other Errors](#other-errors)**
+7. **[Contacts API](#contacts-api)**
+   * **[client.create_contact](#clientcreate_contact)**
+   * **[client.contact](#clientcontact)**
+   * **[client.update_contact (PENDING)](#clientupdate_contact-pending)**
+   * **[client.contacts_tags (PENDING)](#clientcontacts_tags-pending)**
+   * **[client.contacts_subscribers (PENDING)](#clientcontacts_subscribers-pending)**
+   * **[client.update_contact_name](#clientupdate_contact_name)**
+   * **[client.update_contact_company](#clientupdate_contact_company)**
+   * **[client.update_contact_picture](#clientupdate_contact_picture)**
+   * **[client.update_contact_address](#clientupdate_contact_address)**
+   * **[client.update_contact_email](#clientupdate_contact_email)**
+   * **[client.update_contact_phone](#clientupdate_contact_phone)**
+   * **[client.update_contact_date](#clientupdate_contact_date)**
+   * **[client.update_contact_note (PENDING)](#clientupdate_contact_note-pending)**
+   * **[client.update_contact_custom (PENDING)](#clientupdate_contact_custom-pending)**
+   * **[client.add_contact_address](#clientadd_contact_address)**
+   * **[client.add_contact_email](#clientadd_contact_email)**
+   * **[client.add_contact_phone](#clientadd_contact_phone)**
+   * **[client.add_contact_note](#clientadd_contact_note)**
+   * **[client.add_contact_custom](#clientadd_contact_custom)**
+   * **[client.add_contact_tags (PENDING)](#clientadd_contact_tags-pending)**
+   * **[client.add_contact_activity](#clientadd_contact_activity)**
+   * **[client.contact_activities](#clientcontact_activities)**
+   * **[client.contacts](#clientcontacts)**
+   * **[client.upsert_contact](#clientupsert_contact)**
+8. **[Activities API](#activities-api)**
+   * **[client.new_activity](#clientnew_activity)**
+   * **[client.activity](#clientactivity)**
+   * **[client.activities](#clientactivities)**
+9. **[Insights API](#insights-api)**
+   * **[client.activities_summary](#clientactivities_summary)**
+   * **[client.contact_activities_summary](#clientcontact_activities_summary)**
+
 
 ## Prerequisites
 - **Read about** [developing a third party app for the Wix platform](http://dev.wix.com/docs/display/DRAF/Third+Party+Apps+-+Introduction).
@@ -456,7 +496,7 @@ client.contacts( firstName: 'E2E' )
 client.contacts( lastName:'Cool' )
 ```
 
-#### `upsert_contact`
+#### `client.upsert_contact`
 
 **Examples:**
 ```
@@ -468,7 +508,7 @@ client.upsert_contact( phone: '123456789', email: 'alex@example.com' )
 ### Activities API
 **Note**: Activity info is created via a factory: 'FACTORY = Hive::Activities'
 
-#### `.new_activity`
+#### `client.new_activity`
 
 **Example:**
    ```
@@ -481,14 +521,16 @@ client.upsert_contact( phone: '123456789', email: 'alex@example.com' )
    client.new_activity(SESSION_ID, base_activity)
    ```
    
-####  `.activity`
+####  `client.activity`
 
 **Example:**
+
    ```
    client.activity(ACTIVITY_ID)
    ```
    
 #### `.activities`
+
 **Examples:**
    ```
    client.activities
