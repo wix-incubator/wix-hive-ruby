@@ -64,6 +64,26 @@ module Hive
       raise(Hive::Response::Error, error)
     end
 
+    class << self
+      def parse_instance_data(signed_instance, app_secret)
+        signature, encoded_json = signed_instance.split('.', 2)
+
+        fail Hive::SignatureError, 'invalid signed instance' if signature.nil? || encoded_json.nil?
+
+        encoded_json_hack = encoded_json + ('=' * (4 - encoded_json.length.modulo(4)))
+
+        json_str = Base64.urlsafe_decode64(encoded_json_hack)
+
+        hmac = OpenSSL::HMAC.digest(OpenSSL::Digest::SHA256.new, app_secret, encoded_json)
+
+        my_signature = Base64.urlsafe_encode64(hmac).gsub('=', '')
+
+        fail Hive::SignatureError, 'the signatures do not match' if signature != my_signature
+
+        Hashie::Mash.new(JSON.parse(json_str))
+      end
+    end
+
     private
 
     def validate_configuration!

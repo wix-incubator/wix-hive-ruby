@@ -2,9 +2,10 @@ require 'spec_helper'
 
 describe Hive::Client do
 
-  let(:secret_key) { 's3cret' }
-  let(:app_id) { '1111111' }
-  let(:instance_id) { '11111' }
+  let(:secret_key) { '21c9be40-fda0-4f01-8091-3a525db5dcb6' }
+  let(:app_id) { '13832826-96d2-70f0-7eb7-8e107a37f1d2' }
+  let(:instance_id) { '138328bd-0cde-04e3-d7be-8f5500e362e7' }
+  let(:instance) {'Ikf28Yx7zaY_J0jKyHwvumeSzKde0nuOn-N9ZqzXo_k.eyJpbnN0YW5jZUlkIjoiMTM4MzI4YmQtMGNkZS0wNGUzLWQ3YmUtOGY1NTAwZTM2MmU3Iiwic2lnbkRhdGUiOiIyMDE0LTA5LTA3VDA2OjU5OjEwLjk0NC0wNTowMCIsInVpZCI6ImExMWJiMzM0LWZkZDQtNDUxZi05YWU1LTM5M2U2MTJlNzZhYSIsInBlcm1pc3Npb25zIjoiT1dORVIiLCJpcEFuZFBvcnQiOiJudWxsL251bGwiLCJ2ZW5kb3JQcm9kdWN0SWQiOm51bGwsImRlbW9Nb2RlIjpmYWxzZX0'}
   subject(:client) {
     Hive::Client.new do |config|
       config.secret_key = secret_key
@@ -24,6 +25,22 @@ describe Hive::Client do
 
     it 'when no instance id is provided' do
       expect { Hive::Client.new( secret_key: secret_key, app_id: app_id) }.to raise_error Hive::ConfigurationError
+    end
+  end
+
+  context '.parse_instance_data' do
+    it 'can parse the instance data' do
+      wixInstance = Hive::Client.parse_instance_data(instance, secret_key)
+
+      expect(instance_id).to eq wixInstance.instanceId
+    end
+
+    it 'throws an error when the signatures dont match' do
+      expect { Hive::Client.parse_instance_data(instance, 'invalid') }.to raise_error Hive::SignatureError
+    end
+
+    it 'throws an error when the invalid instance data is provided' do
+      expect { Hive::Client.parse_instance_data('invalid', secret_key) }.to raise_error Hive::SignatureError
     end
   end
 
