@@ -214,8 +214,8 @@ Hive::SignatureError
 ### Contacts API
 
 #### `client.new_contact`
-   * Example:
-   ```
+  * Example:
+  ```
    contact = Hive::Contact.new
        contact.name.first = 'E2E'
        contact.name.last = 'Cool'
@@ -230,14 +230,14 @@ Hive::SignatureError
        # contact.add_note(content: 'alex', modifiedAt: '2014-08-05T13:59:37.873Z')
        # contact.add_custom(field: 'custom1', value: 'custom')
        client.new_contact(contact)
-   ```
+  ```
 #### `client.contact`
-   * Example:
-   ```
+  * Example:
+  ```
    client.contact(CONTACT_ID)
-   ```
+  ```
 ####  `client.update_contact (PENDING)`
-   * Example:
+  * Example:
    ```
    contact.id = CONTACT_ID
        contact.add_email(email: 'wow@wix.com', tag: 'wow')
