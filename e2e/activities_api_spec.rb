@@ -24,6 +24,8 @@ describe 'Activities API' do
 
     expect(new_activity_result.activityId).to be_truthy
 
+    sleep(2)
+
     expect(client.activity(new_activity_result.activityId)).to be_a Hive::Activity
   end
 
