@@ -540,14 +540,14 @@ client.upsert_contact( phone: '123456789', email: 'alex@example.com' )
    
 ### Insights API
 
-#### `.activities_summary`
+#### `client.activities_summary`
 
 **Example:**
    ```
    client.activities_summary
    ```
    
-####  `.contact_activities_summary`
+####  `client.contact_activities_summary`
 
 **Example:**
    ```
