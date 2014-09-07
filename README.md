@@ -214,216 +214,263 @@ Hive::SignatureError
 ### Contacts API
 
 #### `client.new_contact`
-  * Example:
-  ```
-   contact = Hive::Contact.new
-       contact.name.first = 'E2E'
-       contact.name.last = 'Cool'
-       contact.company.name = 'Wix'
-       contact.company.role = 'CEO'
-       contact.add_email(email: 'alext@wix.com', tag: 'work')
-       contact.add_phone(phone: '123456789', tag: 'work')
-       contact.add_address(tag: 'home', address: '28208 N Inca St.', neighborhood: 'LODO', city: 'Denver', region: 'CO', country: 'US', postalCode: '80202')
-       contact.add_date(date: Time.now.iso8601(3), tag: 'E2E')
-       contact.add_url(url: 'wix.com', tag: 'site')
-       # PENDING
-       # contact.add_note(content: 'alex', modifiedAt: '2014-08-05T13:59:37.873Z')
-       # contact.add_custom(field: 'custom1', value: 'custom')
-       client.new_contact(contact)
-  ```
+
+**Example:**
+```
+contact = Hive::Contact.new
+   contact.name.first = 'E2E'
+   contact.name.last = 'Cool'
+   contact.company.name = 'Wix'
+   contact.company.role = 'CEO'
+   contact.add_email(email: 'alext@wix.com', tag: 'work')
+   contact.add_phone(phone: '123456789', tag: 'work')
+   contact.add_address(tag: 'home', address: '28208 N Inca St.', neighborhood: 'LODO', city: 'Denver', region: 'CO', country: 'US', postalCode: '80202')
+   contact.add_date(date: Time.now.iso8601(3), tag: 'E2E')
+   contact.add_url(url: 'wix.com', tag: 'site')
+   # PENDING
+   # contact.add_note(content: 'alex', modifiedAt: '2014-08-05T13:59:37.873Z')
+   # contact.add_custom(field: 'custom1', value: 'custom')
+   client.new_contact(contact)
+```
+  
 #### `client.contact`
-  * Example:
-  ```
-   client.contact(CONTACT_ID)
-  ```
+
+**Example:**
+```
+client.contact(CONTACT_ID)
+```
+
 ####  `client.update_contact (PENDING)`
-  * Example:
-   ```
-   contact.id = CONTACT_ID
-       contact.add_email(email: 'wow@wix.com', tag: 'wow')
-       contact.add_address(tag: 'home2', address: '1625 Larimer', neighborhood: 'LODO', city: 'Denver', region: 'CO', country: 'US', postalCode: '80202')
-       contact.add_date(date: Time.now.iso8601(3), tag: 'E2E UPDATE')
-       contact.add_url(url: 'wix.com', tag: 'site')
-   
-       # PENDING
-       client.update_contact(contact)
-   ```
+
+**Example:**
+```
+contact.id = CONTACT_ID
+   contact.add_email(email: 'wow@wix.com', tag: 'wow')
+   contact.add_address(tag: 'home2', address: '1625 Larimer', neighborhood: 'LODO', city: 'Denver', region: 'CO', country: 'US', postalCode: '80202')
+   contact.add_date(date: Time.now.iso8601(3), tag: 'E2E UPDATE')
+   contact.add_url(url: 'wix.com', tag: 'site')
+
+   # PENDING
+   client.update_contact(contact)
+```
+
 ####  `client.contacts_tags (PENDING)`
-   * Example:
-   ```
-   client.contacts_tags
-   ```
+
+**Example:**
+```
+client.contacts_tags
+```
+
 ####  `client.contacts_subscribers (PENDING)`
-   * Example:
-   ```
-   client.contacts_subscribers
-   ```
+
+**Example:**
+```
+client.contacts_subscribers
+```
+
 ####  `client.update_contact_name`
-   * Example:
-   ```
-   client.update_contact_name(CONTACT_ID, Hive::Name.new(first: 'New_Name'))
-   ```
+
+**Example:**
+```
+client.update_contact_name(CONTACT_ID, Hive::Name.new(first: 'New_Name'))
+```
+
 ####  `client.update_contact_company`
-   * Example:
-   ```
-   company = Hive::Company.new
-       company.name = 'New_Company'
-   
-       client.update_contact_company(CONTACT_ID, company)
-   ```
+
+**Example:**
+```
+company = Hive::Company.new
+   company.name = 'New_Company'
+
+   client.update_contact_company(CONTACT_ID, company)
+```
+
 ####  `client.update_contact_picture`
-   * Example:
-   ```
-   client.update_contact_picture(CONTACT_ID, 'wix.com/example.jpg')
-   ```
+
+**Example:**
+```
+client.update_contact_picture(CONTACT_ID, 'wix.com/example.jpg')
+```
+
 ####  `client.update_contact_address`
-   * Example:
-   ```
-   updated_address = Hive::Address.new
-       updated_address.tag = 'work'
-       updated_address.address = '1625 Larimer St.'
-   
-       client.update_contact_address(CONTACT_ID, ADDRESS_ID, updated_address)
-   ```
+
+**Example:**
+```
+updated_address = Hive::Address.new
+   updated_address.tag = 'work'
+   updated_address.address = '1625 Larimer St.'
+
+   client.update_contact_address(CONTACT_ID, ADDRESS_ID, updated_address)
+```
+
 ####  `client.update_contact_email`
-   * Example:
-   ```
-   updated_email = Hive::Email.new
-       updated_email.tag = 'work'
-       updated_email.email = 'alex@example.com'
-       updated_email.emailStatus = 'optOut'
-   
-       client.update_contact_email(CONTACT_ID, EMAIL_ID, updated_email)
-   ```
+
+**Example:**
+```
+updated_email = Hive::Email.new
+   updated_email.tag = 'work'
+   updated_email.email = 'alex@example.com'
+   updated_email.emailStatus = 'optOut'
+
+   client.update_contact_email(CONTACT_ID, EMAIL_ID, updated_email)
+```
+
 ####  `client.update_contact_phone`
-   * Example:
-   ```
-   updated_phone = Hive::Phone.new
-       updated_phone.tag = 'work'
-       updated_phone.phone = '18006666'
-   
-       client.update_contact_phone(CONTACT_ID, PHONE_ID, updated_phone)
-   ```
+
+**Example:**
+```
+updated_phone = Hive::Phone.new
+   updated_phone.tag = 'work'
+   updated_phone.phone = '18006666'
+
+   client.update_contact_phone(CONTACT_ID, PHONE_ID, updated_phone)
+```
+
 #### `client.update_contact_date`
-   * Example:
-   ```
-   date = Hive::Date.new
-       date.date = Time.now.iso8601(3)
-       date.tag = 'update'
-   
-       client.update_contact_date(CONTACT_ID, DATE_ID, date)
-   ```
+
+**Example:**
+```
+date = Hive::Date.new
+   date.date = Time.now.iso8601(3)
+   date.tag = 'update'
+
+   client.update_contact_date(CONTACT_ID, DATE_ID, date)
+```
+
 ####  `client.update_contact_note (PENDING)`
-   * Example:
-   ```
-   note = Hive::Note.new
-       note.content = 'Note'
-       note.modifiedAt = Time.now.iso8601(3)
-   
-       client.update_contact_phone(CONTACT_ID, NOTE_ID, note)
-   ```
+
+**Example:**
+```
+note = Hive::Note.new
+   note.content = 'Note'
+   note.modifiedAt = Time.now.iso8601(3)
+
+   client.update_contact_phone(CONTACT_ID, NOTE_ID, note)
+```
+
 ####  `client.update_contact_custom (PENDING)`
-   * Example:
-   ```
-   custom = Hive::Custom.new
-       custom.field = 'custom_update'
-       custom.value = 'custom_value'
-   
-       client.update_contact_phone(CONTACT_ID, CUSTOM_ID, custom)
-   ```
+
+**Example:**
+```
+custom = Hive::Custom.new
+   custom.field = 'custom_update'
+   custom.value = 'custom_value'
+
+   client.update_contact_phone(CONTACT_ID, CUSTOM_ID, custom)
+```
+
 ####  `client.add_contact_address`
-   * Example:
-   ```
-   new_address = Hive::Address.new
-       new_address.tag = 'work'
-       new_address.address = '1625 Larimer St.'
-   
-       client.add_contact_address(CONTACT_ID, new_address)
-   ```
+
+**Example:**
+```
+new_address = Hive::Address.new
+   new_address.tag = 'work'
+   new_address.address = '1625 Larimer St.'
+
+   client.add_contact_address(CONTACT_ID, new_address)
+```
+
 ####  `client.add_contact_email`
-   * Example:
-   ```
-   new_email = Hive::Email.new
-       new_email.tag = 'work_new'
-       new_email.email = 'alex_new@example.com'
-       new_email.emailStatus = 'optOut'
-   
-       client.add_contact_email(CONTACT_ID, new_email)
-   ```
+
+**Example:**
+```
+new_email = Hive::Email.new
+   new_email.tag = 'work_new'
+   new_email.email = 'alex_new@example.com'
+   new_email.emailStatus = 'optOut'
+
+   client.add_contact_email(CONTACT_ID, new_email)
+```
+
 ####  `client.add_contact_phone`
-   * Example:
-   ```
-   new_phone = Hive::Phone.new
-       new_phone.tag = 'work_new'
-       new_phone.phone = '18006666'
-   
-       client.add_contact_phone(CONTACT_ID, new_phone)
-   ```
+
+**Example:**
+```
+new_phone = Hive::Phone.new
+   new_phone.tag = 'work_new'
+   new_phone.phone = '18006666'
+
+   client.add_contact_phone(CONTACT_ID, new_phone)
+```
+
 ####  `client.add_contact_note`
-   * Example:
-   ```
-   note = Hive::Note.new
-       note.content = 'Note'
-   
-       client.add_contact_note(CONTACT_ID, note)
-   ```
+**Example:**
+```
+note = Hive::Note.new
+   note.content = 'Note'
+
+   client.add_contact_note(CONTACT_ID, note)
+```
+
 ####  `client.add_contact_custom`
-   * Example:
-   ```
-   custom = Hive::Custom.new
-       custom.field = 'custom_update'
-       custom.value = 'custom_value'
-   
-       client.add_contact_custom(CONTACT_ID, custom)
-   ```
+
+**Example:**
+```
+custom = Hive::Custom.new
+   custom.field = 'custom_update'
+   custom.value = 'custom_value'
+
+   client.add_contact_custom(CONTACT_ID, custom)
+```
+
 ####  `client.add_contact_tags (PENDING)`
-   * Example:
-   ```
-   tags = ['tag1/tag', 'tag2/tag']
-   
-       client.add_contact_tags(CONTACT_ID, tags)
-   ```
+
+**Example:**
+```
+tags = ['tag1/tag', 'tag2/tag']
+
+   client.add_contact_tags(CONTACT_ID, tags)
+```
+
 ####  `client.add_contact_activity`
-   * Example:
-   ```
-   FACTORY = Hive::Activities
-   activity = Hive::Activity.new(
-           type: FACTORY::MUSIC_ALBUM_FAN.type,
-           locationUrl: 'http://www.wix.com',
-           details: { summary: 'test', additionalInfoUrl: 'http://www.wix.com' },
-           info: { album: { name: 'Wix', id: '1234' } })
-   
-       client.add_contact_activity(CONTACT_ID, activity)
-   ```
+
+**Example:**
+```
+FACTORY = Hive::Activities
+activity = Hive::Activity.new(
+       type: FACTORY::MUSIC_ALBUM_FAN.type,
+       locationUrl: 'http://www.wix.com',
+       details: { summary: 'test', additionalInfoUrl: 'http://www.wix.com' },
+       info: { album: { name: 'Wix', id: '1234' } })
+
+   client.add_contact_activity(CONTACT_ID, activity)
+```
+
 ####  `client.contact_activities`
-   * Example:
-   ```
-   client.contact_activities(CONTACT_ID)
-   ```
+
+**Example:**
+```
+client.contact_activities(CONTACT_ID)
+```
+
 #### `client.contacts`
-   * Examples:
-   ```
-   client.contacts
-   client.contacts( pageSize: 50 )
-   client.contacts( tag: 'contacts_server/new' )
-   client.contacts( email: 'alex@example.com' )
-   client.contacts( phone: '123456789' )
-   client.contacts( firstName: 'E2E' )
-   client.contacts( lastName:'Cool' )
-   ```
+
+**Examples:**
+```
+client.contacts
+client.contacts( pageSize: 50 )
+client.contacts( tag: 'contacts_server/new' )
+client.contacts( email: 'alex@example.com' )
+client.contacts( phone: '123456789' )
+client.contacts( firstName: 'E2E' )
+client.contacts( lastName:'Cool' )
+```
+
 #### `upsert_contact`
-   * Examples:
-   ```
-   client.upsert_contact( phone: '123456789' )
-   client.upsert_contact( email: 'alex@example.com' )
-   client.upsert_contact( phone: '123456789', email: 'alex@example.com' )
-   ```
+
+**Examples:**
+```
+client.upsert_contact( phone: '123456789' )
+client.upsert_contact( email: 'alex@example.com' )
+client.upsert_contact( phone: '123456789', email: 'alex@example.com' )
+```
 
 ### Activities API
 **Note**: Activity info is created via a factory: 'FACTORY = Hive::Activities'
 
 #### `.new_activity`
-   * Example:
+
+**Example:**
    ```
    Hive::Activity.new(
            type: FACTORY::MUSIC_ALBUM_FAN.type,
@@ -433,13 +480,16 @@ Hive::SignatureError
            
    client.new_activity(SESSION_ID, base_activity)
    ```
+   
 ####  `.activity`
-   * Example:
+
+**Example:**
    ```
    client.activity(ACTIVITY_ID)
    ```
+   
 #### `.activities`
-   * Examples:
+**Examples:**
    ```
    client.activities
    client.activities(activityTypes: Hive::Activities::MUSIC_ALBUM_FAN.type)
@@ -447,13 +497,17 @@ Hive::SignatureError
    ```
    
 ### Insights API
+
 #### `.activities_summary`
-   * Example:
+
+**Example:**
    ```
    client.activities_summary
    ```
+   
 ####  `.contact_activities_summary`
-   * Example:
+
+**Example:**
    ```
    client.contact_activities_summary(CONTACT_ID)
    ```
