@@ -3,8 +3,12 @@
 A Ruby interface to the Wix Hive API.
 
 ### Table of Contents
-**[Prerequisites](#prerequisites)**  
-**[Installation](#installation)**
+1. **[Prerequisites](#prerequisites)**  
+2. **[Installation](#installation)**
+3. **[Quick Start](#quick-start)**
+   * **[Configuration](#configuration)**
+     * **[Basic configuration](#the-basic-configuration-is)**
+     * **[Advanced configuration](#advanced-configuration-options-include)**
 
 ## Prerequisites
 - **Read about** [developing a third party app for the Wix platform](http://dev.wix.com/docs/display/DRAF/Third+Party+Apps+-+Introduction).
