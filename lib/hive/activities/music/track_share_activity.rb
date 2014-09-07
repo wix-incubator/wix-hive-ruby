@@ -1,7 +1,8 @@
 # THIS IS A GENERATED FILE, DO NOT EDIT THIS
-# Generated on 2014-09-04T11:56:21.973Z
+# Generated on 2014-09-07T15:01:00.796Z
 
 require 'hashie'
+require 'hive/extensions/hashie_validate_enum'
 
 module Hive
   module Activities
@@ -22,7 +23,7 @@ module Hive
 
         property :track
         property :album
-        property :sharedTo, required: true
+        property :sharedTo, required: true, transform_with: Hashie::Validate.enum(%w(FACEBOOK GOOGLE_PLUS TWITTER))
       end
     end
   end

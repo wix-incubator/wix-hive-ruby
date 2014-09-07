@@ -4,7 +4,7 @@ describe Hashie::Hash do
 
   context '.flexibly_convert_to_hash' do
     it 'does not raise an error when a class with property method is provided' do
-      class_with_method = Hive::Activities::Messaging::Recipient.new(method: 'method', destination: {target: 'localhost'})
+      class_with_method = Hive::Activities::Messaging::Recipient.new(method: 'EMAIL', destination: {target: 'localhost'})
       expect { described_class.new.flexibly_convert_to_hash(class_with_method) }.not_to raise_error
     end
 

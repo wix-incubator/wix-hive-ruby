@@ -1,7 +1,8 @@
 # THIS IS A GENERATED FILE, DO NOT EDIT THIS
-# Generated on 2014-09-04T11:56:22.000Z
+# Generated on 2014-09-07T15:01:00.825Z
 
 require 'hashie'
+require 'hive/extensions/hashie_validate_enum'
 
 module Hive
   module Activities
@@ -9,7 +10,7 @@ module Hive
       class Refund < Hashie::Trash
         include Hashie::Extensions::IgnoreUndeclared
 
-        property :kind, required: true
+        property :kind, required: true, transform_with: Hashie::Validate.enum(%w(FULL PARTIAL NONE))
         property :total, required: true
         property :currency, required: true
         property :notes

@@ -1,7 +1,8 @@
 # THIS IS A GENERATED FILE, DO NOT EDIT THIS
-# Generated on 2014-09-04T11:56:21.986Z
+# Generated on 2014-09-07T15:01:00.812Z
 
 require 'hashie'
+require 'hive/extensions/hashie_validate_enum'
 
 module Hive
   module Activities
@@ -109,7 +110,7 @@ module Hive
         coerce_key :customer, Customer
         coerce_key :rooms, Array[Room]
 
-        property :source, required: true
+        property :source, required: true, transform_with: Hashie::Validate.enum(%w(GUEST STAFF))
         property :reservationId
         property :guests, required: true
         property :stay, required: true

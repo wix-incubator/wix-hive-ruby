@@ -1,7 +1,8 @@
 # THIS IS A GENERATED FILE, DO NOT EDIT THIS
-# Generated on 2014-09-04T11:56:21.948Z
+# Generated on 2014-09-07T15:01:00.771Z
 
 require 'hashie'
+require 'hive/extensions/hashie_validate_enum'
 
 module Hive
   module Activities
@@ -32,7 +33,7 @@ module Hive
 
         coerce_key :destination, Destination
 
-        property :method, required: true
+        property :method, required: true, transform_with: Hashie::Validate.enum(%w(EMAIL SMS PHONE SOCIAL))
         property :destination, required: true
         property :contactId
       end
@@ -50,7 +51,7 @@ module Hive
 
         coerce_key :metadata, Array[Metadata]
 
-        property :conversionType, required: true
+        property :conversionType, required: true, transform_with: Hashie::Validate.enum(%w(PAGEVIEW PURCHASE UPGRADE LIKE FAN NONE))
         property :metadata, default: []
 
         def add_metadata(args)

@@ -1,7 +1,8 @@
 # THIS IS A GENERATED FILE, DO NOT EDIT THIS
-# Generated on 2014-09-04T11:56:21.898Z
+# Generated on 2014-09-07T15:01:00.717Z
 
 require 'hashie'
+require 'hive/extensions/hashie_validate_enum'
 
 module Hive
   module Activities
@@ -19,7 +20,7 @@ module Hive
 
         coerce_key :metadata, Array[Metadata]
 
-        property :conversionType, required: true
+        property :conversionType, required: true, transform_with: Hashie::Validate.enum(%w(PAGEVIEW PURCHASE UPGRADE LIKE FAN NONE))
         property :messageId
         property :metadata, default: []
 
