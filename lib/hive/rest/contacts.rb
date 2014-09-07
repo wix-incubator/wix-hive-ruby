@@ -103,11 +103,11 @@ module Hive
       private
 
       def edit_contact_field(url, body)
-        perform_with_object(:put, url, Hive::Contact, body: body.to_json, params: { modifiedAt: Time.now.to_i })
+        perform_with_object(:put, url, Hive::Contact, body: body.to_json, params: { modifiedAt: Time.now.iso8601(3) })
       end
 
       def add_contact_field(url, body)
-        perform_with_object(:post, url, Hive::Contact, body: body.to_json, params: { modifiedAt: Time.now.to_i })
+        perform_with_object(:post, url, Hive::Contact, body: body.to_json, params: { modifiedAt: Time.now.iso8601(3) })
       end
     end
   end

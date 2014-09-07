@@ -191,6 +191,7 @@ describe 'Contacts API' do
     updated_email = Hive::Email.new
     updated_email.tag = 'work'
     updated_email.email = 'alex@example.com'
+    updated_email.emailStatus = 'optOut'
 
     update_response = client.update_contact_email(contact.id, contact.emails.first.id, updated_email)
 
@@ -270,6 +271,7 @@ describe 'Contacts API' do
     new_email = Hive::Email.new
     new_email.tag = 'work_new'
     new_email.email = 'alex_new@example.com'
+    new_email.emailStatus = 'optOut'
 
     add_response = client.add_contact_email(create_base_contact, new_email)
 
@@ -291,12 +293,10 @@ describe 'Contacts API' do
   it '.add_contact_note' do
     note = Hive::Note.new
     note.content = 'Note'
-    note.modifiedAt = Time.now.iso8601(3)
 
     add_response = client.add_contact_note(create_base_contact, note)
 
     expect(add_response.notes.last.content).to eq note.content
-    pending 'CE-2298'
     expect(add_response.notes.last.modifiedAt).to eq note.modifiedAt
   end
 
