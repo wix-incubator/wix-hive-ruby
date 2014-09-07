@@ -17,7 +17,7 @@ A Ruby interface to the Wix Hive API.
    * **[Response Errors](#response-errors)**
    * **[Other Errors](#other-errors)**
 7. **[Contacts API](#contacts-api)**
-   * **[client.create_contact](#clientcreate_contact)**
+   * **[client.new_contact](#clientnew_contact)**
    * **[client.contact](#clientcontact)**
    * **[client.update_contact (PENDING)](#clientupdate_contact-pending)**
    * **[client.contacts_tags (PENDING)](#clientcontacts_tags-pending)**
