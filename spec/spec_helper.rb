@@ -53,3 +53,5 @@ end
 def stub_put(path)
   stub_request(:put, Hive::Client::API_BASE + path)
 end
+
+ACTIVITIES_FACTORY = Hive::Activities

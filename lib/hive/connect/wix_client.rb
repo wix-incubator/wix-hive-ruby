@@ -8,20 +8,43 @@ require 'timeout'
 require 'hive/connect/response/parse_json'
 require 'hive/connect/response/raise_error'
 require 'hive/connect/response/error'
+require 'hive/version'
+require 'logger'
 
 module Hive
   class Client
     include Hive::REST::API
 
-    attr_accessor :secret_key, :app_id, :instance_id, :api_base, :api_family, :api_version
+    attr_accessor :secret_key, :app_id, :instance_id, :api_base, :api_family, :api_version, :logger
+    attr_writer :user_agent
     API_BASE = 'https://openapi.wix.com'
 
-    def initialize(secret_key, app_id, instance_id)
-      @secret_key = secret_key
-      @app_id = app_id
-      @instance_id = instance_id
+    def initialize(options = {})
+      # Defaults
       @api_family = 'v1'
       @api_version = '1.0.0'
+
+      options.each do |key, value|
+        send(:"#{key}=", value)
+      end
+      yield(self) if block_given?
+
+      validate_configuration!
+    end
+
+    def headers=(options = {})
+      connection_options[:headers].merge!(options)
+    end
+
+    # :nocov:
+    def request_config=(options = {})
+      connection_options[:request].merge!(options)
+    end
+    # :nocov:
+
+    # @return [String]
+    def user_agent
+      @user_agent ||= "Hive Ruby Gem #{Hive::Version}"
     end
 
     def wix_request(request)
@@ -41,6 +64,18 @@ module Hive
       raise(Hive::Response::Error, error)
     end
 
+    private
+
+    def validate_configuration!
+      if secret_key.nil?
+        fail Hive::ConfigurationError, "Invalid secret key: #{secret_key}"
+      elsif app_id.nil?
+        fail Hive::ConfigurationError, "Invalid app id: #{app_id}"
+      elsif instance_id.nil?
+        fail Hive::ConfigurationError, "Invalid instance id: #{instance_id}"
+      end
+    end
+
     def middleware
       @middleware ||= Faraday::RackBuilder.new do |faraday|
         # Checks for files in the payload, otherwise leaves everything untouched
@@ -54,17 +89,30 @@ module Hive
         # Parse JSON response bodies
         faraday.response :parse_json
         # Log requests to the STDOUT
-        faraday.response :logger
+        add_logger(faraday)
         # Set default HTTP adapter
         faraday.adapter Faraday.default_adapter
       end
     end
 
+    # :nocov:
+    def add_logger(faraday)
+      case @logger
+      when :file
+        faraday.use Faraday::Response::Logger, Logger.new('hive.log')
+      when :stdout
+        faraday.use Faraday::Response::Logger
+      end
+    end
+    # :nocov:
+
+    # rubocop:disable Style/MethodLength:
     def connection_options
       @connection_options ||= {
         builder: middleware,
         headers: {
-          accept: 'application/json'
+          accept: 'application/json',
+          user_agent: user_agent
         },
         request: {
           open_timeout: 10,
@@ -72,8 +120,6 @@ module Hive
         }
       }
     end
-
-    private
 
     def connection
       @connection ||= Faraday.new(API_BASE, connection_options)

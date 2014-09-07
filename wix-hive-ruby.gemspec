@@ -1,10 +1,11 @@
 # coding: utf-8
 lib = File.expand_path('../lib', __FILE__)
 $LOAD_PATH.unshift(lib) unless $LOAD_PATH.include?(lib)
+require 'hive/version'
 
 Gem::Specification.new do |spec|
   spec.name          = 'wix-hive-ruby'
-  spec.version       = '0.0.1'
+  spec.version       = Hive::Version
   spec.authors       = ['David Zuckerman']
   spec.email         = ['davidz@wix.com']
   spec.summary       = 'Client to connect to Wix Hive APIs'
