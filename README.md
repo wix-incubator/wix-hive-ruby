@@ -76,11 +76,14 @@ end
 
 ### Hive DTOs
 The Hive DTOs are based on [Hashie](https://github.com/intridea/hashie) which in essence means that they are hashes with extra functionality. 
+
 ####Constructing request data
-There are two ways of doing it:
+
+#####There are two ways of doing it:
+
 1. The "OO way" which is basically creating objects and composing them together. 
-   * Example:
-   ```
+  * Example:
+  ```
    contact = Hive::Contact.new
    contact.name.first = 'E2E'
    contact.name.last = 'Cool'
@@ -91,10 +94,10 @@ There are two ways of doing it:
    contact.add_address(tag: 'home', address: '28208 N Inca St.', neighborhood: 'LODO', city: 'Denver', region: 'CO', country: 'US', postalCode: '80202')
    contact.add_date(date: Time.now.iso8601(3), tag: 'E2E')
    contact.add_url(url: 'wix.com', tag: 'site')
-   ```
+  ```
 2. The "dynamic way" which means creating hashes and wiring them together. (Note: these will be transformed to objects 'under the hood'.)
-   * Example:
-   ```
+  * Example:
+  ```
    guest = { total: 1, adults: 1, children: 0 }
    
    day_ago = (Time.now - (60 * 60 * 24)).iso8601(3)
@@ -109,13 +112,14 @@ There are two ways of doing it:
         locationUrl: 'http://www.wix.com',
         details: {summary: 'test', additionalInfoUrl: 'http://www.wix.com'},
         info: { source: 'GUEST', guests: guest, stay: stay, invoice: invoice, payment: payment })
-   ```
+  ```
    
 ###Accessing response data
+
 The response JSON is transformed into a DTO object. And can be accessed as shown in the example below:
-   * Example:
-   JSON response
-   ```
+
+  * Example JSON response:
+  ```
    {
        "createdAt": "2014-09-02T04:57:43.081-05:00",
        "emails": [
@@ -151,9 +155,11 @@ The response JSON is transformed into a DTO object. And can be accessed as shown
        ],
        "urls": []
    }
-   ```
-   Accessing data:
-   ```
+  ```
+  
+  * Example accessing data:
+  
+  ```
    contact.id # "9e2c4236-2b81-4800-b7bd-d0365c9a391e"
    contact.createdAt # "2014-09-02T04:57:43.081-05:00"
    contact.name.first # "Wix"
@@ -163,7 +169,7 @@ The response JSON is transformed into a DTO object. And can be accessed as shown
    contact.phones.first.tag # work
    contact.tags.first # "contacts/create"
    contact.emails.first.email # "alext@wix.com"
-   ```
+  ```
 
 ### Hive Cursored Data
 A cursored response JSON looks like:
@@ -207,7 +213,6 @@ Hive::SignatureError
 
 ### Contacts API
 
-```
 1. `client.new_contact`
    * Example:
    ```
