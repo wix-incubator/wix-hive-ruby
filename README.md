@@ -213,7 +213,7 @@ Hive::SignatureError
 
 ### Contacts API
 
-1. `client.new_contact`
+#### `client.new_contact`
    * Example:
    ```
    contact = Hive::Contact.new
@@ -231,12 +231,12 @@ Hive::SignatureError
        # contact.add_custom(field: 'custom1', value: 'custom')
        client.new_contact(contact)
    ```
-2. `client.contact`
+#### `client.contact`
    * Example:
    ```
    client.contact(CONTACT_ID)
    ```
-3.  `client.update_contact (PENDING)`
+####  `client.update_contact (PENDING)`
    * Example:
    ```
    contact.id = CONTACT_ID
@@ -248,22 +248,22 @@ Hive::SignatureError
        # PENDING
        client.update_contact(contact)
    ```
-4.  `client.contacts_tags (PENDING)`
+####  `client.contacts_tags (PENDING)`
    * Example:
    ```
    client.contacts_tags
    ```
-5.  `client.contacts_subscribers (PENDING)`
+####  `client.contacts_subscribers (PENDING)`
    * Example:
    ```
    client.contacts_subscribers
    ```
-6.  `client.update_contact_name`
+####  `client.update_contact_name`
    * Example:
    ```
    client.update_contact_name(CONTACT_ID, Hive::Name.new(first: 'New_Name'))
    ```
-7.  `client.update_contact_company`
+####  `client.update_contact_company`
    * Example:
    ```
    company = Hive::Company.new
@@ -271,12 +271,12 @@ Hive::SignatureError
    
        client.update_contact_company(CONTACT_ID, company)
    ```
-8.  `client.update_contact_picture`
+####  `client.update_contact_picture`
    * Example:
    ```
    client.update_contact_picture(CONTACT_ID, 'wix.com/example.jpg')
    ```
-9.  `client.update_contact_address`
+####  `client.update_contact_address`
    * Example:
    ```
    updated_address = Hive::Address.new
@@ -285,7 +285,7 @@ Hive::SignatureError
    
        client.update_contact_address(CONTACT_ID, ADDRESS_ID, updated_address)
    ```
-10.  `client.update_contact_email`
+####  `client.update_contact_email`
    * Example:
    ```
    updated_email = Hive::Email.new
@@ -295,7 +295,7 @@ Hive::SignatureError
    
        client.update_contact_email(CONTACT_ID, EMAIL_ID, updated_email)
    ```
-11.  `client.update_contact_phone`
+####  `client.update_contact_phone`
    * Example:
    ```
    updated_phone = Hive::Phone.new
@@ -304,7 +304,7 @@ Hive::SignatureError
    
        client.update_contact_phone(CONTACT_ID, PHONE_ID, updated_phone)
    ```
-12. `client.update_contact_date`
+#### `client.update_contact_date`
    * Example:
    ```
    date = Hive::Date.new
@@ -313,7 +313,7 @@ Hive::SignatureError
    
        client.update_contact_date(CONTACT_ID, DATE_ID, date)
    ```
-13.  `client.update_contact_note (PENDING)`
+####  `client.update_contact_note (PENDING)`
    * Example:
    ```
    note = Hive::Note.new
@@ -322,7 +322,7 @@ Hive::SignatureError
    
        client.update_contact_phone(CONTACT_ID, NOTE_ID, note)
    ```
-14.  `client.update_contact_custom (PENDING)`
+####  `client.update_contact_custom (PENDING)`
    * Example:
    ```
    custom = Hive::Custom.new
@@ -331,7 +331,7 @@ Hive::SignatureError
    
        client.update_contact_phone(CONTACT_ID, CUSTOM_ID, custom)
    ```
-15.  `client.add_contact_address`
+####  `client.add_contact_address`
    * Example:
    ```
    new_address = Hive::Address.new
@@ -340,7 +340,7 @@ Hive::SignatureError
    
        client.add_contact_address(CONTACT_ID, new_address)
    ```
-16.  `client.add_contact_email`
+####  `client.add_contact_email`
    * Example:
    ```
    new_email = Hive::Email.new
@@ -350,7 +350,7 @@ Hive::SignatureError
    
        client.add_contact_email(CONTACT_ID, new_email)
    ```
-17.  `client.add_contact_phone`
+####  `client.add_contact_phone`
    * Example:
    ```
    new_phone = Hive::Phone.new
@@ -359,7 +359,7 @@ Hive::SignatureError
    
        client.add_contact_phone(CONTACT_ID, new_phone)
    ```
-18.  `client.add_contact_note`
+####  `client.add_contact_note`
    * Example:
    ```
    note = Hive::Note.new
@@ -367,7 +367,7 @@ Hive::SignatureError
    
        client.add_contact_note(CONTACT_ID, note)
    ```
-19.  `client.add_contact_custom`
+####  `client.add_contact_custom`
    * Example:
    ```
    custom = Hive::Custom.new
@@ -376,14 +376,14 @@ Hive::SignatureError
    
        client.add_contact_custom(CONTACT_ID, custom)
    ```
-20.  `client.add_contact_tags (PENDING)`
+####  `client.add_contact_tags (PENDING)`
    * Example:
    ```
    tags = ['tag1/tag', 'tag2/tag']
    
        client.add_contact_tags(CONTACT_ID, tags)
    ```
-21.  `client.add_contact_activity`
+####  `client.add_contact_activity`
    * Example:
    ```
    FACTORY = Hive::Activities
@@ -395,12 +395,12 @@ Hive::SignatureError
    
        client.add_contact_activity(CONTACT_ID, activity)
    ```
-22.  `client.contact_activities`
+####  `client.contact_activities`
    * Example:
    ```
    client.contact_activities(CONTACT_ID)
    ```
-23. `client.contacts`
+#### `client.contacts`
    * Examples:
    ```
    client.contacts
@@ -411,7 +411,7 @@ Hive::SignatureError
    client.contacts( firstName: 'E2E' )
    client.contacts( lastName:'Cool' )
    ```
-24. `upsert_contact`
+#### `upsert_contact`
    * Examples:
    ```
    client.upsert_contact( phone: '123456789' )
@@ -422,7 +422,7 @@ Hive::SignatureError
 ### Activities API
 **Note**: Activity info is created via a factory: 'FACTORY = Hive::Activities'
 
-1. `.new_activity`
+#### `.new_activity`
    * Example:
    ```
    Hive::Activity.new(
@@ -433,12 +433,12 @@ Hive::SignatureError
            
    client.new_activity(SESSION_ID, base_activity)
    ```
-2.  `.activity`
+####  `.activity`
    * Example:
    ```
    client.activity(ACTIVITY_ID)
    ```
-3. `.activities`
+#### `.activities`
    * Examples:
    ```
    client.activities
@@ -447,12 +447,12 @@ Hive::SignatureError
    ```
    
 ### Insights API
-1. `.activities_summary`
+#### `.activities_summary`
    * Example:
    ```
    client.activities_summary
    ```
-2.  `.contact_activities_summary`
+####  `.contact_activities_summary`
    * Example:
    ```
    client.contact_activities_summary(CONTACT_ID)
