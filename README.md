@@ -48,7 +48,7 @@ A Ruby interface to the Wix Hive API.
 9. **[Insights API](#insights-api)**
    * **[client.activities_summary](#clientactivities_summary)**
    * **[client.contact_activities_summary](#clientcontact_activities_summary)**
-10. **[Contributing]**(#contributing)
+10. **[Contributing](#contributing)**
    * **[Submitting an Issue](#submitting-an-issue)**
    * **[Submitting a Pull Request](#submitting-a-pull-request)**
 
