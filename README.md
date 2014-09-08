@@ -173,7 +173,7 @@ The Hive DTOs are based on [Hashie](https://github.com/intridea/hashie) which in
 
 1. The "OO way" which is basically creating objects and composing them together. 
   * Example:
-  ```
+  ``` ruby
    contact = Hive::Contact.new
    contact.name.first = 'E2E'
    contact.name.last = 'Cool'
@@ -187,7 +187,7 @@ The Hive DTOs are based on [Hashie](https://github.com/intridea/hashie) which in
   ```
 2. The "dynamic way" which means creating hashes and wiring them together. (Note: these will be transformed to objects 'under the hood'.)
   * Example:
-  ```
+  ``` ruby
    guest = { total: 1, adults: 1, children: 0 }
    
    day_ago = (Time.now - (60 * 60 * 24)).iso8601(3)
@@ -209,7 +209,7 @@ The Hive DTOs are based on [Hashie](https://github.com/intridea/hashie) which in
 The response JSON is transformed into a DTO object. And can be accessed as shown in the example below:
 
   * Example JSON response:
-  ```
+  ``` json
    {
        "createdAt": "2014-09-02T04:57:43.081-05:00",
        "emails": [
@@ -249,7 +249,7 @@ The response JSON is transformed into a DTO object. And can be accessed as shown
   
   * Example accessing data:
   
-  ```
+  ``` ruby
    contact.id # "9e2c4236-2b81-4800-b7bd-d0365c9a391e"
    contact.createdAt # "2014-09-02T04:57:43.081-05:00"
    contact.name.first # "Wix"
@@ -263,7 +263,7 @@ The response JSON is transformed into a DTO object. And can be accessed as shown
 
 ### Hive Cursored Data
 A cursored response JSON looks like:
-```
+``` json
 {
     "nextCursor": "fd14d5ef831fb9d2e43da26b2c8fe74b704d3fd9ab8be9a251540ecea236f28fa532c035b4ca796387ab114aa37fef098b5cddf114fca450f8868b27e3393299",
     "pageSize": 25,
@@ -306,7 +306,7 @@ Hive::SignatureError
 #### client.new_contact
 
 **Example:**
-```
+``` ruby
 contact = Hive::Contact.new
    contact.name.first = 'E2E'
    contact.name.last = 'Cool'
@@ -333,7 +333,7 @@ client.contact(CONTACT_ID)
 #### client.update_contact (PENDING)
 
 **Example:**
-```
+``` ruby
 contact.id = CONTACT_ID
    contact.add_email(email: 'wow@wix.com', tag: 'wow')
    contact.add_address(tag: 'home2', address: '1625 Larimer', neighborhood: 'LODO', city: 'Denver', region: 'CO', country: 'US', postalCode: '80202')
@@ -368,7 +368,7 @@ client.update_contact_name(CONTACT_ID, Hive::Name.new(first: 'New_Name'))
 #### client.update_contact_company
 
 **Example:**
-```
+``` ruby
 company = Hive::Company.new
    company.name = 'New_Company'
 
@@ -385,7 +385,7 @@ client.update_contact_picture(CONTACT_ID, 'wix.com/example.jpg')
 #### client.update_contact_address
 
 **Example:**
-```
+``` ruby
 updated_address = Hive::Address.new
    updated_address.tag = 'work'
    updated_address.address = '1625 Larimer St.'
@@ -396,7 +396,7 @@ updated_address = Hive::Address.new
 #### client.update_contact_email
 
 **Example:**
-```
+``` ruby
 updated_email = Hive::Email.new
    updated_email.tag = 'work'
    updated_email.email = 'alex@example.com'
@@ -408,7 +408,7 @@ updated_email = Hive::Email.new
 #### client.update_contact_phone
 
 **Example:**
-```
+``` ruby
 updated_phone = Hive::Phone.new
    updated_phone.tag = 'work'
    updated_phone.phone = '18006666'
@@ -419,7 +419,7 @@ updated_phone = Hive::Phone.new
 #### client.update_contact_date
 
 **Example:**
-```
+``` ruby
 date = Hive::Date.new
    date.date = Time.now.iso8601(3)
    date.tag = 'update'
@@ -430,7 +430,7 @@ date = Hive::Date.new
 #### client.update_contact_note (PENDING)
 
 **Example:**
-```
+``` ruby
 note = Hive::Note.new
    note.content = 'Note'
    note.modifiedAt = Time.now.iso8601(3)
@@ -441,7 +441,7 @@ note = Hive::Note.new
 #### client.update_contact_custom (PENDING)
 
 **Example:**
-```
+``` ruby
 custom = Hive::Custom.new
    custom.field = 'custom_update'
    custom.value = 'custom_value'
@@ -452,7 +452,7 @@ custom = Hive::Custom.new
 #### client.add_contact_address
 
 **Example:**
-```
+``` ruby
 new_address = Hive::Address.new
    new_address.tag = 'work'
    new_address.address = '1625 Larimer St.'
@@ -463,7 +463,7 @@ new_address = Hive::Address.new
 #### client.add_contact_email
 
 **Example:**
-```
+``` ruby
 new_email = Hive::Email.new
    new_email.tag = 'work_new'
    new_email.email = 'alex_new@example.com'
