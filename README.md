@@ -253,7 +253,7 @@ Hive::SignatureError
 
 ### Contacts API
 
-#### `client.new_contact`
+#### client.new_contact
 
 **Example:**
 ```
@@ -273,14 +273,14 @@ contact = Hive::Contact.new
    client.new_contact(contact)
 ```
   
-#### `client.contact`
+#### client.contact
 
 **Example:**
 ```
 client.contact(CONTACT_ID)
 ```
 
-####  `client.update_contact (PENDING)`
+#### client.update_contact (PENDING)
 
 **Example:**
 ```
@@ -294,28 +294,28 @@ contact.id = CONTACT_ID
    client.update_contact(contact)
 ```
 
-####  `client.contacts_tags (PENDING)`
+#### client.contacts_tags (PENDING)
 
 **Example:**
 ```
 client.contacts_tags
 ```
 
-####  `client.contacts_subscribers (PENDING)`
+#### client.contacts_subscribers (PENDING)
 
 **Example:**
 ```
 client.contacts_subscribers
 ```
 
-####  `client.update_contact_name`
+#### client.update_contact_name
 
 **Example:**
 ```
 client.update_contact_name(CONTACT_ID, Hive::Name.new(first: 'New_Name'))
 ```
 
-####  `client.update_contact_company`
+#### client.update_contact_company
 
 **Example:**
 ```
@@ -325,14 +325,14 @@ company = Hive::Company.new
    client.update_contact_company(CONTACT_ID, company)
 ```
 
-####  `client.update_contact_picture`
+#### client.update_contact_picture
 
 **Example:**
 ```
 client.update_contact_picture(CONTACT_ID, 'wix.com/example.jpg')
 ```
 
-####  `client.update_contact_address`
+#### client.update_contact_address
 
 **Example:**
 ```
@@ -343,7 +343,7 @@ updated_address = Hive::Address.new
    client.update_contact_address(CONTACT_ID, ADDRESS_ID, updated_address)
 ```
 
-####  `client.update_contact_email`
+#### client.update_contact_email
 
 **Example:**
 ```
@@ -355,7 +355,7 @@ updated_email = Hive::Email.new
    client.update_contact_email(CONTACT_ID, EMAIL_ID, updated_email)
 ```
 
-####  `client.update_contact_phone`
+#### client.update_contact_phone
 
 **Example:**
 ```
@@ -366,7 +366,7 @@ updated_phone = Hive::Phone.new
    client.update_contact_phone(CONTACT_ID, PHONE_ID, updated_phone)
 ```
 
-#### `client.update_contact_date`
+#### client.update_contact_date
 
 **Example:**
 ```
@@ -377,7 +377,7 @@ date = Hive::Date.new
    client.update_contact_date(CONTACT_ID, DATE_ID, date)
 ```
 
-####  `client.update_contact_note (PENDING)`
+#### client.update_contact_note (PENDING)
 
 **Example:**
 ```
@@ -388,7 +388,7 @@ note = Hive::Note.new
    client.update_contact_phone(CONTACT_ID, NOTE_ID, note)
 ```
 
-####  `client.update_contact_custom (PENDING)`
+#### client.update_contact_custom (PENDING)
 
 **Example:**
 ```
@@ -399,7 +399,7 @@ custom = Hive::Custom.new
    client.update_contact_phone(CONTACT_ID, CUSTOM_ID, custom)
 ```
 
-####  `client.add_contact_address`
+#### client.add_contact_address
 
 **Example:**
 ```
@@ -410,7 +410,7 @@ new_address = Hive::Address.new
    client.add_contact_address(CONTACT_ID, new_address)
 ```
 
-####  `client.add_contact_email`
+#### client.add_contact_email
 
 **Example:**
 ```
@@ -422,7 +422,7 @@ new_email = Hive::Email.new
    client.add_contact_email(CONTACT_ID, new_email)
 ```
 
-####  `client.add_contact_phone`
+#### client.add_contact_phone
 
 **Example:**
 ```
@@ -433,7 +433,7 @@ new_phone = Hive::Phone.new
    client.add_contact_phone(CONTACT_ID, new_phone)
 ```
 
-####  `client.add_contact_note`
+#### client.add_contact_note
 **Example:**
 ```
 note = Hive::Note.new
@@ -442,7 +442,7 @@ note = Hive::Note.new
    client.add_contact_note(CONTACT_ID, note)
 ```
 
-####  `client.add_contact_custom`
+#### client.add_contact_custom
 
 **Example:**
 ```
@@ -453,7 +453,7 @@ custom = Hive::Custom.new
    client.add_contact_custom(CONTACT_ID, custom)
 ```
 
-####  `client.add_contact_tags (PENDING)`
+#### client.add_contact_tags (PENDING)
 
 **Example:**
 ```
@@ -462,7 +462,7 @@ tags = ['tag1/tag', 'tag2/tag']
    client.add_contact_tags(CONTACT_ID, tags)
 ```
 
-####  `client.add_contact_activity`
+#### client.add_contact_activity
 
 **Example:**
 ```
@@ -476,14 +476,14 @@ activity = Hive::Activity.new(
    client.add_contact_activity(CONTACT_ID, activity)
 ```
 
-####  `client.contact_activities`
+#### client.contact_activities
 
 **Example:**
 ```
 client.contact_activities(CONTACT_ID)
 ```
 
-#### `client.contacts`
+#### client.contacts
 
 **Examples:**
 ```
@@ -496,7 +496,7 @@ client.contacts( firstName: 'E2E' )
 client.contacts( lastName:'Cool' )
 ```
 
-#### `client.upsert_contact`
+#### client.upsert_contact
 
 **Examples:**
 ```
@@ -508,7 +508,7 @@ client.upsert_contact( phone: '123456789', email: 'alex@example.com' )
 ### Activities API
 **Note**: Activity info is created via a factory: 'FACTORY = Hive::Activities'
 
-#### `client.new_activity`
+#### client.new_activity
 
 **Example:**
    ```
@@ -521,7 +521,7 @@ client.upsert_contact( phone: '123456789', email: 'alex@example.com' )
    client.new_activity(SESSION_ID, base_activity)
    ```
    
-####  `client.activity`
+#### client.activity
 
 **Example:**
 
@@ -529,7 +529,7 @@ client.upsert_contact( phone: '123456789', email: 'alex@example.com' )
    client.activity(ACTIVITY_ID)
    ```
    
-#### `.activities`
+#### .activities
 
 **Examples:**
    ```
@@ -540,14 +540,14 @@ client.upsert_contact( phone: '123456789', email: 'alex@example.com' )
    
 ### Insights API
 
-#### `client.activities_summary`
+#### client.activities_summary
 
 **Example:**
    ```
    client.activities_summary
    ```
    
-####  `client.contact_activities_summary`
+#### client.contact_activities_summary
 
 **Example:**
    ```
