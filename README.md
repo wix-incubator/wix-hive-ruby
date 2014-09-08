@@ -77,20 +77,24 @@ Or install it yourself as:
 require 'sinatra'
 require 'wix-hive-ruby'
 
-SECRET_KEY = '21c9be40-fda0-4f01-8091-3a525db5dcb6'
-APP_ID = '13832826-96d2-70f0-7eb7-8e107a37f1d2'
+SECRET_KEY = 'YOUR_SECRET_KEY'
+APP_ID = 'YOUR_APP_ID'
 
+# The route should match the app endpoint set during registration
 get '/' do
+  # The GET request to your app endpoint will contain an instance parameter for you to parse
   instance = params.delete('instance')
 
+  # Parse the instance parameter
   wixInstance = Hive::Client.parse_instance_data(instance, SECRET_KEY)
 
+  # Create a Wix Hive Client
   client = Hive::Client.new do |config|
     config.secret_key = SECRET_KEY
     config.app_id = APP_ID
     config.instance_id = wixInstance.instanceId
   end
-
+  
   contact = Hive::Contact.new
   contact.name.first = 'Quick'
   contact.name.last = 'Start'
@@ -98,6 +102,7 @@ get '/' do
   contact.add_phone(phone: '123456789', tag: 'work')
   contact.add_url(url: 'wix.com', tag: 'site')
 
+  # Create a new contact
   contact_res = client.new_contact(contact)
 
   FACTORY = Hive::Activities
@@ -107,6 +112,7 @@ get '/' do
        details: { summary: 'test', additionalInfoUrl: 'http://www.wix.com' },
        info: { album: { name: 'Wix', id: '1234' } })
 
+  # Add an activity to the contact
   activity_res = client.add_contact_activity(contact_res.contactId, activity)
 
   body "Contact created: #{contact_res.contactId}. 
@@ -153,12 +159,12 @@ end
    * `:file` logs the request and response data to hive.log.
 2. `config.request_config` appends items to the default [Faraday](https://github.com/lostisland/faraday) request configuration.
    * Example:
-   ```
+   ``` ruby
    config.request_config = { open_timeout: 10, timeout: 30 }
    ```
 3. `config.headers` appends items to the default request headers. 
    * Example:
-   ```
+   ``` ruby
    config.headers = { custom-header: 'custom' }
    ```
 4. `config.api_family` global api family version defaults to `v1`.
@@ -283,7 +289,7 @@ Here is a list of methods that the cursor object contains:
       
 ### Hive Errors
 #### Response Errors
-```
+``` ruby
  400 => Hive::Response::Error::BadRequest,
  403 => Hive::Response::Error::Forbidden,
  404 => Hive::Response::Error::NotFound,
@@ -295,7 +301,7 @@ Here is a list of methods that the cursor object contains:
  504 => Hive::Response::Error::GatewayTimeout
 ```
 #### Other Errors
-```
+``` ruby
 Hive::CursorOperationError
 Hive::ConfigurationError
 Hive::SignatureError
@@ -326,7 +332,7 @@ contact = Hive::Contact.new
 #### client.contact
 
 **Example:**
-```
+``` ruby
 client.contact(CONTACT_ID)
 ```
 
@@ -347,21 +353,21 @@ contact.id = CONTACT_ID
 #### client.contacts_tags (PENDING)
 
 **Example:**
-```
+``` ruby
 client.contacts_tags
 ```
 
 #### client.contacts_subscribers (PENDING)
 
 **Example:**
-```
+``` ruby
 client.contacts_subscribers
 ```
 
 #### client.update_contact_name
 
 **Example:**
-```
+``` ruby
 client.update_contact_name(CONTACT_ID, Hive::Name.new(first: 'New_Name'))
 ```
 
@@ -378,7 +384,7 @@ company = Hive::Company.new
 #### client.update_contact_picture
 
 **Example:**
-```
+``` ruby
 client.update_contact_picture(CONTACT_ID, 'wix.com/example.jpg')
 ```
 
@@ -475,7 +481,7 @@ new_email = Hive::Email.new
 #### client.add_contact_phone
 
 **Example:**
-```
+``` ruby
 new_phone = Hive::Phone.new
    new_phone.tag = 'work_new'
    new_phone.phone = '18006666'
@@ -485,7 +491,7 @@ new_phone = Hive::Phone.new
 
 #### client.add_contact_note
 **Example:**
-```
+``` ruby
 note = Hive::Note.new
    note.content = 'Note'
 
@@ -495,7 +501,7 @@ note = Hive::Note.new
 #### client.add_contact_custom
 
 **Example:**
-```
+``` ruby
 custom = Hive::Custom.new
    custom.field = 'custom_update'
    custom.value = 'custom_value'
@@ -506,7 +512,7 @@ custom = Hive::Custom.new
 #### client.add_contact_tags (PENDING)
 
 **Example:**
-```
+``` ruby
 tags = ['tag1/tag', 'tag2/tag']
 
    client.add_contact_tags(CONTACT_ID, tags)
@@ -515,7 +521,7 @@ tags = ['tag1/tag', 'tag2/tag']
 #### client.add_contact_activity
 
 **Example:**
-```
+``` ruby
 FACTORY = Hive::Activities
 activity = Hive::Activity.new(
        type: FACTORY::MUSIC_ALBUM_FAN.type,
@@ -529,14 +535,14 @@ activity = Hive::Activity.new(
 #### client.contact_activities
 
 **Example:**
-```
+``` ruby
 client.contact_activities(CONTACT_ID)
 ```
 
 #### client.contacts
 
 **Examples:**
-```
+``` ruby
 client.contacts
 client.contacts( pageSize: 50 )
 client.contacts( tag: 'contacts_server/new' )
@@ -549,7 +555,7 @@ client.contacts( lastName:'Cool' )
 #### client.upsert_contact
 
 **Examples:**
-```
+``` ruby
 client.upsert_contact( phone: '123456789' )
 client.upsert_contact( email: 'alex@example.com' )
 client.upsert_contact( phone: '123456789', email: 'alex@example.com' )
@@ -561,7 +567,7 @@ client.upsert_contact( phone: '123456789', email: 'alex@example.com' )
 #### client.new_activity
 
 **Example:**
-   ```
+   ``` ruby
    Hive::Activity.new(
            type: FACTORY::MUSIC_ALBUM_FAN.type,
            locationUrl: 'http://www.wix.com',
@@ -575,14 +581,14 @@ client.upsert_contact( phone: '123456789', email: 'alex@example.com' )
 
 **Example:**
 
-   ```
+   ``` ruby
    client.activity(ACTIVITY_ID)
    ```
    
 #### .activities
 
 **Examples:**
-   ```
+   ``` ruby
    client.activities
    client.activities(activityTypes: Hive::Activities::MUSIC_ALBUM_FAN.type)
    client.activities(from: Time.now.iso8601(3), until: Time.now.iso8601(3))
@@ -593,14 +599,14 @@ client.upsert_contact( phone: '123456789', email: 'alex@example.com' )
 #### client.activities_summary
 
 **Example:**
-   ```
+   ``` ruby
    client.activities_summary
    ```
    
 #### client.contact_activities_summary
 
 **Example:**
-   ```
+   ``` ruby
    client.contact_activities_summary(CONTACT_ID)
    ```
 ## Contributing
