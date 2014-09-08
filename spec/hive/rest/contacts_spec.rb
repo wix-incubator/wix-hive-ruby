@@ -15,21 +15,21 @@ describe Hive::REST::Contacts do
     contacts.contact('id')
   end
 
-  it '.create_contact' do
+  it '.new_contact' do
     contact = double('Contact')
     expect(contact).to receive(:to_json).and_return('mock')
-    expect(contacts).to receive(:perform).with(:post, '/v1/contacts', body: 'mock').and_return(instance_double(Faraday::Response, body: 'mock'))
+    expect(contacts).to receive(:perform_with_object).with(:post, '/v1/contacts', Hashie::Mash, body: 'mock').and_return(instance_double(Faraday::Response, body: 'mock'))
     contacts.new_contact(contact)
   end
 
   context '.upsert_contact' do
     it 'with phone provided' do
-      expect(contacts).to receive(:perform).with(:put, '/v1/contacts', body: '{"phone":"123456789"}').and_return(instance_double(Faraday::Response, body: 'mock'))
+      expect(contacts).to receive(:perform_with_object).with(:put, '/v1/contacts', Hashie::Mash, body: '{"phone":"123456789"}').and_return(instance_double(Faraday::Response, body: 'mock'))
       contacts.upsert_contact(phone: '123456789')
     end
 
     it 'with email provided' do
-      expect(contacts).to receive(:perform).with(:put, '/v1/contacts', body: '{"email":"alext@wix.com"}').and_return(instance_double(Faraday::Response, body: 'mock'))
+      expect(contacts).to receive(:perform_with_object).with(:put, '/v1/contacts', Hashie::Mash, body: '{"email":"alext@wix.com"}').and_return(instance_double(Faraday::Response, body: 'mock'))
       contacts.upsert_contact(email: 'alext@wix.com')
     end
 

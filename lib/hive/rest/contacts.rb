@@ -17,13 +17,13 @@ module Hive
       end
 
       def new_contact(contact)
-        perform(:post, '/v1/contacts', body: contact.to_json)
+        perform_with_object(:post, '/v1/contacts', Hashie::Mash, body: contact.to_json)
       end
 
       def upsert_contact(args)
         fail ArgumentError, 'Phone or Email are required!' unless args.key?(:phone) || args.key?(:email)
 
-        perform(:put, '/v1/contacts', body: args.to_json)
+        perform_with_object(:put, '/v1/contacts', Hashie::Mash, body: args.to_json)
       end
 
       def contacts_tags
