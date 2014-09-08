@@ -48,7 +48,9 @@ A Ruby interface to the Wix Hive API.
 9. **[Insights API](#insights-api)**
    * **[client.activities_summary](#clientactivities_summary)**
    * **[client.contact_activities_summary](#clientcontact_activities_summary)**
-
+10. **[Contributing]**(#contributing)
+   * **[Submitting an Issue](#submitting-an-issue)**
+   * **[Submitting a Pull Request](#submitting-a-pull-request)**
 
 ## Prerequisites
 - **Read about** [developing a third party app for the Wix platform](http://dev.wix.com/docs/display/DRAF/Third+Party+Apps+-+Introduction).
@@ -555,8 +557,31 @@ client.upsert_contact( phone: '123456789', email: 'alex@example.com' )
    ```
 ## Contributing
 
+**Everyone** is encouraged to help **improve** this gem. Some of the ways you can contribute include:
+
+1. Use alpha, beta, and pre-release versions.
+2. Report bugs.
+3. Suggest new features.
+4. Write or edit documentation.
+5. Write specifications.
+6. Write code (**no patch is too small**: fix typos, clean up inconsistent whitespace).
+7. Refactor code.
+8. Fix [issues](https://github.com/wix/wix-hive-ruby/issues).
+9. Submitt an Issue
+
+### Submitting an Issue
+
+We use the GitHub issue tracker to track bugs and features. Before submitting a bug report or feature request, check to make sure it hasn't already been submitted. When submitting a bug report, please include a Gist that includes a stack trace and any details that may be necessary to reproduce the bug, including your gem version, Ruby version, and operating system. Ideally, a bug report should include a pull request with failing specs.
+
+### Submitting a Pull Request
+
 1. Fork it ( https://github.com/[my-github-username]/wix-hive-ruby/fork )
 2. Create your feature branch (`git checkout -b my-new-feature`)
-3. Commit your changes (`git commit -am 'Add some feature'`)
-4. Push to the branch (`git push origin my-new-feature`)
-5. Create a new Pull Request
+3. Add specs for your unimplemented feature or bug fix. (**Note:** When developing a new API a `e2e` test is mandatory.)
+4. Run `bundle exec rake spec`. If your specs pass, return to step 3. (**Note:** When developing a new API run `bundle exec rake e2e` first. This will record a [VCR Cassette](https://relishapp.com/vcr/vcr/v/2-9-2/docs/getting-started) the first time you run it.)
+5. Implement your feature or bug fix.
+6. Run `bundle exec rake`. If your specs fail, return to step 5. (**Note:** Fix any rubocop issues that were not automatically fixed.)
+7. Run open coverage/index.html. If your changes are not completely covered by your tests, return to step 3.
+8. Commit your changes (`git commit -am 'Add some feature'`)
+9. Push to the branch (`git push origin my-new-feature`)
+10. Create a new [Pull Request](http://help.github.com/send-pull-requests/)
