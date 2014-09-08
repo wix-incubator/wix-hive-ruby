@@ -6,49 +6,50 @@ A Ruby interface to the Wix Hive API.
 1. **[Prerequisites](#prerequisites)**  
 2. **[Installation](#installation)**
 3. **[Quick Start](#quick-start)**
+4. **[Manual](#manual)**    
    * **[Configuration](#configuration)**
      * **[Basic configuration](#the-basic-configuration-is)**
      * **[Advanced configuration](#advanced-configuration-options-include)**
-4. **[Hive DTOs](#hive-dtos)**
-   * **[Constructing request data](#constructing-request-data)**
-   * **[Accessing response data](#accessing-response-data)** 
-5. **[Hive Cursored Data](#hive-cursored-data)**
-6. **[Hive Errors](#hive-errors)**
-   * **[Response Errors](#response-errors)**
-   * **[Other Errors](#other-errors)**
-7. **[Contacts API](#contacts-api)**
-   * **[client.new_contact](#clientnew_contact)**
-   * **[client.contact](#clientcontact)**
-   * **[client.update_contact (PENDING)](#clientupdate_contact-pending)**
-   * **[client.contacts_tags (PENDING)](#clientcontacts_tags-pending)**
-   * **[client.contacts_subscribers (PENDING)](#clientcontacts_subscribers-pending)**
-   * **[client.update_contact_name](#clientupdate_contact_name)**
-   * **[client.update_contact_company](#clientupdate_contact_company)**
-   * **[client.update_contact_picture](#clientupdate_contact_picture)**
-   * **[client.update_contact_address](#clientupdate_contact_address)**
-   * **[client.update_contact_email](#clientupdate_contact_email)**
-   * **[client.update_contact_phone](#clientupdate_contact_phone)**
-   * **[client.update_contact_date](#clientupdate_contact_date)**
-   * **[client.update_contact_note (PENDING)](#clientupdate_contact_note-pending)**
-   * **[client.update_contact_custom (PENDING)](#clientupdate_contact_custom-pending)**
-   * **[client.add_contact_address](#clientadd_contact_address)**
-   * **[client.add_contact_email](#clientadd_contact_email)**
-   * **[client.add_contact_phone](#clientadd_contact_phone)**
-   * **[client.add_contact_note](#clientadd_contact_note)**
-   * **[client.add_contact_custom](#clientadd_contact_custom)**
-   * **[client.add_contact_tags (PENDING)](#clientadd_contact_tags-pending)**
-   * **[client.add_contact_activity](#clientadd_contact_activity)**
-   * **[client.contact_activities](#clientcontact_activities)**
-   * **[client.contacts](#clientcontacts)**
-   * **[client.upsert_contact](#clientupsert_contact)**
-8. **[Activities API](#activities-api)**
-   * **[client.new_activity](#clientnew_activity)**
-   * **[client.activity](#clientactivity)**
-   * **[client.activities](#clientactivities)**
-9. **[Insights API](#insights-api)**
-   * **[client.activities_summary](#clientactivities_summary)**
-   * **[client.contact_activities_summary](#clientcontact_activities_summary)**
-10. **[Contributing](#contributing)**
+   * **[Hive DTOs](#hive-dtos)**
+     * **[Constructing request data](#constructing-request-data)**
+     * **[Accessing response data](#accessing-response-data)** 
+   * **[Hive Cursored Data](#hive-cursored-data)**
+   * **[Hive Errors](#hive-errors)**
+     * **[Response Errors](#response-errors)**
+     * **[Other Errors](#other-errors)**
+   * **[Contacts API](#contacts-api)**
+     * **[client.new_contact](#clientnew_contact)**
+     * **[client.contact](#clientcontact)**
+     * **[client.update_contact (PENDING)](#clientupdate_contact-pending)**
+     * **[client.contacts_tags (PENDING)](#clientcontacts_tags-pending)**
+     * **[client.contacts_subscribers (PENDING)](#clientcontacts_subscribers-pending)**
+     * **[client.update_contact_name](#clientupdate_contact_name)**
+     * **[client.update_contact_company](#clientupdate_contact_company)**
+     * **[client.update_contact_picture](#clientupdate_contact_picture)**
+     * **[client.update_contact_address](#clientupdate_contact_address)**
+     * **[client.update_contact_email](#clientupdate_contact_email)**
+     * **[client.update_contact_phone](#clientupdate_contact_phone)**
+     * **[client.update_contact_date](#clientupdate_contact_date)**
+     * **[client.update_contact_note (PENDING)](#clientupdate_contact_note-pending)**
+     * **[client.update_contact_custom (PENDING)](#clientupdate_contact_custom-pending)**
+     * **[client.add_contact_address](#clientadd_contact_address)**
+     * **[client.add_contact_email](#clientadd_contact_email)**
+     * **[client.add_contact_phone](#clientadd_contact_phone)**
+     * **[client.add_contact_note](#clientadd_contact_note)**
+     * **[client.add_contact_custom](#clientadd_contact_custom)**
+     * **[client.add_contact_tags (PENDING)](#clientadd_contact_tags-pending)**
+     * **[client.add_contact_activity](#clientadd_contact_activity)**
+     * **[client.contact_activities](#clientcontact_activities)**
+     * **[client.contacts](#clientcontacts)**
+     * **[client.upsert_contact](#clientupsert_contact)**
+   * **[Activities API](#activities-api)**
+     * **[client.new_activity](#clientnew_activity)**
+     * **[client.activity](#clientactivity)**
+     * **[client.activities](#clientactivities)**
+   * **[Insights API](#insights-api)**
+     * **[client.activities_summary](#clientactivities_summary)**
+     * **[client.contact_activities_summary](#clientcontact_activities_summary)**
+5. **[Contributing](#contributing)**
    * **[Submitting an Issue](#submitting-an-issue)**
    * **[Submitting a Pull Request](#submitting-a-pull-request)**
 
@@ -72,11 +73,58 @@ Or install it yourself as:
 
 ## Quick Start
 
+``` ruby
+require 'sinatra'
+require 'wix-hive-ruby'
+
+SECRET_KEY = '21c9be40-fda0-4f01-8091-3a525db5dcb6'
+APP_ID = '13832826-96d2-70f0-7eb7-8e107a37f1d2'
+
+get '/' do
+  instance = params.delete('instance')
+
+  wixInstance = Hive::Client.parse_instance_data(instance, SECRET_KEY)
+
+  client = Hive::Client.new do |config|
+    config.secret_key = SECRET_KEY
+    config.app_id = APP_ID
+    config.instance_id = wixInstance.instanceId
+  end
+
+  contact = Hive::Contact.new
+  contact.name.first = 'Quick'
+  contact.name.last = 'Start'
+  contact.add_email(email: 'quick.start@example.com', tag: 'work')
+  contact.add_phone(phone: '123456789', tag: 'work')
+  contact.add_url(url: 'wix.com', tag: 'site')
+
+  contact_res = client.new_contact(contact)
+
+  FACTORY = Hive::Activities
+  activity = Hive::Activity.new(
+       type: FACTORY::MUSIC_ALBUM_FAN.type,
+       locationUrl: 'http://www.wix.com',
+       details: { summary: 'test', additionalInfoUrl: 'http://www.wix.com' },
+       info: { album: { name: 'Wix', id: '1234' } })
+
+  activity_res = client.add_contact_activity(contact_res.contactId, activity)
+
+  body "Contact created: #{contact_res.contactId}. 
+   Activity created: #{activity_res.activityId}
+   Thank you!"
+end
+
+after do
+  headers({ 'X-Frame-Options' => 'ALLOW-FROM wix.com' })
+end
+```
+## Manual
+
 ### Configuration
 The entry point to the Wix Hive API is the `Hive::Client`. You can initialize the class by passing it a configuration block.
 
 ####The basic configuration is:
-```
+``` ruby
 Hive::Client.new do |config|
   config.secret_key = 'SECRET-KEY'
   config.app_id = 'APP-ID'
@@ -87,7 +135,7 @@ end
 1. The `config.secret_key` and `config.app_id` are obtained by registering an app as it is outlined [here](http://dev.wix.com/docs/display/DRAF/Dev+Center+Registration+Guide)
 2. The `config.instance_id` is obtained by decoding the signed app instance. Learn more about this  [here](http://dev.wix.com/docs/display/DRAF/Using+the+Signed+App+Instance)
    * Note: The Hive client has a utility method that parses the instance data. Example usage:
-   ```
+   ``` ruby
    wixInstance = Hive::Client.parse_instance_data(INSTANCE, SECRET-KEY)
    wixInstance.demoMode 
    wixInstance.instanceId
