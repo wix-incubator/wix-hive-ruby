@@ -84,8 +84,8 @@ Hive::Client.new do |config|
 end
 ```
 
-1. `config.secret_key` and `config.app_id` are optained by regitering an app as it is outlined [here](http://dev.wix.com/docs/display/DRAF/Dev+Center+Registration+Guide)
-2. `config.instance_id` represents the signed app instance. More information can be found [here](http://dev.wix.com/docs/display/DRAF/Using+the+Signed+App+Instance)
+1. The `config.secret_key` and `config.app_id` are obtained by registering an app as it is outlined [here](http://dev.wix.com/docs/display/DRAF/Dev+Center+Registration+Guide)
+2. The `config.instance_id` is obtained by decoding the signed app instance. Learn more about this  [here](http://dev.wix.com/docs/display/DRAF/Using+the+Signed+App+Instance)
    * Note: The Hive client has a utility method that parses the instance data. Example usage:
    ```
    wixInstance = Hive::Client.parse_instance_data(INSTANCE, SECRET-KEY)
