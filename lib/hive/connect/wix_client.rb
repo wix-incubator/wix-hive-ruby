@@ -15,14 +15,14 @@ module Hive
   class Client
     include Hive::REST::API
 
-    attr_accessor :secret_key, :app_id, :instance_id, :api_family, :api_version, :logger
+    attr_accessor :secret_key, :app_id, :instance_id, :api_family, :api_version, :logger, :api_base
     attr_writer :user_agent
-    API_BASE = 'https://openapi.wix.com'
 
     def initialize(options = {})
       # Defaults
       @api_family = 'v1'
       @api_version = '1.0.0'
+      @api_base = 'https://openapi.wix.com'
 
       options.each do |key, value|
         send(:"#{key}=", value)
@@ -142,7 +142,7 @@ module Hive
     end
 
     def connection
-      @connection ||= Faraday.new(API_BASE, connection_options)
+      @connection ||= Faraday.new(@api_base, connection_options)
     end
   end
 end

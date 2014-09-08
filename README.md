@@ -169,6 +169,7 @@ end
    ```
 4. `config.api_family` global api family version defaults to `v1`.
 5. `config.api_version` global api version defaults to `1.0.0`.
+6. `config.api_base` global api version defaults to `https://openapi.wix.com`.
 
 ### Hive DTOs
 The Hive DTOs are based on [Hashie](https://github.com/intridea/hashie) which in essence means that they are hashes with extra functionality. 

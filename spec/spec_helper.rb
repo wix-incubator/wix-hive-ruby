@@ -22,36 +22,38 @@ RSpec.configure do |config|
   end
 end
 
+API_BASE = 'https://openapi.wix.com'
+
 def a_delete(path)
-  a_request(:delete, Hive::Client::API_BASE + path)
+  a_request(:delete, API_BASE + path)
 end
 
 def a_get(path)
-  a_request(:get, Hive::Client::API_BASE + path)
+  a_request(:get, API_BASE + path)
 end
 
 def a_post(path)
-  a_request(:post, Hive::Client::API_BASE + path)
+  a_request(:post, API_BASE + path)
 end
 
 def a_put(path)
-  a_request(:put, Hive::Client::API_BASE + path)
+  a_request(:put, API_BASE + path)
 end
 
 def stub_delete(path)
-  stub_request(:delete, Hive::Client::API_BASE + path)
+  stub_request(:delete, API_BASE + path)
 end
 
 def stub_get(path)
-  stub_request(:get, Hive::Client::API_BASE + path)
+  stub_request(:get, API_BASE + path)
 end
 
 def stub_post(path)
-  stub_request(:post, Hive::Client::API_BASE + path)
+  stub_request(:post, API_BASE + path)
 end
 
 def stub_put(path)
-  stub_request(:put, Hive::Client::API_BASE + path)
+  stub_request(:put, API_BASE + path)
 end
 
 ACTIVITIES_FACTORY = Hive::Activities
