@@ -585,7 +585,7 @@ client.upsert_contact( phone: '123456789', email: 'alex@example.com' )
    client.activity(ACTIVITY_ID)
    ```
    
-#### .activities
+#### client.activities
 
 **Examples:**
    ``` ruby
