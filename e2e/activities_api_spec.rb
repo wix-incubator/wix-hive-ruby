@@ -60,14 +60,13 @@ describe 'Activities API' do
   end
 
   context 'create activities' do
-    it 'CONTACTS_CREATE' do
+    it 'CONTACT_CONTACT_FORM' do
 
-      contacts_create = FACTORY::CONTACTS_CREATE.klass.new
-      contacts_create.name = {first: 'E2E Activity', last: 'Activity'}
-      contacts_create.emails << {email: 'activity@example.com', tag: 'work'}
+      contacts_create = FACTORY::CONTACT_CONTACT_FORM.klass.new
+      contacts_create.add_field(name: 'name', value: 'value')
 
       activity = Hive::Activity.new(
-          type: FACTORY::CONTACTS_CREATE.type,
+          type: FACTORY::CONTACT_CONTACT_FORM.type,
           locationUrl: 'http://www.wix.com',
           details: {summary: 'test', additionalInfoUrl: 'http://www.wix.com'},
           info: contacts_create)
@@ -208,12 +207,13 @@ describe 'Activities API' do
     end
 
     it 'HOTELS_CONFIRMATION' do
+      pending 'HAPI-36'
       guest = { total: 1, adults: 1, children: 0 }
 
       day_ago = (Time.now - (60 * 60 * 24)).iso8601(3)
       stay = { checkin: day_ago, checkout: Time.now.iso8601(3) }
 
-      invoice = {total: '1', subtotal: '1'}
+      invoice = {total: '1', subtotal: '1', currency: 'EUR'}
 
       activity = Hive::Activity.new(
           type: FACTORY::HOTELS_CONFIRMATION.type,
@@ -227,6 +227,7 @@ describe 'Activities API' do
     end
 
     it 'HOTELS_CANCEL' do
+      pending 'HAPI-36'
       refund = {kind: 'FULL', total: 1, currency: 'EUR', destination: 'NYC'}
 
       guest = { total: 1, adults: 1, children: 0 }
@@ -234,7 +235,7 @@ describe 'Activities API' do
       day_ago = (Time.now - (60 * 60 * 24)).iso8601(3)
       stay = { checkin: day_ago, checkout: Time.now.iso8601(3) }
 
-      invoice = {total: '1', subtotal: '1'}
+      invoice = {total: '1', subtotal: '1', currency: 'EUR'}
 
       activity = Hive::Activity.new(
           type: FACTORY::HOTELS_CANCEL.type,
@@ -254,7 +255,7 @@ describe 'Activities API' do
       day_ago = (Time.now - (60 * 60 * 24)).iso8601(3)
       stay = { checkin: day_ago, checkout: Time.now.iso8601(3) }
 
-      invoice = {total: '1', subtotal: '1'}
+      invoice = {total: '1', subtotal: '1', currency: 'EUR'}
 
       payment = {total: '1', subtotal: '1', currency: 'EUR', source: 'Cash'}
 
@@ -276,7 +277,7 @@ describe 'Activities API' do
       day_ago = (Time.now - (60 * 60 * 24)).iso8601(3)
       stay = { checkin: day_ago, checkout: Time.now.iso8601(3) }
 
-      invoice = {total: '1', subtotal: '1'}
+      invoice = {total: '1', subtotal: '1', currency: 'EUR'}
 
       payment = {total: '1', subtotal: '1', currency: 'EUR', source: 'Cash', error: {errorCode: '-2801'}}
 

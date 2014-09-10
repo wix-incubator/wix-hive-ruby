@@ -39,7 +39,7 @@ module Hive
 
       private
 
-      READ_ONLY_ACTIVITIES = [Hive::Activities::CONTACT_CONTACT_FORM.type]
+      READ_ONLY_ACTIVITIES = [Hive::Activities::CONTACTS_CREATE.type]
 
       def read_only?(activity_type)
         fail ArgumentError,

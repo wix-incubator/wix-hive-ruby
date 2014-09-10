@@ -1,5 +1,5 @@
 # THIS IS A GENERATED FILE, DO NOT EDIT THIS
-# Generated on 2014-09-07T15:01:00.861Z
+# Generated on 2014-09-10T14:02:21.632Z
 
 require 'hive/activities/contact/contact_form_activity'
 require 'hive/activities/contact/contact_create_activity'

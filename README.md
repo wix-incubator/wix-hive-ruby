@@ -200,7 +200,7 @@ The Hive DTOs are based on [Hashie](https://github.com/intridea/hashie) which in
    day_ago = (Time.now - (60 * 60 * 24)).iso8601(3)
    stay = { checkin: day_ago, checkout: Time.now.iso8601(3) }
    
-   invoice = {total: '1', subtotal: '1'}
+   invoice = {total: '1', subtotal: '1', currency: 'EUR'}
    
    payment = {total: '1', subtotal: '1', currency: 'EUR', source: 'Cash'}
    

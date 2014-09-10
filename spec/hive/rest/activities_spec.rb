@@ -24,10 +24,10 @@ describe Hive::REST::Activities do
       session_token = '1234'
 
       activity = Hive::Activity.new(
-          type: FACTORY::CONTACT_CONTACT_FORM.type,
+          type: FACTORY::CONTACTS_CREATE.type,
           locationUrl: 'http://www.wix.com',
           details: { summary: 'test', additionalInfoUrl: 'http://www.wix.com' },
-          info: FACTORY::CONTACT_CONTACT_FORM.klass.new)
+          info: FACTORY::CONTACTS_CREATE.klass.new)
 
       expect { activities.new_activity(session_token, activity) }.to raise_error ArgumentError
     end
@@ -69,10 +69,10 @@ describe Hive::REST::Activities do
       contact_id = '1234'
 
       activity = Hive::Activity.new(
-          type: FACTORY::CONTACT_CONTACT_FORM.type,
+          type: FACTORY::CONTACTS_CREATE.type,
           locationUrl: 'http://www.wix.com',
           details: { summary: 'test', additionalInfoUrl: 'http://www.wix.com' },
-          info: FACTORY::CONTACT_CONTACT_FORM.klass.new)
+          info: FACTORY::CONTACTS_CREATE.klass.new)
 
       expect { activities.add_contact_activity(contact_id, activity) }.to raise_error ArgumentError
     end
