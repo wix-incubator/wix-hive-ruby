@@ -90,10 +90,23 @@ describe 'Activities API' do
 
     it 'E_COMMERCE_PURCHASE' do
       coupon = {total: '1', title: 'Dis'}
-      payment = {total: '1', subtotal: '1', currency: 'EUR', coupon: coupon}
+      tax = {total: 1, formattedTotal: 1}
+      shipping = {total: 1, formattedTotal: 1}
+      payment = {total: '1', subtotal: '1', formattedTotal: '1.0', formattedSubtotal: '1.0', currency: 'EUR', coupon: coupon, tax: tax, shipping: shipping}
+      media = {thumbnail: 'PIC'}
+      item = {id: 1, sku: 'sky', title: 'title', quantity: 1, price: '1', formattedPrice: '1.1', currency: 'EUR', productLink: 'link', weight: '1', formattedWeight: '1.0KG', media: media, variants: [{title: 'title', value: '1'}]}
+      shipping_address = {firstName: 'Wix' , lastName: 'Cool', email: 'wix@example.com', phone: '12345566', country: 'Macedonia', countryCode: 'MK', region: 'Bitola', regionCode: '7000', city: 'Bitola', address1: 'Marshal Tito', address2: 'Marshal Tito', zip: '7000', company: 'Wix.com'}
 
       purchase = FACTORY::E_COMMERCE_PURCHASE.klass.new(cartId: '11111',
-                                                        storeId: '11111', payment: payment)
+                                                        storeId: '11111',
+                                                        orderId: '11111',
+                                                        items: [item],
+                                                        payment: payment,
+                                                        shippingAddress: shipping_address,
+                                                        billingAddress: shipping_address,
+                                                        paymentGateway: 'PAYPAL',
+                                                        note: 'Note',
+                                                        buyerAcceptsMarketing: true)
 
       activity = Hive::Activity.new(
           type: FACTORY::E_COMMERCE_PURCHASE.type,
@@ -259,11 +272,25 @@ describe 'Activities API' do
 
       payment = {total: '1', subtotal: '1', currency: 'EUR', source: 'Cash'}
 
+      tax = {name: 'VAT', total: 1, currency: 'EUR'}
+
+      # TODO: @Alex: Currency is a int in the schema.
+      rate = {date: Time.now.iso8601(3), subtotal: '1', total: '1', currency: '1', tax: tax}
+
+      name = {prefix: 'prefix', first: 'Wix', middle: 'middle', last: 'Cool', suffix: 'suffix'}
+
+      customer = {contactId: '1234', isGuest: true, name: name, phone: '12345566', email: 'wix@example.com'}
+
+      bed = {kind: 'KING', sleeps: 1}
+
+      # TODO: @Alex: Amenities missing in the schema room object.
+      #room = {id: 1, beds: [bed], maxOccupancy: 1}
+
       activity = Hive::Activity.new(
           type: FACTORY::HOTELS_PURCHASE.type,
           locationUrl: 'http://www.wix.com',
           details: {summary: 'test', additionalInfoUrl: 'http://www.wix.com'},
-          info: { source: 'GUEST', guests: guest, stay: stay, invoice: invoice, payment: payment })
+          info: { source: 'GUEST', guests: guest, stay: stay, invoice: invoice, rates: [rate], payment: payment, customer: customer, rooms: [] })
 
 
       new_activity_result = client.new_activity(session_id, activity)
