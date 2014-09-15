@@ -50,7 +50,6 @@ describe 'Contacts API' do
     end
 
     it 'should be able to fetch the next 50 results given a pageSize' do
-      pending 'CE-2333'
       expect(client.contacts( pageSize: 50 ).results.size).to eq 50
     end
 

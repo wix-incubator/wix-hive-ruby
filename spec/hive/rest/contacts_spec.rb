@@ -6,30 +6,30 @@ describe Hive::REST::Contacts do
   subject(:contacts) { (Class.new { include Hive::Util; include Hive::REST::Contacts }).new }
 
   it '.contacts' do
-    expect(contacts).to receive(:perform_with_cursor).with(:get, '/v1/contacts', Hive::Contact, {params: {pageSize: 50}}).and_return(instance_double(Faraday::Response, body: 'mock'))
+    expect(contacts).to receive(:perform_with_cursor).with(:get, 'v1/contacts', Hive::Contact, {params: {pageSize: 50}}).and_return(instance_double(Faraday::Response, body: 'mock'))
     contacts.contacts(pageSize: 50)
   end
 
   it '.contact' do
-    expect(contacts).to receive(:perform_with_object).with(:get, '/v1/contacts/id', Hive::Contact).and_return(instance_double(Faraday::Response, body: 'mock'))
+    expect(contacts).to receive(:perform_with_object).with(:get, 'v1/contacts/id', Hive::Contact).and_return(instance_double(Faraday::Response, body: 'mock'))
     contacts.contact('id')
   end
 
   it '.new_contact' do
     contact = double('Contact')
     expect(contact).to receive(:to_json).and_return('mock')
-    expect(contacts).to receive(:perform_with_object).with(:post, '/v1/contacts', Hashie::Mash, body: 'mock').and_return(instance_double(Faraday::Response, body: 'mock'))
+    expect(contacts).to receive(:perform_with_object).with(:post, 'v1/contacts', Hashie::Mash, body: 'mock').and_return(instance_double(Faraday::Response, body: 'mock'))
     contacts.new_contact(contact)
   end
 
   context '.upsert_contact' do
     it 'with phone provided' do
-      expect(contacts).to receive(:perform_with_object).with(:put, '/v1/contacts', Hashie::Mash, body: '{"phone":"123456789"}').and_return(instance_double(Faraday::Response, body: 'mock'))
+      expect(contacts).to receive(:perform_with_object).with(:put, 'v1/contacts', Hashie::Mash, body: '{"phone":"123456789"}').and_return(instance_double(Faraday::Response, body: 'mock'))
       contacts.upsert_contact(phone: '123456789')
     end
 
     it 'with email provided' do
-      expect(contacts).to receive(:perform_with_object).with(:put, '/v1/contacts', Hashie::Mash, body: '{"email":"alext@wix.com"}').and_return(instance_double(Faraday::Response, body: 'mock'))
+      expect(contacts).to receive(:perform_with_object).with(:put, 'v1/contacts', Hashie::Mash, body: '{"email":"alext@wix.com"}').and_return(instance_double(Faraday::Response, body: 'mock'))
       contacts.upsert_contact(email: 'alext@wix.com')
     end
 
@@ -39,12 +39,12 @@ describe Hive::REST::Contacts do
   end
 
   it '.contacts_tags' do
-    expect(contacts).to receive(:perform_with_object).with(:get, '/v1/contacts/tags', Array).and_return(instance_double(Faraday::Response, body: 'mock'))
+    expect(contacts).to receive(:perform_with_object).with(:get, 'v1/contacts/tags', Array).and_return(instance_double(Faraday::Response, body: 'mock'))
     contacts.contacts_tags
   end
 
   it '.contacts_subscribers' do
-    expect(contacts).to receive(:perform_with_cursor).with(:get, '/v1/contacts/subscribers', Hive::ContactSubscriber).and_return(instance_double(Faraday::Response, body: 'mock'))
+    expect(contacts).to receive(:perform_with_cursor).with(:get, 'v1/contacts/subscribers', Hive::ContactSubscriber).and_return(instance_double(Faraday::Response, body: 'mock'))
     contacts.contacts_subscribers
   end
 
@@ -56,7 +56,7 @@ describe Hive::REST::Contacts do
       allow(Time).to receive(:now) { time_now }
       expect(contact).to receive(:id).and_return(id).twice
       expect(contact).to receive(:to_json).and_return('mock')
-      expect(contacts).to receive(:perform_with_object).with(:put, "/v1/contacts/#{id}", Hive::Contact, body: 'mock', params: {modifiedAt: time_now.iso8601(3)}).and_return(instance_double(Faraday::Response, body: 'mock'))
+      expect(contacts).to receive(:perform_with_object).with(:put, "v1/contacts/#{id}", Hive::Contact, body: 'mock', params: {modifiedAt: time_now.iso8601(3)}).and_return(instance_double(Faraday::Response, body: 'mock'))
       contacts.update_contact(contact)
     end
 
@@ -72,7 +72,7 @@ describe Hive::REST::Contacts do
     contact_name = double('ContactName')
     allow(Time).to receive(:now) { time_now }
     expect(contact_name).to receive(:to_json).and_return('mock')
-    expect(contacts).to receive(:perform_with_object).with(:put, "/v1/contacts/#{contact_id}/name", Hive::Contact, body: 'mock', params: {modifiedAt: time_now.iso8601(3)}).and_return(instance_double(Faraday::Response, body: 'mock'))
+    expect(contacts).to receive(:perform_with_object).with(:put, "v1/contacts/#{contact_id}/name", Hive::Contact, body: 'mock', params: {modifiedAt: time_now.iso8601(3)}).and_return(instance_double(Faraday::Response, body: 'mock'))
     contacts.update_contact_name(contact_id, contact_name)
   end
 
@@ -81,7 +81,7 @@ describe Hive::REST::Contacts do
     company = Hive::Company.new
     company.name = 'Wix'
     allow(Time).to receive(:now) { time_now }
-    expect(contacts).to receive(:perform_with_object).with(:put, "/v1/contacts/#{contact_id}/company", Hive::Contact, body: company.to_json, params: {modifiedAt: time_now.iso8601(3)}).and_return(instance_double(Faraday::Response, body: 'mock'))
+    expect(contacts).to receive(:perform_with_object).with(:put, "v1/contacts/#{contact_id}/company", Hive::Contact, body: company.to_json, params: {modifiedAt: time_now.iso8601(3)}).and_return(instance_double(Faraday::Response, body: 'mock'))
     contacts.update_contact_company(contact_id, company)
   end
 
@@ -89,7 +89,7 @@ describe Hive::REST::Contacts do
     contact_id = '1234'
     picture = 'http://example.com/img1.jpg'
     allow(Time).to receive(:now) { time_now }
-    expect(contacts).to receive(:perform_with_object).with(:put, "/v1/contacts/#{contact_id}/picture", Hive::Contact, body: picture.to_json, params: {modifiedAt: time_now.iso8601(3)}).and_return(instance_double(Faraday::Response, body: 'mock'))
+    expect(contacts).to receive(:perform_with_object).with(:put, "v1/contacts/#{contact_id}/picture", Hive::Contact, body: picture.to_json, params: {modifiedAt: time_now.iso8601(3)}).and_return(instance_double(Faraday::Response, body: 'mock'))
     contacts.update_contact_picture(contact_id, picture)
   end
 
@@ -99,7 +99,7 @@ describe Hive::REST::Contacts do
     address = Hive::Address.new
     address.address = 'Wix'
     allow(Time).to receive(:now) { time_now }
-    expect(contacts).to receive(:perform_with_object).with(:put, "/v1/contacts/#{contact_id}/address/#{address_id}", Hive::Contact, body: address.to_json, params: {modifiedAt: time_now.iso8601(3)}).and_return(instance_double(Faraday::Response, body: 'mock'))
+    expect(contacts).to receive(:perform_with_object).with(:put, "v1/contacts/#{contact_id}/address/#{address_id}", Hive::Contact, body: address.to_json, params: {modifiedAt: time_now.iso8601(3)}).and_return(instance_double(Faraday::Response, body: 'mock'))
     contacts.update_contact_address(contact_id, address_id, address)
   end
 
@@ -112,7 +112,7 @@ describe Hive::REST::Contacts do
     email.email = 'alex@example.com'
 
     allow(Time).to receive(:now) { time_now }
-    expect(contacts).to receive(:perform_with_object).with(:put, "/v1/contacts/#{contact_id}/email/#{email_id}", Hive::Contact, body: email.to_json, params: {modifiedAt: time_now.iso8601(3)}).and_return(instance_double(Faraday::Response, body: 'mock'))
+    expect(contacts).to receive(:perform_with_object).with(:put, "v1/contacts/#{contact_id}/email/#{email_id}", Hive::Contact, body: email.to_json, params: {modifiedAt: time_now.iso8601(3)}).and_return(instance_double(Faraday::Response, body: 'mock'))
     contacts.update_contact_email(contact_id, email_id, email)
   end
 
@@ -125,7 +125,7 @@ describe Hive::REST::Contacts do
     phone.phone = '18006666'
 
     allow(Time).to receive(:now) { time_now }
-    expect(contacts).to receive(:perform_with_object).with(:put, "/v1/contacts/#{contact_id}/phone/#{phone_id}", Hive::Contact, body: phone.to_json, params: {modifiedAt: time_now.iso8601(3)}).and_return(instance_double(Faraday::Response, body: 'mock'))
+    expect(contacts).to receive(:perform_with_object).with(:put, "v1/contacts/#{contact_id}/phone/#{phone_id}", Hive::Contact, body: phone.to_json, params: {modifiedAt: time_now.iso8601(3)}).and_return(instance_double(Faraday::Response, body: 'mock'))
     contacts.update_contact_phone(contact_id, phone_id, phone)
   end
 
@@ -138,7 +138,7 @@ describe Hive::REST::Contacts do
     date.tag = 'update'
 
     allow(Time).to receive(:now) { time_now }
-    expect(contacts).to receive(:perform_with_object).with(:put, "/v1/contacts/#{contact_id}/date/#{date_id}", Hive::Contact, body: date.to_json, params: {modifiedAt: time_now.iso8601(3)}).and_return(instance_double(Faraday::Response, body: 'mock'))
+    expect(contacts).to receive(:perform_with_object).with(:put, "v1/contacts/#{contact_id}/date/#{date_id}", Hive::Contact, body: date.to_json, params: {modifiedAt: time_now.iso8601(3)}).and_return(instance_double(Faraday::Response, body: 'mock'))
     contacts.update_contact_date(contact_id, date_id, date)
   end
 
@@ -150,7 +150,7 @@ describe Hive::REST::Contacts do
     note.modifiedAt = Time.now.iso8601(3)
 
     allow(Time).to receive(:now) { time_now }
-    expect(contacts).to receive(:perform_with_object).with(:put, "/v1/contacts/#{contact_id}/note/#{note_id}", Hive::Contact, body: note.to_json, params: {modifiedAt: time_now.iso8601(3)}).and_return(instance_double(Faraday::Response, body: 'mock'))
+    expect(contacts).to receive(:perform_with_object).with(:put, "v1/contacts/#{contact_id}/note/#{note_id}", Hive::Contact, body: note.to_json, params: {modifiedAt: time_now.iso8601(3)}).and_return(instance_double(Faraday::Response, body: 'mock'))
     contacts.update_contact_note(contact_id, note_id, note)
   end
 
@@ -163,7 +163,7 @@ describe Hive::REST::Contacts do
     custom.value = 'custom_value'
 
     allow(Time).to receive(:now) { time_now }
-    expect(contacts).to receive(:perform_with_object).with(:put, "/v1/contacts/#{contact_id}/custom/#{custom_id}", Hive::Contact, body: custom.to_json, params: {modifiedAt: time_now.iso8601(3)}).and_return(instance_double(Faraday::Response, body: 'mock'))
+    expect(contacts).to receive(:perform_with_object).with(:put, "v1/contacts/#{contact_id}/custom/#{custom_id}", Hive::Contact, body: custom.to_json, params: {modifiedAt: time_now.iso8601(3)}).and_return(instance_double(Faraday::Response, body: 'mock'))
     contacts.update_contact_custom(contact_id, custom_id, custom)
   end
 
@@ -173,7 +173,7 @@ describe Hive::REST::Contacts do
     address.address = 'Wix'
 
     allow(Time).to receive(:now) { time_now }
-    expect(contacts).to receive(:perform_with_object).with(:post, "/v1/contacts/#{contact_id}/address", Hive::Contact, body: address.to_json, params: {modifiedAt: time_now.iso8601(3)}).and_return(instance_double(Faraday::Response, body: 'mock'))
+    expect(contacts).to receive(:perform_with_object).with(:post, "v1/contacts/#{contact_id}/address", Hive::Contact, body: address.to_json, params: {modifiedAt: time_now.iso8601(3)}).and_return(instance_double(Faraday::Response, body: 'mock'))
     contacts.add_contact_address(contact_id, address)
   end
 
@@ -184,7 +184,7 @@ describe Hive::REST::Contacts do
     email.email = 'alex@example.com'
 
     allow(Time).to receive(:now) { time_now }
-    expect(contacts).to receive(:perform_with_object).with(:post, "/v1/contacts/#{contact_id}/email", Hive::Contact, body: email.to_json, params: {modifiedAt: time_now.iso8601(3)}).and_return(instance_double(Faraday::Response, body: 'mock'))
+    expect(contacts).to receive(:perform_with_object).with(:post, "v1/contacts/#{contact_id}/email", Hive::Contact, body: email.to_json, params: {modifiedAt: time_now.iso8601(3)}).and_return(instance_double(Faraday::Response, body: 'mock'))
     contacts.add_contact_email(contact_id, email)
   end
 
@@ -195,7 +195,7 @@ describe Hive::REST::Contacts do
     phone.phone = '18006666'
 
     allow(Time).to receive(:now) { time_now }
-    expect(contacts).to receive(:perform_with_object).with(:post, "/v1/contacts/#{contact_id}/phone", Hive::Contact, body: phone.to_json, params: {modifiedAt: time_now.iso8601(3)}).and_return(instance_double(Faraday::Response, body: 'mock'))
+    expect(contacts).to receive(:perform_with_object).with(:post, "v1/contacts/#{contact_id}/phone", Hive::Contact, body: phone.to_json, params: {modifiedAt: time_now.iso8601(3)}).and_return(instance_double(Faraday::Response, body: 'mock'))
     contacts.add_contact_phone(contact_id, phone)
   end
 
@@ -206,7 +206,7 @@ describe Hive::REST::Contacts do
     note.modifiedAt = Time.now.iso8601(3)
 
     allow(Time).to receive(:now) { time_now }
-    expect(contacts).to receive(:perform_with_object).with(:post, "/v1/contacts/#{contact_id}/note", Hive::Contact, body: note.to_json, params: {modifiedAt: time_now.iso8601(3)}).and_return(instance_double(Faraday::Response, body: 'mock'))
+    expect(contacts).to receive(:perform_with_object).with(:post, "v1/contacts/#{contact_id}/note", Hive::Contact, body: note.to_json, params: {modifiedAt: time_now.iso8601(3)}).and_return(instance_double(Faraday::Response, body: 'mock'))
     contacts.add_contact_note(contact_id, note)
   end
 
@@ -217,7 +217,7 @@ describe Hive::REST::Contacts do
     custom.value = 'custom_value'
 
     allow(Time).to receive(:now) { time_now }
-    expect(contacts).to receive(:perform_with_object).with(:post, "/v1/contacts/#{contact_id}/custom", Hive::Contact, body: custom.to_json, params: {modifiedAt: time_now.iso8601(3)}).and_return(instance_double(Faraday::Response, body: 'mock'))
+    expect(contacts).to receive(:perform_with_object).with(:post, "v1/contacts/#{contact_id}/custom", Hive::Contact, body: custom.to_json, params: {modifiedAt: time_now.iso8601(3)}).and_return(instance_double(Faraday::Response, body: 'mock'))
     contacts.add_contact_custom(contact_id, custom)
   end
 
@@ -226,7 +226,7 @@ describe Hive::REST::Contacts do
     tags = ['crazy/tag', 'lalala/tag']
 
     allow(Time).to receive(:now) { time_now }
-    expect(contacts).to receive(:perform_with_object).with(:post, "/v1/contacts/#{contact_id}/tags", Hive::Contact, body: tags.to_json, params: {modifiedAt: time_now.iso8601(3)}).and_return(instance_double(Faraday::Response, body: 'mock'))
+    expect(contacts).to receive(:perform_with_object).with(:post, "v1/contacts/#{contact_id}/tags", Hive::Contact, body: tags.to_json, params: {modifiedAt: time_now.iso8601(3)}).and_return(instance_double(Faraday::Response, body: 'mock'))
     contacts.add_contact_tags(contact_id, tags)
   end
 end

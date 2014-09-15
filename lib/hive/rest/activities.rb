@@ -9,7 +9,7 @@ module Hive
         read_only?(activity.activityType)
 
         perform_with_object(:post,
-                            "/v1/contacts/#{id}/activities",
+                            "v1/contacts/#{id}/activities",
                             Hive::ActivityResult,
                             body: activity.to_json)
       end
@@ -18,21 +18,21 @@ module Hive
         read_only?(activity.activityType)
 
         perform_with_object(:post,
-                            '/v1/activities',
+                            'v1/activities',
                             Hive::ActivityResult,
                             body: activity.to_json,
                             params: { userSessionToken: session_token })
       end
 
       def activity(id)
-        perform_with_object(:get, "/v1/activities/#{id}", Hive::Activity)
+        perform_with_object(:get, "v1/activities/#{id}", Hive::Activity)
       end
 
       def contact_activities(id, query_options = {})
-        activities(query_options, "/v1/contacts/#{id}/activities")
+        activities(query_options, "v1/contacts/#{id}/activities")
       end
 
-      def activities(query_options = {}, path = '/v1/activities')
+      def activities(query_options = {}, path = 'v1/activities')
         transform_activities_query(query_options)
         perform_with_cursor(:get, path, Hive::Activity, params: query_options)
       end

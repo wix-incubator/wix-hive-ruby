@@ -65,7 +65,7 @@ module Hive
       end
 
       def calculate_signature
-        out = "#{@verb.upcase}\n#{@path}\n#{sorted_parameter_values.join("\n")}#{@body.empty? ? '' : "\n#{@body}"}"
+        out = "#{@verb.upcase}\n/#{@path}\n#{sorted_parameter_values.join("\n")}#{@body.empty? ? '' : "\n#{@body}"}"
         sign_data(out)
       end
 
