@@ -16,14 +16,14 @@ describe 'Contacts API' do
     contact.name.last = 'Cool'
     contact.company.name = 'Wix'
     contact.company.role = 'CEO'
-    contact.add_email(email: 'alext@wix.com', tag: 'work')
+    contact.add_tags('tag1', 'tag2')
+    contact.add_email(email: 'alext@wix.com', tag: 'work', emailStatus: 'transactional')
     contact.add_phone(phone: '123456789', tag: 'work')
     contact.add_address(tag: 'home', address: '28208 N Inca St.', neighborhood: 'LODO', city: 'Denver', region: 'CO', country: 'US', postalCode: '80202')
     contact.add_date(date: Time.now.iso8601(3), tag: 'E2E')
     contact.add_url(url: 'wix.com', tag: 'site')
-    # CE-2301
-    # contact.add_note(content: 'alex', modifiedAt: '2014-08-05T13:59:37.873Z')
-    # contact.add_custom(field: 'custom1', value: 'custom')
+    contact.add_note(content: 'alex')
+    contact.add_custom(field: 'custom1', value: 'custom')
     expect(client.new_contact(contact)).to include :contactId
   end
 
@@ -78,7 +78,7 @@ describe 'Contacts API' do
     contact = Hive::Contact.new
     contact.name.first = 'E2E'
     contact.name.last = 'Cool'
-    contact.add_email(email: 'alext@wix.com', tag: 'work')
+    contact.add_email(email: 'alext@wix.com', tag: 'work', emailStatus: 'transactional')
     contact.add_address(tag: 'home', address: '28208 N Inca St.', neighborhood: 'LODO', city: 'Denver', region: 'CO', country: 'US', postalCode: '80202')
     contact.add_date(date: Time.now.iso8601(3), tag: 'E2E')
     contact.add_url(url: 'wix.com', tag: 'site')
@@ -87,19 +87,20 @@ describe 'Contacts API' do
 
     expect(create_response).to include :contactId
 
-    contact.id = create_response[:contactId]
-    contact.add_email(email: 'wow@wix.com', tag: 'wow')
-    contact.add_address(tag: 'home2', address: '1625 Larimer', neighborhood: 'LODO', city: 'Denver', region: 'CO', country: 'US', postalCode: '80202')
-    contact.add_date(date: Time.now.iso8601(3), tag: 'E2E UPDATE')
-    contact.add_url(url: 'wix.com', tag: 'site2')
+    # TODO: @Alex this test is crappy, refactor it.
+    contact_update = Hive::Contact.new
+    contact_update.add_email(email: 'wow@wix.com', tag: 'wow', emailStatus: 'transactional')
+    contact_update.add_address(tag: 'home2', address: '1625 Larimer', neighborhood: 'LODO', city: 'Denver', region: 'CO', country: 'US', postalCode: '80202')
+    contact_update.add_date(date: Time.now.iso8601(3), tag: 'E2E UPDATE')
+    contact_update.add_url(url: 'wix.com', tag: 'site2')
 
-    pending 'CE-2306'
-    updated_contact = client.update_contact(contact)
+    updated_contact = client.update_contact(create_response[:contactId], contact_update)
 
-    expect(updated_contact.emails).to eq contact.emails
-    expect(updated_contact.addresses).to eq contact.addresses
-    expect(updated_contact.dates).to eq contact.dates
-    expect(updated_contact.urls).to eq contact.urls
+    to_hash_without_id = lambda { |o| o.to_hash.tap { |hs| hs.delete(:id) } }
+
+    expect(updated_contact.emails.collect(&to_hash_without_id)).to include *contact_update.emails
+    expect(updated_contact.addresses.collect(&to_hash_without_id)).to include *contact_update.addresses
+    expect(updated_contact.urls.collect(&to_hash_without_id)).to include *contact_update.urls
   end
 
   context '.upsert_contact' do

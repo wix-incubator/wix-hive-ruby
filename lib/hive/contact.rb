@@ -22,8 +22,6 @@ module Hive
     property :tag
     property :email
     property :emailStatus
-    property :contactSubscriptionStatus
-    property :siteOwnerSubscriptionStatus
     property :unsubscribeLink
   end
 
@@ -99,14 +97,14 @@ module Hive
     property :name, default: Hive::Name.new
     property :picture
     property :company, default: Hive::Company.new
-    property :tags
+    property :tags, default: []
     property :emails, default: []
     property :phones, default: []
     property :addresses, default: []
     property :urls, default: []
     property :dates, default: []
-    property :notes # , default: []
-    property :custom # , default: []
+    property :notes , default: []
+    property :custom , default: []
     property :createdAt
     property :links
     property :modifiedAt
@@ -133,14 +131,17 @@ module Hive
       dates << Date.new(args)
     end
 
-    # There is a problem with the API at the moment so we can't post this data to i. CE-2301
-    # def add_note(args)
-    #   notes << Note.new(args)
-    # end
-    #
-    # def add_custom(args)
-    #   custom << Custom.new(args)
-    # end
+    def add_note(args)
+      notes << Note.new(args)
+    end
+
+    def add_custom(args)
+      custom << Custom.new(args)
+    end
+
+    def add_tags(*tags_to_add)
+      tags.concat(tags_to_add)
+    end
   end
 
   class ContactSubscriber < Hashie::Trash

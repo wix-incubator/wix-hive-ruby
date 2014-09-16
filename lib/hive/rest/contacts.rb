@@ -34,10 +34,8 @@ module Hive
         perform_with_cursor(:get, 'v1/contacts/subscribers', Hive::ContactSubscriber)
       end
 
-      def update_contact(contact)
-        fail ArgumentError, 'Contact ID not provided!' unless contact.id
-
-        edit_contact_field("v1/contacts/#{contact.id}", contact)
+      def update_contact(contact_id, contact)
+        edit_contact_field("v1/contacts/#{contact_id}", contact)
       end
 
       def update_contact_name(id, name)

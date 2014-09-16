@@ -109,4 +109,56 @@ describe Hive::Contact do
       expect(@contact.dates.size).to eq 2
     end
   end
+
+  context '.add_note' do
+    before(:all) do
+      @contact = described_class.new
+    end
+
+    it 'should add a note to the Contact.notes array' do
+      @contact.add_note(modifiedAt: '2014-08-06T06:52:54.586Z', content: 'content')
+      expect(@contact.notes.size).to eq 1
+      expect(@contact.notes.first.modifiedAt).to be_truthy
+      expect(@contact.notes.first.content).to be_truthy
+    end
+
+    it 'should append a date to the existing Contact.dates array' do
+      @contact.add_note(modifiedAt: '2014-08-06T06:52:54.586Z', tag: 'content2')
+      expect(@contact.notes.size).to eq 2
+    end
+  end
+
+  context '.add_custom' do
+    before(:all) do
+      @contact = described_class.new
+    end
+
+    it 'should add a custom to the Contact.custom array' do
+      @contact.add_custom(field: 'field', value: 'value')
+      expect(@contact.custom.size).to eq 1
+      expect(@contact.custom.first.field).to be_truthy
+      expect(@contact.custom.first.value).to be_truthy
+    end
+
+    it 'should append a date to the existing Contact.dates array' do
+      @contact.add_custom(field: 'field2', value: 'value2')
+      expect(@contact.custom.size).to eq 2
+    end
+  end
+
+  context '.add_tags' do
+    before(:all) do
+      @contact = described_class.new
+    end
+
+    it 'should add tags to the Contact.tags array' do
+      @contact.add_tags('tag1', 'tag2')
+      expect(@contact.tags.size).to eq 2
+    end
+
+    it 'should append tags to the existing Contact.tags array' do
+      @contact.add_tags('tag3', 'tag4')
+      expect(@contact.tags.size).to eq 4
+    end
+  end
 end

@@ -48,23 +48,14 @@ describe Hive::REST::Contacts do
     contacts.contacts_subscribers
   end
 
-  context '.update_contact' do
-    it 'with id provided' do
-      id = '1234'
-      contact = double('Contact')
+  it '.update_contact' do
+    id = '1234'
+    contact = double('Contact')
 
-      allow(Time).to receive(:now) { time_now }
-      expect(contact).to receive(:id).and_return(id).twice
-      expect(contact).to receive(:to_json).and_return('mock')
-      expect(contacts).to receive(:perform_with_object).with(:put, "v1/contacts/#{id}", Hive::Contact, body: 'mock', params: {modifiedAt: time_now.iso8601(3)}).and_return(instance_double(Faraday::Response, body: 'mock'))
-      contacts.update_contact(contact)
-    end
-
-    it 'without id provided' do
-      contact = double('Contact')
-      expect(contact).to receive(:id).and_return(nil)
-      expect { contacts.update_contact(contact) }.to raise_error(ArgumentError)
-    end
+    allow(Time).to receive(:now) { time_now }
+    expect(contact).to receive(:to_json).and_return('mock')
+    expect(contacts).to receive(:perform_with_object).with(:put, "v1/contacts/#{id}", Hive::Contact, body: 'mock', params: {modifiedAt: time_now.iso8601(3)}).and_return(instance_double(Faraday::Response, body: 'mock'))
+    contacts.update_contact(id, contact)
   end
 
   it '.update_contact_name' do
