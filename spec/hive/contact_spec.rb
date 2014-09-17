@@ -145,20 +145,4 @@ describe Hive::Contact do
       expect(@contact.custom.size).to eq 2
     end
   end
-
-  context '.add_tags' do
-    before(:all) do
-      @contact = described_class.new
-    end
-
-    it 'should add tags to the Contact.tags array' do
-      @contact.add_tags('tag1', 'tag2')
-      expect(@contact.tags.size).to eq 2
-    end
-
-    it 'should append tags to the existing Contact.tags array' do
-      @contact.add_tags('tag3', 'tag4')
-      expect(@contact.tags.size).to eq 4
-    end
-  end
 end

@@ -97,19 +97,18 @@ module Hive
     property :name, default: Hive::Name.new
     property :picture
     property :company, default: Hive::Company.new
-    property :tags, default: []
     property :emails, default: []
     property :phones, default: []
     property :addresses, default: []
     property :urls, default: []
     property :dates, default: []
-    property :notes , default: []
-    property :custom , default: []
+    property :notes, default: []
+    property :custom, default: []
     property :createdAt
     property :links
     property :modifiedAt
 
-    remove_method :emails=, :phones=, :addresses=, :urls=, :dates=, :notes=, :custom=, :links=, :tags=
+    remove_method :emails=, :phones=, :addresses=, :urls=, :dates=, :notes=, :custom=, :links=
 
     def add_email(args)
       emails << Email.new(args)
@@ -137,10 +136,6 @@ module Hive
 
     def add_custom(args)
       custom << Custom.new(args)
-    end
-
-    def add_tags(*tags_to_add)
-      tags.concat(tags_to_add)
     end
   end
 

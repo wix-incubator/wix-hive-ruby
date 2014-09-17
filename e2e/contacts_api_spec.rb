@@ -16,7 +16,6 @@ describe 'Contacts API' do
     contact.name.last = 'Cool'
     contact.company.name = 'Wix'
     contact.company.role = 'CEO'
-    contact.add_tags('tag1', 'tag2')
     contact.add_email(email: 'alext@wix.com', tag: 'work', emailStatus: 'transactional')
     contact.add_phone(phone: '123456789', tag: 'work')
     contact.add_address(tag: 'home', address: '28208 N Inca St.', neighborhood: 'LODO', city: 'Denver', region: 'CO', country: 'US', postalCode: '80202')
