@@ -19,7 +19,7 @@ RuboCop::RakeTask.new(:rubocop) do |task|
   task.options = ['--auto-correct']
 end
 
-task default: [:spec, :acceptance, :rubocop, :coverage]
+task default: [:spec, :rubocop, :coverage]
 task test: :spec
 task e2e: :end2end
 task :acceptance do
