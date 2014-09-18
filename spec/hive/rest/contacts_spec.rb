@@ -55,6 +55,8 @@ describe Hive::REST::Contacts do
     allow(Time).to receive(:now) { time_now }
     expect(contact).to receive(:to_json).and_return('mock')
     expect(contacts).to receive(:perform_with_object).with(:put, "v1/contacts/#{id}", Hive::Contact, body: 'mock', params: {modifiedAt: time_now.iso8601(3)}).and_return(instance_double(Faraday::Response, body: 'mock'))
+
+    pending('HAPI-3')
     contacts.update_contact(id, contact)
   end
 

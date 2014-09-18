@@ -341,14 +341,13 @@ client.contact(CONTACT_ID)
 
 **Example:**
 ``` ruby
-contact.id = CONTACT_ID
    contact.add_email(email: 'wow@wix.com', tag: 'wow')
    contact.add_address(tag: 'home2', address: '1625 Larimer', neighborhood: 'LODO', city: 'Denver', region: 'CO', country: 'US', postalCode: '80202')
    contact.add_date(date: Time.now.iso8601(3), tag: 'E2E UPDATE')
    contact.add_url(url: 'wix.com', tag: 'site')
 
    # PENDING
-   client.update_contact(contact)
+   client.update_contact(CONTACT_ID, contact)
 ```
 
 #### client.contacts_tags (PENDING)
