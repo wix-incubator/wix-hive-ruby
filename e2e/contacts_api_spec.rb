@@ -74,6 +74,7 @@ describe 'Contacts API' do
   end
 
   it '.update_contact' do
+    pending('HIVE-3')
     contact = Hive::Contact.new
     contact.name.first = 'E2E'
     contact.name.last = 'Cool'
