@@ -1,4 +1,8 @@
 # Wix-Hive-Ruby
+[![Gem Version](https://badge.fury.io/rb/wix-hive-ruby.svg)](http://rubygems.org/gems/wix-hive-ruby)
+[![Build Status](https://travis-ci.org/wix/wix-hive-ruby.svg?branch=master)](https://travis-ci.org/wix/wix-hive-ruby)
+[![Code Climate](https://codeclimate.com/github/wix/wix-hive-ruby/badges/gpa.svg)](https://codeclimate.com/github/wix/wix-hive-ruby)
+[![Coverage Status](https://coveralls.io/repos/wix/wix-hive-ruby/badge.png)](https://coveralls.io/r/wix/wix-hive-ruby)
 
 A Ruby interface to the Wix Hive API.
 
