@@ -1,13 +1,15 @@
 # The simplecov needs to be the first thing in this file in order for the coverage to work properly.
-require 'simplecov'
-SimpleCov.start do
+if RUBY_VERSION >= '1.9' and ENV['COVERAGE']
+  require 'simplecov'
+  require 'coveralls'
 
-  add_filter '/spec/'
+  SimpleCov.formatters = [SimpleCov::Formatter::HTMLFormatter, Coveralls::SimpleCov::Formatter]
 
-  # TODO @Alex: Add more groups based on the structure.
-  add_group 'wix', 'lib/wix'
-
-end if ENV['COVERAGE']
+  SimpleCov.start do
+    add_filter '/spec/'
+    minimum_coverage(100.00)
+  end
+end
 
 require 'wix-hive-ruby'
 require 'time'

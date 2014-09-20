@@ -1,6 +1,5 @@
 module Hashie
   module Validate
-
     module_function
 
     def enum(enum)
