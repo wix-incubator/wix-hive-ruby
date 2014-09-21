@@ -70,7 +70,8 @@ module Hive
 
         fail Hive::SignatureError, 'invalid signed instance' if signature.nil? || encoded_json.nil?
 
-        encoded_json_hack = encoded_json + ('=' * (4 - encoded_json.length.modulo(4)))
+        encoded_json_hack = encoded_json.length.modulo(4) == 0 ? encoded_json :
+            encoded_json + ('=' * (4 - encoded_json.length.modulo(4)))
 
         json_str = Base64.urlsafe_decode64(encoded_json_hack)
 

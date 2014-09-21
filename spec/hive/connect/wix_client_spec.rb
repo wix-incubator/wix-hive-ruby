@@ -6,6 +6,10 @@ describe Hive::Client do
   let(:app_id) { '13832826-96d2-70f0-7eb7-8e107a37f1d2' }
   let(:instance_id) { '138328bd-0cde-04e3-d7be-8f5500e362e7' }
   let(:instance) {'Ikf28Yx7zaY_J0jKyHwvumeSzKde0nuOn-N9ZqzXo_k.eyJpbnN0YW5jZUlkIjoiMTM4MzI4YmQtMGNkZS0wNGUzLWQ3YmUtOGY1NTAwZTM2MmU3Iiwic2lnbkRhdGUiOiIyMDE0LTA5LTA3VDA2OjU5OjEwLjk0NC0wNTowMCIsInVpZCI6ImExMWJiMzM0LWZkZDQtNDUxZi05YWU1LTM5M2U2MTJlNzZhYSIsInBlcm1pc3Npb25zIjoiT1dORVIiLCJpcEFuZFBvcnQiOiJudWxsL251bGwiLCJ2ZW5kb3JQcm9kdWN0SWQiOm51bGwsImRlbW9Nb2RlIjpmYWxzZX0'}
+  let(:problematic_instance) {'83gbLhxNGMEMR8yoUQWmbxaR937hqO8vDR68zjnQJc4.eyJpbnN0YW5jZUlkIjoiMTM5NWRmMGMtNjA5ZS0zZmM2LWVkYWEtNjk1MmQ4NDkzZDc2Iiwic2lnbkRhdGUiOiIyMDE0LTA5LTIxVDAxOjAxOjQyLjUwNS0wNTowMCIsInVpZCI6ImFhMzY1Y2U4LWJiNjMtNGQ0YS1hMDAyLThlNTFmOGMzODk3NCIsInBlcm1pc3Npb25zIjoiT1dORVIiLCJpcEFuZFBvcnQiOiI1MC4xODUuNDYuMTIzLzQ2NDU1IiwidmVuZG9yUHJvZHVjdElkIjpudWxsLCJkZW1vTW9kZSI6ZmFsc2V9'}
+  let(:problematic_key) { '371f1483-6a37-402c-a004-91d3d8416923' }
+  let(:problematic_instance_id) {'1395df0c-609e-3fc6-edaa-6952d8493d76'}
+
   subject(:client) {
     Hive::Client.new do |config|
       config.secret_key = secret_key
@@ -33,6 +37,12 @@ describe Hive::Client do
       wixInstance = Hive::Client.parse_instance_data(instance, secret_key)
 
       expect(instance_id).to eq wixInstance.instanceId
+    end
+
+    it 'does not modify the encoded str if its devisable by 4' do
+      wix_prob_instance = Hive::Client.parse_instance_data(problematic_instance, problematic_key)
+
+      expect(problematic_instance_id).to eq wix_prob_instance.instanceId
     end
 
     it 'throws an error when the signatures dont match' do
