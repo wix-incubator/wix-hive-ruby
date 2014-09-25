@@ -1,5 +1,5 @@
 # THIS IS A GENERATED FILE, DO NOT EDIT THIS
-# Generated on 2014-09-10T14:02:21.580Z
+# Generated on 2014-09-25T10:43:46.678Z
 
 require 'hashie'
 require 'hive/extensions/hashie_validate_enum'
@@ -90,10 +90,12 @@ module Hive
         include Hashie::Extensions::Coercion
 
         coerce_key :beds, Array[Bed]
+        coerce_key :amenities, Array[String]
 
         property :id
         property :beds, default: []
         property :maxOccupancy, required: true
+        property :amenities, default: []
 
         def add_bed(args)
           beds << Bed.new(args)

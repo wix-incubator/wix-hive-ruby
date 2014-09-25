@@ -13,6 +13,12 @@ describe 'Activities API' do
         info: { album: { name: 'Wix', id: '1234' } })
   }
 
+  it '.get_activity_types' do
+    result = client.perform(:get, 'v1/activities/types')
+
+    puts result
+  end
+
   it '.new_activity' do
     new_activity_result = client.new_activity(session_id, base_activity)
 
@@ -20,13 +26,16 @@ describe 'Activities API' do
   end
 
   it '.activity' do
-    new_activity_result = client.new_activity(session_id, base_activity)
+    # new_activity_result = client.new_activity(session_id, base_activity)
+    #
+    # expect(new_activity_result.activityId).to be_truthy
+    #
+    # sleep(2)
+    a = client.activity('048c4665-ce9f-4c62-b8b4-305c02438230')
 
-    expect(new_activity_result.activityId).to be_truthy
+    puts a
 
-    sleep(2)
-
-    expect(client.activity(new_activity_result.activityId)).to be_a Hive::Activity
+    expect(a).to be_a Hive::Activity
   end
 
   context '.activities' do
@@ -89,7 +98,7 @@ describe 'Activities API' do
     end
 
     it 'E_COMMERCE_PURCHASE' do
-      coupon = {total: '1', title: 'Dis'}
+      coupon = {total: '1', formattedTotal: 1, title: 'Dis'}
       tax = {total: 1, formattedTotal: 1}
       shipping = {total: 1, formattedTotal: 1}
       payment = {total: '1', subtotal: '1', formattedTotal: '1.0', formattedSubtotal: '1.0', currency: 'EUR', coupon: coupon, tax: tax, shipping: shipping}
@@ -283,14 +292,13 @@ describe 'Activities API' do
 
       bed = {kind: 'KING', sleeps: 1}
 
-      # TODO: @Alex: Amenities missing in the schema room object.
-      #room = {id: 1, beds: [bed], maxOccupancy: 1}
+      room = {id: 1, beds: [bed], maxOccupancy: 1, amenities: ['fridge']}
 
       activity = Hive::Activity.new(
           type: FACTORY::HOTELS_PURCHASE.type,
           locationUrl: 'http://www.wix.com',
           details: {summary: 'test', additionalInfoUrl: 'http://www.wix.com'},
-          info: { source: 'GUEST', guests: guest, stay: stay, invoice: invoice, rates: [rate], payment: payment, customer: customer, rooms: [] })
+          info: { source: 'GUEST', guests: guest, stay: stay, invoice: invoice, rates: [rate], payment: payment, customer: customer, rooms: [room] })
 
 
       new_activity_result = client.new_activity(session_id, activity)

@@ -1,5 +1,5 @@
 # THIS IS A GENERATED FILE, DO NOT EDIT THIS
-# Generated on 2014-09-10T14:02:21.479Z
+# Generated on 2014-09-25T10:43:46.580Z
 
 require 'hashie'
 require 'hive/extensions/hashie_validate_enum'
