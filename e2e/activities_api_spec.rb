@@ -26,14 +26,11 @@ describe 'Activities API' do
   end
 
   it '.activity' do
-    # new_activity_result = client.new_activity(session_id, base_activity)
-    #
-    # expect(new_activity_result.activityId).to be_truthy
-    #
-    # sleep(2)
-    a = client.activity('048c4665-ce9f-4c62-b8b4-305c02438230')
+    new_activity_result = client.new_activity(session_id, base_activity)
 
-    puts a
+    expect(new_activity_result.activityId).to be_truthy
+
+    sleep(2)
 
     expect(a).to be_a Hive::Activity
   end
@@ -283,8 +280,7 @@ describe 'Activities API' do
 
       tax = {name: 'VAT', total: 1, currency: 'EUR'}
 
-      # TODO: @Alex: Currency is a int in the schema.
-      rate = {date: Time.now.iso8601(3), subtotal: '1', total: '1', currency: '1', tax: tax}
+      rate = {date: Time.now.iso8601(3), subtotal: '1', total: '1', currency: 'EUR', tax: tax}
 
       name = {prefix: 'prefix', first: 'Wix', middle: 'middle', last: 'Cool', suffix: 'suffix'}
 
