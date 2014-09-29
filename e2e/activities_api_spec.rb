@@ -81,7 +81,7 @@ describe 'Activities API' do
           type: FACTORY::CONVERSION_COMPLETE.type,
           locationUrl: 'http://www.wix.com',
           details: {summary: 'test', additionalInfoUrl: 'http://www.wix.com'},
-          info: {conversionType: 'PAGEVIEW'})
+          info: {conversionType: 'PAGEVIEW', messageId: '12345', metadata: [{ name: 'a', value: 'b' }] })
 
       new_activity_result = client.new_activity(session_id, activity)
 
