@@ -41,7 +41,7 @@ module Hive
       class Metadata < Hashie::Trash
         include Hashie::Extensions::IgnoreUndeclared
 
-        property :property, required: true
+        property :name, required: true
         property :value, required: true
       end
 

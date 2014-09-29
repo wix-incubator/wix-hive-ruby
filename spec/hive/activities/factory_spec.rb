@@ -51,9 +51,9 @@ describe Hive::Activities do
       expect(Hive::Activities::MUSIC_TRACK_SHARE.klass).to eq Hive::Activities.class_for_type(Hive::Activities::MUSIC_TRACK_SHARE.type)
     end
 
-    # it '#HOTELS_CONFIRMATION' do
-    #   expect(Hive::Activities::HOTELS_CONFIRMATION.klass).to eq Hive::Activities.class_for_type(Hive::Activities::HOTELS_CONFIRMATION.type)
-    # end
+    it '#HOTELS_CONFIRMATION' do
+      expect(Hive::Activities::HOTELS_CONFIRMATION.klass).to eq Hive::Activities.class_for_type(Hive::Activities::HOTELS_CONFIRMATION.type)
+    end
 
     it '#HOTELS_CANCEL' do
       expect(Hive::Activities::HOTELS_CANCEL.klass).to eq Hive::Activities.class_for_type(Hive::Activities::HOTELS_CANCEL.type)

@@ -7,7 +7,7 @@ describe 'MESSAGING_SEND' do
 
   context 'MESSAGING_SEND::Metadata' do
     it '.add_metadata' do
-      create_activity.conversionTarget.add_metadata( property: 'custom', value: 'value' )
+      create_activity.conversionTarget.add_metadata( name: 'custom', value: 'value' )
     end
   end
 end

@@ -13,12 +13,6 @@ describe 'Activities API' do
         info: { album: { name: 'Wix', id: '1234' } })
   }
 
-  it '.get_activity_types' do
-    result = client.perform(:get, 'v1/activities/types')
-
-    puts result
-  end
-
   it '.new_activity' do
     new_activity_result = client.new_activity(session_id, base_activity)
 
@@ -32,7 +26,7 @@ describe 'Activities API' do
 
     sleep(2)
 
-    expect(a).to be_a Hive::Activity
+    expect(client.activity(new_activity_result.activityId)).to be_a Hive::Activity
   end
 
   context '.activities' do
@@ -126,9 +120,10 @@ describe 'Activities API' do
     end
 
     it 'MESSAGING_SEND' do
-      recipient = {method: 'EMAIL', destination: {name: {first: 'Alex'}, target: 'localhost'}}
+      conversion_target = { conversionType:'FAN', metadata: [ { name: 'wix', value: '124'} ] }
+      recipient = {method: 'EMAIL', destination: {name: {first: 'Alex'}, target: 'localhost', contactId: '1234'}}
 
-      send = FACTORY::MESSAGING_SEND.klass.new(recipient: recipient)
+      send = FACTORY::MESSAGING_SEND.klass.new(messageId: '1111', recipient: recipient, conversionTarget: conversion_target)
 
       activity = Hive::Activity.new(
           type: FACTORY::MESSAGING_SEND.type,
@@ -226,7 +221,6 @@ describe 'Activities API' do
     end
 
     it 'HOTELS_CONFIRMATION' do
-      pending 'HAPI-36'
       guest = { total: 1, adults: 1, children: 0 }
 
       day_ago = (Time.now - (60 * 60 * 24)).iso8601(3)
@@ -246,7 +240,6 @@ describe 'Activities API' do
     end
 
     it 'HOTELS_CANCEL' do
-      pending 'HAPI-36'
       refund = {kind: 'FULL', total: 1, currency: 'EUR', destination: 'NYC'}
 
       guest = { total: 1, adults: 1, children: 0 }
@@ -280,7 +273,7 @@ describe 'Activities API' do
 
       tax = {name: 'VAT', total: 1, currency: 'EUR'}
 
-      rate = {date: Time.now.iso8601(3), subtotal: '1', total: '1', currency: 'EUR', tax: tax}
+      rate = {date: Time.now.iso8601(3), subtotal: '1', total: '1', currency: 'EUR', taxes: [tax]}
 
       name = {prefix: 'prefix', first: 'Wix', middle: 'middle', last: 'Cool', suffix: 'suffix'}
 
@@ -324,11 +317,28 @@ describe 'Activities API' do
     end
 
     it 'SCHEDULER_APPOINTMENT' do
+      name = {prefix:'sir', first:'mix', middle:'a', last:'lot', suffix:'Sr.'}
+
+      location = {address:'123 meep st.',
+                  city:'meepsville',
+                  region:'meep',
+                  postalCode:'124JKE',
+                  country:'USSMEEP',
+                  url:'http://www.wix.com'}
+
+      info = { title:'my appointment', description:'write these tests', location: location,
+               time: {start:'2014-09-10T15:21:42.662Z', end:'2014-09-10T15:23:09.062Z', timezone:'ET'},
+               attendees:[ { contactId:'1234', name: name,
+                               phone:'555-2234', email:'a@a.com', notes:'things and stuff', self: true},
+                          { contactId:'1246', name: name,
+                               phone:'554-2234', email:'b@a.com', notes:'things and stuff'} ]
+      }
+
       activity = Hive::Activity.new(
           type: FACTORY::SCHEDULER_APPOINTMENT.type,
           locationUrl: 'http://www.wix.com',
           details: {summary: 'test', additionalInfoUrl: 'http://www.wix.com'},
-          info: { title: 'test', description: 'test' })
+          info: info)
 
       new_activity_result = client.new_activity(session_id, activity)
 
