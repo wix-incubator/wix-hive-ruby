@@ -136,12 +136,25 @@ describe 'Activities API' do
       expect(new_activity_result.activityId).to be_truthy
     end
 
+    it 'MUSIC_ALBUM_PLAYED' do
+      pending 'HAPI-44'
+      activity = Hive::Activity.new(
+          type: FACTORY::MUSIC_ALBUM_PLAYED.type,
+          locationUrl: 'http://www.wix.com',
+          details: {summary: 'test', additionalInfoUrl: 'http://www.wix.com'},
+          info: { album: { name: 'Wix', id: '1234' }, artist: {name: 'WIx', id: 'id_123'}  })
+
+      new_activity_result = client.new_activity(session_id, activity)
+
+      expect(new_activity_result.activityId).to be_truthy
+    end
+
     it 'MUSIC_ALBUM_FAN' do
       activity = Hive::Activity.new(
           type: FACTORY::MUSIC_ALBUM_FAN.type,
           locationUrl: 'http://www.wix.com',
           details: {summary: 'test', additionalInfoUrl: 'http://www.wix.com'},
-          info: { album: { name: 'Wix', id: '1234' } })
+          info: { album: { name: 'Wix', id: '1234' }, artist: {name: 'WIx', id: 'id_123'}  })
 
       new_activity_result = client.new_activity(session_id, activity)
 
@@ -153,7 +166,7 @@ describe 'Activities API' do
           type: FACTORY::MUSIC_ALBUM_SHARE.type,
           locationUrl: 'http://www.wix.com',
           details: {summary: 'test', additionalInfoUrl: 'http://www.wix.com'},
-          info: { album: { name: 'Wix', id: '1234' }, sharedTo: 'FACEBOOK' })
+          info: { album: { name: 'Wix', id: '1234' }, sharedTo: 'FACEBOOK', artist: {name: 'WIx', id: 'id_123'} })
 
       new_activity_result = client.new_activity(session_id, activity)
 
@@ -165,7 +178,7 @@ describe 'Activities API' do
           type: FACTORY::MUSIC_TRACK_LYRICS.type,
           locationUrl: 'http://www.wix.com',
           details: {summary: 'test', additionalInfoUrl: 'http://www.wix.com'},
-          info: { album: { name: 'Wix', id: '1234' }, track: { name: 'Wix', id: '1234' } })
+          info: { album: { name: 'Wix', id: '1234' }, track: { name: 'Wix', id: '1234' }, artist: {name: 'WIx', id: 'id_123'}})
 
       new_activity_result = client.new_activity(session_id, activity)
 
@@ -189,7 +202,7 @@ describe 'Activities API' do
           type: FACTORY::MUSIC_TRACK_PLAYED.type,
           locationUrl: 'http://www.wix.com',
           details: {summary: 'test', additionalInfoUrl: 'http://www.wix.com'},
-          info: { album: { name: 'Wix', id: '1234' }, track: { name: 'Wix', id: '1234' } })
+          info: { album: { name: 'Wix', id: '1234' }, track: { name: 'Wix', id: '1234' }, artist: {name: 'WIx', id: 'id_123'} })
 
       new_activity_result = client.new_activity(session_id, activity)
 
@@ -201,7 +214,7 @@ describe 'Activities API' do
           type: FACTORY::MUSIC_TRACK_SKIP.type,
           locationUrl: 'http://www.wix.com',
           details: {summary: 'test', additionalInfoUrl: 'http://www.wix.com'},
-          info: { album: { name: 'Wix', id: '1234' }, track: { name: 'Wix', id: '1234' } })
+          info: { album: { name: 'Wix', id: '1234' }, track: { name: 'Wix', id: '1234' }, artist: {name: 'WIx', id: 'id_123'} })
 
       new_activity_result = client.new_activity(session_id, activity)
 
@@ -213,7 +226,7 @@ describe 'Activities API' do
           type: FACTORY::MUSIC_TRACK_SHARE.type,
           locationUrl: 'http://www.wix.com',
           details: {summary: 'test', additionalInfoUrl: 'http://www.wix.com'},
-          info: { album: { name: 'Wix', id: '1234' }, track: { name: 'Wix', id: '1234' }, sharedTo: 'FACEBOOK' })
+          info: { album: { name: 'Wix', id: '1234' }, track: { name: 'Wix', id: '1234' }, sharedTo: 'FACEBOOK', artist: {name: 'WIx', id: 'id_123'} })
 
       new_activity_result = client.new_activity(session_id, activity)
 

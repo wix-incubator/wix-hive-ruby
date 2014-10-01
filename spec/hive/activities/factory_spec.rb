@@ -23,6 +23,10 @@ describe Hive::Activities do
       expect(Hive::Activities::MESSAGING_SEND.klass).to eq Hive::Activities.class_for_type(Hive::Activities::MESSAGING_SEND.type)
     end
 
+    it '#MUSIC_ALBUM_PLAYED' do
+      expect(Hive::Activities::MUSIC_ALBUM_PLAYED.klass).to eq Hive::Activities.class_for_type(Hive::Activities::MUSIC_ALBUM_PLAYED.type)
+    end
+
     it '#MUSIC_ALBUM_FAN' do
       expect(Hive::Activities::MUSIC_ALBUM_FAN.klass).to eq Hive::Activities.class_for_type(Hive::Activities::MUSIC_ALBUM_FAN.type)
     end
