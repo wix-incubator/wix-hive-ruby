@@ -137,7 +137,6 @@ describe 'Activities API' do
     end
 
     it 'MUSIC_ALBUM_PLAYED' do
-      pending 'HAPI-44'
       activity = Hive::Activity.new(
           type: FACTORY::MUSIC_ALBUM_PLAYED.type,
           locationUrl: 'http://www.wix.com',
