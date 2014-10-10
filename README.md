@@ -22,6 +22,7 @@ A Ruby interface to the Wix Hive API.
      * **[Response Errors](#response-errors)**
      * **[Other Errors](#other-errors)**
    * **[Contacts API](#contacts-api)**
+     * **[Concurrency Control](#concurrency_control)**
      * **[client.new_contact](#clientnew_contact)**
      * **[client.contact](#clientcontact)**
      * **[client.update_contact (PENDING)](#clientupdate_contact-pending)**
@@ -314,6 +315,19 @@ Hive::SignatureError
 
 ### Contacts API
 
+#### Concurrency Control
+The contacts add and update methods have a concurrency control mechanism associated with them. The mechanism is based on the ``modifiedAt`` request parameter. This parameter needs to have the same value as the underlying contact that is being updated. 
+For example: let us assume we have a contact with ``id=1`` and ``modifiedAt=2014-10-01T14:43:48.560+03:00`` and we want to update the email field. What we would need to do is execute the following method:
+``` ruby
+   new_email = Hive::Email.new
+   new_email.tag = 'work_new'
+   new_email.email = 'alex_new@example.com'
+   new_email.emailStatus = 'optOut'
+
+   client.add_contact_email('1', new_email, '2014-10-01T14:43:48.560+03:00')
+```
+So lets think about the concurrency now. Let assume we have two update email requests that come in the same time and they get processed sequentially. First one would get processed and update the contact email and in the same time the contacts’ ``modifiedAt`` will change. Second request gets processed but it will fail with a concurrency validation error because it is trying to perform an update operation on a old version of the contact object. And the system knows that by comparing the two ``modifiedAt`` parameters (one from the DB and the one provided).
+
 #### client.new_contact
 
 **Example:**
@@ -351,7 +365,7 @@ client.contact(CONTACT_ID)
    contact.add_url(url: 'wix.com', tag: 'site')
 
    # PENDING
-   client.update_contact(CONTACT_ID, contact)
+   client.update_contact(CONTACT_ID, contact, MODIFIED_AT)
 ```
 
 #### client.contacts_tags (PENDING)
@@ -372,7 +386,7 @@ client.contacts_subscribers
 
 **Example:**
 ``` ruby
-client.update_contact_name(CONTACT_ID, Hive::Name.new(first: 'New_Name'))
+client.update_contact_name(CONTACT_ID, Hive::Name.new(first: 'New_Name'), MODIFIED_AT)
 ```
 
 #### client.update_contact_company
@@ -382,14 +396,14 @@ client.update_contact_name(CONTACT_ID, Hive::Name.new(first: 'New_Name'))
 company = Hive::Company.new
    company.name = 'New_Company'
 
-   client.update_contact_company(CONTACT_ID, company)
+   client.update_contact_company(CONTACT_ID, company, MODIFIED_AT)
 ```
 
 #### client.update_contact_picture
 
 **Example:**
 ``` ruby
-client.update_contact_picture(CONTACT_ID, 'wix.com/example.jpg')
+client.update_contact_picture(CONTACT_ID, 'wix.com/example.jpg', MODIFIED_AT)
 ```
 
 #### client.update_contact_address
@@ -400,7 +414,7 @@ updated_address = Hive::Address.new
    updated_address.tag = 'work'
    updated_address.address = '1625 Larimer St.'
 
-   client.update_contact_address(CONTACT_ID, ADDRESS_ID, updated_address)
+   client.update_contact_address(CONTACT_ID, ADDRESS_ID, updated_address, MODIFIED_AT)
 ```
 
 #### client.update_contact_email
@@ -412,7 +426,7 @@ updated_email = Hive::Email.new
    updated_email.email = 'alex@example.com'
    updated_email.emailStatus = 'optOut'
 
-   client.update_contact_email(CONTACT_ID, EMAIL_ID, updated_email)
+   client.update_contact_email(CONTACT_ID, EMAIL_ID, updated_email, MODIFIED_AT)
 ```
 
 #### client.update_contact_phone
@@ -423,7 +437,7 @@ updated_phone = Hive::Phone.new
    updated_phone.tag = 'work'
    updated_phone.phone = '18006666'
 
-   client.update_contact_phone(CONTACT_ID, PHONE_ID, updated_phone)
+   client.update_contact_phone(CONTACT_ID, PHONE_ID, updated_phone, MODIFIED_AT)
 ```
 
 #### client.update_contact_date
@@ -434,7 +448,7 @@ date = Hive::Date.new
    date.date = Time.now.iso8601(3)
    date.tag = 'update'
 
-   client.update_contact_date(CONTACT_ID, DATE_ID, date)
+   client.update_contact_date(CONTACT_ID, DATE_ID, date, MODIFIED_AT)
 ```
 
 #### client.update_contact_note (PENDING)
@@ -445,7 +459,7 @@ note = Hive::Note.new
    note.content = 'Note'
    note.modifiedAt = Time.now.iso8601(3)
 
-   client.update_contact_phone(CONTACT_ID, NOTE_ID, note)
+   client.update_contact_phone(CONTACT_ID, NOTE_ID, note, MODIFIED_AT)
 ```
 
 #### client.update_contact_custom (PENDING)
@@ -456,7 +470,7 @@ custom = Hive::Custom.new
    custom.field = 'custom_update'
    custom.value = 'custom_value'
 
-   client.update_contact_phone(CONTACT_ID, CUSTOM_ID, custom)
+   client.update_contact_phone(CONTACT_ID, CUSTOM_ID, custom, MODIFIED_AT)
 ```
 
 #### client.add_contact_address
@@ -467,7 +481,7 @@ new_address = Hive::Address.new
    new_address.tag = 'work'
    new_address.address = '1625 Larimer St.'
 
-   client.add_contact_address(CONTACT_ID, new_address)
+   client.add_contact_address(CONTACT_ID, new_address, MODIFIED_AT)
 ```
 
 #### client.add_contact_email
@@ -479,7 +493,7 @@ new_email = Hive::Email.new
    new_email.email = 'alex_new@example.com'
    new_email.emailStatus = 'optOut'
 
-   client.add_contact_email(CONTACT_ID, new_email)
+   client.add_contact_email(CONTACT_ID, new_email, MODIFIED_AT)
 ```
 
 #### client.add_contact_phone
@@ -490,7 +504,7 @@ new_phone = Hive::Phone.new
    new_phone.tag = 'work_new'
    new_phone.phone = '18006666'
 
-   client.add_contact_phone(CONTACT_ID, new_phone)
+   client.add_contact_phone(CONTACT_ID, new_phone, MODIFIED_AT)
 ```
 
 #### client.add_contact_note
@@ -499,7 +513,7 @@ new_phone = Hive::Phone.new
 note = Hive::Note.new
    note.content = 'Note'
 
-   client.add_contact_note(CONTACT_ID, note)
+   client.add_contact_note(CONTACT_ID, note, MODIFIED_AT)
 ```
 
 #### client.add_contact_custom
@@ -510,7 +524,7 @@ custom = Hive::Custom.new
    custom.field = 'custom_update'
    custom.value = 'custom_value'
 
-   client.add_contact_custom(CONTACT_ID, custom)
+   client.add_contact_custom(CONTACT_ID, custom, MODIFIED_AT)
 ```
 
 #### client.add_contact_tags (PENDING)
@@ -519,7 +533,7 @@ custom = Hive::Custom.new
 ``` ruby
 tags = ['tag1/tag', 'tag2/tag']
 
-   client.add_contact_tags(CONTACT_ID, tags)
+   client.add_contact_tags(CONTACT_ID, tags, MODIFIED_AT)
 ```
 
 #### client.add_contact_activity
