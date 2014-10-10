@@ -40,74 +40,74 @@ module Hive
         # edit_contact_field("v1/contacts/#{contact_id}", contact)
       end
 
-      def update_contact_name(id, name)
-        edit_contact_field("v1/contacts/#{id}/name", name)
+      def update_contact_name(id, name, modified_at)
+        edit_contact_field("v1/contacts/#{id}/name", name, modified_at)
       end
 
-      def update_contact_company(id, company)
-        edit_contact_field("v1/contacts/#{id}/company", company)
+      def update_contact_company(id, company, modified_at)
+        edit_contact_field("v1/contacts/#{id}/company", company, modified_at)
       end
 
-      def update_contact_picture(id, picture)
-        edit_contact_field("v1/contacts/#{id}/picture", picture)
+      def update_contact_picture(id, picture, modified_at)
+        edit_contact_field("v1/contacts/#{id}/picture", picture, modified_at)
       end
 
-      def update_contact_address(id, address_id, address)
-        edit_contact_field("v1/contacts/#{id}/address/#{address_id}", address)
+      def update_contact_address(id, address_id, address, modified_at)
+        edit_contact_field("v1/contacts/#{id}/address/#{address_id}", address, modified_at)
       end
 
-      def update_contact_email(id, email_id, email)
-        edit_contact_field("v1/contacts/#{id}/email/#{email_id}", email)
+      def update_contact_email(id, email_id, email, modified_at)
+        edit_contact_field("v1/contacts/#{id}/email/#{email_id}", email, modified_at)
       end
 
-      def update_contact_phone(id, phone_id, phone)
-        edit_contact_field("v1/contacts/#{id}/phone/#{phone_id}", phone)
+      def update_contact_phone(id, phone_id, phone, modified_at)
+        edit_contact_field("v1/contacts/#{id}/phone/#{phone_id}", phone, modified_at)
       end
 
-      def update_contact_date(id, date_id, date)
-        edit_contact_field("v1/contacts/#{id}/date/#{date_id}", date)
+      def update_contact_date(id, date_id, date, modified_at)
+        edit_contact_field("v1/contacts/#{id}/date/#{date_id}", date, modified_at)
       end
 
-      def update_contact_note(id, note_id, note)
-        edit_contact_field("v1/contacts/#{id}/note/#{note_id}", note)
+      def update_contact_note(id, note_id, note, modified_at)
+        edit_contact_field("v1/contacts/#{id}/note/#{note_id}", note, modified_at)
       end
 
-      def update_contact_custom(id, custom_id, custom)
-        edit_contact_field("v1/contacts/#{id}/custom/#{custom_id}", custom)
+      def update_contact_custom(id, custom_id, custom, modified_at)
+        edit_contact_field("v1/contacts/#{id}/custom/#{custom_id}", custom, modified_at)
       end
 
-      def add_contact_address(id, address)
-        add_contact_field("v1/contacts/#{id}/address", address)
+      def add_contact_address(id, address, modified_at)
+        add_contact_field("v1/contacts/#{id}/address", address, modified_at)
       end
 
-      def add_contact_email(id, email)
-        add_contact_field("v1/contacts/#{id}/email", email)
+      def add_contact_email(id, email, modified_at)
+        add_contact_field("v1/contacts/#{id}/email", email, modified_at)
       end
 
-      def add_contact_phone(id, phone)
-        add_contact_field("v1/contacts/#{id}/phone", phone)
+      def add_contact_phone(id, phone, modified_at)
+        add_contact_field("v1/contacts/#{id}/phone", phone, modified_at)
       end
 
-      def add_contact_note(id, note)
-        add_contact_field("v1/contacts/#{id}/note", note)
+      def add_contact_note(id, note, modified_at)
+        add_contact_field("v1/contacts/#{id}/note", note, modified_at)
       end
 
-      def add_contact_custom(id, custom)
-        add_contact_field("v1/contacts/#{id}/custom", custom)
+      def add_contact_custom(id, custom, modified_at)
+        add_contact_field("v1/contacts/#{id}/custom", custom, modified_at)
       end
 
-      def add_contact_tags(id, tags)
-        add_contact_field("v1/contacts/#{id}/tags", tags)
+      def add_contact_tags(id, tags, modified_at)
+        add_contact_field("v1/contacts/#{id}/tags", tags, modified_at)
       end
 
       private
 
-      def edit_contact_field(url, body)
-        perform_with_object(:put, url, Hive::Contact, body: body.to_json, params: { modifiedAt: Time.now.iso8601(3) })
+      def edit_contact_field(url, body, modified_at)
+        perform_with_object(:put, url, Hive::Contact, body: body.to_json, params: { modifiedAt: modified_at })
       end
 
-      def add_contact_field(url, body)
-        perform_with_object(:post, url, Hive::Contact, body: body.to_json, params: { modifiedAt: Time.now.iso8601(3) })
+      def add_contact_field(url, body, modified_at)
+        perform_with_object(:post, url, Hive::Contact, body: body.to_json, params: { modifiedAt: modified_at })
       end
     end
   end
