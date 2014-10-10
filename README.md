@@ -22,7 +22,7 @@ A Ruby interface to the Wix Hive API.
      * **[Response Errors](#response-errors)**
      * **[Other Errors](#other-errors)**
    * **[Contacts API](#contacts-api)**
-     * **[Concurrency Control](#concurrency_control)**
+     * **[Concurrency Control](#concurrency-control)**
      * **[client.new_contact](#clientnew_contact)**
      * **[client.contact](#clientcontact)**
      * **[client.update_contact (PENDING)](#clientupdate_contact-pending)**
