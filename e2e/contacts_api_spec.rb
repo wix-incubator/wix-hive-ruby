@@ -21,7 +21,7 @@ describe 'Contacts API' do
     contact.add_address(tag: 'home', address: '28208 N Inca St.', neighborhood: 'LODO', city: 'Denver', region: 'CO', country: 'US', postalCode: '80202')
     contact.add_date(date: Time.now.iso8601(3), tag: 'E2E')
     contact.add_url(url: 'wix.com', tag: 'site')
-    contact.add_note(content: 'alex')
+    contact.add_note(content: 'alex', modifiedAt: Time.now.iso8601(3))
     contact.add_custom(field: 'custom1', value: 'custom')
     expect(client.new_contact(contact)).to include :contactId
   end
@@ -46,7 +46,6 @@ describe 'Contacts API' do
     end
 
     it 'should be able to fetch the previous page' do
-      pending('TBD')
       expect(contacts.next_page.previous_page.results.collect { |r| r.id }).to eq contacts.results.collect { |r| r.id }
     end
 
@@ -231,31 +230,31 @@ describe 'Contacts API' do
   end
 
   it '.update_contact_note' do
-    pending 'CE-2301'
-    #base_contact.add_note(content: 'content', modifiedAt: Time.now.iso8601(3))
+    base_contact.add_note(content: 'content', modifiedAt: Time.now.iso8601(3))
     contact = create_base_contact_and_return
 
     note = Hive::Note.new
     note.content = 'Note'
     note.modifiedAt = Time.now.iso8601(3)
 
-    update_response = client.update_contact_phone(contact.id, contact.notes.first.id, note, contact.modifiedAt)
+    update_response = client.update_contact_note(contact.id, contact.notes.first.id, note, contact.modifiedAt)
 
-    expect(update_response.notes.first.content).to eq note
+    expect(update_response.notes.first.content).to eq note.content
+    expect(update_response.notes.first.modifiedAt.to_i).to eq note.modifiedAt.to_i
   end
 
   it '.update_contact_custom' do
-    pending 'CE-2301'
+    base_contact.add_custom(field: 'custom', value: 'custom')
     contact = create_base_contact_and_return
 
     custom = Hive::Custom.new
     custom.field = 'custom_update'
     custom.value = 'custom_value'
 
-    update_response = client.update_contact_phone(contact.id, contact.custom.first.id, custom, contact.modifiedAt)
+    update_response = client.update_contact_custom(contact.id, contact.custom.first.id, custom, contact.modifiedAt)
 
     expect(update_response.custom.first.field).to eq custom.field
-    expect(update_response.custom.first.content).to eq custom.value
+    expect(update_response.custom.first.value).to eq custom.value
   end
 
   it '.add_contact_address' do
@@ -301,13 +300,14 @@ describe 'Contacts API' do
   it '.add_contact_note' do
     note = Hive::Note.new
     note.content = 'Note'
+    note.modifiedAt = Time.now.iso8601(3)
 
     contact_id, modified_at = create_base_contact
 
     add_response = client.add_contact_note(contact_id, note, modified_at)
 
     expect(add_response.notes.last.content).to eq note.content
-    expect(add_response.notes.last.modifiedAt).to eq note.modifiedAt
+    expect(add_response.notes.last.modifiedAt.to_i).to eq note.modifiedAt.to_i
   end
 
   it '.add_contact_custom' do
