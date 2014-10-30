@@ -34,10 +34,8 @@ module Hive
         perform_with_cursor(:get, 'v1/contacts/subscribers', Hive::ContactSubscriber)
       end
 
-      def update_contact(_contact_id, _contact)
-        fail NotImplementedError, 'Update contacts is not available!'
-
-        # edit_contact_field("v1/contacts/#{contact_id}", contact)
+      def patch_contact(id, patch_operations, modified_at)
+        perform_with_object(:patch, "v1/contacts/#{id}", Hive::Contact, body: patch_operations.to_json, params: { modifiedAt: modified_at })
       end
 
       def update_contact_name(id, name, modified_at)

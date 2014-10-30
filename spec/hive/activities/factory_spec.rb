@@ -75,6 +75,18 @@ describe Hive::Activities do
       expect(Hive::Activities::SCHEDULER_APPOINTMENT.klass).to eq Hive::Activities.class_for_type(Hive::Activities::SCHEDULER_APPOINTMENT.type)
     end
 
+    it '#SHIPPING_DELIVERED' do
+      expect(Hive::Activities::SHIPPING_DELIVERED.klass).to eq Hive::Activities.class_for_type(Hive::Activities::SHIPPING_DELIVERED.type)
+    end
+
+    it '#SHIPPING_SHIPPED' do
+      expect(Hive::Activities::SHIPPING_SHIPPED.klass).to eq Hive::Activities.class_for_type(Hive::Activities::SHIPPING_SHIPPED.type)
+    end
+
+    it '#SHIPPING_STATUS_CHANGE' do
+      expect(Hive::Activities::SHIPPING_STATUS_CHANGE.klass).to eq Hive::Activities.class_for_type(Hive::Activities::SHIPPING_STATUS_CHANGE.type)
+    end
+
     it 'Invalid type' do
       expect(Hive::Activities.class_for_type('invalid')).to be_nil
     end

@@ -356,5 +356,75 @@ describe 'Activities API' do
 
       expect(new_activity_result.activityId).to be_truthy
     end
+
+    it 'SHIPPING_DELIVERED' do
+      item = {id: 1, sku: 'sky', title: 'title', quantity: 1, price: '1', formattedPrice: '1.1', currency: 'EUR', productLink: 'link'}
+
+      delivered = FACTORY::SHIPPING_DELIVERED.klass.new(orderId: '11111',
+                                                        items: [item],
+                                                        shippingDetails: {tracking: '123456'},
+                                                        note: 'Note')
+
+      activity = Hive::Activity.new(
+          type: FACTORY::SHIPPING_DELIVERED.type,
+          locationUrl: 'http://www.wix.com',
+          details: {summary: 'test', additionalInfoUrl: 'http://www.wix.com'},
+          info: delivered)
+
+      new_activity_result = client.new_activity(session_id, activity)
+
+      expect(new_activity_result.activityId).to be_truthy
+    end
+
+    it 'SHIPPING_SHIPPED' do
+      shipping_address = {firstName: 'Wix' , lastName: 'Cool', email: 'wix@example.com', phone: '12345566', country: 'Macedonia', countryCode: 'MK', region: 'Bitola', regionCode: '7000', city: 'Bitola', address1: 'Marshal Tito', address2: 'Marshal Tito', zip: '7000', company: 'Wix.com'}
+      day_ago = (Time.now - (60 * 60 * 24)).iso8601(3)
+      delivery_estimate = { start: day_ago, end: Time.now.iso8601(3) }
+
+      shipping_details = {method: 'USPS', tracking: '123456', deliveryEstimate: delivery_estimate}
+      item = {id: 1, sku: 'sky', title: 'title', quantity: 1, price: '1', formattedPrice: '1.1', currency: 'EUR', productLink: 'link'}
+
+      delivered = FACTORY::SHIPPING_SHIPPED.klass.new(orderId: '11111',
+                                                        items: [item],
+                                                        shippingDetails: shipping_details,
+                                                        shippingAddress: shipping_address,
+                                                        note: 'Note')
+
+      activity = Hive::Activity.new(
+          type: FACTORY::SHIPPING_SHIPPED.type,
+          locationUrl: 'http://www.wix.com',
+          details: {summary: 'test', additionalInfoUrl: 'http://www.wix.com'},
+          info: delivered)
+
+      new_activity_result = client.new_activity(session_id, activity)
+
+      expect(new_activity_result.activityId).to be_truthy
+    end
+
+    it 'SHIPPING_STATUS_CHANGE' do
+      shipping_address = {firstName: 'Wix' , lastName: 'Cool', email: 'wix@example.com', phone: '12345566', country: 'Macedonia', countryCode: 'MK', region: 'Bitola', regionCode: '7000', city: 'Bitola', address1: 'Marshal Tito', address2: 'Marshal Tito', zip: '7000', company: 'Wix.com'}
+      day_ago = (Time.now - (60 * 60 * 24)).iso8601(3)
+      delivery_estimate = { start: day_ago, end: Time.now.iso8601(3) }
+
+      shipping_details = {method: 'USPS', tracking: '123456', deliveryEstimate: delivery_estimate}
+      item = {id: 1, sku: 'sky', title: 'title', quantity: 1, price: '1', formattedPrice: '1.1', currency: 'EUR', productLink: 'link'}
+
+      delivered = FACTORY::SHIPPING_STATUS_CHANGE.klass.new(orderId: '11111',
+                                                      status: 'awaiting_shipment',
+                                                      items: [item],
+                                                      shippingDetails: shipping_details,
+                                                      shippingAddress: shipping_address,
+                                                      note: 'Note')
+
+      activity = Hive::Activity.new(
+          type: FACTORY::SHIPPING_STATUS_CHANGE.type,
+          locationUrl: 'http://www.wix.com',
+          details: {summary: 'test', additionalInfoUrl: 'http://www.wix.com'},
+          info: delivered)
+
+      new_activity_result = client.new_activity(session_id, activity)
+
+      expect(new_activity_result.activityId).to be_truthy
+    end
   end
 end

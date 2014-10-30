@@ -48,16 +48,13 @@ describe Hive::REST::Contacts do
     contacts.contacts_subscribers
   end
 
-  it '.update_contact' do
-    id = '1234'
-    contact = double('Contact')
-
+  it '.patch_contact' do
+    contact_id = '1234'
+    patch_operations = double('PatchOperations')
     allow(Time).to receive(:now) { time_now }
-    expect(contact).to receive(:to_json).and_return('mock')
-    expect(contacts).to receive(:perform_with_object).with(:put, "v1/contacts/#{id}", Hive::Contact, body: 'mock', params: {modifiedAt: time_now.iso8601(3)}).and_return(instance_double(Faraday::Response, body: 'mock'))
-
-    pending('HAPI-3')
-    contacts.update_contact(id, contact)
+    expect(patch_operations).to receive(:to_json).and_return('mock')
+    expect(contacts).to receive(:perform_with_object).with(:patch, "v1/contacts/#{contact_id}", Hive::Contact, body: 'mock', params: {modifiedAt: time_now.iso8601(3)}).and_return(instance_double(Faraday::Response, body: 'mock'))
+    contacts.patch_contact(contact_id, patch_operations, time_now.iso8601(3))
   end
 
   it '.update_contact_name' do
