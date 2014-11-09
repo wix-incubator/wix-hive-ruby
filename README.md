@@ -639,7 +639,7 @@ client.upsert_contact( phone: '123456789', email: 'alex@example.com' )
 6. Write code (**no patch is too small**: fix typos, clean up inconsistent whitespace).
 7. Refactor code.
 8. Fix [issues](https://github.com/wix/wix-hive-ruby/issues).
-9. Submitt an Issue
+9. Submit an Issue
 
 ### Submitting an Issue
 
