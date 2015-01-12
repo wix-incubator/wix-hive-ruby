@@ -349,10 +349,11 @@ contact = Hive::Contact.new
 ```
   
 #### client.contact
+Get a Contact by ID
 
 **Example:**
 ``` ruby
-client.contact(CONTACT_ID)
+contact = client.contact(CONTACT_ID)
 ```
 
 #### client.update_contact (PENDING)
