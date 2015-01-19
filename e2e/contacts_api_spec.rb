@@ -53,29 +53,10 @@ describe 'Contacts API' do
       expect(client.contacts( pageSize: 50 ).results.size).to eq 50
     end
 
-    it 'should be able to query by tag' do
-      expect(client.contacts( tag: 'contacts_server/new' ).results.size).to be > 0
-    end
-
-    it 'should be able to query by email' do
-      expect(client.contacts( email: 'alext@wix.com' ).results.size).to be > 0
-    end
-
-    it 'should be able to query by phone' do
-      expect(client.contacts( phone: '123456789' ).results.size).to be > 0
-    end
-
-    it 'should be able to query by firstName' do
-      expect(client.contacts( firstName: 'E2E' ).results.size).to be > 0
-    end
-
-    it 'should be able to query by lastName' do
-      expect(client.contacts( lastName:'Cool' ).results.size).to be > 0
-    end
   end
 
   it '.update_contact' do
-    pending('HIVE-3')
+    pending('HAPI-3')
     contact = Hive::Contact.new
     contact.name.first = 'E2E'
     contact.name.last = 'Cool'

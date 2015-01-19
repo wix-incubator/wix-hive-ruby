@@ -564,11 +564,6 @@ client.contact_activities(CONTACT_ID)
 ``` ruby
 client.contacts
 client.contacts( pageSize: 50 )
-client.contacts( tag: 'contacts_server/new' )
-client.contacts( email: 'alex@example.com' )
-client.contacts( phone: '123456789' )
-client.contacts( firstName: 'E2E' )
-client.contacts( lastName:'Cool' )
 ```
 
 #### client.upsert_contact
