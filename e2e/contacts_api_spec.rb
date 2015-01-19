@@ -86,16 +86,61 @@ describe 'Contacts API' do
   end
 
   context '.upsert_contact' do
-    it 'should upsert a contact given a phone' do
-      expect(client.upsert_contact(phone: rand(10**10))).to include :contactId
+    it 'should return an existing Contact given its phone' do
+      contact = create_base_contact_and_return
+
+      phone = rand(10**10)
+      updated_phone = Hive::Phone.new
+      updated_phone.tag = 'test'
+      updated_phone.phone = phone
+
+      client.update_contact_phone(contact.id, contact.phones.first.id, updated_phone, contact.modifiedAt)
+
+      upsert_result = client.upsert_contact(phone: phone)
+
+      expect(upsert_result).to include :contactId
+      expect(upsert_result.contactId).to eq contact.id
     end
 
-    it 'should upsert a contact given a email' do
-      expect(client.upsert_contact(email: rand(36**10).to_s(36))).to include :contactId
+    it 'should return an existing Contact given its email' do
+      contact = create_base_contact_and_return
+
+      email = rand(36**10).to_s(36)
+      updated_email = Hive::Email.new
+      updated_email.tag = 'work'
+      updated_email.email = email
+      updated_email.emailStatus = 'optOut'
+
+      client.update_contact_email(contact.id, contact.emails.first.id, updated_email, contact.modifiedAt)
+
+      upsert_result = client.upsert_contact(email: email)
+
+      expect(upsert_result).to include :contactId
+      expect(upsert_result.contactId).to eq contact.id
     end
 
-    it 'should upsert a contact given a email and phone' do
-      expect(client.upsert_contact(phone: rand(10**10), email: rand(36**10).to_s(36))).to include :contactId
+    it 'should return an existing Contact given its email and phone' do
+      contact = create_base_contact_and_return
+
+      phone = rand(10**10)
+      updated_phone = Hive::Phone.new
+      updated_phone.tag = 'test'
+      updated_phone.phone = phone
+
+      client.update_contact_phone(contact.id, contact.phones.first.id, updated_phone, contact.modifiedAt)
+
+      email = rand(36**10).to_s(36)
+      updated_email = Hive::Email.new
+      updated_email.tag = 'work'
+      updated_email.email = email
+      updated_email.emailStatus = 'optOut'
+
+      client.update_contact_email(contact.id, contact.emails.first.id, updated_email, contact.modifiedAt)
+
+      upsert_result = client.upsert_contact(phone: phone, email: email)
+
+      expect(upsert_result).to include :contactId
+      expect(upsert_result.contactId).to eq contact.id
     end
 
     it 'should return a contact given a exiting phone' do
