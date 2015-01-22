@@ -3,6 +3,9 @@ require 'time'
 require 'vcr'
 
 RECORD_MODE =  ENV['ACCEPTANCE']  ? :all : :new_episodes
+USER_SESSION_EMAIL = 'USER_SESSION_EMAIL'
+USER_SESSION_PHONE = 'USER_SESSION_PHONE'
+USER_SESSION_TOKEN = 'USER_SESSION_TOKEN'
 
 VCR.configure do |c|
   c.cassette_library_dir = 'e2e/fixtures/vcr_cassettes'

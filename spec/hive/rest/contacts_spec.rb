@@ -36,6 +36,10 @@ describe Hive::REST::Contacts do
     it 'without email or phone' do
       expect { contacts.upsert_contact(nothing: nil) }.to raise_error(ArgumentError)
     end
+
+    it 'without email or phone but with userSessionToken' do
+      expect { contacts.upsert_contact(userSessionToken: 'something') }.to raise_error(ArgumentError)
+    end
   end
 
   it '.contacts_tags' do
