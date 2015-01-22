@@ -119,6 +119,30 @@ describe 'Contacts API' do
       expect(upsert_result.contactId).to eq contact.id
     end
 
+    it 'should return the same Contact every time given same phone and userSessionToken' do
+
+      contact_phone_for_session = USER_SESSION_PHONE
+      token = USER_SESSION_TOKEN
+      upsert1_result = client.upsert_contact(phone: contact_phone_for_session, userSessionToken: token)
+      expect(upsert1_result).to include :contactId
+
+      upsert2_result = client.upsert_contact(phone: contact_phone_for_session, userSessionToken: token)
+      expect(upsert2_result).to include :contactId
+      expect(upsert2_result.contact_id).to eq upsert1_result.contact_id
+    end
+
+    it 'should return the same Contact every time given same email and userSessionToken' do
+
+      contact_email_for_session = USER_SESSION_EMAIL
+      token = USER_SESSION_TOKEN
+      upsert1_result = client.upsert_contact(email: contact_email_for_session, userSessionToken: token)
+      expect(upsert1_result).to include :contactId
+
+      upsert2_result = client.upsert_contact(email: contact_email_for_session, userSessionToken: token)
+      expect(upsert2_result).to include :contactId
+      expect(upsert2_result.contact_id).to eq upsert1_result.contact_id
+    end
+
     it 'should return an existing Contact given its email and phone' do
       contact = create_base_contact_and_return
 
@@ -141,10 +165,6 @@ describe 'Contacts API' do
 
       expect(upsert_result).to include :contactId
       expect(upsert_result.contactId).to eq contact.id
-    end
-
-    it 'should return a contact given a exiting phone' do
-      expect(client.upsert_contact(phone: '123456789', email: 'alext@wix.com')).to include :contactId
     end
   end
 
