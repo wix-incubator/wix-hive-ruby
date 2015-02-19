@@ -1,5 +1,5 @@
 # THIS IS A GENERATED FILE, DO NOT EDIT THIS
-# Generated on 2015-02-19T16:58:33.613Z
+# Generated on 2015-02-19T18:01:11.350Z
 
 require 'hashie'
 require 'hive/extensions/hashie_validate_enum'
@@ -7,6 +7,7 @@ require 'hive/extensions/hashie_validate_enum'
 module Hive
   module Activities
     module Hotels
+
       class Refund < Hashie::Trash
         include Hashie::Extensions::IgnoreUndeclared
 
@@ -15,6 +16,8 @@ module Hive
         property :currency, required: true
         property :notes
         property :destination, required: true
+
+
       end
 
       class CancelActivity < Hashie::Trash
@@ -46,7 +49,10 @@ module Hive
         def add_room(args)
           rooms << Room.new(args)
         end
+
+
       end
+
     end
   end
 end

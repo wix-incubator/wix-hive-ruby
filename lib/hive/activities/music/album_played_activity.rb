@@ -1,5 +1,5 @@
 # THIS IS A GENERATED FILE, DO NOT EDIT THIS
-# Generated on 2015-02-19T16:58:33.465Z
+# Generated on 2015-02-19T18:01:11.180Z
 
 require 'hashie'
 require 'hive/extensions/hashie_validate_enum'
@@ -7,11 +7,14 @@ require 'hive/extensions/hashie_validate_enum'
 module Hive
   module Activities
     module Music
+
       class Album < Hashie::Trash
         include Hashie::Extensions::IgnoreUndeclared
 
         property :name, required: true
         property :id
+
+
       end
 
       class Artist < Hashie::Trash
@@ -19,6 +22,8 @@ module Hive
 
         property :name, required: true
         property :id
+
+
       end
 
       class PlayedActivity < Hashie::Trash
@@ -30,7 +35,10 @@ module Hive
 
         property :album, required: true
         property :artist
+
+
       end
+
     end
   end
 end

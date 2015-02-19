@@ -62,14 +62,14 @@ describe 'Activities API' do
   context 'create activities' do
     it 'CONTACT_CONTACT_FORM' do
 
-      contacts_create = FACTORY::CONTACT_CONTACT_FORM.klass.new
-      contacts_create.add_field(name: 'name', value: 'value')
+      contact_form = FACTORY::CONTACT_CONTACT_FORM.klass.new
+      contact_form.add_field(name: 'name', value: 'value')
 
       activity = Hive::Activity.new(
           type: FACTORY::CONTACT_CONTACT_FORM.type,
           locationUrl: 'http://www.wix.com',
           details: {summary: 'test', additionalInfoUrl: 'http://www.wix.com'},
-          info: contacts_create)
+          info: contact_form)
 
       new_activity_result = client.new_activity(session_id, activity)
 
@@ -78,18 +78,23 @@ describe 'Activities API' do
 
     it 'CONTACT_SUBSCRIPTION_FORM' do
 
+      email = 'karen@meep.com'
+      phone = '+1-555-555-555'
+      name = {prefix: 'sir', first: 'mix', middle: 'a lot', last: 'the', suffix: 'III'}
+
+      sub_form = FACTORY::CONTACT_SUBSCRIPTION_FORM.klass.new(email: email,
+                                                        phone: phone,
+                                                        name: name)
+      
+      sub_form.add_field(name: 'name', value: 'value')
       activity = Hive::Activity.new(
           type: FACTORY::CONTACT_SUBSCRIPTION_FORM.type,
           locationUrl: 'http://www.wix.com',
           details: {summary: 'test', additionalInfoUrl: 'http://www.wix.com'},
-          info: {
-              email: 'karen@meep.com',
-              name: { prefix: 'Dr.', first: 'Karen', middle: 'Mc', last: 'meep', suffix: 'The III'},
-              phone: '554-2234'
-            }
+          info: sub_form
           )
 
-      activity.add_field(name: 'name', value: 'value')
+      
       new_activity_result = client.new_activity(session_id, activity)
 
       expect(new_activity_result.activityId).to be_truthy

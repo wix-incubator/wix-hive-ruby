@@ -1,5 +1,5 @@
 # THIS IS A GENERATED FILE, DO NOT EDIT THIS
-# Generated on 2015-02-19T16:58:33.755Z
+# Generated on 2015-02-19T18:01:11.499Z
 require 'hive/activities/contact/contact_form_activity'
 require 'hive/activities/contact/subscription_form_activity'
 require 'hive/activities/contact/contact_create_activity'
@@ -25,6 +25,7 @@ require 'hive/activities/shipping/shipping_status_changed_activity'
 
 module Hive
   module Activities
+
     ActivityType = Struct.new(:klass, :type) do
     end
 

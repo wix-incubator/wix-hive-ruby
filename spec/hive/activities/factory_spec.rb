@@ -6,6 +6,10 @@ describe Hive::Activities do
     it '#CONTACT_CONTACT_FORM' do
       expect(Hive::Activities::CONTACT_CONTACT_FORM.klass).to eq Hive::Activities.class_for_type(Hive::Activities::CONTACT_CONTACT_FORM.type)
     end
+    
+    it '#CONTACT_SUBSCRIPTION_FORM' do
+      expect(Hive::Activities::CONTACT_SUBSCRIPTION_FORM.klass).to eq Hive::Activities.class_for_type(Hive::Activities::CONTACT_SUBSCRIPTION_FORM.type)
+    end
 
     it '#CONTACTS_CREATE' do
       expect(Hive::Activities::CONTACTS_CREATE.klass).to eq Hive::Activities.class_for_type(Hive::Activities::CONTACTS_CREATE.type)
@@ -83,7 +87,7 @@ describe Hive::Activities do
       expect(Hive::Activities::SHIPPING_SHIPPED.klass).to eq Hive::Activities.class_for_type(Hive::Activities::SHIPPING_SHIPPED.type)
     end
 
-    it '#SHIPPING_STATUS_CHANGE' do
+    it '#SHIPPING_STATUS_CHANGED' do
       expect(Hive::Activities::SHIPPING_STATUS_CHANGED.klass).to eq Hive::Activities.class_for_type(Hive::Activities::SHIPPING_STATUS_CHANGED.type)
     end
 

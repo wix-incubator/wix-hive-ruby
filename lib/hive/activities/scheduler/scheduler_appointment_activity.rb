@@ -1,5 +1,5 @@
 # THIS IS A GENERATED FILE, DO NOT EDIT THIS
-# Generated on 2015-02-19T16:58:33.693Z
+# Generated on 2015-02-19T18:01:11.432Z
 
 require 'hashie'
 require 'hive/extensions/hashie_validate_enum'
@@ -7,12 +7,15 @@ require 'hive/extensions/hashie_validate_enum'
 module Hive
   module Activities
     module Scheduler
+
       class Price < Hashie::Trash
         include Hashie::Extensions::IgnoreUndeclared
 
         property :price
         property :formattedPrice
         property :currency, required: true
+
+
       end
 
       class Location < Hashie::Trash
@@ -24,6 +27,8 @@ module Hive
         property :postalCode
         property :country
         property :url
+
+
       end
 
       class Time < Hashie::Trash
@@ -32,6 +37,8 @@ module Hive
         property :start, required: true
         property :end, required: true
         property :timezone, required: true
+
+
       end
 
       class Name < Hashie::Trash
@@ -42,6 +49,8 @@ module Hive
         property :middle
         property :last
         property :suffix
+
+
       end
 
       class Attendee < Hashie::Trash
@@ -56,6 +65,8 @@ module Hive
         property :email
         property :notes
         property :self
+
+
       end
 
       class AppointmentActivity < Hashie::Trash
@@ -78,7 +89,10 @@ module Hive
         def add_attendee(args)
           attendees << Attendee.new(args)
         end
+
+
       end
+
     end
   end
 end

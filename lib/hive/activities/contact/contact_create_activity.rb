@@ -1,5 +1,5 @@
 # THIS IS A GENERATED FILE, DO NOT EDIT THIS
-# Generated on 2015-02-19T16:58:33.369Z
+# Generated on 2015-02-19T18:01:11.081Z
 
 require 'hashie'
 require 'hive/extensions/hashie_validate_enum'
@@ -7,11 +7,14 @@ require 'hive/extensions/hashie_validate_enum'
 module Hive
   module Activities
     module Contact
+
       class Company < Hashie::Trash
         include Hashie::Extensions::IgnoreUndeclared
 
         property :name
         property :role
+
+
       end
 
       class Email < Hashie::Trash
@@ -19,6 +22,8 @@ module Hive
 
         property :tag, required: true
         property :email, required: true
+
+
       end
 
       class Phone < Hashie::Trash
@@ -26,6 +31,8 @@ module Hive
 
         property :tag, required: true
         property :phone, required: true
+
+
       end
 
       class Address < Hashie::Trash
@@ -37,6 +44,8 @@ module Hive
         property :region
         property :postalCode
         property :country
+
+
       end
 
       class Date < Hashie::Trash
@@ -44,6 +53,8 @@ module Hive
 
         property :tag, required: true
         property :date, required: true
+
+
       end
 
       class Url < Hashie::Trash
@@ -51,6 +62,8 @@ module Hive
 
         property :tag, required: true
         property :url, required: true
+
+
       end
 
       class CreateActivity < Hashie::Trash
@@ -93,7 +106,10 @@ module Hive
         def add_url(args)
           urls << Url.new(args)
         end
+
+
       end
+
     end
   end
 end

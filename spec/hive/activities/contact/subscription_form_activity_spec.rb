@@ -8,8 +8,8 @@ describe 'CONTACT_SUBSCRIPTION_FORM' do
 
   subject(:create_activity) {ACTIVITIES_FACTORY::CONTACT_SUBSCRIPTION_FORM.klass.new( email: email, phone: phone, name: name )}
 
-  it '.add_metadata' do
-    create_activity.add_metadata( name: 'custom', value: 'value' )
+  it '.add_field' do
+    create_activity.add_field( name: 'custom', value: 'value' )
   end
 
 end

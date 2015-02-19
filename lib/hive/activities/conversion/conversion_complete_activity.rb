@@ -1,5 +1,5 @@
 # THIS IS A GENERATED FILE, DO NOT EDIT THIS
-# Generated on 2015-02-19T16:58:33.385Z
+# Generated on 2015-02-19T18:01:11.097Z
 
 require 'hashie'
 require 'hive/extensions/hashie_validate_enum'
@@ -7,11 +7,14 @@ require 'hive/extensions/hashie_validate_enum'
 module Hive
   module Activities
     module Conversion
+
       class Metadata < Hashie::Trash
         include Hashie::Extensions::IgnoreUndeclared
 
         property :name, required: true
         property :value, required: true
+
+
       end
 
       class CompleteActivity < Hashie::Trash
@@ -27,7 +30,10 @@ module Hive
         def add_metadata(args)
           metadata << Metadata.new(args)
         end
+
+
       end
+
     end
   end
 end

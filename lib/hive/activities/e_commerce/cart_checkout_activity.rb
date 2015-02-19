@@ -7,12 +7,16 @@ require 'hive/extensions/hashie_validate_enum'
 module Hive
   module Activities
     module ECommerce
+
       class CartCheckoutActivity < Hashie::Trash
         include Hashie::Extensions::IgnoreUndeclared
 
         property :cartId, required: true
         property :storeId
+
+
       end
+
     end
   end
 end
