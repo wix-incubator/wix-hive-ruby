@@ -84,7 +84,7 @@ describe Hive::Activities do
     end
 
     it '#SHIPPING_STATUS_CHANGE' do
-      expect(Hive::Activities::SHIPPING_STATUS_CHANGE.klass).to eq Hive::Activities.class_for_type(Hive::Activities::SHIPPING_STATUS_CHANGE.type)
+      expect(Hive::Activities::SHIPPING_STATUS_CHANGED.klass).to eq Hive::Activities.class_for_type(Hive::Activities::SHIPPING_STATUS_CHANGED.type)
     end
 
     it 'Invalid type' do

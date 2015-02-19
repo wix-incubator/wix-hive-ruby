@@ -76,6 +76,25 @@ describe 'Activities API' do
       expect(new_activity_result.activityId).to be_truthy
     end
 
+    it 'CONTACT_SUBSCRIPTION_FORM' do
+
+      activity = Hive::Activity.new(
+          type: FACTORY::CONTACT_SUBSCRIPTION_FORM.type,
+          locationUrl: 'http://www.wix.com',
+          details: {summary: 'test', additionalInfoUrl: 'http://www.wix.com'},
+          info: {
+              email: 'karen@meep.com',
+              name: { prefix: 'Dr.', first: 'Karen', middle: 'Mc', last: 'meep', suffix: 'The III'},
+              phone: '554-2234'
+            }
+          )
+
+      activity.add_field(name: 'name', value: 'value')
+      new_activity_result = client.new_activity(session_id, activity)
+
+      expect(new_activity_result.activityId).to be_truthy
+    end
+
     it 'CONVERSION_COMPLETE' do
       activity = Hive::Activity.new(
           type: FACTORY::CONVERSION_COMPLETE.type,

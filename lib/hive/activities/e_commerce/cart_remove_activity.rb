@@ -1,21 +1,21 @@
 # THIS IS A GENERATED FILE, DO NOT EDIT THIS
-# Generated on 2015-02-19T16:58:33.475Z
+# Generated on 2015-02-19T15:36:12.671Z
 
 require 'hashie'
 require 'hive/extensions/hashie_validate_enum'
 
 module Hive
   module Activities
-    module Music
-      class FanActivity < Hashie::Trash
+    module ECommerce
+      class CartRemoveActivity < Hashie::Trash
         include Hashie::Extensions::IgnoreUndeclared
         include Hashie::Extensions::Coercion
 
-        coerce_key :album, Album
-        coerce_key :artist, Artist
+        coerce_key :item, Item
 
-        property :album, required: true
-        property :artist
+        property :cartId, required: true
+        property :storeId
+        property :item, required: true
       end
     end
   end

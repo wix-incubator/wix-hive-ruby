@@ -1,5 +1,5 @@
 # THIS IS A GENERATED FILE, DO NOT EDIT THIS
-# Generated on 2014-10-30T15:13:42.233Z
+# Generated on 2015-02-19T16:58:33.369Z
 
 require 'hashie'
 require 'hive/extensions/hashie_validate_enum'
@@ -7,16 +7,6 @@ require 'hive/extensions/hashie_validate_enum'
 module Hive
   module Activities
     module Contact
-      class Name < Hashie::Trash
-        include Hashie::Extensions::IgnoreUndeclared
-
-        property :prefix
-        property :first
-        property :middle
-        property :last
-        property :suffix
-      end
-
       class Company < Hashie::Trash
         include Hashie::Extensions::IgnoreUndeclared
 
