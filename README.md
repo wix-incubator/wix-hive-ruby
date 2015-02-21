@@ -59,8 +59,8 @@ A Ruby interface to the Wix Hive API.
    * **[Submitting a Pull Request](#submitting-a-pull-request)**
 
 ## Prerequisites
-- **Read about** [developing a third party app for the Wix platform](http://dev.wix.com/docs/display/DRAF/Third+Party+Apps+-+Introduction).
-- **Register your app** [here](http://dev.wix.com/docs/display/DRAF/Dev+Center+Registration+Guide) to **obtain** your **APP_KEY** and **APP_SECRET**
+- **Read about** [developing a third party app for the Wix platform](http://dev.wix.com/docs/getting-started).
+- **Register your app** [here](http://dev.wix.com/docs/publish/registration) to **obtain** your **APP_KEY** and **APP_SECRET**
 
 ## Installation
 
@@ -143,8 +143,8 @@ Hive::Client.new do |config|
 end
 ```
 
-1. The `config.secret_key` and `config.app_id` are obtained by registering an app as it is outlined [here](http://dev.wix.com/docs/display/DRAF/Dev+Center+Registration+Guide)
-2. The `config.instance_id` is obtained by decoding the signed app instance. Learn more about this  [here](http://dev.wix.com/docs/display/DRAF/Using+the+Signed+App+Instance)
+1. The `config.secret_key` and `config.app_id` are obtained by registering an app as it is outlined [here](http://dev.wix.com/docs/publish/registration)
+2. The `config.instance_id` is obtained by decoding the signed app instance. Learn more about this  [here](http://dev.wix.com/docs/infrastructure/app-instance#overview)
    * Note: The Hive client has a utility method that parses the instance data. Example usage:
    ``` ruby
    wixInstance = Hive::Client.parse_instance_data(INSTANCE, SECRET-KEY)
