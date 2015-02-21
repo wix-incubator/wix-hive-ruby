@@ -54,6 +54,8 @@ A Ruby interface to the Wix Hive API.
    * **[Insights API](#insights-api)**
      * **[client.activities_summary](#clientactivities_summary)**
      * **[client.contact_activities_summary](#clientcontact_activities_summary)**
+   * **[Redirects API](#insights-api)**
+     * **[client.redirects](#clientredirects)**
 5. **[Contributing](#contributing)**
    * **[Submitting an Issue](#submitting-an-issue)**
    * **[Submitting a Pull Request](#submitting-a-pull-request)**
@@ -622,7 +624,17 @@ client.upsert_contact( phone: '123456789', email: 'alex@example.com' )
 **Example:**
    ``` ruby
    client.contact_activities_summary(CONTACT_ID)
+   ```   
+   
+### Redirects API
+
+#### client.redirects
+
+**Example:**
+   ``` ruby
+   client.redirects
    ```
+
 ## Contributing
 
 **Everyone** is encouraged to help **improve** this gem. Some of the ways you can contribute include:
