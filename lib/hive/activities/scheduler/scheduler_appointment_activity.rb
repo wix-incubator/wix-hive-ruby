@@ -1,5 +1,5 @@
 # THIS IS A GENERATED FILE, DO NOT EDIT THIS
-# Generated on 2014-10-30T15:13:42.410Z
+# Generated on 2015-02-19T18:01:11.432Z
 
 require 'hashie'
 require 'hive/extensions/hashie_validate_enum'
@@ -7,6 +7,14 @@ require 'hive/extensions/hashie_validate_enum'
 module Hive
   module Activities
     module Scheduler
+      class Price < Hashie::Trash
+        include Hashie::Extensions::IgnoreUndeclared
+
+        property :price
+        property :formattedPrice
+        property :currency, required: true
+      end
+
       class Location < Hashie::Trash
         include Hashie::Extensions::IgnoreUndeclared
 
@@ -54,12 +62,15 @@ module Hive
         include Hashie::Extensions::IgnoreUndeclared
         include Hashie::Extensions::Coercion
 
+        coerce_key :price, Price
         coerce_key :location, Location
         coerce_key :time, Time
         coerce_key :attendees, Array[Attendee]
 
         property :title, required: true
         property :description, required: true
+        property :infoLink
+        property :price
         property :location
         property :time
         property :attendees, default: []

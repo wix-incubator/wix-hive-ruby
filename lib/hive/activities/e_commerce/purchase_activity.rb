@@ -1,5 +1,5 @@
 # THIS IS A GENERATED FILE, DO NOT EDIT THIS
-# Generated on 2014-10-30T15:13:42.284Z
+# Generated on 2015-02-19T18:01:11.149Z
 
 require 'hashie'
 require 'hive/extensions/hashie_validate_enum'
@@ -20,14 +20,24 @@ module Hive
         property :value
       end
 
+      class Metadata < Hashie::Trash
+        include Hashie::Extensions::IgnoreUndeclared
+
+        property :name, required: true
+        property :value, required: true
+      end
+
       class Item < Hashie::Trash
         include Hashie::Extensions::IgnoreUndeclared
         include Hashie::Extensions::Coercion
 
         coerce_key :media, Media
         coerce_key :variants, Array[Variant]
+        coerce_key :categories, Array[String]
+        coerce_key :metadata, Array[Metadata]
 
         property :id, required: true
+        property :type, transform_with: Hashie::Validate.enum(%w(PHYSICAL DIGITAL))
         property :sku
         property :title, required: true
         property :quantity, required: true
@@ -39,9 +49,15 @@ module Hive
         property :formattedWeight
         property :media
         property :variants, default: [], required: true
+        property :categories, default: []
+        property :metadata, default: []
 
         def add_variant(args)
           variants << Variant.new(args)
+        end
+
+        def add_metadata(args)
+          metadata << Metadata.new(args)
         end
       end
 

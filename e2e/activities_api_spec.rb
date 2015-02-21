@@ -62,15 +62,39 @@ describe 'Activities API' do
   context 'create activities' do
     it 'CONTACT_CONTACT_FORM' do
 
-      contacts_create = FACTORY::CONTACT_CONTACT_FORM.klass.new
-      contacts_create.add_field(name: 'name', value: 'value')
+      contact_form = FACTORY::CONTACT_CONTACT_FORM.klass.new
+      contact_form.add_field(name: 'name', value: 'value')
 
       activity = Hive::Activity.new(
           type: FACTORY::CONTACT_CONTACT_FORM.type,
           locationUrl: 'http://www.wix.com',
           details: {summary: 'test', additionalInfoUrl: 'http://www.wix.com'},
-          info: contacts_create)
+          info: contact_form)
 
+      new_activity_result = client.new_activity(session_id, activity)
+
+      expect(new_activity_result.activityId).to be_truthy
+    end
+
+    it 'CONTACT_SUBSCRIPTION_FORM' do
+
+      email = 'karen@meep.com'
+      phone = '+1-555-555-555'
+      name = {prefix: 'sir', first: 'mix', middle: 'a lot', last: 'the', suffix: 'III'}
+
+      sub_form = FACTORY::CONTACT_SUBSCRIPTION_FORM.klass.new(email: email,
+                                                        phone: phone,
+                                                        name: name)
+      
+      sub_form.add_field(name: 'name', value: 'value')
+      activity = Hive::Activity.new(
+          type: FACTORY::CONTACT_SUBSCRIPTION_FORM.type,
+          locationUrl: 'http://www.wix.com',
+          details: {summary: 'test', additionalInfoUrl: 'http://www.wix.com'},
+          info: sub_form
+          )
+
+      
       new_activity_result = client.new_activity(session_id, activity)
 
       expect(new_activity_result.activityId).to be_truthy
@@ -401,7 +425,7 @@ describe 'Activities API' do
       expect(new_activity_result.activityId).to be_truthy
     end
 
-    it 'SHIPPING_STATUS_CHANGE' do
+    it 'SHIPPING_STATUS_CHANGED' do
       shipping_address = {firstName: 'Wix' , lastName: 'Cool', email: 'wix@example.com', phone: '12345566', country: 'Macedonia', countryCode: 'MK', region: 'Bitola', regionCode: '7000', city: 'Bitola', address1: 'Marshal Tito', address2: 'Marshal Tito', zip: '7000', company: 'Wix.com'}
       day_ago = (Time.now - (60 * 60 * 24)).iso8601(3)
       delivery_estimate = { start: day_ago, end: Time.now.iso8601(3) }
@@ -409,15 +433,15 @@ describe 'Activities API' do
       shipping_details = {method: 'USPS', tracking: '123456', deliveryEstimate: delivery_estimate}
       item = {id: 1, sku: 'sky', title: 'title', quantity: 1, price: '1', formattedPrice: '1.1', currency: 'EUR', productLink: 'link'}
 
-      delivered = FACTORY::SHIPPING_STATUS_CHANGE.klass.new(orderId: '11111',
-                                                      status: 'awaiting_shipment',
+      delivered = FACTORY::SHIPPING_STATUS_CHANGED.klass.new(orderId: '11111',
+                                                      status: 'AWAITING_FULFILMENT',
                                                       items: [item],
                                                       shippingDetails: shipping_details,
                                                       shippingAddress: shipping_address,
                                                       note: 'Note')
 
       activity = Hive::Activity.new(
-          type: FACTORY::SHIPPING_STATUS_CHANGE.type,
+          type: FACTORY::SHIPPING_STATUS_CHANGED.type,
           locationUrl: 'http://www.wix.com',
           details: {summary: 'test', additionalInfoUrl: 'http://www.wix.com'},
           info: delivered)
