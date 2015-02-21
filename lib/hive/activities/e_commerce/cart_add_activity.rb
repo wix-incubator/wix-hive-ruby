@@ -7,7 +7,6 @@ require 'hive/extensions/hashie_validate_enum'
 module Hive
   module Activities
     module ECommerce
-
       class Item < Hashie::Trash
         include Hashie::Extensions::IgnoreUndeclared
         include Hashie::Extensions::Coercion
@@ -39,8 +38,6 @@ module Hive
         def add_metadata(args)
           metadata << Metadata.new(args)
         end
-
-
       end
 
       class CartAddActivity < Hashie::Trash
@@ -52,10 +49,7 @@ module Hive
         property :cartId, required: true
         property :storeId
         property :item, required: true
-
-
       end
-
     end
   end
 end

@@ -7,7 +7,6 @@ require 'hive/extensions/hashie_validate_enum'
 module Hive
   module Activities
     module Messaging
-
       class Name < Hashie::Trash
         include Hashie::Extensions::IgnoreUndeclared
 
@@ -16,8 +15,6 @@ module Hive
         property :middle
         property :last
         property :suffix
-
-
       end
 
       class Destination < Hashie::Trash
@@ -28,8 +25,6 @@ module Hive
 
         property :target, required: true
         property :name
-
-
       end
 
       class Recipient < Hashie::Trash
@@ -41,8 +36,6 @@ module Hive
         property :method, required: true, transform_with: Hashie::Validate.enum(%w(EMAIL SMS PHONE SOCIAL))
         property :destination, required: true
         property :contactId
-
-
       end
 
       class Metadata < Hashie::Trash
@@ -50,8 +43,6 @@ module Hive
 
         property :name, required: true
         property :value, required: true
-
-
       end
 
       class ConversionTarget < Hashie::Trash
@@ -66,8 +57,6 @@ module Hive
         def add_metadata(args)
           metadata << Metadata.new(args)
         end
-
-
       end
 
       class SendActivity < Hashie::Trash
@@ -80,10 +69,7 @@ module Hive
         property :recipient, required: true
         property :messageId
         property :conversionTarget
-
-
       end
-
     end
   end
 end

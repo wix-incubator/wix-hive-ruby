@@ -7,14 +7,11 @@ require 'hive/extensions/hashie_validate_enum'
 module Hive
   module Activities
     module Music
-
       class Track < Hashie::Trash
         include Hashie::Extensions::IgnoreUndeclared
 
         property :name, required: true
         property :id
-
-
       end
 
       class LyricsActivity < Hashie::Trash
@@ -28,10 +25,7 @@ module Hive
         property :track, required: true
         property :album
         property :artist
-
-
       end
-
     end
   end
 end

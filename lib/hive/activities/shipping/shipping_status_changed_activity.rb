@@ -7,34 +7,29 @@ require 'hive/extensions/hashie_validate_enum'
 module Hive
   module Activities
     module Shipping
-
       class ShippingEstimate < Hashie::Trash
         include Hashie::Extensions::IgnoreUndeclared
 
         property :start
         property :end
-
-
       end
 
       class StatusChangedActivity < Hashie::Trash
         include Hashie::Extensions::IgnoreUndeclared
         include Hashie::Extensions::Coercion
 
-      class ShippingDetail < Hashie::Trash
-        include Hashie::Extensions::IgnoreUndeclared
-        include Hashie::Extensions::Coercion
+        class ShippingDetail < Hashie::Trash
+          include Hashie::Extensions::IgnoreUndeclared
+          include Hashie::Extensions::Coercion
 
-        coerce_key :shippingEstimate, ShippingEstimate
-        coerce_key :deliveryEstimate, DeliveryEstimate
+          coerce_key :shippingEstimate, ShippingEstimate
+          coerce_key :deliveryEstimate, DeliveryEstimate
 
-        property :method
-        property :tracking
-        property :shippingEstimate
-        property :deliveryEstimate
-
-
-      end
+          property :method
+          property :tracking
+          property :shippingEstimate
+          property :deliveryEstimate
+        end
 
         coerce_key :items, Array[Item]
         coerce_key :shippingDetails, ShippingDetail
@@ -50,10 +45,7 @@ module Hive
         def add_item(args)
           items << Item.new(args)
         end
-
-
       end
-
     end
   end
 end

@@ -7,13 +7,10 @@ require 'hive/extensions/hashie_validate_enum'
 module Hive
   module Activities
     module ECommerce
-
       class Media < Hashie::Trash
         include Hashie::Extensions::IgnoreUndeclared
 
         property :thumbnail
-
-
       end
 
       class Variant < Hashie::Trash
@@ -21,8 +18,6 @@ module Hive
 
         property :title, required: true
         property :value
-
-
       end
 
       class Metadata < Hashie::Trash
@@ -30,8 +25,6 @@ module Hive
 
         property :name, required: true
         property :value, required: true
-
-
       end
 
       class Item < Hashie::Trash
@@ -66,8 +59,6 @@ module Hive
         def add_metadata(args)
           metadata << Metadata.new(args)
         end
-
-
       end
 
       class Coupon < Hashie::Trash
@@ -76,8 +67,6 @@ module Hive
         property :total, required: true
         property :formattedTotal
         property :title, required: true
-
-
       end
 
       class Tax < Hashie::Trash
@@ -85,8 +74,6 @@ module Hive
 
         property :total, required: true
         property :formattedTotal
-
-
       end
 
       class Shipping < Hashie::Trash
@@ -94,8 +81,6 @@ module Hive
 
         property :total, required: true
         property :formattedTotal
-
-
       end
 
       class Payment < Hashie::Trash
@@ -114,8 +99,6 @@ module Hive
         property :coupon
         property :tax
         property :shipping
-
-
       end
 
       class ShippingAddres < Hashie::Trash
@@ -134,8 +117,6 @@ module Hive
         property :address2
         property :zip
         property :company
-
-
       end
 
       class BillingAddres < Hashie::Trash
@@ -154,8 +135,6 @@ module Hive
         property :address2
         property :zip
         property :company
-
-
       end
 
       class PurchaseActivity < Hashie::Trash
@@ -181,10 +160,7 @@ module Hive
         def add_item(args)
           items << Item.new(args)
         end
-
-
       end
-
     end
   end
 end

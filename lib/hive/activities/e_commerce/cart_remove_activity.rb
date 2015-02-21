@@ -7,7 +7,6 @@ require 'hive/extensions/hashie_validate_enum'
 module Hive
   module Activities
     module ECommerce
-
       class CartRemoveActivity < Hashie::Trash
         include Hashie::Extensions::IgnoreUndeclared
         include Hashie::Extensions::Coercion
@@ -17,10 +16,7 @@ module Hive
         property :cartId, required: true
         property :storeId
         property :item, required: true
-
-
       end
-
     end
   end
 end

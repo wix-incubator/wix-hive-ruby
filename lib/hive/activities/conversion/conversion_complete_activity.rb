@@ -7,14 +7,11 @@ require 'hive/extensions/hashie_validate_enum'
 module Hive
   module Activities
     module Conversion
-
       class Metadata < Hashie::Trash
         include Hashie::Extensions::IgnoreUndeclared
 
         property :name, required: true
         property :value, required: true
-
-
       end
 
       class CompleteActivity < Hashie::Trash
@@ -30,10 +27,7 @@ module Hive
         def add_metadata(args)
           metadata << Metadata.new(args)
         end
-
-
       end
-
     end
   end
 end

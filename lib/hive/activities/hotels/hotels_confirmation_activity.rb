@@ -7,15 +7,12 @@ require 'hive/extensions/hashie_validate_enum'
 module Hive
   module Activities
     module Hotels
-
       class Guest < Hashie::Trash
         include Hashie::Extensions::IgnoreUndeclared
 
         property :total, required: true
         property :adults, required: true
         property :children, required: true
-
-
       end
 
       class Stay < Hashie::Trash
@@ -23,8 +20,6 @@ module Hive
 
         property :checkin, required: true
         property :checkout, required: true
-
-
       end
 
       class Tax < Hashie::Trash
@@ -33,8 +28,6 @@ module Hive
         property :name, required: true
         property :total, required: true
         property :currency, required: true
-
-
       end
 
       class Rate < Hashie::Trash
@@ -52,8 +45,6 @@ module Hive
         def add_tax(args)
           taxes << Tax.new(args)
         end
-
-
       end
 
       class Invoice < Hashie::Trash
@@ -62,8 +53,6 @@ module Hive
         property :subtotal, required: true
         property :total, required: true
         property :currency, required: true
-
-
       end
 
       class Name < Hashie::Trash
@@ -74,8 +63,6 @@ module Hive
         property :middle
         property :last
         property :suffix
-
-
       end
 
       class Customer < Hashie::Trash
@@ -89,8 +76,6 @@ module Hive
         property :name
         property :phone
         property :email
-
-
       end
 
       class Bed < Hashie::Trash
@@ -98,8 +83,6 @@ module Hive
 
         property :kind, required: true
         property :sleeps
-
-
       end
 
       class Room < Hashie::Trash
@@ -117,8 +100,6 @@ module Hive
         def add_bed(args)
           beds << Bed.new(args)
         end
-
-
       end
 
       class ConfirmationActivity < Hashie::Trash
@@ -148,10 +129,7 @@ module Hive
         def add_room(args)
           rooms << Room.new(args)
         end
-
-
       end
-
     end
   end
 end

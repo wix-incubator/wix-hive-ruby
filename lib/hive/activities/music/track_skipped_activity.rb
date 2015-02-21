@@ -7,7 +7,6 @@ require 'hive/extensions/hashie_validate_enum'
 module Hive
   module Activities
     module Music
-
       class TrackSkippedActivity < Hashie::Trash
         include Hashie::Extensions::IgnoreUndeclared
         include Hashie::Extensions::Coercion
@@ -19,10 +18,7 @@ module Hive
         property :track, required: true
         property :album
         property :artist
-
-
       end
-
     end
   end
 end

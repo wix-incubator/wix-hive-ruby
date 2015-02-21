@@ -7,14 +7,11 @@ require 'hive/extensions/hashie_validate_enum'
 module Hive
   module Activities
     module Contact
-
       class Field < Hashie::Trash
         include Hashie::Extensions::IgnoreUndeclared
 
         property :name, required: true
         property :value, required: true
-
-
       end
 
       class ContactFormActivity < Hashie::Trash
@@ -28,10 +25,7 @@ module Hive
         def add_field(args)
           fields << Field.new(args)
         end
-
-
       end
-
     end
   end
 end

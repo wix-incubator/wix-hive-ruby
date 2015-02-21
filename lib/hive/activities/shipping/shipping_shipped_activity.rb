@@ -7,14 +7,11 @@ require 'hive/extensions/hashie_validate_enum'
 module Hive
   module Activities
     module Shipping
-
       class Variant < Hashie::Trash
         include Hashie::Extensions::IgnoreUndeclared
 
         property :title, required: true
         property :value
-
-
       end
 
       class Metadata < Hashie::Trash
@@ -22,8 +19,6 @@ module Hive
 
         property :name, required: true
         property :value, required: true
-
-
       end
 
       class Item < Hashie::Trash
@@ -53,8 +48,6 @@ module Hive
         def add_metadata(args)
           metadata << Metadata.new(args)
         end
-
-
       end
 
       class DeliveryEstimate < Hashie::Trash
@@ -62,8 +55,6 @@ module Hive
 
         property :start
         property :end
-
-
       end
 
       class ShippingDetail < Hashie::Trash
@@ -75,8 +66,6 @@ module Hive
         property :method, required: true
         property :tracking
         property :deliveryEstimate, required: true
-
-
       end
 
       class ShippingAddres < Hashie::Trash
@@ -95,8 +84,6 @@ module Hive
         property :address2
         property :zip
         property :company
-
-
       end
 
       class ShippedActivity < Hashie::Trash
@@ -116,10 +103,7 @@ module Hive
         def add_item(args)
           items << Item.new(args)
         end
-
-
       end
-
     end
   end
 end

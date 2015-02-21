@@ -25,7 +25,6 @@ require 'hive/activities/shipping/shipping_status_changed_activity'
 
 module Hive
   module Activities
-
     ActivityType = Struct.new(:klass, :type) do
     end
 
