@@ -2,7 +2,7 @@ module Hive
   class Version
     MAJOR = 1
     MINOR = 0
-    PATCH = -
+    PATCH = 0
 
     class << self
       # @return [String]
