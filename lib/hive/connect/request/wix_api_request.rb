@@ -44,7 +44,7 @@ module Hive
       private
 
       def sign_request
-        @timestamp = Time.now.iso8601(3)
+        @timestamp = Time.now.utc.iso8601(3)
         append_default_params
         append_wix_headers
         @headers[CaseSensitiveString.new('x-wix-signature')] = calculate_signature
