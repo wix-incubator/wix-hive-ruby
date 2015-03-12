@@ -118,7 +118,16 @@ describe 'Activities API' do
       shipping = {total: 1, formattedTotal: 1}
       payment = {total: '1', subtotal: '1', formattedTotal: '1.0', formattedSubtotal: '1.0', currency: 'EUR', coupon: coupon, tax: tax, shipping: shipping}
       media = {thumbnail: 'PIC'}
-      item = {id: 1, sku: 'sky', title: 'title', quantity: 1, price: '1', formattedPrice: '1.1', currency: 'EUR', productLink: 'link', weight: '1', formattedWeight: '1.0KG', media: media, variants: [{title: 'title', value: '1'}]}
+      categories = %w(shirt clothing wix)
+      metadata = [ {name: 'item', value: '1'} ]
+      item = {id: 1, sku: 'sky', type: 'PHYSICAL', title: 'title', quantity: 1, price: '1', 
+              formattedPrice: '1.1', currency: 'EUR', productLink: 'link', weight: '1', 
+              formattedWeight: '1.0KG', 
+              media: media, 
+              categories: categories,
+              metadata: metadata,
+              variants: [{title: 'title', value: '1'}]
+      }
       shipping_address = {firstName: 'Wix' , lastName: 'Cool', email: 'wix@example.com', phone: '12345566', country: 'Macedonia', countryCode: 'MK', region: 'Bitola', regionCode: '7000', city: 'Bitola', address1: 'Marshal Tito', address2: 'Marshal Tito', zip: '7000', company: 'Wix.com'}
 
       purchase = FACTORY::E_COMMERCE_PURCHASE.klass.new(cartId: '11111',
