@@ -587,13 +587,13 @@ client.upsert_contact( phone: '123456789', email: 'alex@example.com' )
 
 **Example:**
    ``` ruby
-   Hive::Activity.new(
+   activity = Hive::Activity.new(
            type: FACTORY::MUSIC_ALBUM_FAN.type,
            locationUrl: 'http://www.wix.com',
            details: { summary: 'test', additionalInfoUrl: 'http://www.wix.com' },
            info: { album: { name: 'Wix', id: '1234' } })
            
-   client.new_activity(SESSION_ID, base_activity)
+   client.new_activity(SESSION_ID, activity)
    ```
    
 #### client.activity
