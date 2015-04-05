@@ -65,7 +65,7 @@ A Ruby interface to the Wix Hive API.
 
 ## Prerequisites
 - **Read about** [developing a third party app for the Wix platform](http://dev.wix.com/docs/getting-started).
-- **Register your app** [here](http://dev.wix.com/docs/publish/registration) to **obtain** your **APP_KEY** and **APP_SECRET**
+- **Register your app** [here](http://dev.wix.com/docs/publish/registration) to **obtain** your **APP_ID** and **APP_SECRET**
 
 ## Installation
 
